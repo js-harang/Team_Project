@@ -2,24 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBattle : MonoBehaviour
+public class PlayerBattle : Unit, IBattle
 {
+    // 공격 판정 위치
     public GameObject atkPosition;
     public Vector3 atkLenght;
 
+    // 공격 감지할 레이어
     public LayerMask enemyLayer;
-
+    // 적들 콜라이더 담아놓을 배열
     Collider[] enemys;
 
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Attack();
+            Attack(atkPower);
         }
     }
 
-    void Attack()
+    public void Attack(float atkPower)
     {
         Vector3 position = atkPosition.transform.position;
         enemys = Physics.OverlapBox(position, atkLenght,Quaternion.identity,enemyLayer);
@@ -28,9 +30,15 @@ public class PlayerBattle : MonoBehaviour
         {
             if (enemy.gameObject.tag == "Enemy")
             {
-                Debug.Log("EnemyAtk");
+
+                Debug.Log("EnemyAtk" + atkPower);
             }
         }
+    }
+
+    public void Hurt(float damage)
+    {
+
     }
 
     private void OnDrawGizmos()
