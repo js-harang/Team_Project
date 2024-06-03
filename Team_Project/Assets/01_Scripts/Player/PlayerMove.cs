@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveTestTranslate : MonoBehaviour
+public class PlayerMove : MonoBehaviour
 {
     // Translate Å×½ºÆ®
     public float speed;
