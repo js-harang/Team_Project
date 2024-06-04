@@ -1,5 +1,14 @@
 using UnityEngine;
 
+public enum UnitState
+{
+    Idle,
+    Run,
+    Attack,
+    Hurt,
+    Die,
+}
+
 public class PlayerBattle : MonoBehaviour
 {
     // 공격 판정 위치
