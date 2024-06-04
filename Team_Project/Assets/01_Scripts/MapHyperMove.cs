@@ -6,11 +6,11 @@ public class MapHyperMove : MonoBehaviour
 {
     public GameObject jumpStart;
     public GameObject jumpEnd;
-    float playerY;
+    Rigidbody rb;
 
     private void Start()
     {
-        playerY = transform.position.y;
+        rb = GetComponent<Rigidbody>();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -24,6 +24,7 @@ public class MapHyperMove : MonoBehaviour
     IEnumerator HyperMove()
     {
         yield return new WaitForSeconds(1f);
-        playerY += 1000 * Time.deltaTime;
+        rb.AddForce(Vector3.up * 20, ForceMode.Impulse);
+        
     }
 }
