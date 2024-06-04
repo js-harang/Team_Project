@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/99_Scenes/01_Title.unity
     guid: 3dae430879933904292214dc9d7ba761
   - enabled: 1
-    path: Assets/99_Scenes/02_CharterLobby.unity
+    path: Assets/99_Scenes/02_CharacterLobby.unity
     guid: e0aaccffe189dc843bf3710ba39799ae
   - enabled: 1
     path: Assets/99_Scenes/03_TownStage.unity
