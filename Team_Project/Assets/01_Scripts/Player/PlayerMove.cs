@@ -1,16 +1,10 @@
 using UnityEngine;
 
-public enum UnitState
-{
-    Idle,
-    Run,
-    Attack,
-    Hurt,
-    Die,
-}
 
 public class PlayerMove : MonoBehaviour
 {
+    Animator anim;
+
     // Translate 테스트
     public float setSpeed;
     float speed;
@@ -52,6 +46,8 @@ public class PlayerMove : MonoBehaviour
     {   // 아무 이동키 입력시
         if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
         {
+            anim.SetTrigger("IdleToMove");
+
             unitState = UnitState.Run;
             speed = setSpeed;
 
@@ -62,6 +58,8 @@ public class PlayerMove : MonoBehaviour
         }
         else
         {
+            anim.SetTrigger("MoveToIdle");
+            
             unitState = UnitState.Idle;
             speed = 0f;
         }
@@ -93,5 +91,7 @@ public class PlayerMove : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         lookInput = 1f;
         transform.rotation = Quaternion.LookRotation(Vector3.right);
+
+        anim = GetComponentInChildren<Animator>();
     }
 }
