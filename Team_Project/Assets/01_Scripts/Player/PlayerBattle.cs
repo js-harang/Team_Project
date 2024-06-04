@@ -11,6 +11,8 @@ public class PlayerBattle : MonoBehaviour
     // 적들 콜라이더 담아놓을 배열
     Collider[] enemys;
 
+    UnitState unitState;
+
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -36,7 +38,7 @@ public class PlayerBattle : MonoBehaviour
 
     public void Hurt(float damage)
     {
-
+        unitState = UnitState.Hurt;
     }
 
     private void OnDrawGizmos()
