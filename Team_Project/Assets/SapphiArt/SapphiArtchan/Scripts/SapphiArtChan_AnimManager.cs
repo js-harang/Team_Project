@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class SapphiArtChan_AnimManager : MonoBehaviour {
+public class SapphiArtChan_AnimManager : MonoBehaviour
+{
 
     private Animator _SapphiArtChanAnimator;                //Character Animation
     internal string _SapphiArtChanAnimation = null;         //Character Animation Name
@@ -205,7 +205,7 @@ public class SapphiArtChan_AnimManager : MonoBehaviour {
         _SapphiArtChanRenderer_Face.SetBlendShapeWeight(5, _SapphiArtChanFacial_Eye_R_Closed);
         _SapphiArtChanRenderer_Face.SetBlendShapeWeight(2, _SapphiArtChanFacial_Eye_L_Wide);
         _SapphiArtChanRenderer_Face.SetBlendShapeWeight(3, _SapphiArtChanFacial_Eye_R_Wide);
-        
+
         _SapphiArtChanRenderer_Brow.SetBlendShapeWeight(0, _SapphiArtChanFacial_Eyebrow_L_Up);
         _SapphiArtChanRenderer_Brow.SetBlendShapeWeight(1, _SapphiArtChanFacial_Eyebrow_R_Up);
         _SapphiArtChanRenderer_Brow.SetBlendShapeWeight(2, _SapphiArtChanFacial_Eyebrow_L_Angry);
@@ -224,14 +224,14 @@ public class SapphiArtChan_AnimManager : MonoBehaviour {
         _SapphiArtChanRenderer_Face.SetBlendShapeWeight(10, _SapphiArtChanFacial_Mouth_Puff);
         _SapphiArtChanRenderer_Face.SetBlendShapeWeight(11, _SapphiArtChanFacial_Mouth_Smile);
 
-        if(_SapphiArtChanRenderer_BottomTeeth.isVisible)
+        if (_SapphiArtChanRenderer_BottomTeeth.isVisible)
             _SapphiArtChanRenderer_BottomTeeth.SetBlendShapeWeight(0, _SapphiArtChanFacial_Mouth_BottomTeeth);
 
 
 
 
 
-    string _GeneralChangeType = _AnimationManagerUI._GeneralChangeType;
+        string _GeneralChangeType = _AnimationManagerUI._GeneralChangeType;
         _SapphiArtChanLastFacial = _SapphiArtChanFacial;
         _SapphiArtChanFacial = _AnimationManagerUI._FacialValue;
         _SapphiArtChanLastFacialBool = _SapphiArtChanFacialBool;
@@ -352,7 +352,7 @@ public class SapphiArtChan_AnimManager : MonoBehaviour {
             if (_MouthChangeType == null)
                 return;
 
-            if (_MouthChangeType == _MouthLastChangeType && 
+            if (_MouthChangeType == _MouthLastChangeType &&
                 _SapphiArtChanFacial == _SapphiArtChanLastFacial &&
                 _SapphiArtChanFacialBool == _SapphiArtChanLastFacialBool)
                 return;
@@ -451,11 +451,11 @@ public class SapphiArtChan_AnimManager : MonoBehaviour {
 
 
 
-    void Update ()
+    void Update()
     {
         //Get Animation from UI
         GetAnimation();
-        
+
         //Set New Animation
         if (_SapphiArtChanLastAnimation != _SapphiArtChanAnimation)
             SetAnimation();
