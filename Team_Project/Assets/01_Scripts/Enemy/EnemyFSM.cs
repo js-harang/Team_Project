@@ -72,7 +72,7 @@ public class EnemyFSM : MonoBehaviour
         m_State = EnemyState.Idle;
 
         // 플레이어의 트랜스폼 컴포넌트 받아오기
-        player = GameObject.Find("Player").transform;
+        player = GameObject.Find("Player Test").transform;
 
         // 캐릭터 컴트롤러 컴포넌트 받아오기
         cc = GetComponent<CharacterController>();
