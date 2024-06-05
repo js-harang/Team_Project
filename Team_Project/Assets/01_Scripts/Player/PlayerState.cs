@@ -8,6 +8,7 @@ public enum UnitState
     Idle,
     Interact,
     Run,
+    Jump,
     Attack,
     Hurt,
     Die,
@@ -15,19 +16,9 @@ public enum UnitState
 
 public class PlayerState : MonoBehaviour
 {
-    
-
     [SerializeField] UnitState unitState;
 
     public UnitState UnitState
-    {
-        get
-        {
-            return unitState;
-        }
-        set
-        {
-            unitState = value;
-        }
-    }
+    { get { return unitState; } set { unitState = value; }}
+
 }

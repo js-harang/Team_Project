@@ -4134,6 +4134,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   setSpeed: 0
   jumpForce: 0
+  checkDis: 0
+  grdLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  isGround: 0
+  playerPointer: {fileID: 0}
 --- !u!114 &2352852656366168862
 MonoBehaviour:
   m_ObjectHideFlags: 0
