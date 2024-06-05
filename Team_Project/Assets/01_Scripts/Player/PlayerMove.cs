@@ -18,7 +18,7 @@ public class PlayerMove : MonoBehaviour
 
     Rigidbody rb;
 
-    UnitState unitState;
+    PlayerState pState;
 
     private void Start()
     {
@@ -35,6 +35,9 @@ public class PlayerMove : MonoBehaviour
 
     void InputKey()
     {   // 키입력
+        if (pState.UnitState == UnitState.Interact)
+            return;
+        
         inputX = Input.GetAxisRaw("Horizontal");
         inputZ = Input.GetAxisRaw("Vertical");
 
@@ -46,9 +49,9 @@ public class PlayerMove : MonoBehaviour
     {   // 아무 이동키 입력시
         if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
         {
+            pState.UnitState = UnitState.Run;
             anim.SetTrigger("IdleToMove");
 
-            unitState = UnitState.Run;
             speed = setSpeed;
 
             Vector3 inputMove = new Vector3(inputX, 0, inputZ).normalized;
@@ -58,9 +61,9 @@ public class PlayerMove : MonoBehaviour
         }
         else
         {
+            pState.UnitState = UnitState.Idle;
             anim.SetTrigger("MoveToIdle");
             
-            unitState = UnitState.Idle;
             speed = 0f;
         }
     }
@@ -75,7 +78,6 @@ public class PlayerMove : MonoBehaviour
 
         lookdir = (Vector3.right * lookInput);
         transform.rotation = Quaternion.LookRotation(lookdir);
-        
     }
 
     void Jump()
@@ -93,5 +95,7 @@ public class PlayerMove : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(Vector3.right);
 
         anim = GetComponentInChildren<Animator>();
+
+        pState = GetComponent<PlayerState>();
     }
 }

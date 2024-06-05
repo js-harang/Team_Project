@@ -1,13 +1,5 @@
 using UnityEngine;
 
-public enum UnitState
-{
-    Idle,
-    Run,
-    Attack,
-    Hurt,
-    Die,
-}
 
 public class PlayerBattle : MonoBehaviour
 {
@@ -20,7 +12,7 @@ public class PlayerBattle : MonoBehaviour
     // 적들 콜라이더 담아놓을 배열
     Collider[] enemys;
 
-    UnitState unitState;
+    PlayerState pState;
 
     void Update()
     {
@@ -47,9 +39,13 @@ public class PlayerBattle : MonoBehaviour
 
     public void Hurt(float damage)
     {
-        unitState = UnitState.Hurt;
+        pState.UnitState = UnitState.Hurt;
     }
 
+    private void Start()
+    {
+        pState = GetComponent<PlayerState>();
+    }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
