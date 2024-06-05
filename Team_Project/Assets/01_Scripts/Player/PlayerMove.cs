@@ -35,7 +35,7 @@ public class PlayerMove : MonoBehaviour
 
     void InputKey()
     {   // 키입력
-        if (pState.UnitStat == UnitState.Interact)
+        if (pState.UnitState == UnitState.Interact)
             return;
         
         inputX = Input.GetAxisRaw("Horizontal");
@@ -49,7 +49,7 @@ public class PlayerMove : MonoBehaviour
     {   // 아무 이동키 입력시
         if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
         {
-            pState.UnitStat = UnitState.Run;
+            pState.UnitState = UnitState.Run;
             anim.SetTrigger("IdleToMove");
 
             speed = setSpeed;
@@ -61,7 +61,7 @@ public class PlayerMove : MonoBehaviour
         }
         else
         {
-            pState.UnitStat = UnitState.Idle;
+            pState.UnitState = UnitState.Idle;
             anim.SetTrigger("MoveToIdle");
             
             speed = 0f;

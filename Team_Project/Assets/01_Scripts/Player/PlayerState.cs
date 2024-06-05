@@ -19,7 +19,7 @@ public class PlayerState : MonoBehaviour
 
     [SerializeField] UnitState unitState;
 
-    public UnitState UnitStat
+    public UnitState UnitState
     {
         get
         {

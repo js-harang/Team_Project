@@ -18,7 +18,7 @@ public class PlayerInteract : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.X))
             {
-                pState.UnitStat = UnitState.Interact;
+                pState.UnitState = UnitState.Interact;
             }
         }
     }

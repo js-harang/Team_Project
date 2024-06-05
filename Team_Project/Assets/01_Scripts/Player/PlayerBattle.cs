@@ -39,7 +39,7 @@ public class PlayerBattle : MonoBehaviour
 
     public void Hurt(float damage)
     {
-        pState.UnitStat = UnitState.Hurt;
+        pState.UnitState = UnitState.Hurt;
     }
 
     private void Start()
