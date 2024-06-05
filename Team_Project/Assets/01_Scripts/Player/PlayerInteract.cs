@@ -4,20 +4,21 @@ using UnityEngine;
 
 public class PlayerInteract : MonoBehaviour
 {
-    PlayerBattle playerBattle;
+    PlayerState pState;
     bool isPlayeIn;
 
     private void Start()
     {
-        playerBattle = GetComponent<PlayerBattle>();
+        pState = GetComponent<PlayerState>();
     }
+
     private void Update()
     {
         if (isPlayeIn)
         {
             if (Input.GetKeyDown(KeyCode.X))
             {
-                playerBattle.UnitStat = UnitState.Interact;
+                pState.UnitStat = UnitState.Interact;
             }
         }
     }
@@ -29,6 +30,7 @@ public class PlayerInteract : MonoBehaviour
             isPlayeIn = true;
         }
     }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("NPC"))

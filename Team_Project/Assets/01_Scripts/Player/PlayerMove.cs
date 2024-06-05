@@ -18,13 +18,11 @@ public class PlayerMove : MonoBehaviour
 
     Rigidbody rb;
 
-    UnitState unitState;
-    PlayerBattle playerBattle;
+    PlayerState pState;
 
     private void Start()
     {
         StartSetting();
-        playerBattle = GetComponent<PlayerBattle>();
     }
 
     private void Update()
@@ -37,11 +35,11 @@ public class PlayerMove : MonoBehaviour
 
     void InputKey()
     {   // 키입력
+        if (pState.UnitStat == UnitState.Interact)
+            return;
+        
         inputX = Input.GetAxisRaw("Horizontal");
         inputZ = Input.GetAxisRaw("Vertical");
-
-        if (playerBattle.UnitStat == UnitState.Interact)
-            return;
 
         Move();
 
@@ -51,9 +49,9 @@ public class PlayerMove : MonoBehaviour
     {   // 아무 이동키 입력시
         if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
         {
+            pState.UnitStat = UnitState.Run;
             anim.SetTrigger("IdleToMove");
 
-            unitState = UnitState.Run;
             speed = setSpeed;
 
             Vector3 inputMove = new Vector3(inputX, 0, inputZ).normalized;
@@ -63,9 +61,9 @@ public class PlayerMove : MonoBehaviour
         }
         else
         {
+            pState.UnitStat = UnitState.Idle;
             anim.SetTrigger("MoveToIdle");
             
-            unitState = UnitState.Idle;
             speed = 0f;
         }
     }
@@ -80,7 +78,6 @@ public class PlayerMove : MonoBehaviour
 
         lookdir = (Vector3.right * lookInput);
         transform.rotation = Quaternion.LookRotation(lookdir);
-        
     }
 
     void Jump()
@@ -98,5 +95,7 @@ public class PlayerMove : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(Vector3.right);
 
         anim = GetComponentInChildren<Animator>();
+
+        pState = GetComponent<PlayerState>();
     }
 }
