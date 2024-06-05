@@ -19,10 +19,12 @@ public class PlayerMove : MonoBehaviour
     Rigidbody rb;
 
     UnitState unitState;
+    PlayerBattle playerBattle;
 
     private void Start()
     {
         StartSetting();
+        playerBattle = GetComponent<PlayerBattle>();
     }
 
     private void Update()
@@ -37,6 +39,9 @@ public class PlayerMove : MonoBehaviour
     {   // Å°ÀÔ·Â
         inputX = Input.GetAxisRaw("Horizontal");
         inputZ = Input.GetAxisRaw("Vertical");
+
+        if (playerBattle.UnitStat == UnitState.Interact)
+            return;
 
         Move();
 

@@ -1464,6 +1464,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 636381846}
   m_CullTransparentMesh: 1
+--- !u!1 &694044582 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6993523720824706378, guid: fbf7cdca965d2264586ab2f6656858fe, type: 3}
+  m_PrefabInstance: {fileID: 737373137}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &694044589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 694044582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 821c8f04509224b4dbcc9304a6bb3603, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &737373137
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1522,6 +1539,10 @@ PrefabInstance:
     - target: {fileID: 6993523720824706378, guid: fbf7cdca965d2264586ab2f6656858fe, type: 3}
       propertyPath: m_Name
       value: Player Test
+      objectReference: {fileID: 0}
+    - target: {fileID: 8697579635506886379, guid: fbf7cdca965d2264586ab2f6656858fe, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fbf7cdca965d2264586ab2f6656858fe, type: 3}
@@ -2105,7 +2126,7 @@ GameObject:
   - component: {fileID: 1454867280}
   m_Layer: 0
   m_Name: NearChecker
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2850,9 +2871,9 @@ GameObject:
   - component: {fileID: 1722572977}
   - component: {fileID: 1722572976}
   - component: {fileID: 1722572975}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: NPC
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3055,7 +3076,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1726604512
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3136,7 +3157,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1726604511}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 2
   m_Camera: {fileID: 0}

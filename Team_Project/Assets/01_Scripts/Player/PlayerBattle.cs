@@ -3,6 +3,7 @@ using UnityEngine;
 public enum UnitState
 {
     Idle,
+    Interact,
     Run,
     Attack,
     Hurt,
@@ -20,8 +21,18 @@ public class PlayerBattle : MonoBehaviour
     // 적들 콜라이더 담아놓을 배열
     Collider[] enemys;
 
-    UnitState unitState;
-
+    [SerializeField] UnitState unitState;
+    public UnitState UnitStat
+    {
+        get
+        {
+            return unitState;
+        }
+        set
+        {
+            unitState = value;
+        }
+    }
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
