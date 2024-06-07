@@ -117,8 +117,13 @@ public class PlayerMove : MonoBehaviour
             if (!isGround)
             {
                 playerPointer.SetActive(true);
+
                 playerPointer.transform.position = hitInfo.point;
-            }
+            /*        new Vector3(
+                    hitInfo.transform.position.x,
+                    hitInfo.transform.position.y + 1,
+                    hitInfo.transform.position.z);
+            */}
             else
             {
                 playerPointer.SetActive(false);
@@ -163,5 +168,7 @@ public class PlayerMove : MonoBehaviour
     {
         Gizmos.color = Color.green;
         Gizmos.DrawLine(transform.position,transform.position + Vector3.down * checkDis);
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position,transform.position + Vector3.down * 100f);
     }
 }
