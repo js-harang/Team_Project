@@ -4,17 +4,24 @@ public class CameraFollow : MonoBehaviour
 {
     [SerializeField]
     Transform player;
-    Vector3 originPos;
+    // 플레이어로부터 카메라가 둘 거리
+    Vector3 distanceFromPlayer;
+
+    [SerializeField]
+    float yDistance = 4f;
+    [SerializeField]
+    float zDistance = -8f;
     // 카메라가 움직이는 속도
-    public float camSpeed = 5f;
+    [SerializeField]
+    float camSpeed = 5f;
 
     private void Start()
     {
-        originPos = new Vector3(0, 4f, -8f);
+        distanceFromPlayer = new Vector3(0, yDistance, zDistance);
     }
 
     private void Update()
     {
-            transform.position = Vector3.Lerp(transform.position, player.position + originPos, camSpeed * Time.deltaTime);
+        transform.position = Vector3.Lerp(transform.position, player.position + distanceFromPlayer, camSpeed * Time.deltaTime);
     }
 }

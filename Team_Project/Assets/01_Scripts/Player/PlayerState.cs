@@ -18,5 +18,4 @@ public class PlayerState : MonoBehaviour
 
     public UnitState UnitState
     { get { return unitState; } set { unitState = value; } }
-
 }
