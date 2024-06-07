@@ -31,7 +31,7 @@ public class LobbyController : MonoBehaviour
 
     public void ClickGameStartBtn()
     {
-        SceneManager.LoadScene("03_TownStage");
+        SceneManager.LoadScene("99_LoadingScene");
     }
 
     /// <summary>
