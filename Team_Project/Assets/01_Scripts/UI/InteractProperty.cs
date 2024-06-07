@@ -2,11 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum InteractType
+{
+    Object,
+    NPC,
+}
+
 public class InteractProperty : MonoBehaviour
 {
     [SerializeField]
-    string interactType;
-    public string InteractType { get { return interactType; } }
+    InteractType interactType;
+
+    public InteractType InteractType { get { return interactType; } }
 
     [SerializeField]
     int interactId;

@@ -6,10 +6,13 @@ public class PlayerInteract : MonoBehaviour
     // player가 상호작용 가능한 오브젝트 근처에 있는지의 bool 변수
     bool isMeetInteract;
 
+    // InteractController 클래스 변수
+    InteractController interCon;
+
     // player가 접촉한 상호작용 가능 오브젝트의 정보를 저장하는 변수
     InteractProperty interPP;
     [SerializeField]
-    string interactType;
+    InteractType interactType;
     [SerializeField]
     int interactId;
     [SerializeField]
@@ -18,6 +21,7 @@ public class PlayerInteract : MonoBehaviour
     private void Start()
     {
         pState = GetComponent<PlayerState>();
+        interCon = GetComponent<InteractController>();
     }
 
     // 오브젝트 근처에 있는 상태라면 X를 눌러 상호작용 상태가 된다.
@@ -27,7 +31,7 @@ public class PlayerInteract : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.X))
             {
-                InteractController.NowInteracting = true;
+                interCon.NowInteracting = true;
                 pState.UnitState = UnitState.Interact;
             }
         }

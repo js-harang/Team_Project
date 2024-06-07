@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class InteractController : MonoBehaviour
 {
-    static bool nowInteracting;
-    public static bool NowInteracting 
+    bool nowInteracting;
+    public bool NowInteracting 
     { get { return nowInteracting; } set {nowInteracting = value; } }
 
 }
