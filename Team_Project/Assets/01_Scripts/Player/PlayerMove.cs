@@ -98,13 +98,11 @@ public class PlayerMove : MonoBehaviour
         {
             isGround = true;
             anim.SetBool("IsGround", isGround);
-            pState.UnitState = UnitState.Idle;
         }
         else
         {
             isGround = false;
             anim.SetBool("IsGround", isGround);
-            pState.UnitState = UnitState.Jump;
         }
         DrawArrowToGround();
     }
