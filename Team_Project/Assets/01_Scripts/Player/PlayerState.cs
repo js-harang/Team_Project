@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 
 public enum UnitState
 {
@@ -16,9 +13,10 @@ public enum UnitState
 
 public class PlayerState : MonoBehaviour
 {
-    [SerializeField] UnitState unitState;
+    [SerializeField]
+    UnitState unitState;
 
     public UnitState UnitState
-    { get { return unitState; } set { unitState = value; }}
+    { get { return unitState; } set { unitState = value; } }
 
 }

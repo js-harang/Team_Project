@@ -1,8 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class EnemyFSM : MonoBehaviour
 {
@@ -24,6 +23,7 @@ public class EnemyFSM : MonoBehaviour
     public float findDistance = 8f;
 
     // 플레이어 트랜스폼
+    [SerializeField]
     Transform player;
 
     // 공격 가능 범위
@@ -64,15 +64,12 @@ public class EnemyFSM : MonoBehaviour
     Animator anim;
 
     // 내비게이션 에이전트 변수
-    NavMeshAgent Enemy;
+    NavMeshAgent enemyNav;
 
     private void Start()
     {
         // 최초의 에너미 상태를 대기
         m_State = EnemyState.Idle;
-
-        // 플레이어의 트랜스폼 컴포넌트 받아오기
-        player = GameObject.Find("Player Test").transform;
 
         // 캐릭터 컴트롤러 컴포넌트 받아오기
         cc = GetComponent<CharacterController>();
@@ -85,7 +82,7 @@ public class EnemyFSM : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
 
         // 내비게이션 에이전트 컴포넌트 받아오기
-        Enemy = GetComponent<NavMeshAgent>();
+        enemyNav = GetComponent<NavMeshAgent>();
     }
 
     private void Update()
@@ -99,9 +96,9 @@ public class EnemyFSM : MonoBehaviour
             case EnemyState.Move:
                 Move();
                 break;
-            /* case EnemyState.Attack:
+            case EnemyState.Attack:
                 Attack();
-                break; */
+                break;
             case EnemyState.Return:
                 Return();
                 break;
@@ -143,10 +140,10 @@ public class EnemyFSM : MonoBehaviour
         else if (Vector3.Distance(transform.position, player.position) > attackDistance)
         {
             // 내비게이션으로 접근하는 최소 거리를 공격 가능 거리로 설정
-            Enemy.stoppingDistance = attackDistance;
+            enemyNav.stoppingDistance = attackDistance;
 
             // 내비게이션의 목적지를 플레이어의 위치로 설정
-            // Enemy.destination = player.position; //
+            enemyNav.destination = player.position;
         }
         // 그렇지 않다면, 현재 상태를 공격(Attack)으로 전환
         else
@@ -192,7 +189,7 @@ public class EnemyFSM : MonoBehaviour
             currentTime = 0;
 
             // 이동 애니메이션 플레이
-            anim.SetTrigger("AttackToMove");
+            //anim.SetTrigger("AttackToMove");
         }
     }
 
@@ -208,17 +205,17 @@ public class EnemyFSM : MonoBehaviour
         if (Vector3.Distance(transform.position, originPos) > 0.1f)
         {
             // 내비게이션의 목적지를 초기 저장된 위치로 설정
-            Enemy.destination = originPos;
+            enemyNav.destination = originPos;
 
             // 내비게이션으로 접근하는 최소 거리를 0으로 설정
-            Enemy.stoppingDistance = 0;
+            enemyNav.stoppingDistance = 0;
         }
         // 그렇지 않다면, 자신의 위치를 초기 위치로 조정하고 현재 상태를 대기로 전환
         else
         {
             // 내비게이션 에이전트의 이동을 멈추고 경로를 초기화
-            Enemy.isStopped = true;
-            Enemy.ResetPath();
+            enemyNav.isStopped = true;
+            enemyNav.ResetPath();
 
             // 위치 값과 회전 값을 초기 상태로 변환
             transform.position = originPos;
@@ -231,7 +228,7 @@ public class EnemyFSM : MonoBehaviour
             print("상태 전환 : Return -> Idle");
 
             // 대기 애니메이션으로 전환하는 트랜지션을 호출
-            anim.SetTrigger("MoveToIdle");
+            //anim.SetTrigger("MoveToIdle");
         }
     }
 
@@ -264,8 +261,8 @@ public class EnemyFSM : MonoBehaviour
         }
 
         // 내비게이션 에이전트의 이동을 멈추고 경로를 초기화
-        Enemy.isStopped = true;
-        Enemy.ResetPath();
+        enemyNav.isStopped = true;
+        enemyNav.ResetPath();
 
         // 플레이어의 공격력만큼 에너미의 체력을 감소시킴
         hp -= hitPower;
