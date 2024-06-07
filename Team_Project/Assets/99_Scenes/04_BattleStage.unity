@@ -2204,6 +2204,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 6993523719674760130}
+  yDistance: 4
+  zDistance: -8
   camSpeed: 5
 --- !u!1 &970931312
 GameObject:
@@ -3809,6 +3811,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 821c8f04509224b4dbcc9304a6bb3603, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactType: 
+  interactId: 0
+  interactName: 
 --- !u!136 &6993523719674760128
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5834,18 +5839,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &8697579634892662893
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8697579634899707893}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ccb49676687917499386abab8234bd6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &8697579634899419657
 Transform:
   m_ObjectHideFlags: 0
@@ -9708,7 +9701,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8697579634899539169}
   - component: {fileID: 8697579634890281925}
-  - component: {fileID: 8697579634892662893}
   m_Layer: 7
   m_Name: SapphiArtchan
   m_TagString: Untagged

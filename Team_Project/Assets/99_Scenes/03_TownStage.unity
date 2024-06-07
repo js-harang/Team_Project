@@ -5157,7 +5157,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7651982037827919224}
   - component: {fileID: 7651982037837044316}
-  - component: {fileID: 7651982037834670580}
   m_Layer: 7
   m_Name: SapphiArtchan
   m_TagString: Untagged
@@ -10297,18 +10296,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.08601621, y: -0.07985985, z: 0.057304543}
     m_Extent: {x: 0.07893041, y: 0.08818674, z: 0.11471237}
   m_DirtyAABB: 0
---- !u!114 &7651982037834670580
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7651982037827628652}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ccb49676687917499386abab8234bd6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &7651982037837044316
 Animator:
   serializedVersion: 5
