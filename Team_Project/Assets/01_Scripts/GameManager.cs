@@ -9,7 +9,11 @@ public class GameManager : MonoBehaviour
         if (gm != null)
             Destroy(this);
         else
+        {
             gm = this;
+
+            DontDestroyOnLoad(gm);
+        }
     }
 
     public int sceneNumber;
