@@ -11,15 +11,15 @@ public class LoadingSceneController : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI loadingTxt;
 
-    public void LoadingScene(string sceneName)
+    public void Start()
     {
-        StartCoroutine(LoadingProcessCoroutine(sceneName));
+        StartCoroutine(LoadingProcessCoroutine(GameManager.gm.sceneNumber));
     }
 
     // 비동기화 씬 로드
-    IEnumerator LoadingProcessCoroutine(string sceneName)
+    IEnumerator LoadingProcessCoroutine(int sceneNumber)
     {
-        AsyncOperation ao = SceneManager.LoadSceneAsync(sceneName);
+        AsyncOperation ao = SceneManager.LoadSceneAsync(sceneNumber);
         ao.allowSceneActivation = false;
 
         while (!ao.isDone)
