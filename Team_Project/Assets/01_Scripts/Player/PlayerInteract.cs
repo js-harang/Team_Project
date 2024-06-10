@@ -1,10 +1,15 @@
 using UnityEngine;
+using TMPro;
 
 public class PlayerInteract : MonoBehaviour
 {
     PlayerState pState;
     // player가 상호작용 가능한 오브젝트 근처에 있는지의 bool 변수
     bool isMeetInteract;
+
+    // 대화 가능한 오브젝트를 표시하는 UI 변수
+    public GameObject interactCheck;
+    public TMP_Text interactName_Txt;
 
     // InteractController 클래스 변수
     InteractController interCon;
@@ -21,7 +26,7 @@ public class PlayerInteract : MonoBehaviour
     private void Start()
     {
         pState = GetComponent<PlayerState>();
-        interCon = GetComponent<InteractController>();
+        interCon = FindObjectOfType<InteractController>().GetComponent<InteractController>();
     }
 
     // 오브젝트 근처에 있는 상태라면 X를 눌러 상호작용 상태가 된다.
@@ -33,6 +38,7 @@ public class PlayerInteract : MonoBehaviour
             {
                 interCon.NowInteracting = true;
                 pState.UnitState = UnitState.Interact;
+                InteractCheck();
             }
         }
     }
@@ -47,6 +53,7 @@ public class PlayerInteract : MonoBehaviour
             interactType = interPP.InteractType;
             interactId = interPP.InteractId;
             interactName = interPP.InteractName;
+            InteractCheck();
         }
     }
 
@@ -56,6 +63,19 @@ public class PlayerInteract : MonoBehaviour
         if (other.gameObject.CompareTag("InteractObj"))
         {
             isMeetInteract = false;
+            InteractCheck();
         }
+    }
+
+    // InteractCheck가 비활성화 상태면 활성화, 활성화 상태면 비활성화
+    void InteractCheck()
+    {
+        if (!interactCheck.activeSelf)
+        {
+            interactCheck.SetActive(true);
+            interactName_Txt.text = interactName;
+        }
+        else if (interactCheck.activeSelf)
+            interactCheck.SetActive(false);
     }
 }
