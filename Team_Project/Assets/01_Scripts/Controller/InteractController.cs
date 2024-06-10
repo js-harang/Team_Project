@@ -30,7 +30,7 @@ public class InteractController : MonoBehaviour
     public Canvas dialogWindow;
 
     // 대화창 텍스트 변수들
-    public TMP_Text interatName_Text;
+    public TMP_Text interactName_Text;
     public TMP_Text dialog_Text;
 
     // 플레이어로부터 전달받을 현재 대화중인 상대 오브젝트의 정보
@@ -63,7 +63,7 @@ public class InteractController : MonoBehaviour
     {
         gameUI.enabled = false;
         dialogWindow.enabled = true;
-        interatName_Text.text = interactName;
+        interactName_Text.text = interactName;
     }
 
     // 상호작용 끝낼 시 UI들의 상태 관리
