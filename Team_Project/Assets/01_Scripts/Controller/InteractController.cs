@@ -21,6 +21,8 @@ public class InteractController : MonoBehaviour
         } 
     }
 
+    PlayerInteract pI;
+
     // UI 캔버스 변수
     public Canvas gameUI;
 
@@ -31,9 +33,43 @@ public class InteractController : MonoBehaviour
     public TMP_Text interatName_Text;
     public TMP_Text dialog_Text;
 
+    // 플레이어로부터 전달받을 현재 대화중인 상대 오브젝트의 정보
+    InteractType interactType;
+    public InteractType InteractType { get; set; }
+
+    int interactId;
+    public int InteractId { get; set; }
+
+    string interactName;
+    public string InteractName { get; set; }
+
+    private void Start()
+    {
+        // PlayerInteract 컴포넌트를 변수에 저장
+        pI = GameObject.FindWithTag("Player").GetComponent<PlayerInteract>();
+    }
+
+    private void Update()
+    {
+        if (!nowInteracting)
+            return;
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+            EndInteracting();
+    }
+
+    // 상호작용 시작 시 UI들의 상태 관리
     void StartInteracting()
     {
         gameUI.enabled = false;
         dialogWindow.enabled = true;
+        interatName_Text.text = interactName;
+    }
+
+    // 상호작용 끝낼 시 UI들의 상태 관리
+    void EndInteracting()
+    {
+        gameUI.enabled = true;
+        dialogWindow.enabled = false;
     }
 }

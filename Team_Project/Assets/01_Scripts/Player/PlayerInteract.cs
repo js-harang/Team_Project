@@ -37,6 +37,7 @@ public class PlayerInteract : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.X))
             {
                 interCon.NowInteracting = true;
+                PassInteractInfo();
                 pState.UnitState = UnitState.Interact;
                 InteractCheck();
             }
@@ -77,5 +78,12 @@ public class PlayerInteract : MonoBehaviour
         }
         else if (interactCheck.activeSelf)
             interactCheck.SetActive(false);
+    }
+
+    void PassInteractInfo()
+    {
+        interCon.InteractType = interactType;
+        interCon.InteractId = interactId;
+        interCon.InteractName = interactName;
     }
 }
