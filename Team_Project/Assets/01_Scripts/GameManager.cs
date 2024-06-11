@@ -16,5 +16,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    [HideInInspector]
     public int sceneNumber;
 }
