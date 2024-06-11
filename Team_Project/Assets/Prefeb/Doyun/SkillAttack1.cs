@@ -7,7 +7,7 @@ public class SkillAttack1 : PlayerAttack
     public override void InitSetting()
     {
         // 공격타입
-        aST.atkType = 1;
+        aST.atkType = 15;
 
         // 공격력
         aST.atkPower = 3;

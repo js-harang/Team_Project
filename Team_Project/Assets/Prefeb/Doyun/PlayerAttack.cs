@@ -38,8 +38,10 @@ public abstract class PlayerAttack : MonoBehaviour
             {
                 Debug.Log("공격 타입 :" + aST.atkType);
                 Debug.Log("적 공격 데미지 :" + aST.atkPower);
-                Debug.Log("적 공격 데미지 :" + aST.atkPower);
                 Debug.Log("소모 마나 :" + aST.useMana);
+
+                EnemyFSM enemyFsm = enemy.GetComponent<EnemyFSM>();
+                enemyFsm.HitEnemy(aST.atkPower);
             }
         }
     }

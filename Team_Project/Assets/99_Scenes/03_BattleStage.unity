@@ -4080,11 +4080,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82cdca6e213ff7f4994c57bdfdb281cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atkPosition: {fileID: 6993523721388725117}
-  atkLenght: {x: 2, y: 2.5, z: 2.5}
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 2048
 --- !u!4 &6993523719674760130
 Transform:
   m_ObjectHideFlags: 0
