@@ -83,12 +83,12 @@ public class PlayerInteract : MonoBehaviour
     // InteractCheck가 비활성화 상태면 활성화, 활성화 상태면 비활성화
     void InteractCheck()
     {
-        if (!interactCheck.activeSelf)
+        if (isMeetInteract)
         {
             interactCheck.SetActive(true);
             interactName_Txt.text = interactName;
         }
-        else if (interactCheck.activeSelf)
+        else if (!isMeetInteract)
             interactCheck.SetActive(false);
     }
 
