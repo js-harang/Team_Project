@@ -26,7 +26,7 @@ public class GoBattleStage : MonoBehaviour
 
     public void GoBattle()
     {
-        GameManager.gm.sceneNumber = 4;
+        GameManager.gm.sceneNumber = 3;
         SceneManager.LoadScene("99_LoadingScene");
     }
 }
