@@ -36,10 +36,7 @@ public class PlayerInteract : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.X))
             {
-                interCon.NowInteracting = true;
-                PassInteractInfo();
-                pState.UnitState = UnitState.Interact;
-                InteractCheck();
+                LetsTalk();
             }
         }
     }
@@ -49,12 +46,8 @@ public class PlayerInteract : MonoBehaviour
     {
         if (other.gameObject.CompareTag("InteractObj"))
         {
-            isMeetInteract = true;
             interPP = other.GetComponent<InteractProperty>();
-            interactType = interPP.InteractType;
-            interactId = interPP.InteractId;
-            interactName = interPP.InteractName;
-            InteractCheck();
+            WhoAreYou();
         }
     }
 
@@ -66,6 +59,25 @@ public class PlayerInteract : MonoBehaviour
             isMeetInteract = false;
             InteractCheck();
         }
+    }
+
+    // 플레이어가 근처에 인식한 NPC의 정보를 가져옴
+    void WhoAreYou()
+    {
+        isMeetInteract = true;
+        interactType = interPP.InteractType;
+        interactId = interPP.InteractId;
+        interactName = interPP.InteractName;
+        InteractCheck();
+    }
+
+    // NPC와 대화를 시작할 때의 동작
+    void LetsTalk()
+    {
+        interCon.NowInteracting = true;
+        PassInteractInfo();
+        pState.UnitState = UnitState.Interact;
+        InteractCheck();
     }
 
     // InteractCheck가 비활성화 상태면 활성화, 활성화 상태면 비활성화
@@ -80,6 +92,7 @@ public class PlayerInteract : MonoBehaviour
             interactCheck.SetActive(false);
     }
 
+    // InteractController 에게 대화를 시작한 NPC의 정보를 넘김
     void PassInteractInfo()
     {
         interCon.InteractType = interactType;
