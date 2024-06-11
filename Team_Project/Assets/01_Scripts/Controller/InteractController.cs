@@ -66,7 +66,7 @@ public class InteractController : MonoBehaviour
         interactName_Text.text = interactName;
     }
 
-    // 상호작용 끝낼 시 UI들의 상태 관리
+    // 상호작용 끝낼 시의 동작 관리
     void EndInteracting()
     {
         gameUI.enabled = true;
