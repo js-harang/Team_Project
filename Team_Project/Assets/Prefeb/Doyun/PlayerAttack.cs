@@ -4,6 +4,9 @@ using UnityEngine;
 
 public struct AttackStatus
 {
+    //공격 타입
+    public int atkType;
+
     // 공격력
     public int atkPower;
     // 공격 딜레이
@@ -33,8 +36,10 @@ public abstract class PlayerAttack : MonoBehaviour
         {
             if (enemy.gameObject.tag == "Enemy")
             {
-
+                Debug.Log("공격 타입 :" + aST.atkType);
                 Debug.Log("적 공격 데미지 :" + aST.atkPower);
+                Debug.Log("적 공격 데미지 :" + aST.atkPower);
+                Debug.Log("소모 마나 :" + aST.useMana);
             }
         }
     }
