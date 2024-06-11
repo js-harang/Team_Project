@@ -3811,7 +3811,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 821c8f04509224b4dbcc9304a6bb3603, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactType: 
+  interactCheck: {fileID: 0}
+  interactName_Txt: {fileID: 0}
+  interactType: 0
   interactId: 0
   interactName: 
 --- !u!136 &6993523719674760128
