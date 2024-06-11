@@ -74,13 +74,13 @@ public class PlayerInteract : MonoBehaviour
     // NPC와 대화를 시작할 때의 동작
     void LetsTalk()
     {
-        interCon.NowInteracting = true;
         PassInteractInfo();
+        interCon.NowInteracting = true;
         pState.UnitState = UnitState.Interact;
         InteractCheck();
     }
 
-    // InteractCheck가 비활성화 상태면 활성화, 활성화 상태면 비활성화
+    // isMeetInteract가 true면 활성화, false면 비활성화
     void InteractCheck()
     {
         if (isMeetInteract)
