@@ -82,6 +82,8 @@ public class PlayerMove : MonoBehaviour
             if (CheckHitWall(inputMove))
                 return;
 
+
+
             Vector3 move = transform.position + (inputMove * speed * Time.deltaTime);
             transform.position = move;
         }
@@ -101,7 +103,7 @@ public class PlayerMove : MonoBehaviour
     {
         // 바닥 체크용 레이
         Ray ray = new(transform.position, Vector3.down);
-
+        
         if (Physics.Raycast(ray, out RaycastHit hitInfo, checkDis, grdLayer))
         {
             isGround = true;
@@ -190,7 +192,7 @@ public class PlayerMove : MonoBehaviour
     /// <returns></returns>
     private bool CheckHitWall(Vector3 inputmove)
     {
-        inputmove = transform.TransformDirection(inputmove);
+        Debug.Log(inputmove);
         float scope = 1f;
 
         // 플레이어의 머리, 가슴, 발 총 3군데에서 ray를 쏜다
@@ -206,8 +208,9 @@ public class PlayerMove : MonoBehaviour
         {
             if (Physics.Raycast(pos, inputmove, out RaycastHit hit, scope))
             {
-                if (hit.collider.gameObject.layer == 7)
+                if (hit.collider.gameObject.layer == 6)
                     return true;
+
             }
         }
 

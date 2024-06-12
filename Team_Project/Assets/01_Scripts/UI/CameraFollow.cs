@@ -8,12 +8,12 @@ public class CameraFollow : MonoBehaviour
     Vector3 distanceFromPlayer;
 
     [SerializeField]
-    float yDistance = 4f;
+    float yDistance;
     [SerializeField]
-    float zDistance = -8f;
+    float zDistance;
     // 카메라가 움직이는 속도
     [SerializeField]
-    float camSpeed = 5f;
+    float camSpeed;
 
     private void Start()
     {
