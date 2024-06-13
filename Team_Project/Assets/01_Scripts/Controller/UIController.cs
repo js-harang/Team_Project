@@ -11,27 +11,33 @@ public class UIController : MonoBehaviour
     {
         switch (Input.inputString)
         {
-            case "A":
-                Debug.Log(1234);
+            case "u":
+                StatusOpen();
                 break;
 
-            case "B":
-                Debug.Log(1234);
-                break;
-
-            case "C":
-                Debug.Log(1234); 
+            case "i":
+                InventoryOpen();
                 break;
         }
     }
 
-    public void InventoryOpen()
-    {
-        inventoryUI.SetActive(true);
-    }
-
     public void StatusOpen()
     {
+        if (statusUI.activeSelf)
+        {
+            statusUI.SetActive(false);
+            return;
+        }
         statusUI.SetActive(true);
+    }
+
+    public void InventoryOpen()
+    {
+        if (inventoryUI.activeSelf)
+        {
+            inventoryUI.SetActive(false);
+            return;
+        }
+        inventoryUI.SetActive(true);
     }
 }
