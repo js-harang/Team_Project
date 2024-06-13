@@ -4,24 +4,31 @@ using UnityEngine;
 
 public class UIController : MonoBehaviour
 {
-    public GameObject inventoryUI;
-    public GameObject statusUI;
+    [SerializeField]
+    GameObject inventoryUI;
+    [SerializeField]
+    GameObject statusUI;
+    [SerializeField]
+    GameObject escMenuUI;
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+            EscMenuOnOff();
+
         switch (Input.inputString)
         {
             case "u":
-                StatusOpen();
+                StatusOnOff();
                 break;
 
             case "i":
-                InventoryOpen();
+                InventoryOnOff();
                 break;
         }
     }
 
-    public void StatusOpen()
+    public void StatusOnOff()
     {
         if (statusUI.activeSelf)
         {
@@ -31,7 +38,7 @@ public class UIController : MonoBehaviour
         statusUI.SetActive(true);
     }
 
-    public void InventoryOpen()
+    public void InventoryOnOff()
     {
         if (inventoryUI.activeSelf)
         {
@@ -39,5 +46,15 @@ public class UIController : MonoBehaviour
             return;
         }
         inventoryUI.SetActive(true);
+    }
+
+    public void EscMenuOnOff()
+    {
+        if (escMenuUI.activeSelf)
+        {
+            escMenuUI.SetActive(false);
+            return;
+        }
+        escMenuUI.SetActive(true);
     }
 }
