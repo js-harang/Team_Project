@@ -194,7 +194,6 @@ public class PlayerMove : MonoBehaviour
     /// <returns></returns>
     private bool CheckHitWall(Vector3 inputmove)
     {
-        Debug.Log(inputmove);
         float scope = 5f;
 
         // 플레이어의 머리, 가슴, 발 총 3군데에서 ray를 쏜다
