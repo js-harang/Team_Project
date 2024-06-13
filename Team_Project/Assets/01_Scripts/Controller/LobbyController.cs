@@ -63,4 +63,10 @@ public class LobbyController : MonoBehaviour
         isPreferencePopup = !isPreferencePopup;
         preferencePopup.SetActive(isPreferencePopup);
     }
+
+    public void ClickBackBtn()
+    {
+        GameManager.gm.sceneNumber = 0;
+        SceneManager.LoadScene("99_LoadingScene");
+    }
 }
