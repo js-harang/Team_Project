@@ -75,6 +75,10 @@ public class PlayerMove : MonoBehaviour
                 pState.UnitState = UnitState.Run;
                 anim.SetTrigger("IdleToMove");
             }
+            else
+            {
+                anim.ResetTrigger("IdleToMove");
+            }
 
             Vector3 inputMove = new Vector3(inputX, 0, inputZ).normalized;
 
@@ -109,6 +113,7 @@ public class PlayerMove : MonoBehaviour
         }
         else
         {
+            pState.UnitState = UnitState.Jump;
             isGround = false;
             anim.SetBool("IsGround", isGround);
         }
@@ -144,7 +149,6 @@ public class PlayerMove : MonoBehaviour
         // 점프키 입력시
         if (Input.GetKeyDown(KeyCode.Space) && isGround)
         {
-            pState.UnitState = UnitState.Jump;
             anim.SetTrigger("TriggerJump");
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
@@ -190,7 +194,7 @@ public class PlayerMove : MonoBehaviour
     /// <returns></returns>
     private bool CheckHitWall(Vector3 inputmove)
     {
-        Debug.Log(inputmove);
+        // Debug.Log(inputmove);
         float scope = 5f;
 
         // 플레이어의 머리, 가슴, 발 총 3군데에서 ray를 쏜다
