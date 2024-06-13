@@ -27,21 +27,20 @@ public abstract class PlayerAttack : MonoBehaviour
 
     public abstract void InitSetting();
 
-    public virtual void Attack(Transform atkPosition)
+    public virtual void Attack(Transform atkPosition, int atkPower)
     {
         Vector3 position = atkPosition.transform.position;
         enemys = Physics.OverlapBox(position, aST.atkLenght, Quaternion.identity);
-
+        
         foreach (Collider enemy in enemys)
         {
             if (enemy.gameObject.tag == "Enemy")
             {
-                Debug.Log("공격 타입 :" + aST.atkType);
-                Debug.Log("적 공격 데미지 :" + aST.atkPower);
-                Debug.Log("소모 마나 :" + aST.useMana);
+                atkPower += aST.atkPower;
+                Debug.Log("적 공격 데미지 :" + atkPower);
 
                 EnemyFSM enemyFsm = enemy.GetComponent<EnemyFSM>();
-                enemyFsm.HitEnemy(aST.atkPower);
+                enemyFsm.HitEnemy(atkPower);
             }
         }
     }

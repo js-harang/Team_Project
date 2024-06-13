@@ -1262,7 +1262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 283531704e5388e4daa31fd90cd6d49f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 6993523719674760130}
+  player: {fileID: 0}
   yDistance: 4
   zDistance: -8
   camSpeed: 5
