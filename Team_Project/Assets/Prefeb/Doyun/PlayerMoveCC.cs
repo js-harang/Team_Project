@@ -2,10 +2,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class PlayerMove : MonoBehaviour
+public class PlayerMoveCC : MonoBehaviour
 {
     PlayerState pState;
     Animator anim;
+
+    CharacterController cc;
 
     // 바라보는 방향 변수
     Vector3 lookdir;
@@ -29,8 +31,8 @@ public class PlayerMove : MonoBehaviour
 
     // 물리
     Rigidbody rb;
-
-    public GameObject playerPointer;
+/*
+    public GameObject playerPointer;*/
 
     CapsuleCollider playerCollider;
 
@@ -78,12 +80,14 @@ public class PlayerMove : MonoBehaviour
 
             Vector3 inputMove = new Vector3(inputX, 0, inputZ).normalized;
 
-            // 벽 충돌
+        /*    // 벽 충돌
             if (CheckHitWall(inputMove))
-                return;
+                return;*/
 
-            Vector3 move = transform.position + (inputMove * speed * Time.deltaTime);
-            transform.position = move;
+            /*Vector3 move = transform.position + (inputMove * speed * Time.deltaTime);
+            transform.position = move;*/
+
+            cc.Move(inputMove * speed *Time.deltaTime);
         }
         else
         {
@@ -123,9 +127,9 @@ public class PlayerMove : MonoBehaviour
         {
             if (!isGround)
             {
-                playerPointer.SetActive(true);
+                //playerPointer.SetActive(true);
 
-                playerPointer.transform.position = hitInfo.point;
+                //playerPointer.transform.position = hitInfo.point;
                 /*        new Vector3(
                         hitInfo.transform.position.x,
                         hitInfo.transform.position.y + 1,
@@ -134,7 +138,7 @@ public class PlayerMove : MonoBehaviour
             }
             else
             {
-                playerPointer.SetActive(false);
+                //playerPointer.SetActive(false);
             }
         }
     }
@@ -173,6 +177,8 @@ public class PlayerMove : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
 
         pState = GetComponent<PlayerState>();
+
+        cc = GetComponent<CharacterController>();
     }
 
     private void OnDrawGizmos()
@@ -183,15 +189,15 @@ public class PlayerMove : MonoBehaviour
         Gizmos.DrawLine(transform.position, transform.position + Vector3.down * 100f);
     }
 
-    /// <summary>
+    /*/// <summary>
     /// 벽 통과 방지 메서드
     /// </summary>
     /// <param name="inputmove"></param>
     /// <returns></returns>
     private bool CheckHitWall(Vector3 inputmove)
     {
-        Debug.Log(inputmove);
-        float scope = 5f;
+        inputmove = transform.TransformDirection(inputmove);
+        float scope = 1f;
 
         // 플레이어의 머리, 가슴, 발 총 3군데에서 ray를 쏜다
         List<Vector3> rayPositions = new()
@@ -204,16 +210,13 @@ public class PlayerMove : MonoBehaviour
         // 충돌 체크
         foreach (Vector3 pos in rayPositions)
         {
-            Debug.DrawRay(pos, inputmove * scope);
             if (Physics.Raycast(pos, inputmove, out RaycastHit hit, scope))
             {
-                if(hit.collider.gameObject.layer == 6)
-                {
-                    rb.AddForce(hit.normal.normalized * 0.05f);
-                }
+                if (hit.collider.gameObject.layer == 7)
+                    return true;
             }
         }
 
         return false;
-    }
+    }*/
 }
