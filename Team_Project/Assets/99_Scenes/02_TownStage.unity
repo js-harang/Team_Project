@@ -1806,6 +1806,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2767771757021614565, guid: dfc42c853c09be64a8b0a72b70b9abad, type: 3}
+      propertyPath: gameUI
+      value: 
+      objectReference: {fileID: 739466022}
+    - target: {fileID: 2767771757021614565, guid: dfc42c853c09be64a8b0a72b70b9abad, type: 3}
       propertyPath: escMenuUI
       value: 
       objectReference: {fileID: 771426981}
@@ -3782,7 +3786,7 @@ PrefabInstance:
       objectReference: {fileID: 1056041500}
     - target: {fileID: 6152684386038183743, guid: f89cdbdda37ba5d40b6a3b1255f05ee1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: EscMenuOnOff
+      value: EscButtonOnOff
       objectReference: {fileID: 0}
     - target: {fileID: 6610723330269356979, guid: f89cdbdda37ba5d40b6a3b1255f05ee1, type: 3}
       propertyPath: m_IsActive
