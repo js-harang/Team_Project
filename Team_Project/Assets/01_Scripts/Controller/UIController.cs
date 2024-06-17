@@ -11,10 +11,22 @@ public class UIController : MonoBehaviour
     [SerializeField]
     GameObject escMenuUI;
 
+    InteractController interCon;
+
+    private void Start()
+    {
+        interCon = FindObjectOfType<InteractController>().GetComponent<InteractController>();
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (interCon.NowInteracting)
+                return;
+                
             EscMenuOnOff();
+        }
 
         switch (Input.inputString)
         {

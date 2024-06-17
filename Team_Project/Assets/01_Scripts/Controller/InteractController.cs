@@ -69,6 +69,7 @@ public class InteractController : MonoBehaviour
     // 상호작용 끝낼 시의 동작 관리
     void EndInteracting()
     {
+        nowInteracting = false;
         gameUI.enabled = true;
         dialogWindow.enabled = false;
         pS.UnitState = UnitState.Idle;
