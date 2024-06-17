@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class UIController : MonoBehaviour
 {
+    // 키보드 입력시 동작할 UI들
     [SerializeField]
     GameObject inventoryUI;
     [SerializeField]
@@ -17,7 +18,7 @@ public class UIController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (!gameUI.enabled)
+            if (!gameUI.enabled)                // InteractController에서 비활성환 UI 캔버스를 확인후 동작
             {
                 gameUI.enabled = true;
                 return;
@@ -38,6 +39,7 @@ public class UIController : MonoBehaviour
         }
     }
 
+    // 스테이터스 UI 활성 / 비활성화
     public void StatusOnOff()
     {
         if (statusUI.activeSelf)
@@ -48,6 +50,7 @@ public class UIController : MonoBehaviour
         statusUI.SetActive(true);
     }
 
+    // 인벤토리 UI 활성 / 비활성화
     public void InventoryOnOff()
     {
         if (inventoryUI.activeSelf)
@@ -58,6 +61,7 @@ public class UIController : MonoBehaviour
         inventoryUI.SetActive(true);
     }
 
+    // ESC 메뉴 UI 활성 / 비활성화
     public void EscButtonOnOff()
     {
         if (escMenuUI.activeSelf)
