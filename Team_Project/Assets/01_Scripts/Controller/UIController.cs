@@ -10,22 +10,20 @@ public class UIController : MonoBehaviour
     GameObject statusUI;
     [SerializeField]
     GameObject escMenuUI;
-
-    InteractController interCon;
-
-    private void Start()
-    {
-        interCon = FindObjectOfType<InteractController>().GetComponent<InteractController>();
-    }
+    [SerializeField]
+    Canvas gameUI;
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (interCon.NowInteracting)
+            if (!gameUI.enabled)
+            {
+                gameUI.enabled = true;
                 return;
-                
-            EscMenuOnOff();
+            }
+
+            EscButtonOnOff();
         }
 
         switch (Input.inputString)
@@ -60,7 +58,7 @@ public class UIController : MonoBehaviour
         inventoryUI.SetActive(true);
     }
 
-    public void EscMenuOnOff()
+    public void EscButtonOnOff()
     {
         if (escMenuUI.activeSelf)
         {

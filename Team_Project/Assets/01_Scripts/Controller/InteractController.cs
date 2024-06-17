@@ -18,6 +18,8 @@ public class InteractController : MonoBehaviour
             nowInteracting = value;
             if (nowInteracting)
                 StartInteracting();
+            else
+                EndInteracting();
         } 
     }
 
@@ -55,7 +57,7 @@ public class InteractController : MonoBehaviour
             return;
 
         if (Input.GetKeyDown(KeyCode.Escape))
-            EndInteracting();
+            NowInteracting = false;
     }
 
     // 상호작용 시작 시 UI들의 상태 관리
@@ -69,8 +71,6 @@ public class InteractController : MonoBehaviour
     // 상호작용 끝낼 시의 동작 관리
     void EndInteracting()
     {
-        nowInteracting = false;
-        gameUI.enabled = true;
         dialogWindow.enabled = false;
         pS.UnitState = UnitState.Idle;
     }
