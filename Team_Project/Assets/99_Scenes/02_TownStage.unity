@@ -1696,6 +1696,11 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!223 &739466022 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 6610723330636659958, guid: f89cdbdda37ba5d40b6a3b1255f05ee1, type: 3}
+  m_PrefabInstance: {fileID: 1923435191}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &759498607
 GameObject:
   m_ObjectHideFlags: 0
@@ -1741,7 +1746,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 128828cdb4edfad4e83cdfb546732dde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameUI: {fileID: 0}
+  gameUI: {fileID: 739466022}
   dialogWindow: {fileID: 1467214363}
   interactName_Text: {fileID: 11770365}
   dialog_Text: {fileID: 1481589506}
@@ -3347,6 +3352,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f89cdbdda37ba5d40b6a3b1255f05ee1, type: 3}
+--- !u!114 &1923435192 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3772673508688204759, guid: f89cdbdda37ba5d40b6a3b1255f05ee1, type: 3}
+  m_PrefabInstance: {fileID: 1923435191}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1923435193 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7574465032473721697, guid: f89cdbdda37ba5d40b6a3b1255f05ee1, type: 3}
+  m_PrefabInstance: {fileID: 1923435191}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1971599128
 GameObject:
   m_ObjectHideFlags: 0
@@ -49248,8 +49269,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 821c8f04509224b4dbcc9304a6bb3603, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactCheck: {fileID: 0}
-  interactName_Txt: {fileID: 0}
+  interactCheck: {fileID: 1923435193}
+  interactName_Txt: {fileID: 1923435192}
   interactType: 0
   interactId: 0
   interactName: 
