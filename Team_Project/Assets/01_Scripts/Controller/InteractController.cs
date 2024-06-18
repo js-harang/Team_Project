@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class InteractController : MonoBehaviour
 {
@@ -30,6 +31,9 @@ public class InteractController : MonoBehaviour
 
     // 대화창 캔버스 변수
     public Canvas dialogWindow;
+
+    // 배틀 스테이지 선택창 변수
+    public GameObject selectStageUI;
 
     // 대화창 텍스트 변수들
     public TMP_Text interactName_Text;
@@ -66,6 +70,9 @@ public class InteractController : MonoBehaviour
         gameUI.enabled = false;
         dialogWindow.enabled = true;
         interactName_Text.text = interactName;
+
+        if (interactType == InteractType.GateKeeper)
+            selectStageUI.SetActive(true);
     }
 
     // 상호작용 끝낼 시의 동작 관리
@@ -73,5 +80,11 @@ public class InteractController : MonoBehaviour
     {
         dialogWindow.enabled = false;
         pS.UnitState = UnitState.Idle;
+    }
+
+    public void GoBattle()
+    {
+        GameManager.gm.sceneNumber = 3;
+        SceneManager.LoadScene("99_LoadingScene");
     }
 }

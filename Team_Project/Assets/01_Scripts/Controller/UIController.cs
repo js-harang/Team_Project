@@ -14,6 +14,13 @@ public class UIController : MonoBehaviour
     [SerializeField]
     Canvas gameUI;
 
+    PlayerState pState;
+
+    private void Start()
+    {
+        pState = FindObjectOfType<PlayerState>().GetComponent<PlayerState>();
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -67,8 +74,10 @@ public class UIController : MonoBehaviour
         if (escMenuUI.activeSelf)
         {
             escMenuUI.SetActive(false);
+            pState.UnitState = UnitState.Idle;
             return;
         }
         escMenuUI.SetActive(true);
+        pState.UnitState = UnitState.Interact;
     }
 }
