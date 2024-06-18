@@ -39,54 +39,71 @@ public class PlayerBattleController : BattleStatus
     {
         StartSetting();
         ChangeAttack(atkIndex);
+        Debug.Log(pAttack.aST.isCoolTime);
     }
 
     void Update()
-    {
+    {// 죽은 상태면 키입력 금지
         if (pState.UnitState == UnitState.Die)
             return;
 
         AttackKeyInput();       // 공격키 입력
     }
 
-    public void AttackEnemy()
-    {
-        pAttack.Attack(atkPos,atkPower);
-    }
 
-    void ChangeAttack(int atkIndex)      // 키입력 받을시 해당하는 공격으로 스크립트 전환
-    {
-        pAttack = pAttacks[atkIndex];
-        pAttack.InitSetting();          // 해당하는 공격 스탯으로 변환
-    }
 
+    // 공격 애니메이션 재생
     public void AttackAnim(PlayerAttack pAttack)
     {
-        pAnim.SetTrigger("Attack" + pAttack.aST.atkType);
+        pAnim.SetTrigger("IsAttack");
+        pAnim.SetFloat("Attack", pAttack.aST.atkType);
     }
 
     void AttackKeyInput()
     {
         if (Input.GetKeyDown(KeyCode.X))        // 일반 공격 입력
         {
-            Debug.Log("일반공격");
             atkIndex = 0;
 
-            atkPos = atkPositions[atkIndex];
-
             ChangeAttack(atkIndex);
-            AttackAnim(pAttack);
+            AttackStart();
         }
         else if (Input.GetKeyDown(KeyCode.Z))   // A 키 스킬 입력
         {
-            Debug.Log("Z스킬 공격");
             atkIndex = 1;
 
-            atkPos = atkPositions[atkIndex];
-
             ChangeAttack(atkIndex);
+            AttackStart();
+        }
+    }
+
+    void AttackStart()
+    {
+        if (!pAttack.aST.isCoolTime)
+        {
+            Debug.Log("공격");
             AttackAnim(pAttack);
         }
+        else
+            Debug.Log("공격 쿨타임");
+    }
+
+    // 공격 교체
+    void ChangeAttack(int atkIndex)      // 키입력 받을시 해당하는 공격으로 스크립트 전환
+    {
+        atkPos = atkPositions[atkIndex];
+        pAttack = pAttacks[atkIndex];
+        pAttack.InitSetting();          // 해당하는 공격 스탯으로 변환
+    }
+    // 공격 판정
+    public void AttackEnemy()
+    {
+        pAttack.Attack(atkPos, atkPower);
+    }
+    // 공격 쿨타임
+    public void AttackCoolTime()
+    {
+        pAttack.AttackCoolTime();
     }
 
     // 데미지 입을때
@@ -111,12 +128,14 @@ public class PlayerBattleController : BattleStatus
             Debug.Log("플레이어 사망");
 
             pState.UnitState = UnitState.Die;
-            
+            pAnim.SetTrigger("PlayerDie");
+
             UIController uiCon = GameObject.FindAnyObjectByType<UIController>();
             uiCon.GameOverUI();
         }
     }
 
+    // 시작 세팅
     void StartSetting()
     {
         SetPlayerSlider();
@@ -124,14 +143,25 @@ public class PlayerBattleController : BattleStatus
         pAnim = GetComponentInChildren<Animator>();
     }
 
+    // 슬라이더 세팅
     public void SetPlayerSlider()
     {
+        SetHpSlider();
+        SetMpSlider();
+    }
+    void SetHpSlider()
+    {
         hpSld.value = currentHp / maxHp;
+    }
+    void SetMpSlider()
+    {
         mpSld.value = currentMp / maxMp;
     }
+
+    // 공격 범위 표시
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
-       // Gizmos.DrawWireCube(atkPos.position, pAttack.aST.atkLenght);
+        // Gizmos.DrawWireCube(atkPos.position, pAttack.aST.atkLenght);
     }
 }

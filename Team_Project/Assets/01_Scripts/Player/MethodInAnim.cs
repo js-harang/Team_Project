@@ -11,4 +11,8 @@ public class MethodInAnim : MonoBehaviour
     {
         player.AttackEnemy();
     }
+    void AttackCoolTime()
+    {
+        player.AttackCoolTime();
+    }
 }
