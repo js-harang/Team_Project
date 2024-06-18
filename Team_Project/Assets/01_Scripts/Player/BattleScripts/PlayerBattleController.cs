@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerBattleController : BattleStatus
 {
     // (X 키 일반공격), (C 점프), (A, S, D 스킬)
+    Animator pAnim;
 
     // 공격들 배열
     public PlayerAttack[] pAttacks;
@@ -22,7 +24,16 @@ public class PlayerBattleController : BattleStatus
     // 플레이어 상태
     PlayerState pState;
 
-    Animator pAnim;
+    // 플레이어 마나
+    [SerializeField]
+    float currentMp;
+    [SerializeField]
+    int maxMp;
+
+
+    // 플레이어 슬라이더바
+    public Slider hpSld;
+    public Slider mpSld;
 
     private void Start()
     {
@@ -32,6 +43,9 @@ public class PlayerBattleController : BattleStatus
 
     void Update()
     {
+        if (pState.UnitState == UnitState.Die)
+            return;
+
         AttackKeyInput();       // 공격키 입력
     }
 
@@ -59,6 +73,7 @@ public class PlayerBattleController : BattleStatus
             atkIndex = 0;
 
             atkPos = atkPositions[atkIndex];
+
             ChangeAttack(atkIndex);
             AttackAnim(pAttack);
         }
@@ -68,6 +83,7 @@ public class PlayerBattleController : BattleStatus
             atkIndex = 1;
 
             atkPos = atkPositions[atkIndex];
+
             ChangeAttack(atkIndex);
             AttackAnim(pAttack);
         }
@@ -76,16 +92,39 @@ public class PlayerBattleController : BattleStatus
     // 데미지 입을때
     public void Hurt(float damage)
     {
+        if (pState.UnitState == UnitState.Die)
+            return;
+
         pState.UnitState = UnitState.Hurt;
-        Debug.Log("Player Damaged :" + damage);
+        // Debug.Log("Player Damaged :" + damage);
+
+        currentHp -= damage;
+
+        SetPlayerSlider();
+
+        if (currentHp > 0)
+        {
+            // 피격
+        }
+        else
+        {
+            Debug.Log("플레이어 사망");
+            pState.UnitState = UnitState.Die;
+        }
     }
 
     void StartSetting()
     {
+        SetPlayerSlider();
         pState = GetComponent<PlayerState>();
         pAnim = GetComponentInChildren<Animator>();
     }
 
+    public void SetPlayerSlider()
+    {
+        hpSld.value = currentHp / maxHp;
+        mpSld.value = currentMp / maxMp;
+    }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;

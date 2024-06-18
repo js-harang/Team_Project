@@ -4217,16 +4217,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d07adac709bc6f458b5e6af16902efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 100
-  currentHp: 100
-  atkPower: 10
+  maxHp: 20
+  currentHp: 20
+  atkPower: 0
   pAttacks:
   - {fileID: 4705956051754398842}
   - {fileID: 1913644856}
   atkIndex: 0
   atkPos: {fileID: 1380282374045783007}
-  atkPositions: []
+  atkPositions:
+  - {fileID: 1380282374045783007}
+  - {fileID: 5064106726816894090}
   atkLenght: {x: 2, y: 2.5, z: 2}
+  currentMp: 100
+  maxMp: 100
+  hpSld: {fileID: 0}
+  mpSld: {fileID: 0}
 --- !u!114 &4705956051754398842
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2998693842756136242}
   - component: {fileID: 2998693842756136244}
   - component: {fileID: 2998693842756136243}
-  m_Layer: 21
+  m_Layer: 0
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2998693843391025123}
   - component: {fileID: 2998693843391025122}
-  m_Layer: 21
+  m_Layer: 0
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,10 +177,10 @@ GameObject:
   - component: {fileID: 2998693843803984740}
   - component: {fileID: 2998693843803984739}
   - component: {fileID: 2998693843803984738}
-  - component: {fileID: 2998693843803984737}
   - component: {fileID: 2998693843803984736}
   - component: {fileID: 2998693843803984751}
   - component: {fileID: 1367061996376205315}
+  - component: {fileID: 652185069}
   m_Layer: 21
   m_Name: Test Enemy
   m_TagString: Enemy
@@ -254,20 +254,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &2998693843803984737
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2998693843803984750}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2998693843803984736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,13 +266,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48256648986198f48bd4a0ef4911c3cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHp: 15
+  currentHp: 15
+  atkPower: 3
   findDistance: 25
-  player: {fileID: 0}
   attackDistance: 2
+  player: {fileID: 0}
   moveSpeed: 5
-  attackPower: 3
   moveDistance: 20
-  hp: 15
   hpSlider: {fileID: 2998693843391025122}
 --- !u!195 &2998693843803984751
 NavMeshAgent:
@@ -331,6 +318,24 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!143 &652185069
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2998693843803984750}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2998693844150510909
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,7 +348,7 @@ GameObject:
   - component: {fileID: 2998693844150510897}
   - component: {fileID: 2998693844150510896}
   - component: {fileID: 2998693844150510911}
-  m_Layer: 21
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -444,7 +449,7 @@ GameObject:
   - component: {fileID: 2998693844166070606}
   - component: {fileID: 2998693844166070592}
   - component: {fileID: 2998693844166070607}
-  m_Layer: 21
+  m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -518,7 +523,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2998693844450620925}
-  m_Layer: 21
+  m_Layer: 0
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}

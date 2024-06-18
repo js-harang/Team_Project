@@ -36,11 +36,10 @@ public abstract class PlayerAttack : MonoBehaviour
         {
             if (enemy.gameObject.tag == "Enemy")
             {
-                atkPower += aST.atkPower;
-                Debug.Log("적 공격 데미지 :" + atkPower);
+                Debug.Log("적 공격 데미지 :" + aST.atkPower);
 
                 EnemyFSM enemyFsm = enemy.GetComponent<EnemyFSM>();
-                enemyFsm.HitEnemy(atkPower);
+                enemyFsm.HitEnemy(aST.atkPower);
             }
         }
     }

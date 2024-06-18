@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class EnemyFSM : MonoBehaviour
+public class EnemyFSM : BattleStatus
 {
     // 에너미 상태 상수
     enum EnemyState
@@ -15,34 +15,31 @@ public class EnemyFSM : MonoBehaviour
         Damaged,
         Die,
     }
-
     // 에너미 상태 변수
     EnemyState m_State;
-
-    // 플레이어 발견 범위
-    public float findDistance = 8f;
-
-    // 플레이어 트랜스폼
-    [SerializeField]
-    Transform player;
-
-    // 공격 가능 범위
-    public float attackDistance = 2f;
-
-    // 이동 속도
-    public float moveSpeed = 5f;
 
     // 캐릭터 컨트롤러 컴포넌트
     CharacterController cc;
 
+
+    // 플레이어 발견 범위
+    public float findDistance = 8f;
+    // 공격 가능 범위
+    public float attackDistance = 2f;
+
+    // 플레이어 트랜스폼
+    public Transform player;
+
+    // 이동 속도
+    public float moveSpeed = 5f;
+
+
+/*    // 에너미 공격력
+    public int atkPower = 3;*/
     // 누적 시간
     float currentTime = 0;
-
     // 공격 딜레이 시간
     float attackDelay = 2f;
-
-    // 에너미 공격력
-    public int attackPower = 3;
 
     // 초기 위치 저장용 변수
     Vector3 originPos;
@@ -51,11 +48,11 @@ public class EnemyFSM : MonoBehaviour
     // 이동 가능 범위
     public float moveDistance = 20f;
 
-    // 에너미의 체력
-    public int hp = 15;
+/*    // 에너미의 체력
+    public float currentHp = 15;*/
 
-    // 에너미의 최대 체력
-    int maxHp = 15;
+    /*    // 에너미의 최대 체력
+        int maxHp = 15;*/
 
     // 에너미 hp 슬라이더 변수
     public Slider hpSlider;
@@ -111,7 +108,7 @@ public class EnemyFSM : MonoBehaviour
         }
 
         // 현재 hp(%)를 hp 슬라이더의 value에 반영
-        hpSlider.value = (float)hp / maxHp;
+        hpSlider.value = (float)currentHp / maxHp;
     }
 
     void Idle()
@@ -134,7 +131,7 @@ public class EnemyFSM : MonoBehaviour
         {
             // 현재 상태를 복귀(Return)로 전환
             m_State = EnemyState.Return;
-            print("상태 전환 : Move -> Return");
+            // print("상태 전환 : Move -> Return");
         }
         // 만일, 플레이어와의 거리가 공격 범위 밖이라면 플레이어를 향해 이동
         else if (Vector3.Distance(transform.position, player.position) > attackDistance)
@@ -153,7 +150,7 @@ public class EnemyFSM : MonoBehaviour
             Enemy.ResetPath(); */
 
             m_State = EnemyState.Attack;
-            print("상태 전환: Move -> Attack");
+            // print("상태 전환: Move -> Attack");
 
             // 누적 시간을 공격 딜레이 시간만큼 미리 진행시켜 놓음
             currentTime = attackDelay;
@@ -174,9 +171,10 @@ public class EnemyFSM : MonoBehaviour
             if (currentTime > attackDelay)
             {
                 // player.GetComponent<PlayerMove>().DamageAction(attackPower);
-                print("공격");
+                // print("공격");
                 currentTime = 0;
 
+                AttackAction();
                 // 공격 애니메이션 플레이
                 /* anim.SetTrigger("StartAttack"); */
             }
@@ -194,10 +192,11 @@ public class EnemyFSM : MonoBehaviour
     }
 
     // 플레이어의 스크립트의 데미지 처리 함수를 실행
-    /* public void AttackAction()
+    public void AttackAction()
     {
-        player.GetComponent<PlayerMove>().DamageAction(attackPower);
-    } */
+        PlayerBattleController pbc = player.gameObject.GetComponent<PlayerBattleController>();
+        pbc.Hurt(atkPower);
+    }
 
     void Return()
     {
@@ -222,7 +221,7 @@ public class EnemyFSM : MonoBehaviour
             transform.rotation = originRot;
 
             // hp를 다시 회복
-            hp = maxHp;
+            currentHp = maxHp;
 
             m_State = EnemyState.Idle;
             print("상태 전환 : Return -> Idle");
@@ -232,12 +231,12 @@ public class EnemyFSM : MonoBehaviour
         }
     }
 
+    //////////// 피격쪽 /////////////
     void Damaged()
     {
         // 피격 상태를 처리하기 위한 코루틴 실행
         StartCoroutine(DamageProcess());
     }
-
     // 데미지 처리용 코루틴 함수
     IEnumerator DamageProcess()
     {
@@ -248,14 +247,14 @@ public class EnemyFSM : MonoBehaviour
         m_State = EnemyState.Move;
         print("상태 전환 : Damaged => Move");
     }
-
     // 데미지 실행 함수
     public void HitEnemy(int hitPower)
     {
+        Debug.Log("에너미 피격 호출");
         // 만일, 이미 피격 상태이거나 사망 상태 또는 복귀 상태라면
         // 아무런 처리도 하지 않고 함수를 종료
-        if (m_State == EnemyState.Damaged || m_State == EnemyState.Die
-            || m_State == EnemyState.Return)
+        if (m_State == EnemyState.Die || m_State == EnemyState.Return)
+        // m_State == EnemyState.Damaged || 
         {
             return;
         }
@@ -265,10 +264,10 @@ public class EnemyFSM : MonoBehaviour
         enemyNav.ResetPath();
 
         // 플레이어의 공격력만큼 에너미의 체력을 감소시킴
-        hp -= hitPower;
+        currentHp -= hitPower;
 
         // 에너미의 체력이 0보다 크면 피격 상태로 전환
-        if (hp > 0)
+        if (currentHp > 0)
         {
             m_State = EnemyState.Damaged;
             print("상태 전환 : Any state -> Damaged");
@@ -277,6 +276,7 @@ public class EnemyFSM : MonoBehaviour
             anim.SetTrigger("Damaged");
 
             Damaged();
+            currentHp -= hitPower;
         }
         // 그렇지 않다면 죽음 상태로 전환
         else
@@ -289,7 +289,6 @@ public class EnemyFSM : MonoBehaviour
             Die();
         }
     }
-
     // 죽음 상태 함수
     void Die()
     {
@@ -299,7 +298,6 @@ public class EnemyFSM : MonoBehaviour
         // 죽음 상태를 처리하기 위한 코루틴을 실행
         StartCoroutine(DieProcess());
     }
-
     IEnumerator DieProcess()
     {
         // 캐릭터 컨트롤러 컴포넌트를 비활성화

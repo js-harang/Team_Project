@@ -5,7 +5,7 @@ using UnityEngine;
 public class BattleStatus : MonoBehaviour
 {
     // 최대체력
-    public float maxHp;
+    public int maxHp;
     // 현재 체력
     public float currentHp;
     // 공격력
