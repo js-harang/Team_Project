@@ -71,8 +71,18 @@ public class InteractController : MonoBehaviour
         dialogWindow.enabled = true;
         interactName_Text.text = interactName;
 
-        if (interactType == InteractType.GateKeeper)
-            selectStageUI.SetActive(true);
+        switch (interactType)
+        {
+            case InteractType.Shop:
+                break;
+            case InteractType.EquipmentShop:
+                break;
+            case InteractType.GateKeeper:
+                selectStageUI.SetActive(true);
+                break;
+            default:
+                break;
+        }
     }
 
     // 상호작용 끝낼 시의 동작 관리
@@ -80,6 +90,19 @@ public class InteractController : MonoBehaviour
     {
         dialogWindow.enabled = false;
         pS.UnitState = UnitState.Idle;
+
+        switch (interactType)
+        {
+            case InteractType.Shop:
+                break;
+            case InteractType.EquipmentShop:
+                break;
+            case InteractType.GateKeeper:
+                selectStageUI.SetActive(false);
+                break;
+            default:
+                break;
+        }
     }
 
     public void GoBattle()
