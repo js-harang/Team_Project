@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
@@ -79,5 +80,22 @@ public class UIController : MonoBehaviour
         }
         escMenuUI.SetActive(true);
         pState.UnitState = UnitState.Interact;
+    }
+
+    // 캐릭터 선택화면으로 이동
+    public void ToCharacterLobby()
+    {
+        GameManager.gm.sceneNumber = 1;
+        SceneManager.LoadScene("99_LoadingScene");
+    }
+
+    // 게임 종료
+    public void QuitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit(); 
+#endif
     }
 }
