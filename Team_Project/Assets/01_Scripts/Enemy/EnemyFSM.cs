@@ -253,8 +253,8 @@ public class EnemyFSM : BattleStatus
         Debug.Log("에너미 피격 호출");
         // 만일, 이미 피격 상태이거나 사망 상태 또는 복귀 상태라면
         // 아무런 처리도 하지 않고 함수를 종료
-        if (m_State == EnemyState.Die || m_State == EnemyState.Return)
-        // m_State == EnemyState.Damaged || 
+        if (m_State == EnemyState.Die || m_State == EnemyState.Return
+            || m_State == EnemyState.Damaged) 
         {
             return;
         }

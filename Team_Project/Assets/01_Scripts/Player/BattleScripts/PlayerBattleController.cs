@@ -109,7 +109,11 @@ public class PlayerBattleController : BattleStatus
         else
         {
             Debug.Log("플레이어 사망");
+
             pState.UnitState = UnitState.Die;
+            
+            UIController uiCon = GameObject.FindAnyObjectByType<UIController>();
+            uiCon.GameOverUI();
         }
     }
 
