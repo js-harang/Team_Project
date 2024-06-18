@@ -1,3 +1,4 @@
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,7 +10,17 @@ public class TitleController : MonoBehaviour
     [SerializeField]
     TMP_InputField pw;
     [SerializeField]
+    TextMeshProUGUI idPlaceholder;
+    [SerializeField]
+    TextMeshProUGUI pwPlaceholder;
+    [SerializeField]
     TextMeshProUGUI loginResultTxt;
+
+    private void Start()
+    {
+        idPlaceholder.DOFade(0.1f, 1f).SetLoops(-1, LoopType.Yoyo);
+        pwPlaceholder.DOFade(0.1f, 1f).SetLoops(-1, LoopType.Yoyo);
+    }
 
     /// <summary>
     /// ·Î±×ÀÎ
