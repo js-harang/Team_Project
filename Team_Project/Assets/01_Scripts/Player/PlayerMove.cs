@@ -43,6 +43,9 @@ public class PlayerMove : MonoBehaviour
 
     private void Update()
     {
+        if (pState.UnitState == UnitState.Die)
+            return;
+
         GrondCheck();
 
         InputKey();

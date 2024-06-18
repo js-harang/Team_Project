@@ -15,6 +15,9 @@ public class UIController : MonoBehaviour
     [SerializeField]
     Canvas gameUI;
 
+    [SerializeField]
+    GameObject gameOverUI;
+
     PlayerState pState;
 
     private void Start()
@@ -87,6 +90,19 @@ public class UIController : MonoBehaviour
     {
         GameManager.gm.sceneNumber = 1;
         SceneManager.LoadScene("99_LoadingScene");
+    }
+
+    // 캐릭터 사밍시 버튼 누르면 마을로
+    public void ToTown()
+    {
+        GameManager.gm.sceneNumber = 2;
+        SceneManager.LoadScene("99_LoadingScene");
+    }
+
+    // 게임오버시 호출되는 메소드(게임오버 매뉴 활성화)
+    public void GameOverUI()
+    {
+        gameOverUI.SetActive(true);
     }
 
     // 게임 종료
