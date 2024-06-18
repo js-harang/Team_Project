@@ -848,8 +848,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48256648986198f48bd4a0ef4911c3cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 0
   currentHp: 0
+  maxHp: 0
   atkPower: 0
   findDistance: 25
   attackDistance: 2
@@ -1285,6 +1285,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1913644856, guid: 82ce8518029d61a44856e50a1865eb52, type: 3}
+      propertyPath: enemyLayer.m_Bits
+      value: 2097152
+      objectReference: {fileID: 0}
     - target: {fileID: 1929587952180110745, guid: 82ce8518029d61a44856e50a1865eb52, type: 3}
       propertyPath: hpSld
       value: 
@@ -1293,6 +1297,10 @@ PrefabInstance:
       propertyPath: mpSld
       value: 
       objectReference: {fileID: 1275284666}
+    - target: {fileID: 4705956051754398842, guid: 82ce8518029d61a44856e50a1865eb52, type: 3}
+      propertyPath: enemyLayer.m_Bits
+      value: 2097152
+      objectReference: {fileID: 0}
     - target: {fileID: 5800103009919887498, guid: 82ce8518029d61a44856e50a1865eb52, type: 3}
       propertyPath: m_Name
       value: Test Player
@@ -1740,6 +1748,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemys: []
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!4 &654302452392948676
 Transform:
   m_ObjectHideFlags: 0
@@ -2367,8 +2378,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d07adac709bc6f458b5e6af16902efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 0
   currentHp: 100
+  maxHp: 0
   atkPower: 10
   pAttacks:
   - {fileID: 5283811938850931397}
@@ -58639,6 +58650,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemys: []
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &5333722076521255250
 GameObject:
   m_ObjectHideFlags: 0

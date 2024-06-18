@@ -8,7 +8,6 @@ public class DefualtAttack : PlayerAttack
     {
         // 공격타입
         aST.atkType = 0;
-
         // 공격력
         aST.atkPower = 1;
         // 공격 딜레이
