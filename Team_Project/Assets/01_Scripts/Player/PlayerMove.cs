@@ -14,6 +14,7 @@ public class PlayerMove : MonoBehaviour
     // 입력
     float inputX;
     float inputZ;
+    Vector3 inputMove;
 
     // 이동
     [SerializeField]
@@ -25,6 +26,8 @@ public class PlayerMove : MonoBehaviour
     public float checkDis;
     // 감지 할 레이어
     public LayerMask grdLayer;
+    public LayerMask wallLayer;
+
     [SerializeField] private bool isGround;
 
     // 물리
@@ -82,15 +85,12 @@ public class PlayerMove : MonoBehaviour
                 anim.SetTrigger("IdleToMove");
             }
             else
-            {
                 anim.ResetTrigger("IdleToMove");
-            }
-
-            Vector3 inputMove = new Vector3(inputX, 0, inputZ).normalized;
 
             // 벽 충돌
-            if (CheckHitWall(inputMove))
-                return;
+            WallCheck();
+
+            inputMove = new Vector3(inputX, 0, inputZ).normalized;
 
             Vector3 move = transform.position + (inputMove * speed * Time.deltaTime);
             transform.position = move;
@@ -102,12 +102,25 @@ public class PlayerMove : MonoBehaviour
                 pState.UnitState = UnitState.Idle;
                 anim.SetTrigger("MoveToIdle");
             }
-
-            //speed = 0f;
         }
     }
 
-    
+    void WallCheck()
+    {
+        Ray rayX = new(transform.position,new Vector3(inputX, 0, 0));
+        Ray rayZ = new(transform.position, new Vector3(0, 0, inputZ));
+
+        if (Physics.Raycast(rayX, out RaycastHit hitInfoX, checkDis, wallLayer))
+        {
+            Debug.Log("X축 벽에 닿음");
+            inputX = 0;
+        }
+        if (Physics.Raycast(rayZ, out RaycastHit hitInfoZ, checkDis, wallLayer))
+        {
+            Debug.Log("Z축 벽에 닿음");
+            inputZ = 0;
+        }
+    }
 
     private void GrondCheck()
     {
@@ -200,38 +213,5 @@ public class PlayerMove : MonoBehaviour
         Gizmos.DrawLine(transform.position, transform.position + Vector3.down * checkDis);
         Gizmos.color = Color.red;
         Gizmos.DrawLine(transform.position, transform.position + Vector3.down * 100f);
-    }
-
-    /// <summary>
-    /// 벽 통과 방지 메서드
-    /// </summary>
-    /// <param name="inputmove"></param>
-    /// <returns></returns>
-    private bool CheckHitWall(Vector3 inputmove)
-    {
-        float scope = 5f;
-
-        // 플레이어의 머리, 가슴, 발 총 3군데에서 ray를 쏜다
-        List<Vector3> rayPositions = new()
-        {
-            transform.position + Vector3.up * 0.1f,
-            transform.position + Vector3.up * playerCollider.height * 0.5f,
-            transform.position + Vector3.up * playerCollider.height
-        };
-
-        // 충돌 체크
-        foreach (Vector3 pos in rayPositions)
-        {
-            Debug.DrawRay(pos, inputmove * scope);
-            if (Physics.Raycast(pos, inputmove, out RaycastHit hit, scope))
-            {
-                if(hit.collider.gameObject.layer == 6)
-                {
-                    rb.AddForce(hit.normal.normalized * 0.05f);
-                }
-            }
-        }
-
-        return false;
     }
 }
