@@ -56,6 +56,9 @@ public class PlayerMove : MonoBehaviour
 
     private void InputKey()
     {
+        if (pState.UnitBS == UnitBattleState.Die || pState.UnitState == UnitState.Die)
+            return;
+
         // 키입력
         if (pState.UnitState == UnitState.Interact)
             return;
@@ -103,6 +106,8 @@ public class PlayerMove : MonoBehaviour
             //speed = 0f;
         }
     }
+
+    
 
     private void GrondCheck()
     {
@@ -152,13 +157,20 @@ public class PlayerMove : MonoBehaviour
         // 점프키 입력시
         if (Input.GetKeyDown(KeyCode.Space) && isGround)
         {
-            anim.SetTrigger("TriggerJump");
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            if (pState.UnitBS != UnitBattleState.Attack &&
+                pState.UnitBS != UnitBattleState.Hurt)
+            {
+                anim.SetTrigger("TriggerJump");
+            }
         }
     }
 
     private void LookDirection()
     {
+        if (pState.UnitBS == UnitBattleState.Attack)
+            return;
+
         // 움직임 상태일때 움직이는 방향으로 회전
         if (Input.GetButton("Horizontal"))
         {

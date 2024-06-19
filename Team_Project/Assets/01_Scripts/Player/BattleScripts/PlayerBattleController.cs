@@ -50,8 +50,6 @@ public class PlayerBattleController : BattleStatus
         AttackKeyInput();       // 공격키 입력
     }
 
-
-
     // 공격 애니메이션 재생
     public void AttackAnim(PlayerAttack pAttack)
     {
@@ -81,11 +79,27 @@ public class PlayerBattleController : BattleStatus
     {
         if (!pAttack.aST.isCoolTime)
         {
-            Debug.Log("공격");
-            AttackAnim(pAttack);
+            if (currentMp > pAttack.aST.useMana)
+            {
+                Debug.Log("공격");
+                currentMp -= pAttack.aST.useMana;
+                AttackAnim(pAttack);
+                SetMpSlider();
+            }
+            else
+                Debug.Log("마나가 부족합니다.");
         }
         else
             Debug.Log("공격 쿨타임");
+    }
+
+    public void AttackStateTrue()
+    {
+        pState.UnitBS = UnitBattleState.Attack;
+    }
+    public void AttackStateFalse()
+    {
+        pState.UnitBS = UnitBattleState.Idle;
     }
 
     // 공격 교체

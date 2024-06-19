@@ -15,4 +15,13 @@ public class MethodInAnim : MonoBehaviour
     {
         player.AttackCoolTime();
     }
+
+    void AttactTrue()
+    {
+        player.AttackStateTrue();
+    }
+    void AttackFalse()
+    {
+        player.AttackStateFalse();
+    }
 }
