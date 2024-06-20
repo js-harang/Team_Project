@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 15bf399dc8ed25f4f81604fb680c01fd
+guid: 8263cc69ecbf6364c9f51a11ac779d9b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -42,7 +42,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -115,18 +115,77 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: DLG_BUTTON_BASIC_1_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 225
+        width: 135
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b8b39ce7f2ed864bb3ecd19366edb92
+      internalID: 1182495001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DLG_BUTTON_BASIC_1_1
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 193
+        width: 135
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9f289ae58871cb45b549d936b325a28
+      internalID: -824138989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 8bb0b53063e0c8948aab325431070cef
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      DLG_BUTTON_BASIC_1_0: 1182495001
+      DLG_BUTTON_BASIC_1_1: -824138989
+      DLG_BUTTON_BASIC_1_10: 1639672923
+      DLG_BUTTON_BASIC_1_11: -195386159
+      DLG_BUTTON_BASIC_1_12: -2052900986
+      DLG_BUTTON_BASIC_1_13: -1826969773
+      DLG_BUTTON_BASIC_1_14: -849274748
+      DLG_BUTTON_BASIC_1_15: -1815294309
+      DLG_BUTTON_BASIC_1_16: -926443650
+      DLG_BUTTON_BASIC_1_17: 1980168022
+      DLG_BUTTON_BASIC_1_3: 2124512295
+      DLG_BUTTON_BASIC_1_4: -1016364478
+      DLG_BUTTON_BASIC_1_5: 1222862680
+      DLG_BUTTON_BASIC_1_6: -1520995976
+      DLG_BUTTON_BASIC_1_7: 709678590
+      DLG_BUTTON_BASIC_1_8: -1506526950
+      DLG_BUTTON_BASIC_1_9: -771412369
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

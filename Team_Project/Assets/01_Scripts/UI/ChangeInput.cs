@@ -3,49 +3,42 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 /// <summary>
-/// tab 연결
+/// Title Scene Tap 기능
 /// </summary>
 public class ChangeInput : MonoBehaviour
 {
     EventSystem system;
 
     [SerializeField]
-    Button loginBtn;
-    [SerializeField]
-    Button createBtn;
+    Selectable firstSelect;
 
-    private void Start()
+    void Start()
     {
         system = EventSystem.current;
     }
 
-    private void Update()
+    void Update()
     {
-        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.Tab))
+        // 선택된 오브젝트가 없으면 Id 입력창을 선택
+        if (system.currentSelectedGameObject == null && Input.GetKeyDown(KeyCode.Tab))
         {
-            // Tab + LeftShift는 위의 Selectable 객체를 선택
-            Selectable next = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnUp();
-
-            if (next != null)
-            {
-                next.Select();
-
-                //if (next == loginBtn || next == createBtn)
-                    //next.interactable = true;
-            }
+            firstSelect.Select();
+            return;
         }
+
+        // Tab + LeftShift 기능 : 위의 Selectable 객체를 선택
+        if (Input.GetKeyDown(KeyCode.Tab) && Input.GetKey(KeyCode.LeftShift))
+        {
+            Selectable next = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnUp();
+            if (next != null)
+                next.Select();
+        }
+        // Tab 기능 : 아래의 Selectable 객체를 선택
         else if (Input.GetKeyDown(KeyCode.Tab))
         {
-            // Tab은 아래의 Selectable 객체를 선택
             Selectable next = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnDown();
-
             if (next != null)
-            {
                 next.Select();
-
-                //if (next == loginBtn || next == createBtn)
-                //    next.interactable = true;
-            }
         }
     }
 }
