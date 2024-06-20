@@ -2,48 +2,50 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+/// <summary>
+/// tab 연결
+/// </summary>
 public class ChangeInput : MonoBehaviour
 {
     EventSystem system;
 
     [SerializeField]
-    Selectable firstInput;
+    Button loginBtn;
     [SerializeField]
-    Button submitButton;
+    Button createBtn;
 
-    void Start()
+    private void Start()
     {
         system = EventSystem.current;
-        // 처음은 이메일 Input Field를 선택하도록 한다.
-        firstInput.Select();
     }
 
-
-    void Update()
+    private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab) && Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.Tab))
         {
             // Tab + LeftShift는 위의 Selectable 객체를 선택
             Selectable next = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnUp();
+
             if (next != null)
             {
                 next.Select();
+
+                //if (next == loginBtn || next == createBtn)
+                    //next.interactable = true;
             }
         }
         else if (Input.GetKeyDown(KeyCode.Tab))
         {
             // Tab은 아래의 Selectable 객체를 선택
-            //Selectable next = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnDown();
-            //if (next != null)
-            //{
-            //    next.Select();
-            //}
-        }
-        else if (Input.GetKeyDown(KeyCode.Return))
-        {
-            // 엔터키를 치면 로그인 (제출) 버튼을 클릭
-            submitButton.onClick.Invoke();
-            Debug.Log("Button pressed!");
+            Selectable next = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnDown();
+
+            if (next != null)
+            {
+                next.Select();
+
+                //if (next == loginBtn || next == createBtn)
+                //    next.interactable = true;
+            }
         }
     }
 }
