@@ -28,7 +28,8 @@ public class BattleController : MonoBehaviour
         set 
         { 
             battleState = value;
-            switch (value)                              // 배틀 씬의 진행 상태에 따라 필요한 메서드를 호출하여 동작
+            // 배틀 씬의 진행 상태에 따라 필요한 메서드를 호출하여 동작
+            switch (value)                              
             {
                 case BattleState.Intro:
                     StartCoroutine(BattleIntro());
