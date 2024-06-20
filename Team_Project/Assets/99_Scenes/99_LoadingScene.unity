@@ -429,6 +429,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loadingBar: {fileID: 2124103876}
   loadingTxt: {fileID: 1310362852}
+  background: {fileID: 897473034}
+  backgroundImg:
+  - {fileID: 21300000, guid: 360cfc062eca7134bac080d1c4dd2cd4, type: 3}
+  - {fileID: 21300000, guid: c3d319aa09490c942bd91c7908856a3a, type: 3}
+  - {fileID: 21300000, guid: 867f0a6c96402424a90d102b54e85de2, type: 3}
+  - {fileID: 21300000, guid: f99098d8156edc546abb5b8a22d91209, type: 3}
+  - {fileID: 21300000, guid: f0b3ddd4e48712b47adb399017e30030, type: 3}
 --- !u!4 &876638899
 Transform:
   m_ObjectHideFlags: 0
@@ -502,7 +509,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 15bf399dc8ed25f4f81604fb680c01fd, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

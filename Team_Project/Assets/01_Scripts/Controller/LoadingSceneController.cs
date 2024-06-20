@@ -11,8 +11,15 @@ public class LoadingSceneController : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI loadingTxt;
 
+    [SerializeField, Space(10)]
+    Image background;
+    [SerializeField]
+    Sprite[] backgroundImg;
+
     public void Start()
     {
+        background.sprite = backgroundImg[Random.Range(0, backgroundImg.Length)];
+
         StartCoroutine(LoadingProcessCoroutine(GameManager.gm.sceneNumber));
     }
 
@@ -32,6 +39,8 @@ public class LoadingSceneController : MonoBehaviour
 
             yield return null;
         }
+
+        yield return new WaitForSeconds(1f);
 
         loadingBar.value = 1f;
         loadingTxt.text = "100%";
