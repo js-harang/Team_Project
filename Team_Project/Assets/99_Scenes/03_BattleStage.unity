@@ -59241,6 +59241,9 @@ MonoBehaviour:
   grdLayer:
     serializedVersion: 2
     m_Bits: 64
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 0
   isGround: 1
   playerPointer: {fileID: 5563530445761724385}
 --- !u!1 &5763142243954589569
@@ -62149,6 +62152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitState: 0
+  unitBattleState: 0
 --- !u!1 &8378478481273593633
 GameObject:
   m_ObjectHideFlags: 0
