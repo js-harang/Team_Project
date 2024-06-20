@@ -8,7 +8,7 @@ public enum BattleState
     Intro,
     Start,
     Running,
-    LoadNext,
+    StartRound,
     FinalRound,
     Clear,
     Defeat,
@@ -18,18 +18,42 @@ public enum BattleState
 public class BattleController : MonoBehaviour
 {
     [SerializeField]
-    BattleState battleSate;
+    BattleState battleState;
     public BattleState BattleState 
     { 
         get 
         { 
-            return battleSate; 
+            return battleState; 
         } 
         set 
         { 
-            battleSate = value;
-            if (value == BattleState.BattleEnd)
-                BattleEndProcess();
+            battleState = value;
+            switch (value)                              // 배틀 씬의 진행 상태에 따라 필요한 메서드를 호출하여 동작
+            {
+                case BattleState.Intro:
+                    StartCoroutine(BattleIntro());
+                    break;
+                case BattleState.Start:
+                    StartCoroutine(BattleStart());
+                    break;
+                case BattleState.Running:
+                    break;
+                case BattleState.StartRound:
+                    break;
+                case BattleState.FinalRound:
+                    break;
+                case BattleState.Clear:
+                    StartCoroutine(ClearProcess());
+                    break;
+                case BattleState.Defeat:
+                    GameOver();
+                    break;
+                case BattleState.BattleEnd:
+                    BattleEndProcess();
+                    break;
+                default:
+                    break;
+            }
         } 
     }
 
@@ -54,50 +78,13 @@ public class BattleController : MonoBehaviour
     public GameObject battleEndUI;
 
     public GameObject battleShopNPC;
-    public Transform EndShopSpawnPosition;
+    public Transform endShopSpawn;
 
 
     private void Start()
     {
         pS = FindObjectOfType<PlayerState>().GetComponent<PlayerState>();
-    }
-
-    private void Update()
-    {
-        if (pS.UnitState == UnitState.Die)
-            battleSate = BattleState.Defeat;
-
-        BattleStageProcess(battleSate);
-    }
-
-    // 배틀 씬의 진행 상태에 따라 필요한 메서드를 호출하여 동작
-    void BattleStageProcess(BattleState battleState)
-    {
-        switch (battleSate)
-        {
-            case BattleState.Intro:
-                StartCoroutine(BattleIntro());
-                break;
-            case BattleState.Start:
-                StartCoroutine(BattleStart());
-                break;
-            case BattleState.Running:
-                break;
-            case BattleState.LoadNext:
-                break;
-            case BattleState.FinalRound:
-                break;
-            case BattleState.Clear:
-                StartCoroutine(ClearProcess());
-                break;
-            case BattleState.Defeat:
-                GameOver();
-                break;
-            case BattleState.BattleEnd:
-                break;
-            default:
-                break;
-        }
+        BattleState = BattleState.Intro;
     }
 
     // 배틀 개시 전 잠시 대기하는 시간(여기에 시네머신 연출 재생한다거나)
@@ -107,7 +94,7 @@ public class BattleController : MonoBehaviour
 
         yield return new WaitForSeconds(3f);
 
-        battleSate = BattleState.Start;
+        BattleState = BattleState.Start;
         pS.UnitState = UnitState.Idle;
     }
 
@@ -116,7 +103,7 @@ public class BattleController : MonoBehaviour
     {
         Animator startAnim = battleStartImg.GetComponent<Animator>();
         startAnim.SetTrigger("nowStart");
-        battleSate = BattleState.Running;
+        BattleState = BattleState.Running;
 
         yield return new WaitForSeconds(2f);
 
@@ -134,11 +121,11 @@ public class BattleController : MonoBehaviour
         yield return new WaitForSeconds(3f);
 
         battleClearUI.SetActive(false);
-        battleSate = BattleState.BattleEnd;
+        BattleState = BattleState.BattleEnd;
         pS.UnitState = UnitState.Idle;
     }
 
-    // 캐릭터 사밍시 버튼 누르면 마을로
+    // 버튼 누르면 마을로
     public void ToTown()
     {
         GameManager.gm.sceneNumber = 2;
@@ -151,12 +138,14 @@ public class BattleController : MonoBehaviour
         gameOverUI.SetActive(true);
     }
 
+    // 배틀 종료 시 시작되는 동작 메소드
     void BattleEndProcess()
     {
-        Instantiate(battleShopNPC, EndShopSpawnPosition);
+        Instantiate(battleShopNPC, endShopSpawn.position, Quaternion.identity);
         battleEndUI.SetActive(true);
     }
 
+    // 배틀 정산 후 화면에서 재도전 버튼을 누르면 다시 배틀씬을 실행
     public void OnemoreTry()
     {
         GameManager.gm.sceneNumber = SceneManager.GetActiveScene().buildIndex;

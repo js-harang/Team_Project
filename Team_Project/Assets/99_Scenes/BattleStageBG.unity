@@ -55320,7 +55320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd2db5f6debc4774eb8c814671266b64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  battleSate: 0
+  battleState: 0
   hyperMoveZone: {fileID: 546447729}
   enemyPrefab: {fileID: 2998693843803984750, guid: 5224d5d5174c403409b92221a09814f2, type: 3}
   blockWall:
@@ -55334,7 +55334,7 @@ MonoBehaviour:
   gameOverUI: {fileID: 1356178484}
   battleEndUI: {fileID: 2056426880}
   battleShopNPC: {fileID: 8006254576129283596, guid: b0765f6e04628d749aa147d9d063847f, type: 3}
-  EndShopSpawnPosition: {fileID: 2064021894}
+  endShopSpawn: {fileID: 2064021894}
 --- !u!4 &1021986533
 Transform:
   m_ObjectHideFlags: 0
@@ -58220,7 +58220,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2064021894}
   m_Layer: 0
-  m_Name: EndShopPosition
+  m_Name: EndShopSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
