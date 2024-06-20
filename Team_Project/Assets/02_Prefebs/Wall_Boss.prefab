@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 1901743246127904877}
   - component: {fileID: 8083087540743400498}
   - component: {fileID: 2956591290892946381}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall_Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}

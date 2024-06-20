@@ -8,7 +8,7 @@ public enum BattleState
     Intro,
     Start,
     Running,
-    StartRound,
+    StartWave,
     FinalRound,
     Clear,
     Defeat,
@@ -39,7 +39,7 @@ public class BattleController : MonoBehaviour
                     break;
                 case BattleState.Running:
                     break;
-                case BattleState.StartRound:
+                case BattleState.StartWave:
                     break;
                 case BattleState.FinalRound:
                     break;

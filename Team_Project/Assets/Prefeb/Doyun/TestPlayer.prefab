@@ -4185,6 +4185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitState: 0
+  unitBattleState: 0
 --- !u!114 &5180628040279568241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4203,6 +4204,9 @@ MonoBehaviour:
   grdLayer:
     serializedVersion: 2
     m_Bits: 64
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 0
   isGround: 1
   playerPointer: {fileID: 4983397470151412062}
 --- !u!114 &1929587952180110745
@@ -4217,8 +4221,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d07adac709bc6f458b5e6af16902efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 20
   currentHp: 20
+  maxHp: 20
   atkPower: 0
   pAttacks:
   - {fileID: 4705956051754398842}
@@ -4246,6 +4250,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemys: []
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &1913644856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4259,6 +4266,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemys: []
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &5867644835019410120
 GameObject:
   m_ObjectHideFlags: 0
