@@ -21,6 +21,8 @@ public class EnemyFSM : BattleStatus
     // 캐릭터 컨트롤러 컴포넌트
     CharacterController cc;
 
+    // BattleController 컴포넌트 변수
+    BattleController bC;
 
     // 플레이어 발견 범위
     public float findDistance = 8f;
@@ -28,7 +30,7 @@ public class EnemyFSM : BattleStatus
     public float attackDistance = 2f;
 
     // 플레이어 트랜스폼
-    public Transform player;
+    Transform player;
 
     // 이동 속도
     public float moveSpeed = 5f;
@@ -65,6 +67,12 @@ public class EnemyFSM : BattleStatus
 
     private void Start()
     {
+        // 생성 시 플레이어의 위치를 가져옴
+        player = FindObjectOfType<PlayerMove>().transform;
+
+        // 배틀컨트롤러 참조
+        bC = FindObjectOfType<BattleController>().GetComponent<BattleController>();
+
         // 최초의 에너미 상태를 대기
         m_State = EnemyState.Idle;
 
@@ -302,6 +310,7 @@ public class EnemyFSM : BattleStatus
     {
         // 캐릭터 컨트롤러 컴포넌트를 비활성화
         cc.enabled = false;
+        bC.EnemyCount--;
 
         // 2초 동안 기다린 후에 자기 자신을 제거
         yield return new WaitForSeconds(2f);

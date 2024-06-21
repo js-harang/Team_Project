@@ -67,7 +67,10 @@ public class BattleController : MonoBehaviour
     int enemyCount;
     public int EnemyCount { get { return enemyCount; } set { enemyCount = value; } }
 
-    // 플레이어가 조작을 멈춘 시간
+    // 현지 진행중인 배틀이 몇번째인지
+    int roundNum;
+
+    // 플레이어가 조작을 멈춘 시간 변수
     float playerDive;
 
     // 배틀 중 나타나는 UI들 변수
