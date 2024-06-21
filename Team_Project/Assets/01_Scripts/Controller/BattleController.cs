@@ -8,8 +8,8 @@ public enum BattleState
     Intro,
     Start,
     Running,
-    StartWave,
-    FinalRound,
+    NowBattle,
+    BossRound,
     Clear,
     Defeat,
     BattleEnd,
@@ -39,9 +39,9 @@ public class BattleController : MonoBehaviour
                     break;
                 case BattleState.Running:
                     break;
-                case BattleState.StartWave:
+                case BattleState.NowBattle:
                     break;
-                case BattleState.FinalRound:
+                case BattleState.BossRound:
                     break;
                 case BattleState.Clear:
                     StartCoroutine(ClearProcess());
@@ -61,31 +61,36 @@ public class BattleController : MonoBehaviour
     PlayerState pS;
     [SerializeField]
     GameObject hyperMoveZone;
-    [SerializeField]
-    GameObject enemyPrefab;
-    [SerializeField]
-    GameObject[] blockWall;
 
+    // 현재 진행되는 전투에 스폰된 에너미의 수
+    [SerializeField]
     int enemyCount;
     public int EnemyCount { get { return enemyCount; } set { enemyCount = value; } }
 
-    [SerializeField]
-    int totalRound;
-    int nowRound;
+    // 플레이어가 조작을 멈춘 시간
+    float playerDive;
 
-    public GameObject battleStartImg;
-    public GameObject battleClearUI;
-    public GameObject gameOverUI;
-    public GameObject battleEndUI;
+    // 배틀 중 나타나는 UI들 변수
+    [SerializeField] GameObject battleStartImg;
+    [SerializeField] GameObject goArrowImg;
+    [SerializeField] GameObject battleClearUI;
+    [SerializeField] GameObject gameOverUI;
+    [SerializeField] GameObject battleEndUI;
 
-    public GameObject battleShopNPC;
-    public Transform endShopSpawn;
+    // 스테이지 클리어 후 나타나는 정산 NPC에 관련된 변수
+    [SerializeField] GameObject battleShopNPC;
+    [SerializeField] Transform endShopSpawn;
 
 
     private void Start()
     {
         pS = FindObjectOfType<PlayerState>().GetComponent<PlayerState>();
         BattleState = BattleState.Intro;
+    }
+
+    private void Update()
+    {
+        GoSignOnOff();
     }
 
     // 배틀 개시 전 잠시 대기하는 시간(여기에 시네머신 연출 재생한다거나)
@@ -99,15 +104,30 @@ public class BattleController : MonoBehaviour
         pS.UnitState = UnitState.Idle;
     }
 
+    // 진행 가능 상태일 때, 플레이어가 대기상화이라면 UI 표시
+    void GoSignOnOff()
+    {
+        if (battleState == BattleState.Running && pS.UnitState == UnitState.Idle)
+        {
+            playerDive += Time.deltaTime;
+            if (playerDive >= 3)
+                goArrowImg.SetActive(true);
+        }
+        else
+        {
+            playerDive = 0;
+            goArrowImg.SetActive(false);
+        }
+    }
+
     // 배틀 시작시 Start 이미지 애니메이션 재생
     IEnumerator BattleStart()
     {
-        Animator startAnim = battleStartImg.GetComponent<Animator>();
-        startAnim.SetTrigger("nowStart");
-        BattleState = BattleState.Running;
+        battleStartImg.SetActive(true);
 
         yield return new WaitForSeconds(2f);
 
+        BattleState = BattleState.Running;
         battleStartImg.SetActive(false);
     }
 
