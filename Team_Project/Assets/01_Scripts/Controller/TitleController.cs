@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class TitleController : MonoBehaviour
 {
-    [SerializeField, Space(10)]
+    [SerializeField]
     TMP_InputField id;
     [SerializeField]
     TMP_InputField pw;
@@ -16,10 +16,23 @@ public class TitleController : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI loginResultTxt;
 
+    // Preference 버튼 관련 변수
+    [SerializeField, Space(10)]
+    GameObject preferencePopup;
+    [SerializeField]
+    bool isPreferencePopup = false;
+
     private void Start()
     {
         idPlaceholder.DOFade(0.1f, 1f).SetLoops(-1, LoopType.Yoyo);
         pwPlaceholder.DOFade(0.1f, 1f).SetLoops(-1, LoopType.Yoyo);
+    }
+
+    private void Update()
+    {
+        // 환경설정 탈출
+        if (Input.GetKeyDown(KeyCode.Escape) && isPreferencePopup)
+            ClickPreferencesBtn();
     }
 
     /// <summary>
@@ -63,5 +76,14 @@ public class TitleController : MonoBehaviour
         }
         else
             return true;
+    }
+
+    /// <summary>
+    /// 환경설정 버튼
+    /// </summary>
+    public void ClickPreferencesBtn()
+    {
+        isPreferencePopup = !isPreferencePopup;
+        preferencePopup.SetActive(isPreferencePopup);
     }
 }

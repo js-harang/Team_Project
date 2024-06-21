@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class LobbyController : MonoBehaviour
 {
     // CreateCharacter 버튼 관련 변수
-    [SerializeField, Space(10)]
+    [SerializeField]
     Transform mainCamera;
     [SerializeField]
     GameObject lobbyCanvas;
