@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f56e4a3b734afd14298d03ed43473d74, type: 3}
+  m_Name: Hurricanekick
+  m_EditorClassIdentifier: 
+  attackName: "\uD5C8\uB9AC\uCF00\uC778\uD0A5"
+  iconImg: {fileID: 21300000, guid: f44707d980a2e39418f9641459d0ffbc, type: 3}
+  atkType: 1
+  atkPositionIndex: 1
+  atkLenght: {x: 4, y: 2.5, z: 4}
+  damage: 3
+  useMana: 10
+  coolTime: 5
