@@ -5,13 +5,22 @@ using UnityEngine;
 public class HyperMoveTrriger : MonoBehaviour
 {
     [SerializeField]
-    Transform landingSpot;
+    Transform startPosition;
+    [SerializeField]
+    Transform landingPosition;
+
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.transform.position = landingSpot.position;
+            StartCoroutine(HyperMove(other));
         }
+    }
+
+    IEnumerator HyperMove(Collider other)
+    {
+        yield return new WaitForSeconds(2f);
+        other.transform.position = landingPosition.position;
     }
 }

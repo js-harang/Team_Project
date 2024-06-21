@@ -8,8 +8,8 @@ public enum BattleState
     Intro,
     Start,
     Running,
-    StartWave,
-    FinalRound,
+    NowBattle,
+    BossRound,
     Clear,
     Defeat,
     BattleEnd,
@@ -32,16 +32,17 @@ public class BattleController : MonoBehaviour
             switch (value)                              
             {
                 case BattleState.Intro:
-                    StartCoroutine(BattleIntro());
+                    StartCoroutine(StartIntro());
                     break;
                 case BattleState.Start:
-                    StartCoroutine(BattleStart());
+                    StartCoroutine(StageStart());
                     break;
                 case BattleState.Running:
                     break;
-                case BattleState.StartWave:
+                case BattleState.NowBattle:
+                    StartCoroutine(BlockWallOnOff(waveNum)); 
                     break;
-                case BattleState.FinalRound:
+                case BattleState.BossRound:
                     break;
                 case BattleState.Clear:
                     StartCoroutine(ClearProcess());
@@ -62,24 +63,50 @@ public class BattleController : MonoBehaviour
     [SerializeField]
     GameObject hyperMoveZone;
     [SerializeField]
-    GameObject enemyPrefab;
-    [SerializeField]
     GameObject[] blockWall;
 
-    int enemyCount;
-    public int EnemyCount { get { return enemyCount; } set { enemyCount = value; } }
-
+    // 현재 스테이지의 전체 웨이브의 수
     [SerializeField]
-    int totalRound;
-    int nowRound;
+    int totalWaveCount;
 
-    public GameObject battleStartImg;
-    public GameObject battleClearUI;
-    public GameObject gameOverUI;
-    public GameObject battleEndUI;
+    // 현재 진행되는 전투에 스폰된 에너미의 수
+    [SerializeField]
+    int enemyCount;
+    public int EnemyCount 
+    {
+        get 
+        { 
+            return enemyCount; 
+        } 
+        set 
+        { 
+            // 적의 숫자가 0이 되면 다음 단계로 진행
+            enemyCount = value;
+            if (value == 0)
+            {
+                StartCoroutine(BlockWallOnOff(waveNum));
+                BattleState = BattleState.Running;
+                waveNum++;
+            }
+        } 
+    }
 
-    public GameObject battleShopNPC;
-    public Transform endShopSpawn;
+    // 현재 진행중인 배틀이 몇번째인지
+    int waveNum;
+
+    // 플레이어가 조작을 멈춘 시간 변수
+    float playerDive;
+
+    // 배틀 중 나타나는 UI들 변수
+    [SerializeField] GameObject battleStartImg;
+    [SerializeField] GameObject goArrowImg;
+    [SerializeField] GameObject battleClearUI;
+    [SerializeField] GameObject gameOverUI;
+    [SerializeField] GameObject battleEndUI;
+
+    // 스테이지 클리어 후 나타나는 정산 NPC에 관련된 변수
+    [SerializeField] GameObject battleShopNPC;
+    [SerializeField] Transform endShopSpawn;
 
 
     private void Start()
@@ -88,8 +115,20 @@ public class BattleController : MonoBehaviour
         BattleState = BattleState.Intro;
     }
 
-    // 배틀 개시 전 잠시 대기하는 시간(여기에 시네머신 연출 재생한다거나)
-    IEnumerator BattleIntro()
+    private void Update()
+    {
+        // 플레이어 사망시 동작
+        if (pS.UnitState == UnitState.Die)
+        {
+            BattleState = BattleState.Defeat;
+            return;
+        }
+
+        GoSignOnOff();
+    }
+
+    // 스테이지 개시 전 잠시 대기하는 시간(여기에 시네머신 연출 재생한다거나)
+    IEnumerator StartIntro()
     {
         pS.UnitState = UnitState.Interact;
 
@@ -99,21 +138,50 @@ public class BattleController : MonoBehaviour
         pS.UnitState = UnitState.Idle;
     }
 
-    // 배틀 시작시 Start 이미지 애니메이션 재생
-    IEnumerator BattleStart()
+    // 진행 가능 상태일 때, 플레이어가 대기상화이라면 UI 표시
+    void GoSignOnOff()
     {
-        Animator startAnim = battleStartImg.GetComponent<Animator>();
-        startAnim.SetTrigger("nowStart");
-        BattleState = BattleState.Running;
+        if (battleState == BattleState.Running && pS.UnitState == UnitState.Idle)
+        {
+            playerDive += Time.deltaTime;
+            if (playerDive >= 3)
+                goArrowImg.SetActive(true);
+        }
+        else
+        {
+            playerDive = 0;
+            goArrowImg.SetActive(false);
+        }
+    }
+
+    // 스테이지 시작시 Start 이미지 애니메이션 재생
+    IEnumerator StageStart()
+    {
+        battleStartImg.SetActive(true);
 
         yield return new WaitForSeconds(2f);
 
+        BattleState = BattleState.Running;
         battleStartImg.SetActive(false);
+    }
+
+    // 배틀 시작 시 구역을 나누는 벽을 관리하는 메소드
+    IEnumerator BlockWallOnOff(int waveNum)
+    {
+        if (!blockWall[waveNum].activeSelf)
+            blockWall[waveNum].SetActive(true);
+        else
+        {
+            yield return new WaitForSeconds(2f);
+            blockWall[waveNum].SetActive(false);
+        }
     }
 
     // 배틀 클리어시 작동하는 과정
     IEnumerator ClearProcess()
     {
+        yield return new WaitForSeconds(1f);
+
         pS.UnitState = UnitState.Interact;
         battleClearUI.SetActive(true);
         Animator clearAnim = battleClearUI.GetComponent<Animator>();
