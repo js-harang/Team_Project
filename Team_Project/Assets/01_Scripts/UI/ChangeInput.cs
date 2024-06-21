@@ -26,6 +26,11 @@ public class ChangeInput : MonoBehaviour
             return;
         }
 
+        InputTab();
+    }
+
+    private void InputTab()
+    {
         // Tab + LeftShift 기능 : 위의 Selectable 객체를 선택
         if (Input.GetKeyDown(KeyCode.Tab) && Input.GetKey(KeyCode.LeftShift))
         {
