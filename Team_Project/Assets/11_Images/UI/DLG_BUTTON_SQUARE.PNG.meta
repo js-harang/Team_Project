@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8263cc69ecbf6364c9f51a11ac779d9b
+guid: 44381e250d00e7d45af280b04a0997c2
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,13 +117,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: DLG_BUTTON_BASIC_1_0
+      name: DLG_BUTTON_SQUARE_0
       rect:
         serializedVersion: 2
         x: 1
-        y: 225
-        width: 135
-        height: 30
+        y: 195
+        width: 33
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,20 +131,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b8b39ce7f2ed864bb3ecd19366edb92
-      internalID: 1182495001
+      spriteID: aef11750b8cfefa46a1745da6a3f846b
+      internalID: -595850255
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DLG_BUTTON_BASIC_1_1
+      name: DLG_BUTTON_SQUARE_1
       rect:
         serializedVersion: 2
-        x: 1
-        y: 193
-        width: 135
-        height: 30
+        x: 36
+        y: 195
+        width: 33
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,8 +152,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d9f289ae58871cb45b549d936b325a28
-      internalID: -824138989
+      spriteID: eaab68e08bf6cc44a9ea94f300160aec
+      internalID: -310528100
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 8bb0b53063e0c8948aab325431070cef
+    spriteID: 568d5f126182d83439e5f3bb526fa7f5
     internalID: 0
     vertices: []
     indices: 
@@ -169,26 +169,73 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      DLG_BUTTON_BASIC_1_0: 1182495001
-      DLG_BUTTON_BASIC_1_1: -824138989
-      DLG_BUTTON_BASIC_1_10: 1639672923
-      DLG_BUTTON_BASIC_1_11: -195386159
-      DLG_BUTTON_BASIC_1_12: -2052900986
-      DLG_BUTTON_BASIC_1_13: -1826969773
-      DLG_BUTTON_BASIC_1_14: -849274748
-      DLG_BUTTON_BASIC_1_15: -1815294309
-      DLG_BUTTON_BASIC_1_16: -926443650
-      DLG_BUTTON_BASIC_1_17: 1980168022
-      DLG_BUTTON_BASIC_1_18: -2062447029
-      DLG_BUTTON_BASIC_1_19: 1407228873
-      DLG_BUTTON_BASIC_1_2: -40352298
-      DLG_BUTTON_BASIC_1_3: 2124512295
-      DLG_BUTTON_BASIC_1_4: -1016364478
-      DLG_BUTTON_BASIC_1_5: 1222862680
-      DLG_BUTTON_BASIC_1_6: -1520995976
-      DLG_BUTTON_BASIC_1_7: 709678590
-      DLG_BUTTON_BASIC_1_8: -1506526950
-      DLG_BUTTON_BASIC_1_9: -771412369
+      DLG_BUTTON_SQUARE_0: -595850255
+      DLG_BUTTON_SQUARE_1: -310528100
+      DLG_BUTTON_SQUARE_10: 1335351457
+      DLG_BUTTON_SQUARE_11: 273449579
+      DLG_BUTTON_SQUARE_12: -828705469
+      DLG_BUTTON_SQUARE_13: -748539516
+      DLG_BUTTON_SQUARE_14: 863577377
+      DLG_BUTTON_SQUARE_15: 1405202085
+      DLG_BUTTON_SQUARE_16: 965666297
+      DLG_BUTTON_SQUARE_17: -1247540350
+      DLG_BUTTON_SQUARE_18: 1770569973
+      DLG_BUTTON_SQUARE_19: 2005888161
+      DLG_BUTTON_SQUARE_2: 704439099
+      DLG_BUTTON_SQUARE_20: -1577709175
+      DLG_BUTTON_SQUARE_21: 1815250007
+      DLG_BUTTON_SQUARE_22: 1093519752
+      DLG_BUTTON_SQUARE_23: -1371540209
+      DLG_BUTTON_SQUARE_24: -1202667338
+      DLG_BUTTON_SQUARE_25: 1477510045
+      DLG_BUTTON_SQUARE_26: -824331771
+      DLG_BUTTON_SQUARE_27: 1541798964
+      DLG_BUTTON_SQUARE_28: 1191541724
+      DLG_BUTTON_SQUARE_29: 482525625
+      DLG_BUTTON_SQUARE_3: 720838666
+      DLG_BUTTON_SQUARE_30: 1835589786
+      DLG_BUTTON_SQUARE_31: 965820560
+      DLG_BUTTON_SQUARE_32: -977409573
+      DLG_BUTTON_SQUARE_33: 406332276
+      DLG_BUTTON_SQUARE_34: 2116889600
+      DLG_BUTTON_SQUARE_35: -697680464
+      DLG_BUTTON_SQUARE_36: -1005771101
+      DLG_BUTTON_SQUARE_37: 1263318614
+      DLG_BUTTON_SQUARE_38: 1629195770
+      DLG_BUTTON_SQUARE_39: -1281006057
+      DLG_BUTTON_SQUARE_4: -1200700938
+      DLG_BUTTON_SQUARE_40: 635021077
+      DLG_BUTTON_SQUARE_41: -2114220499
+      DLG_BUTTON_SQUARE_42: -1440043939
+      DLG_BUTTON_SQUARE_43: -68453097
+      DLG_BUTTON_SQUARE_44: -1264376206
+      DLG_BUTTON_SQUARE_45: 1444202090
+      DLG_BUTTON_SQUARE_46: -1881223542
+      DLG_BUTTON_SQUARE_47: -1717746360
+      DLG_BUTTON_SQUARE_48: -348977642
+      DLG_BUTTON_SQUARE_49: -513263296
+      DLG_BUTTON_SQUARE_5: 1498628046
+      DLG_BUTTON_SQUARE_50: 323782302
+      DLG_BUTTON_SQUARE_51: -224520154
+      DLG_BUTTON_SQUARE_52: 633860098
+      DLG_BUTTON_SQUARE_53: 657669653
+      DLG_BUTTON_SQUARE_54: 1773494298
+      DLG_BUTTON_SQUARE_55: 722197525
+      DLG_BUTTON_SQUARE_56: -787661360
+      DLG_BUTTON_SQUARE_57: -1598260143
+      DLG_BUTTON_SQUARE_58: 2001447749
+      DLG_BUTTON_SQUARE_59: 377455448
+      DLG_BUTTON_SQUARE_6: 29372115
+      DLG_BUTTON_SQUARE_60: -1387049435
+      DLG_BUTTON_SQUARE_61: 1603977543
+      DLG_BUTTON_SQUARE_62: 1519997177
+      DLG_BUTTON_SQUARE_63: 801366856
+      DLG_BUTTON_SQUARE_64: 790457050
+      DLG_BUTTON_SQUARE_65: 620319864
+      DLG_BUTTON_SQUARE_66: -696892558
+      DLG_BUTTON_SQUARE_7: 2074568159
+      DLG_BUTTON_SQUARE_8: 515478544
+      DLG_BUTTON_SQUARE_9: -918600716
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
