@@ -32,14 +32,15 @@ public class BattleController : MonoBehaviour
             switch (value)                              
             {
                 case BattleState.Intro:
-                    StartCoroutine(BattleIntro());
+                    StartCoroutine(StartIntro());
                     break;
                 case BattleState.Start:
-                    StartCoroutine(BattleStart());
+                    StartCoroutine(StageStart());
                     break;
                 case BattleState.Running:
                     break;
                 case BattleState.NowBattle:
+                    StartCoroutine(BlockWallOnOff(waveNum)); 
                     break;
                 case BattleState.BossRound:
                     break;
@@ -61,11 +62,34 @@ public class BattleController : MonoBehaviour
     PlayerState pS;
     [SerializeField]
     GameObject hyperMoveZone;
+    [SerializeField]
+    GameObject[] blockWall;
+
+    // 현재 스테이지의 전체 웨이브의 수
+    [SerializeField]
+    int totalWaveCount;
 
     // 현재 진행되는 전투에 스폰된 에너미의 수
     [SerializeField]
     int enemyCount;
-    public int EnemyCount { get { return enemyCount; } set { enemyCount = value; } }
+    public int EnemyCount 
+    {
+        get 
+        { 
+            return enemyCount; 
+        } 
+        set 
+        { 
+            // 적의 숫자가 0이 되면 다음 단계로 진행
+            enemyCount = value;
+            if (value == 0)
+            {
+                StartCoroutine(BlockWallOnOff(waveNum));
+                BattleState = BattleState.Running;
+                waveNum++;
+            }
+        } 
+    }
 
     // 현재 진행중인 배틀이 몇번째인지
     int waveNum;
@@ -93,11 +117,18 @@ public class BattleController : MonoBehaviour
 
     private void Update()
     {
+        // 플레이어 사망시 동작
+        if (pS.UnitState == UnitState.Die)
+        {
+            BattleState = BattleState.Defeat;
+            return;
+        }
+
         GoSignOnOff();
     }
 
-    // 배틀 개시 전 잠시 대기하는 시간(여기에 시네머신 연출 재생한다거나)
-    IEnumerator BattleIntro()
+    // 스테이지 개시 전 잠시 대기하는 시간(여기에 시네머신 연출 재생한다거나)
+    IEnumerator StartIntro()
     {
         pS.UnitState = UnitState.Interact;
 
@@ -123,8 +154,8 @@ public class BattleController : MonoBehaviour
         }
     }
 
-    // 배틀 시작시 Start 이미지 애니메이션 재생
-    IEnumerator BattleStart()
+    // 스테이지 시작시 Start 이미지 애니메이션 재생
+    IEnumerator StageStart()
     {
         battleStartImg.SetActive(true);
 
@@ -134,9 +165,23 @@ public class BattleController : MonoBehaviour
         battleStartImg.SetActive(false);
     }
 
+    // 배틀 시작 시 구역을 나누는 벽을 관리하는 메소드
+    IEnumerator BlockWallOnOff(int waveNum)
+    {
+        if (!blockWall[waveNum].activeSelf)
+            blockWall[waveNum].SetActive(true);
+        else
+        {
+            yield return new WaitForSeconds(2f);
+            blockWall[waveNum].SetActive(false);
+        }
+    }
+
     // 배틀 클리어시 작동하는 과정
     IEnumerator ClearProcess()
     {
+        yield return new WaitForSeconds(1f);
+
         pS.UnitState = UnitState.Interact;
         battleClearUI.SetActive(true);
         Animator clearAnim = battleClearUI.GetComponent<Animator>();
