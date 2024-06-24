@@ -23,6 +23,12 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public GameObject selectObject;
 
+    /// <summary>
+    /// 0 = TitleScene
+    /// 1 = LobbyScene
+    /// 2 = TownScene
+    /// 3 = BattleScene
+    /// </summary>
     public void MoveScene(int number)
     {
         sceneNumber = number;
