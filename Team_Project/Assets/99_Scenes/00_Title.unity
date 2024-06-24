@@ -1058,9 +1058,9 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: -824138989, guid: 8263cc69ecbf6364c9f51a11ac779d9b, type: 3}
-    m_PressedSprite: {fileID: 1624590183, guid: 4ca555b2d484bef4ba26ea4bb48a7d1f, type: 3}
-    m_SelectedSprite: {fileID: -824138989, guid: 8263cc69ecbf6364c9f51a11ac779d9b, type: 3}
+    m_HighlightedSprite: {fileID: -40352298, guid: 8263cc69ecbf6364c9f51a11ac779d9b, type: 3}
+    m_PressedSprite: {fileID: -1826969773, guid: 8263cc69ecbf6364c9f51a11ac779d9b, type: 3}
+    m_SelectedSprite: {fileID: -40352298, guid: 8263cc69ecbf6364c9f51a11ac779d9b, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -1587,9 +1587,9 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: -310528100, guid: 44381e250d00e7d45af280b04a0997c2, type: 3}
+    m_HighlightedSprite: {fileID: -828705469, guid: 44381e250d00e7d45af280b04a0997c2, type: 3}
     m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: -310528100, guid: 44381e250d00e7d45af280b04a0997c2, type: 3}
+    m_SelectedSprite: {fileID: -828705469, guid: 44381e250d00e7d45af280b04a0997c2, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -1634,7 +1634,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -595850255, guid: 44381e250d00e7d45af280b04a0997c2, type: 3}
+  m_Sprite: {fileID: 273449579, guid: 44381e250d00e7d45af280b04a0997c2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1836,9 +1836,9 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: -824138989, guid: 8263cc69ecbf6364c9f51a11ac779d9b, type: 3}
-    m_PressedSprite: {fileID: 1624590183, guid: 4ca555b2d484bef4ba26ea4bb48a7d1f, type: 3}
-    m_SelectedSprite: {fileID: -824138989, guid: 8263cc69ecbf6364c9f51a11ac779d9b, type: 3}
+    m_HighlightedSprite: {fileID: -40352298, guid: 8263cc69ecbf6364c9f51a11ac779d9b, type: 3}
+    m_PressedSprite: {fileID: -1826969773, guid: 8263cc69ecbf6364c9f51a11ac779d9b, type: 3}
+    m_SelectedSprite: {fileID: -40352298, guid: 8263cc69ecbf6364c9f51a11ac779d9b, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -2295,7 +2295,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -10, y: 0}
+  m_AnchoredPosition: {x: -10, y: 20}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &1603809814
@@ -2751,6 +2751,7 @@ GameObject:
   - component: {fileID: 1789494715}
   - component: {fileID: 1789494714}
   - component: {fileID: 1789494713}
+  - component: {fileID: 1789494716}
   m_Layer: 5
   m_Name: Option_2
   m_TagString: Untagged
@@ -2791,7 +2792,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 4
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -2807,9 +2808,9 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 1829581261, guid: 487d9ad5adeaabc47b791477b970e43d, type: 3}
-    m_PressedSprite: {fileID: 1829581261, guid: 487d9ad5adeaabc47b791477b970e43d, type: 3}
-    m_SelectedSprite: {fileID: 2046781758, guid: 487d9ad5adeaabc47b791477b970e43d, type: 3}
+    m_HighlightedSprite: {fileID: 225638842, guid: 487d9ad5adeaabc47b791477b970e43d, type: 3}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 1907976903, guid: 487d9ad5adeaabc47b791477b970e43d, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -2842,7 +2843,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 707463421, guid: 487d9ad5adeaabc47b791477b970e43d, type: 3}
+  m_Sprite: {fileID: 742256021, guid: 487d9ad5adeaabc47b791477b970e43d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2860,6 +2861,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1789494711}
   m_CullTransparentMesh: 1
+--- !u!114 &1789494716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1789494711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19e7faad0214625449d15e7ccd14f007, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swapImage:
+  - {fileID: 742256021, guid: 487d9ad5adeaabc47b791477b970e43d, type: 3}
+  - {fileID: 225638842, guid: 487d9ad5adeaabc47b791477b970e43d, type: 3}
+  - {fileID: 1907976903, guid: 487d9ad5adeaabc47b791477b970e43d, type: 3}
 --- !u!1 &1881481330
 GameObject:
   m_ObjectHideFlags: 0
@@ -3193,6 +3210,9 @@ GameObject:
   - component: {fileID: 2017009681}
   - component: {fileID: 2017009680}
   - component: {fileID: 2017009679}
+  - component: {fileID: 2017009683}
+  - component: {fileID: 2017009682}
+  - component: {fileID: 2017009684}
   m_Layer: 5
   m_Name: Option_1
   m_TagString: Untagged
@@ -3233,7 +3253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 4
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -3249,9 +3269,9 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 1829581261, guid: 487d9ad5adeaabc47b791477b970e43d, type: 3}
-    m_PressedSprite: {fileID: 1829581261, guid: 487d9ad5adeaabc47b791477b970e43d, type: 3}
-    m_SelectedSprite: {fileID: 2046781758, guid: 487d9ad5adeaabc47b791477b970e43d, type: 3}
+    m_HighlightedSprite: {fileID: 225638842, guid: 487d9ad5adeaabc47b791477b970e43d, type: 3}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 1907976903, guid: 487d9ad5adeaabc47b791477b970e43d, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -3284,7 +3304,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 707463421, guid: 487d9ad5adeaabc47b791477b970e43d, type: 3}
+  m_Sprite: {fileID: 742256021, guid: 487d9ad5adeaabc47b791477b970e43d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3302,6 +3322,79 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2017009677}
   m_CullTransparentMesh: 1
+--- !u!114 &2017009682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2017009677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19e7faad0214625449d15e7ccd14f007, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swapImage:
+  - {fileID: 742256021, guid: 487d9ad5adeaabc47b791477b970e43d, type: 3}
+  - {fileID: 225638842, guid: 487d9ad5adeaabc47b791477b970e43d, type: 3}
+  - {fileID: 1907976903, guid: 487d9ad5adeaabc47b791477b970e43d, type: 3}
+--- !u!114 &2017009683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2017009677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2017009682}
+          m_TargetAssemblyTypeName: SpriteSwap, Assembly-CSharp
+          m_MethodName: ClickDownChange
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2017009682}
+          m_TargetAssemblyTypeName: SpriteSwap, Assembly-CSharp
+          m_MethodName: ClickUpChange
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &2017009684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2017009677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a83615c13a32eac4795aa488a53c0dbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2084198947
 GameObject:
   m_ObjectHideFlags: 0
@@ -3832,6 +3925,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneNumber: 0
+  selectObject: {fileID: 0}
 --- !u!4 &6827689882179360911
 Transform:
   m_ObjectHideFlags: 0

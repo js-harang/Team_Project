@@ -20,6 +20,9 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public int sceneNumber;
 
+    [HideInInspector]
+    public GameObject selectObject;
+
     public void MoveScene(int number)
     {
         sceneNumber = number;

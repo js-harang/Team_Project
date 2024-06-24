@@ -117,13 +117,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: DLG_BUTTON_TAB_0
+      name: DLG_BUTTON_TAB_9
       rect:
         serializedVersion: 2
         x: 1
         y: 380
         width: 73
-        height: 26
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,20 +131,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3fb42d394e1c606458022d99793fab25
-      internalID: 707463421
+      spriteID: 71585e4e86d5d68468d2913287fe7331
+      internalID: 742256021
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DLG_BUTTON_TAB_1
+      name: DLG_BUTTON_TAB_10
       rect:
         serializedVersion: 2
         x: 75
         y: 380
         width: 73
-        height: 26
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,14 +152,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 849558b0fefeb8c449386189e02ea6da
-      internalID: 1829581261
+      spriteID: 1350fe24180f96d4fb5efa8bd64b86a6
+      internalID: 225638842
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DLG_BUTTON_TAB_2
+      name: DLG_BUTTON_TAB_11
       rect:
         serializedVersion: 2
         x: 149
@@ -173,8 +173,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 079fc4beb13a5a04b9c41e81a10f93df
-      internalID: 2046781758
+      spriteID: 70bbf7d1680efa84e977f65fc360ebce
+      internalID: 1907976903
       vertices: []
       indices: 
       edges: []
@@ -192,7 +192,31 @@ TextureImporter:
     nameFileIdTable:
       DLG_BUTTON_TAB_0: 707463421
       DLG_BUTTON_TAB_1: 1829581261
+      DLG_BUTTON_TAB_10: 225638842
+      DLG_BUTTON_TAB_11: 1907976903
+      DLG_BUTTON_TAB_12: 319743733
+      DLG_BUTTON_TAB_13: 1300455209
+      DLG_BUTTON_TAB_14: -2024359196
+      DLG_BUTTON_TAB_15: 867623613
+      DLG_BUTTON_TAB_16: -649812508
+      DLG_BUTTON_TAB_17: 467980981
+      DLG_BUTTON_TAB_18: -1939443157
+      DLG_BUTTON_TAB_19: -489553088
       DLG_BUTTON_TAB_2: 2046781758
+      DLG_BUTTON_TAB_20: -137211386
+      DLG_BUTTON_TAB_21: 1995023395
+      DLG_BUTTON_TAB_22: -815460406
+      DLG_BUTTON_TAB_23: -1232332112
+      DLG_BUTTON_TAB_24: 2035999873
+      DLG_BUTTON_TAB_25: -973813918
+      DLG_BUTTON_TAB_26: -1549094691
+      DLG_BUTTON_TAB_3: 1194413784
+      DLG_BUTTON_TAB_4: -1927415309
+      DLG_BUTTON_TAB_5: -1835073722
+      DLG_BUTTON_TAB_6: -28197551
+      DLG_BUTTON_TAB_7: -243358465
+      DLG_BUTTON_TAB_8: -1453034757
+      DLG_BUTTON_TAB_9: 742256021
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
