@@ -6,7 +6,7 @@ using UnityEngine;
 /// </summary>
 public class Dialogue : MonoBehaviour
 {
-    readonly string filePath = "C:\\Users\\YONSAI\\Desktop\\Team_Project\\Team_Project\\Assets\\21_Data\\Dialogue.txt";
+    readonly string filePath = "C:\\Users\\YONSAI\\Desktop\\Team_Project\\Team_Project\\Assets\\21_Data\\1000 Dialogue\\0.txt";
 
     public string ReadLineAtIndex(int index)
     {
@@ -31,7 +31,7 @@ public class Dialogue : MonoBehaviour
 
     private void Start()
     {
-        string line = ReadLineAtIndex(1);
+        string line = ReadLineAtIndex(0);
         if (line != null)
             Debug.Log("읽어온 내용: " + line);
     }

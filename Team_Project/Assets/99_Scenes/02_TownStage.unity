@@ -1139,7 +1139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameUI: {fileID: 739466022}
   dialogWindow: {fileID: 1467214363}
-  selectStageUI: {fileID: 0}
+  selectStageUI: {fileID: 963465860}
   interactName_Text: {fileID: 11770365}
   dialog_Text: {fileID: 1481589506}
 --- !u!1 &891035153
@@ -1170,9 +1170,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 8543127378032562651}
   - {fileID: 2023321544}
   - {fileID: 528027385}
-  - {fileID: 8543127378032562651}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2089,8 +2089,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6799754e31f916f4cb122678ca963406, type: 2}
+  m_sharedMaterial: {fileID: 7597445546225910743, guid: 6799754e31f916f4cb122678ca963406, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2594,6 +2594,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneNumber: 0
+  selectObject: {fileID: 0}
 --- !u!1 &813540717636756038
 GameObject:
   m_ObjectHideFlags: 0
@@ -2732,7 +2733,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1505705144544961296, guid: b4b993b994d8f17409814f0116960b40, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1505705144544961296, guid: b4b993b994d8f17409814f0116960b40, type: 3}
       propertyPath: m_LocalPosition.x
@@ -48573,7 +48574,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3186732910160296408, guid: 5aca7aba0cd1e5748ad733a4393f0336, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3186732910160296408, guid: 5aca7aba0cd1e5748ad733a4393f0336, type: 3}
       propertyPath: m_LocalPosition.x
@@ -55811,7 +55812,7 @@ PrefabInstance:
       objectReference: {fileID: 196484859}
     - target: {fileID: 8006254576129283584, guid: f0692187047fd27458b1a111913ef181, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8006254576129283584, guid: f0692187047fd27458b1a111913ef181, type: 3}
       propertyPath: m_LocalPosition.x

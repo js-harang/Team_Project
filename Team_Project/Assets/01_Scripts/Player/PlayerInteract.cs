@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerInteract : MonoBehaviour
 {
     PlayerState pState;
+    PlayerBattleController pBC;
     // player가 상호작용 가능한 오브젝트 근처에 있는지의 bool 변수
     bool isMeetInteract;
 
@@ -26,6 +27,7 @@ public class PlayerInteract : MonoBehaviour
     private void Start()
     {
         pState = GetComponent<PlayerState>();
+        //pBC = GetComponent<PlayerBattleController>();
         interCon = FindObjectOfType<InteractController>().GetComponent<InteractController>();
     }
 
@@ -46,8 +48,7 @@ public class PlayerInteract : MonoBehaviour
     {
         if (other.gameObject.CompareTag("InteractObj"))
         {
-            interPP = other.GetComponent<InteractProperty>();
-            WhoAreYou();
+            WhoAreYou(other);
         }
     }
 
@@ -56,15 +57,18 @@ public class PlayerInteract : MonoBehaviour
     {
         if (other.gameObject.CompareTag("InteractObj"))
         {
+            //pBC.enabled = true;
             isMeetInteract = false;
             InteractCheck();
         }
     }
 
     // 플레이어가 근처에 인식한 NPC의 정보를 가져옴
-    private void WhoAreYou()
+    private void WhoAreYou(Collider other)
     {
+        //pBC.enabled = false;
         isMeetInteract = true;
+        interPP = other.GetComponent<InteractProperty>();
         interactType = interPP.InteractType;
         interactId = interPP.InteractId;
         interactName = interPP.InteractName;

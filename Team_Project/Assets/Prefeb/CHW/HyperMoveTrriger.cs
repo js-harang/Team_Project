@@ -14,6 +14,7 @@ public class HyperMoveTrriger : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            other.transform.position = startPosition.position;
             StartCoroutine(HyperMove(other));
         }
     }
