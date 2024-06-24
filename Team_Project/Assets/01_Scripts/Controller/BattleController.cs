@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -19,17 +18,17 @@ public class BattleController : MonoBehaviour
 {
     [SerializeField]
     BattleState battleState;
-    public BattleState BattleState 
-    { 
-        get 
-        { 
-            return battleState; 
-        } 
-        set 
-        { 
+    public BattleState BattleState
+    {
+        get
+        {
+            return battleState;
+        }
+        set
+        {
             battleState = value;
             // 배틀 씬의 진행 상태에 따라 필요한 메서드를 호출하여 동작
-            switch (value)                              
+            switch (value)
             {
                 case BattleState.Intro:
                     StartCoroutine(StartIntro());
@@ -40,7 +39,7 @@ public class BattleController : MonoBehaviour
                 case BattleState.Running:
                     break;
                 case BattleState.NowBattle:
-                    StartCoroutine(BlockWallOnOff(waveNum)); 
+                    StartCoroutine(BlockWallOnOff(waveNum));
                     break;
                 case BattleState.BossRound:
                     break;
@@ -56,7 +55,7 @@ public class BattleController : MonoBehaviour
                 default:
                     break;
             }
-        } 
+        }
     }
 
     PlayerState pS;
@@ -72,14 +71,14 @@ public class BattleController : MonoBehaviour
     // 현재 진행되는 전투에 스폰된 에너미의 수
     [SerializeField]
     int enemyCount;
-    public int EnemyCount 
+    public int EnemyCount
     {
-        get 
-        { 
-            return enemyCount; 
-        } 
-        set 
-        { 
+        get
+        {
+            return enemyCount;
+        }
+        set
+        {
             // 적의 숫자가 0이 되면 다음 단계로 진행
             enemyCount = value;
             if (value == 0)
@@ -88,7 +87,7 @@ public class BattleController : MonoBehaviour
                 BattleState = BattleState.Running;
                 waveNum++;
             }
-        } 
+        }
     }
 
     // 현재 진행중인 배틀이 몇번째인지

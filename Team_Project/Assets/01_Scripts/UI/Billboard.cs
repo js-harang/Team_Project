@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Billboard : MonoBehaviour
@@ -8,10 +6,10 @@ public class Billboard : MonoBehaviour
 
     private void Start()
     {
-        target = Camera.main.transform;    
+        target = Camera.main.transform;
     }
 
-    void Update()
+    private void Update()
     {
         transform.forward = target.forward;
     }

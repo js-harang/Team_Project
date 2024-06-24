@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SkillAttack1 : PlayerAttack
@@ -19,7 +17,7 @@ public class SkillAttack1 : PlayerAttack
         // 소모 마나
         aST.useMana = 10;
     }
-    public override void Attack(Transform atkPosition,int atkPower)
+    public override void Attack(Transform atkPosition, int atkPower)
     {
         base.Attack(atkPosition, atkPower);
     }

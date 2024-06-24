@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public enum InteractType
 {
@@ -39,7 +37,7 @@ public class InteractProperty : MonoBehaviour
     }
 
     // 자신의 타입에 따라 역할을 줄력
-    void ShowMyRole()
+    private void ShowMyRole()
     {
         switch (interactType)
         {

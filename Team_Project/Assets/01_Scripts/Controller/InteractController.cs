@@ -1,27 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
-using UnityEngine.SceneManagement;
+using UnityEngine;
 
 public class InteractController : MonoBehaviour
 {
     // 상호작용이 시작되었는지 변수로 확인하면서 속성을 이용해 메서드 호출
     bool nowInteracting;
-    public bool NowInteracting 
-    { 
-        get 
-        { 
-            return nowInteracting; 
-        } 
-        set 
+    public bool NowInteracting
+    {
+        get
+        {
+            return nowInteracting;
+        }
+        set
         {
             nowInteracting = value;
             if (nowInteracting)
                 StartInteracting();
             else
                 EndInteracting();
-        } 
+        }
     }
 
     PlayerState pS;
@@ -41,7 +38,7 @@ public class InteractController : MonoBehaviour
 
     // 플레이어로부터 전달받을 현재 대화중인 상대 오브젝트의 정보
     InteractType interactType;
-    public InteractType InteractType { get { return interactType; } set {interactType = value; } }
+    public InteractType InteractType { get { return interactType; } set { interactType = value; } }
 
     int interactId;
     public int InteractId { get { return interactId; } set { interactId = value; } }
@@ -105,9 +102,8 @@ public class InteractController : MonoBehaviour
         }
     }
 
-    public void GoBattle()
+    public void GoBattle(int sceneNumber)
     {
-        GameManager.gm.sceneNumber = 3;
-        SceneManager.LoadScene("99_LoadingScene");
+        GameManager.gm.MoveScene(sceneNumber);
     }
 }

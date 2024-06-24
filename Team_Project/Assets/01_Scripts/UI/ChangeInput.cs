@@ -12,12 +12,12 @@ public class ChangeInput : MonoBehaviour
     [SerializeField]
     Selectable firstSelect;
 
-    void Start()
+    private void Start()
     {
         system = EventSystem.current;
     }
 
-    void Update()
+    private void Update()
     {
         // 선택된 오브젝트가 없으면 Id 입력창을 선택
         if (system.currentSelectedGameObject == null && Input.GetKeyDown(KeyCode.Tab))

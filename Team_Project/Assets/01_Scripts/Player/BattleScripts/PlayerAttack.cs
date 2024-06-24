@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public struct AttackStatus
@@ -34,13 +33,13 @@ public abstract class PlayerAttack : MonoBehaviour
 
     public virtual void Attack(Transform atkPosition, int atkPower)
     {
-        
+
         Vector3 position = atkPosition.transform.position;
         enemys = Physics.OverlapBox(position, aST.atkLenght, Quaternion.identity, enemyLayer);
-        
+
         foreach (Collider enemy in enemys)
         {
-            if (enemy.gameObject.tag == "Enemy")
+            if (enemy.gameObject.CompareTag("Enemy"))
             {
                 Debug.Log("적 공격 데미지 :" + aST.atkPower);
 

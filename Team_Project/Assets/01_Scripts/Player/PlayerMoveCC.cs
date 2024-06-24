@@ -1,6 +1,4 @@
-using System.Collections.Generic;
 using UnityEngine;
-
 
 public class PlayerMoveCC : MonoBehaviour
 {
@@ -31,8 +29,8 @@ public class PlayerMoveCC : MonoBehaviour
 
     // 물리
     Rigidbody rb;
-/*
-    public GameObject playerPointer;*/
+    /*
+        public GameObject playerPointer;*/
 
     CapsuleCollider playerCollider;
 
@@ -80,14 +78,14 @@ public class PlayerMoveCC : MonoBehaviour
 
             Vector3 inputMove = new Vector3(inputX, 0, inputZ).normalized;
 
-        /*    // 벽 충돌
-            if (CheckHitWall(inputMove))
-                return;*/
+            /*    // 벽 충돌
+                if (CheckHitWall(inputMove))
+                    return;*/
 
             /*Vector3 move = transform.position + (inputMove * speed * Time.deltaTime);
             transform.position = move;*/
 
-            cc.Move(inputMove * speed *Time.deltaTime);
+            cc.Move(speed * Time.deltaTime * inputMove);
         }
         else
         {
@@ -105,8 +103,7 @@ public class PlayerMoveCC : MonoBehaviour
     {
         // 바닥 체크용 레이
         Ray ray = new(transform.position, Vector3.down);
-
-        if (Physics.Raycast(ray, out RaycastHit hitInfo, checkDis, grdLayer))
+        if (Physics.Raycast(ray, out _, checkDis, grdLayer))
         {
             isGround = true;
             anim.SetBool("IsGround", isGround);

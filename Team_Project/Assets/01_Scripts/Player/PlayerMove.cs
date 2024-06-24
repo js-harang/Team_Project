@@ -1,6 +1,4 @@
-using System.Collections.Generic;
 using UnityEngine;
-
 
 public class PlayerMove : MonoBehaviour
 {
@@ -92,7 +90,7 @@ public class PlayerMove : MonoBehaviour
 
             inputMove = new Vector3(inputX, 0, inputZ).normalized;
 
-            Vector3 move = transform.position + (inputMove * speed * Time.deltaTime);
+            Vector3 move = transform.position + (speed * Time.deltaTime * inputMove);
             transform.position = move;
         }
         else
@@ -105,29 +103,21 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    void WallCheck()
+    private void WallCheck()
     {
-        Ray rayX = new(transform.position,new Vector3(inputX, 0, 0));
+        Ray rayX = new(transform.position, new Vector3(inputX, 0, 0));
         Ray rayZ = new(transform.position, new Vector3(0, 0, inputZ));
-
-        if (Physics.Raycast(rayX, out RaycastHit hitInfoX, checkDis, wallLayer))
-        {
-            Debug.Log("X축 벽에 닿음");
+        if (Physics.Raycast(rayX, out _, checkDis, wallLayer))
             inputX = 0;
-        }
-        if (Physics.Raycast(rayZ, out RaycastHit hitInfoZ, checkDis, wallLayer))
-        {
-            Debug.Log("Z축 벽에 닿음");
+        if (Physics.Raycast(rayZ, out _, checkDis, wallLayer))
             inputZ = 0;
-        }
     }
 
     private void GrondCheck()
     {
         // 바닥 체크용 레이
         Ray ray = new(transform.position, Vector3.down);
-
-        if (Physics.Raycast(ray, out RaycastHit hitInfo, checkDis, grdLayer))
+        if (Physics.Raycast(ray, out _, checkDis, grdLayer))
         {
             isGround = true;
             anim.SetBool("IsGround", isGround);

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DefualtAttack : PlayerAttack
@@ -18,7 +16,7 @@ public class DefualtAttack : PlayerAttack
         // 소모 마나
         aST.useMana = 0;
     }
-    public override void Attack(Transform atkPosition,int atkPower)
+    public override void Attack(Transform atkPosition, int atkPower)
     {
         base.Attack(atkPosition, atkPower);
     }

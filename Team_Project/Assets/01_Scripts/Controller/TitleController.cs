@@ -1,7 +1,6 @@
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class TitleController : MonoBehaviour
 {
@@ -19,7 +18,6 @@ public class TitleController : MonoBehaviour
     // Preference 버튼 관련 변수
     [SerializeField, Space(10)]
     GameObject preferencePopup;
-    [SerializeField]
     bool isPreferencePopup = false;
 
     private void Start()
@@ -38,17 +36,14 @@ public class TitleController : MonoBehaviour
     /// <summary>
     /// 로그인
     /// </summary>
-    public void LoginCheck()
+    public void LoginCheck(int sceneNumber)
     {
         if (!CheckInput(id.text, pw.text))
             return;
 
         string pass = PlayerPrefs.GetString(id.text);
         if (pw.text == pass)
-        {
-            GameManager.gm.sceneNumber = 1;
-            SceneManager.LoadScene("99_LoadingScene");
-        }
+            GameManager.gm.MoveScene(sceneNumber);
         else
             loginResultTxt.text = "입력하신 아이디와 패스워드가 일치하지 않습니다.";
     }

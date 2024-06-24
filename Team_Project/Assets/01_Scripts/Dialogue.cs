@@ -6,7 +6,7 @@ using UnityEngine;
 /// </summary>
 public class Dialogue : MonoBehaviour
 {
-    string filePath = "C:\\Users\\YONSAI\\Desktop\\Team_Project\\Team_Project\\Assets\\21_Data\\Dialogue.txt";
+    readonly string filePath = "C:\\Users\\YONSAI\\Desktop\\Team_Project\\Team_Project\\Assets\\21_Data\\Dialogue.txt";
 
     public string ReadLineAtIndex(int index)
     {

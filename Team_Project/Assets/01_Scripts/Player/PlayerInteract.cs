@@ -1,5 +1,5 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class PlayerInteract : MonoBehaviour
 {
@@ -62,7 +62,7 @@ public class PlayerInteract : MonoBehaviour
     }
 
     // 플레이어가 근처에 인식한 NPC의 정보를 가져옴
-    void WhoAreYou()
+    private void WhoAreYou()
     {
         isMeetInteract = true;
         interactType = interPP.InteractType;
@@ -72,7 +72,7 @@ public class PlayerInteract : MonoBehaviour
     }
 
     // NPC와 대화를 시작할 때의 동작
-    void LetsTalk()
+    private void LetsTalk()
     {
         PassInteractInfo();
         interCon.NowInteracting = true;
@@ -81,7 +81,7 @@ public class PlayerInteract : MonoBehaviour
     }
 
     // isMeetInteract가 true면 활성화, false면 비활성화
-    void InteractCheck()
+    private void InteractCheck()
     {
         if (isMeetInteract)
         {
@@ -93,7 +93,7 @@ public class PlayerInteract : MonoBehaviour
     }
 
     // InteractController 에게 대화를 시작한 NPC의 정보를 넘김
-    void PassInteractInfo()
+    private void PassInteractInfo()
     {
         interCon.InteractType = interactType;
         interCon.InteractId = interactId;

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,4 +19,10 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector]
     public int sceneNumber;
+
+    public void MoveScene(int number)
+    {
+        sceneNumber = number;
+        SceneManager.LoadScene("99_LoadingScene");
+    }
 }

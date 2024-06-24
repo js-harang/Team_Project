@@ -1,12 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerBattleController : BattleStatus
 {
     // (X 키 일반공격), (C 점프), (A, S, D 스킬)
-    [Space(10)]
     #region 플레이어 수치 관련(체력,공격력 등 은 BattleStatus 에서 상속 받음)
     // 플레이어 현재 마나
     [SerializeField]
@@ -29,7 +26,7 @@ public class PlayerBattleController : BattleStatus
     // 공격 판정 위치 기준
     public Transform atkPos;
     public Transform[] atkPositions;
-    
+
     // 공격 범위
     public Vector3 atkLenght;
     #endregion
@@ -59,10 +56,10 @@ public class PlayerBattleController : BattleStatus
 
         KeyInput();       // 공격키 입력
     }
-////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
 
     #region 키입력
-    void KeyInput()
+    private void KeyInput()
     {
         if (Input.GetKeyDown(KeyCode.X))        // 일반 공격 입력
         {
@@ -81,7 +78,7 @@ public class PlayerBattleController : BattleStatus
     }
     #endregion
 
-////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
 
     #region 공격 시작
     public void AttackStart()
@@ -119,7 +116,7 @@ public class PlayerBattleController : BattleStatus
     #endregion
 
     #region 공격 교체
-    void ChangeAttack(int atkIndex)      // 키입력 받을시 해당하는 공격으로 스크립트 전환
+    private void ChangeAttack(int atkIndex)      // 키입력 받을시 해당하는 공격으로 스크립트 전환
     {
         atkPos = atkPositions[atkIndex];
         pAttack = pAttacks[atkIndex];
@@ -145,7 +142,7 @@ public class PlayerBattleController : BattleStatus
     }
     #endregion
 
-////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
 
     #region 플레이어 데미지 입을때
     public void Hurt(float damage)
@@ -177,10 +174,10 @@ public class PlayerBattleController : BattleStatus
     }
     #endregion
 
-////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
 
     #region 시작 세팅
-    void StartSetting()
+    private void StartSetting()
     {
         SetPlayerSlider();
         pState = GetComponent<PlayerState>();
@@ -194,11 +191,11 @@ public class PlayerBattleController : BattleStatus
         SetHpSlider();
         SetMpSlider();
     }
-    void SetHpSlider()
+    private void SetHpSlider()
     {
         hpSld.value = currentHp / maxHp;
     }
-    void SetMpSlider()
+    private void SetMpSlider()
     {
         mpSld.value = currentMp / maxMp;
     }

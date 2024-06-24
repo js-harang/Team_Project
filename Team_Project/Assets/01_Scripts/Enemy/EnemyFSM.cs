@@ -41,7 +41,7 @@ public class EnemyFSM : BattleStatus
     // 누적 시간
     float currentTime = 0;
     // 공격 딜레이 시간
-    float attackDelay = 2f;
+    readonly float attackDelay = 2f;
 
     // 초기 위치 저장용 변수
     Vector3 originPos;
@@ -119,7 +119,7 @@ public class EnemyFSM : BattleStatus
         hpSlider.value = (float)currentHp / maxHp;
     }
 
-    void Idle()
+    private void Idle()
     {
         // 만일, 플레이어와 거리가 액션 범위 이내라면 Move 상태로 전환
         if (Vector3.Distance(transform.position, player.position) < findDistance)
@@ -132,7 +132,7 @@ public class EnemyFSM : BattleStatus
         }
     }
 
-    void Move()
+    private void Move()
     {
         // 만일, 현재 위치가 초기 위치에서 이동 가능 범위를 넘어간다면
         if (Vector3.Distance(transform.position, originPos) > moveDistance)
@@ -168,7 +168,7 @@ public class EnemyFSM : BattleStatus
         }
     }
 
-    void Attack()
+    private void Attack()
     {
         // 만일, 플레이어가 공격 범위 이내에 있다면 플레이어를 공격
         if (Vector3.Distance(transform.position, player.position) < attackDistance)
@@ -206,7 +206,7 @@ public class EnemyFSM : BattleStatus
         pbc.Hurt(atkPower);
     }
 
-    void Return()
+    private void Return()
     {
         // 만일, 초기 위치에서 거리가 0.1f 이상이라면 초기 위치 쪽으로 이동
         if (Vector3.Distance(transform.position, originPos) > 0.1f)
@@ -225,8 +225,7 @@ public class EnemyFSM : BattleStatus
             enemyNav.ResetPath();
 
             // 위치 값과 회전 값을 초기 상태로 변환
-            transform.position = originPos;
-            transform.rotation = originRot;
+            transform.SetPositionAndRotation(originPos, originRot);
 
             // hp를 다시 회복
             currentHp = maxHp;
@@ -240,7 +239,7 @@ public class EnemyFSM : BattleStatus
     }
 
     //////////// 피격쪽 /////////////
-    void Damaged()
+    private void Damaged()
     {
         // 피격 상태를 처리하기 위한 코루틴 실행
         StartCoroutine(DamageProcess());
@@ -298,7 +297,7 @@ public class EnemyFSM : BattleStatus
         }
     }
     // 죽음 상태 함수
-    void Die()
+    private void Die()
     {
         // 진행중인 피격 코루틴을 중지
         StopAllCoroutines();
