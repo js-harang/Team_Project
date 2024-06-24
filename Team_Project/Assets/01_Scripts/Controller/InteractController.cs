@@ -143,9 +143,7 @@ public class InteractController : MonoBehaviour
 
         for (int i = 0; i < lines.Length; i++)
         {
-            byte[] byteSentece = System.Text.Encoding.Default.GetBytes(lines[i]);
-            string strSentence = System.Text.Encoding.UTF8.GetString(byteSentece);
-            sentences.Add(strSentence);
+            sentences.Add(lines[i]);
         }
     }
 
