@@ -71,7 +71,7 @@ public class EnemyFSM : BattleStatus
         player = FindObjectOfType<PlayerMove>().transform;
 
         // 배틀컨트롤러 참조
-        bC = FindObjectOfType<BattleController>().GetComponent<BattleController>();
+        // bC = FindObjectOfType<BattleController>().GetComponent<BattleController>();
 
         // 최초의 에너미 상태를 대기
         m_State = EnemyState.Idle;

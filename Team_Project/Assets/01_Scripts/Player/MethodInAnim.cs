@@ -9,10 +9,12 @@ public class MethodInAnim : MonoBehaviour
     {
         player.AttackEnemy();
     }
-    private void AttackCoolTime()
+
+    // 쿨타임 버튼에서 처리
+/*    private void AttackCoolTime()
     {
         player.AttackCoolTime();
-    }
+    }*/
 
     private void AttactTrue()
     {

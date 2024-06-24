@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class SkillButton : MonoBehaviour
 {
-    public SkillData skill;
+    public PlayerAttack skill;
 
-    public PlayerBattleControllerTest player;
+    public PlayerBattleController player;
 
     [SerializeField]
     float coolTime;
@@ -17,22 +17,22 @@ public class SkillButton : MonoBehaviour
 
     private void Start()
     {
-        img.sprite = skill.iconImg;
+        //img.sprite = skill.iconImg;
         coolTimeIcon.fillAmount = 0;
         coolTime = 0f;
     }
 
     public void OnClicked()
     {
-        player.AttackSetting(skill.atkType, skill.damage, skill.atkPositionIndex, skill.atkLenght, skill.useMana);
-
         if (coolTime > 0)
         {
             Debug.Log("ÄðÅ¸ÀÓ");
             return;
         }
-        Debug.Log(skill.attackName);
+        // Debug.Log(skill.attackName);
 
+        player.pAttack = skill;
+        player.ChangeAttack(skill.aST.atkType);
         player.AttackStart();
 
         StartCoroutine(SkillCoolTime());
@@ -40,9 +40,9 @@ public class SkillButton : MonoBehaviour
 
     IEnumerator SkillCoolTime()
     {
-        float tick = 1f / skill.coolTime;
+        float tick = 1f / skill.aST.atkDelay;
         float t = 0;
-        coolTime = skill.coolTime;
+        coolTime = skill.aST.atkDelay;
 
         coolTimeIcon.fillAmount = 1;
 

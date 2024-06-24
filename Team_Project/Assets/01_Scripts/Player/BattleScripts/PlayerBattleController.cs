@@ -17,7 +17,7 @@ public class PlayerBattleController : BattleStatus
     [Space(10)]
     #region 공격 관련
     // 공격들 배열
-    public PlayerAttack[] pAttacks;
+    // public PlayerAttack[] pAttacks;
     public PlayerAttack pAttack;
 
     // 공격할 배열 번호
@@ -46,7 +46,6 @@ public class PlayerBattleController : BattleStatus
     private void Start()
     {
         StartSetting();
-        ChangeAttack(atkIndex);
     }
 
     void Update()
@@ -56,7 +55,7 @@ public class PlayerBattleController : BattleStatus
 
         KeyInput();       // 공격키 입력
     }
-    ////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 
     #region 키입력
     private void KeyInput()
@@ -78,7 +77,7 @@ public class PlayerBattleController : BattleStatus
     }
     #endregion
 
-    ////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 
     #region 공격 시작
     public void AttackStart()
@@ -115,19 +114,11 @@ public class PlayerBattleController : BattleStatus
     }
     #endregion
 
-    #region 공격 교체
-    private void ChangeAttack(int atkIndex)      // 키입력 받을시 해당하는 공격으로 스크립트 전환
+    #region 공격 교체 (스킬버튼 에서 호출됨)
+    public void ChangeAttack(int atkIndex)      // 키입력 받을시 해당하는 공격으로 스크립트 전환
     {
         atkPos = atkPositions[atkIndex];
-        pAttack = pAttacks[atkIndex];
         pAttack.InitSetting();          // 해당하는 공격 스탯으로 변환
-    }
-    #endregion
-
-    #region 공격 쿨타임
-    public void AttackCoolTime()
-    {
-        pAttack.AttackCoolTime();
     }
     #endregion
 
@@ -142,7 +133,7 @@ public class PlayerBattleController : BattleStatus
     }
     #endregion
 
-    ////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 
     #region 플레이어 데미지 입을때
     public void Hurt(float damage)
@@ -174,7 +165,7 @@ public class PlayerBattleController : BattleStatus
     }
     #endregion
 
-    ////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 
     #region 시작 세팅
     private void StartSetting()

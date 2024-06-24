@@ -48,7 +48,8 @@ public abstract class PlayerAttack : MonoBehaviour
             }
         }
     }
-
+}
+/*
     public virtual void AttackCoolTime()
     {
         StartCoroutine(CoolTime());
@@ -64,4 +65,4 @@ public abstract class PlayerAttack : MonoBehaviour
         Debug.Log("쿨타임 종료");
         aST.isCoolTime = false;
     }
-}
+*/

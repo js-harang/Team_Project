@@ -4162,7 +4162,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5800103009919887498}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 821c8f04509224b4dbcc9304a6bb3603, type: 3}
   m_Name: 
@@ -4206,7 +4206,7 @@ MonoBehaviour:
     m_Bits: 64
   wallLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   isGround: 1
   playerPointer: {fileID: 4983397470151412062}
 --- !u!114 &1929587952180110745
@@ -4253,7 +4253,7 @@ MonoBehaviour:
   enemys: []
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2097152
 --- !u!114 &1913644856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4269,7 +4269,7 @@ MonoBehaviour:
   enemys: []
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2097152
 --- !u!1 &5867644835019410120
 GameObject:
   m_ObjectHideFlags: 0
