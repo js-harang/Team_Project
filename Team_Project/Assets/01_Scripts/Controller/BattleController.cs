@@ -194,10 +194,9 @@ public class BattleController : MonoBehaviour
     }
 
     // 버튼 누르면 마을로
-    public void ToTown()
+    public void ToTown(int sceneNumber)
     {
-        GameManager.gm.sceneNumber = 2;
-        SceneManager.LoadScene("99_LoadingScene");
+        GameManager.gm.MoveScene(sceneNumber);
     }
 
     // 게임오버시 호출되는 메소드(게임오버 매뉴 활성화)
