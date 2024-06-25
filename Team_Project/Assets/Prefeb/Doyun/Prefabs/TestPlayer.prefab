@@ -4088,8 +4088,7 @@ GameObject:
   - component: {fileID: 8935168704283343896}
   - component: {fileID: 5180628040279568241}
   - component: {fileID: 1929587952180110745}
-  - component: {fileID: 4705956051754398842}
-  - component: {fileID: 1913644856}
+  - component: {fileID: 1261440000}
   m_Layer: 7
   m_Name: TestPlayer
   m_TagString: Player
@@ -4226,9 +4225,7 @@ MonoBehaviour:
   atkPower: 0
   currentMp: 100
   maxMp: 100
-  pAttacks:
-  - {fileID: 4705956051754398842}
-  - {fileID: 1913644856}
+  defaultAtk: {fileID: 1261440000}
   pAttack: {fileID: 0}
   atkIndex: 0
   atkPos: {fileID: 1380282374045783007}
@@ -4238,7 +4235,9 @@ MonoBehaviour:
   atkLenght: {x: 2, y: 2.5, z: 2}
   hpSld: {fileID: 0}
   mpSld: {fileID: 0}
---- !u!114 &4705956051754398842
+  skillABtn: {fileID: 0}
+  skillSBtn: {fileID: 0}
+--- !u!114 &1261440000
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4253,23 +4252,7 @@ MonoBehaviour:
   enemys: []
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 2097152
---- !u!114 &1913644856
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5800103009919887498}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f19e7584ff015c34dac2aec2bd191779, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemys: []
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 2097152
+    m_Bits: 0
 --- !u!1 &5867644835019410120
 GameObject:
   m_ObjectHideFlags: 0
