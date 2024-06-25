@@ -16,8 +16,8 @@ public class PlayerBattleController : BattleStatus
 
     [Space(10)]
     #region 공격 관련
-    // 공격들 배열
-    // public PlayerAttack[] pAttacks;
+
+    public PlayerAttack defaultAtk;
     public PlayerAttack pAttack;
 
     // 공격할 배열 번호
@@ -37,6 +37,12 @@ public class PlayerBattleController : BattleStatus
     public Slider mpSld;
     #endregion
 
+    [Space(10)]
+    #region 키입력
+    public Button skillABtn;
+    public Button skillSBtn;
+    #endregion
+
     // 플레이어 애니메이터
     Animator pAnim;
 
@@ -53,27 +59,27 @@ public class PlayerBattleController : BattleStatus
         if (pState.UnitState == UnitState.Die)
             return;
 
-        KeyInput();       // 공격키 입력
+        BattleKeyInput();       // 공격키 입력
     }
 ////////////////////////////////////////////////////////////////////////////
 
     #region 키입력
-    private void KeyInput()
+    private void BattleKeyInput()
     {
-        if (Input.GetKeyDown(KeyCode.X))        // 일반 공격 입력
+        if (pState.UnitBS == UnitBattleState.Attack)
+            return;
+
+        if (Input.GetKeyDown(KeyCode.Z))        // 일반 공격 입력
         {
             atkIndex = 0;
-
+            pAttack = defaultAtk;
             ChangeAttack(atkIndex);
             AttackStart();
         }
-        else if (Input.GetKeyDown(KeyCode.Z))   // A 키 스킬 입력
-        {
-            atkIndex = 1;
-
-            ChangeAttack(atkIndex);
-            AttackStart();
-        }
+        else if (Input.GetKeyDown(KeyCode.A))   // A 키 스킬 입력
+            skillABtn.onClick.Invoke();
+        else if (Input.GetKeyDown(KeyCode.S))   // S 키 스킬 입력
+            skillSBtn.onClick.Invoke();
     }
     #endregion
 
@@ -82,20 +88,15 @@ public class PlayerBattleController : BattleStatus
     #region 공격 시작
     public void AttackStart()
     {
-        if (!pAttack.aST.isCoolTime)
+        if (currentMp > pAttack.aST.useMana)
         {
-            if (currentMp > pAttack.aST.useMana)
-            {
-                Debug.Log("공격 타입 : " + pAttack.aST.atkType);
-                currentMp -= pAttack.aST.useMana;
-                AttackAnim(pAttack);
-                SetMpSlider();
-            }
-            else
-                Debug.Log("마나가 부족합니다.");
+            Debug.Log("공격 타입 : " + pAttack.aST.atkType);
+            currentMp -= pAttack.aST.useMana;
+            AttackAnim(pAttack);
+            SetMpSlider();
         }
         else
-            Debug.Log("공격 쿨타임");
+            Debug.Log("마나가 부족합니다.");
     }
     #endregion
 

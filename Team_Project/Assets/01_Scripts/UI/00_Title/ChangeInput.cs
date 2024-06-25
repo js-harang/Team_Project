@@ -9,8 +9,7 @@ public class ChangeInput : MonoBehaviour
 {
     EventSystem eventSystem;
 
-    [SerializeField]
-    Selectable firstSelect;
+    [SerializeField] Selectable firstSelect;
 
     private void Start()
     {

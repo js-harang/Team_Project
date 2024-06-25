@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class OptionContent : MonoBehaviour
 {
-    [SerializeField]
-    GameObject[] content;
+    [SerializeField] GameObject[] content;
 
     public void SetOption()
     {

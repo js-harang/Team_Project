@@ -2,25 +2,55 @@ using TMPro;
 using UnityEngine;
 using System.IO;
 using System.Collections.Generic;
+using System.Collections;
+
+// npc와의 대화 단계 열거형 예)인사, 선택지 고르기 등
+public enum InteractStep
+{
+    Meeting,
+    Action,
+    End,
+}
 
 public class InteractController : MonoBehaviour
 {
-    // 상호작용이 시작되었는지 변수로 확인하면서 속성을 이용해 메서드 호출
-    bool nowInteracting;
-    public bool NowInteracting
+    // 현재 대화의 진행 단계를 나타내는 열거형 변수
+    InteractStep interactStep;
+
+    // 속성으로 대화의 단계에 따라 동작
+    public InteractStep InteractStep
     {
-        get
-        {
-            return nowInteracting;
-        }
+        get { return interactStep; }
         set
+        {
+            interactStep = value;
+            switch (interactStep)
+            {
+                case InteractStep.Meeting:
+                    PrintSentences();
+                    break;
+                case InteractStep.Action:
+                    PrintSentences();
+                    break;
+                case InteractStep.End:
+                    EndInteracting();
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    bool nowInteracting;
+    public bool NowInteracting 
+    { 
+        get { return nowInteracting; } 
+        set 
         {
             nowInteracting = value;
             if (nowInteracting)
-                StartInteracting();
-            else
-                EndInteracting();
-        }
+                TalkStart();
+        } 
     }
 
     PlayerState pS;
@@ -44,12 +74,6 @@ public class InteractController : MonoBehaviour
     // 불러온 텍스트 문장들을 모아두는 리스트 변수
     List<string> sentences = new List<string>();
 
-    // 현재 출력한 텍스트의 인덱스 번호 변수
-    int sentencesIndex;
-
-    // npc와의 대화 단계 예)인사, 선택지 고르기 등
-    int npcDialogueStep;
-
     // 플레이어로부터 전달받을 현재 대화중인 상대 오브젝트의 정보
     InteractType interactType;
     public InteractType InteractType { get { return interactType; } set { interactType = value; } }
@@ -62,45 +86,21 @@ public class InteractController : MonoBehaviour
 
     private void Start()
     {
+        interactStep = InteractStep.End;
         // PlayerState 컴포넌트를 변수에 저장
         pS = GameObject.FindWithTag("Player").GetComponent<PlayerState>();
     }
 
     private void Update()
     {
-        if (!nowInteracting)
+        if (interactStep == InteractStep.End)
             return;
 
         if (Input.GetKeyDown(KeyCode.Escape))
-            NowInteracting = false;
-    }
+            InteractStep = InteractStep.End;
 
-    // 상호작용 시작 시의 동작
-    void StartInteracting()
-    {
-        gameUI.enabled = false;
-        dialogWindow.enabled = true;
-        interactName_Text.text = interactName;
-        npcDialogueStep = 0;
-        sentencesIndex = 0;
-        sentences.Clear();
-
-        ReadLineAndStore(InteractId, npcDialogueStep);
-
-        Continue();
-
-        switch (interactType)
-        {
-            case InteractType.Shop:
-                break;
-            case InteractType.EquipmentShop:
-                break;
-            case InteractType.GateKeeper:
-                selectStageUI.SetActive(true);
-                break;
-            default:
-                break;
-        }
+        if (Input.GetKeyDown(KeyCode.X))
+            InteractStep++;
     }
 
     // 상호작용 끝낼 시의 동작 관리
@@ -128,9 +128,9 @@ public class InteractController : MonoBehaviour
     /// </summary>
     /// <param name="id">대화중인 NPC의 ID</param>
     /// <param name="num">NPC와의 대화 단계</param>
-    void ReadLineAndStore(int id, int num)
+    void ReadLineAndStore(int id, InteractStep interactStep)
     {
-        filePath = $"C:\\Users\\YONSAI\\Desktop\\Team_Project\\Team_Project\\Assets\\21_Data\\{id} Dialogue\\{num}.txt";
+        filePath = $"C:\\Users\\YONSAI\\Desktop\\Team_Project\\Team_Project\\Assets\\21_Data\\{id} Dialogue\\{interactStep}.txt";
 
         // 파일 존재 여부 확인
         if (!File.Exists(filePath))
@@ -146,19 +146,49 @@ public class InteractController : MonoBehaviour
             sentences.Add(lines[i]);
         }
     }
-
-    public void Continue()
+    /// <summary>
+    /// 대화 시작 시 실행할 동작들을 실행한다.
+    /// </summary>
+    void TalkStart()
     {
-        /*if (sentencesIndex == sentences.Count)
-            ;*/
+        gameUI.enabled = false;
+        dialogWindow.enabled = true;
+        interactName_Text.text = interactName;
+        sentences.Clear();
+        InteractStep = 0;
+    }
 
-        dialog_Text.text = sentences[sentencesIndex];
-        sentencesIndex++;
+    /// <summary>
+    /// 플레이어의 조작 및 필요한 상황에 따라 대화를 다음 단계로 진행
+    /// </summary>
+    void PrintSentences()
+    {
+        dialog_Text.text = string.Empty;
+        ReadLineAndStore(InteractId, interactStep);
+        StartCoroutine(PrintSentenceLetter());
+    }
+    /// <summary>
+    /// sentences 리스트의 문장마다 한글자씩 텀을주어 출력하는 코루틴
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator PrintSentenceLetter()
+    {
+        for (int i = 0; i < sentences.Count; i++)
+        {
+            foreach (char letter in sentences[i])
+            {
+                dialog_Text.text += letter;
+                yield return new WaitForSeconds(0.05f);
+            }
+            if (i == sentences.Count - 1)
+                break;
+
+            dialog_Text.text += "\n";
+        }
     }
 
     public void GoBattle(int sceneNumber)
     {
         GameManager.gm.MoveScene(sceneNumber);
     }
-
 }

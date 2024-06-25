@@ -7,16 +7,20 @@ public class SkillButton : MonoBehaviour
 {
     public PlayerAttack skill;
 
-    public PlayerBattleController player;
+    [SerializeField]
+    PlayerBattleController player;
 
     [SerializeField]
     float coolTime;
+
+    public float CoolTime { get { return coolTime; } set { coolTime = value; } }
 
     public Image img;
     public Image coolTimeIcon;
 
     private void Start()
     {
+        player = GameObject.FindWithTag("Player").GetComponent<PlayerBattleController>();
         //img.sprite = skill.iconImg;
         coolTimeIcon.fillAmount = 0;
         coolTime = 0f;
@@ -24,12 +28,14 @@ public class SkillButton : MonoBehaviour
 
     public void OnClicked()
     {
+        if (skill == null)
+            return;
+
         if (coolTime > 0)
         {
             Debug.Log("ÄðÅ¸ÀÓ");
             return;
         }
-        // Debug.Log(skill.attackName);
 
         player.pAttack = skill;
         player.ChangeAttack(skill.aST.atkType);

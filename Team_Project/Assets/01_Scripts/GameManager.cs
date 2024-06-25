@@ -17,11 +17,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    [HideInInspector]
-    public int sceneNumber;
+    [HideInInspector] public int sceneNumber;
 
-    [HideInInspector]
-    public GameObject selectObject;
+    [HideInInspector] public GameObject selectObject;
 
     /// <summary>
     /// 0 = TitleScene

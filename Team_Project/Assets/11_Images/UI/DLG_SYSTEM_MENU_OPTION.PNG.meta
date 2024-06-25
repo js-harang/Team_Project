@@ -180,13 +180,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DLG_SYSTEM_MENU_OPTION_3
+      name: DLG_SYSTEM_MENU_OPTION_4
       rect:
         serializedVersion: 2
-        x: 2
-        y: 62
-        width: 13
-        height: 13
+        x: 3
+        y: 38
+        width: 302
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -194,8 +194,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bcf783a06c2d4fd4baefe1ecdc20b1ec
-      internalID: -1655805651
+      spriteID: f8c156431675c7f44afb5739f262fccb
+      internalID: 827014531
       vertices: []
       indices: 
       edges: []

@@ -10,11 +10,29 @@ public class DragAbleUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     private RectTransform rect;         // UI 위치 제어를 위한 RectTransform
     private CanvasGroup canvasGroup;    // UI 알파값 과 상호작용 제어를 위한 CanvasGroup
 
+    // 오브젝트의 스킬 정보
+    public PlayerAttack skill;
+    // 버튼의 현재 스킬
+    SkillButton currentSkill;
+    // 버튼의 이전 스킬
+    SkillButton previousSkill;
+
     private void Awake()
     {
         canvas = GetComponentInParent<Canvas>().transform;
         rect = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
+    }
+
+    private void Update()
+    {
+        if (currentSkill == null)
+            return;
+
+        if (currentSkill.CoolTime > 0)
+            ClickDisAble();
+        else
+            ClickAble();
     }
 
     // 현재 오브젝트 를 드래그 하기 시작 할 때 1회 호출
@@ -27,33 +45,74 @@ public class DragAbleUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         transform.SetParent(canvas);            // 부모 오브젝트를 canvas 로 설정
         transform.SetAsLastSibling();           // 화면에 맨 위에 보이기 위해 canvas 의 가장 아래 순서 자식오브젝트 로 설정
 
-        // 드래그 하는 오브젝트가 하나가 아닌 자식 오브젝트 들을 가지고 있을수 있기 때문에 CanvasGroup 으로 통제
-        canvasGroup.alpha = 0.6f;  // 현재 드래그 중인 오브젝트 알파값 낮추기
-        canvasGroup.blocksRaycasts = false;  // 슬롯에 드롭하기위해 마우스와 슬롯이 충돌할수 있도록 드래그하는 오브젝트의 충돌 처리를 끔
+        // 클릭 비활성화
+        ClickDisAble();
     }
 
     // 현재 오브젝트 를 드래그 중 일때 매 프레임 호출
     public void OnDrag(PointerEventData eventData)
     {
-        // 현재 스크린상 의 마우스 위치를 UI 의 위치로 함(UI 가 마우스를 쫒아다니는 형태)
-        rect.position = eventData.position;
+        rect.position = eventData.position;     // 현재 스크린상 의 마우스 위치를 UI 의 위치로 함(UI 가 마우스를 쫒아다니는 형태)
     }
 
-    // 현재 오브젝트의 드래그 를 종료 할 때 1 회 호출
-    public void OnEndDrag(PointerEventData eventData)
+    public void OnEndDrag(PointerEventData eventData)   // 현재 오브젝트의 드래그 를 종료 할 때 1 회 호출
     {
-        // 드래그를 시작하면 부모가 Canvas 로 설정되어 있기에
-        // 드래그를 종료할때 부모가 Canvas 이면 아이템 슬롯이 아닌 엉뚱한 곳에
-        // 드롭을 했다는 뜻 이기에 드래그 직전에 있던 아이템 슬롯으로 아이템 이동
-        if (transform.parent == canvas)
+        // 드래그 끝난 지점이 Canvas 이면
+       /* if (transform.parent == canvas)
         {
-            // 마지막에 소속되어있던 previousParent 의 자식으로 설정하고, 해당 위치로 설정
-            transform.SetParent(previousParent);
-            rect.position = previousParent.GetComponent<RectTransform>().position;
-        }
+            Destroy(gameObject);
+            return;
+        }*/
 
+        // 클릭 활성화
+        ClickAble();
+
+        // 이전 스킬칸 스킬 리셋
+        if (previousParent.GetComponent<SkillButton>())     // 이전 부모오브젝트가 SkillButton 이면 스킬 리셋
+        {
+            Debug.Log("스킬버튼 리셋");
+            previousSkill = previousParent.GetComponent<SkillButton>();
+            previousSkill.skill = null;
+        }
+        // 현재 스킬칸 스킬 등록
+        if (transform.parent.GetComponent<SkillButton>())
+        {
+            Debug.Log("스킬버튼");
+            currentSkill = transform.parent.GetComponent<SkillButton>();
+            currentSkill.skill = skill;
+        }
+    }
+
+    #region 클릭 활성,비활성
+
+    // 클릭 활성화
+    void ClickAble()
+    {
         // 다시 불투명 하게 만들고 충돌 처리 활성화
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
+    }
+    // 클릭 비활성화
+    void ClickDisAble()
+    {
+        // 드래그 하는 오브젝트가 하나가 아닌 자식 오브젝트 들을 가지고 있을수 있기 때문에 CanvasGroup 으로 통제
+        canvasGroup.alpha = 0.6f;  // 현재 드래그 중인 오브젝트 알파값 낮추기
+        canvasGroup.blocksRaycasts = false;  // 슬롯에 드롭 하기위해 마우스 와 슬롯이 충돌할수 있도록 드래그하는 오브젝트의 충돌 처리를 끔
+    }
+
+    #endregion
+
+    // 스킬 쿨타임 확인용 매소드
+    bool CheckPreviousSkillButtonCoolTime()
+    {
+        // 드래그 하려 할때 스킬이 쿨타임이면 리턴
+        if (previousParent != null && 
+            previousParent.GetComponent<SkillButton>())
+        {
+            SkillButton previousSkill = previousParent.GetComponent<SkillButton>();
+            if (previousSkill.CoolTime > 0)
+                return true;
+        }
+        return false;
     }
 }
