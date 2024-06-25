@@ -17,22 +17,40 @@ public class InteractController : MonoBehaviour
     // 현재 대화의 진행 단계를 나타내는 열거형 변수
     InteractStep interactStep;
 
-    // 상호작용이 시작되었는지 변수로 확인하면서 속성을 이용해 메서드 호출
-    bool nowInteracting;
-    public bool NowInteracting
+    // 속성으로 대화의 단계에 따라 동작
+    public InteractStep InteractStep
     {
-        get
-        {
-            return nowInteracting;
-        }
+        get { return interactStep; }
         set
+        {
+            interactStep = value;
+            switch (interactStep)
+            {
+                case InteractStep.Meeting:
+                    PrintSentences();
+                    break;
+                case InteractStep.Action:
+                    PrintSentences();
+                    break;
+                case InteractStep.End:
+                    EndInteracting();
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    bool nowInteracting;
+    public bool NowInteracting 
+    { 
+        get { return nowInteracting; } 
+        set 
         {
             nowInteracting = value;
             if (nowInteracting)
-                StartInteracting();
-            else
-                EndInteracting();
-        }
+                TalkStart();
+        } 
     }
 
     PlayerState pS;
@@ -53,9 +71,6 @@ public class InteractController : MonoBehaviour
     // 텍스트를 불러올 텍스트파일의 위치 변수
     string filePath;
 
-    // 현재 리스트에서 불러낼 문장의 인데스
-    int sentencesIndex;
-
     // 불러온 텍스트 문장들을 모아두는 리스트 변수
     List<string> sentences = new List<string>();
 
@@ -71,40 +86,21 @@ public class InteractController : MonoBehaviour
 
     private void Start()
     {
+        interactStep = InteractStep.End;
         // PlayerState 컴포넌트를 변수에 저장
         pS = GameObject.FindWithTag("Player").GetComponent<PlayerState>();
     }
 
     private void Update()
     {
-        if (!nowInteracting)
+        if (interactStep == InteractStep.End)
             return;
 
         if (Input.GetKeyDown(KeyCode.Escape))
-            NowInteracting = false;
-    }
+            InteractStep = InteractStep.End;
 
-    // 상호작용 시작 시의 동작
-    void StartInteracting()
-    {
-        TalkStartProcess();
-
-        ReadLineAndStore(InteractId, interactStep);
-
-        Continue();
-
-        switch (interactType)
-        {
-            case InteractType.Shop:
-                break;
-            case InteractType.EquipmentShop:
-                break;
-            case InteractType.GateKeeper:
-                selectStageUI.SetActive(true);
-                break;
-            default:
-                break;
-        }
+        if (Input.GetKeyDown(KeyCode.X))
+            InteractStep++;
     }
 
     // 상호작용 끝낼 시의 동작 관리
@@ -153,33 +149,29 @@ public class InteractController : MonoBehaviour
     /// <summary>
     /// 대화 시작 시 실행할 동작들을 실행한다.
     /// </summary>
-    void TalkStartProcess()
+    void TalkStart()
     {
-        interactStep = InteractStep.Meeting;
         gameUI.enabled = false;
         dialogWindow.enabled = true;
         interactName_Text.text = interactName;
-        sentencesIndex = 0;
         sentences.Clear();
+        InteractStep = 0;
     }
 
     /// <summary>
     /// 플레이어의 조작 및 필요한 상황에 따라 대화를 다음 단계로 진행
     /// </summary>
-    public void Continue()
+    void PrintSentences()
     {
-        /*if (sentencesIndex == sentences.Count)
-            ;*/
-
         dialog_Text.text = string.Empty;
-        StopAllCoroutines();
-        StartCoroutine(PrintSenteces());
+        ReadLineAndStore(InteractId, interactStep);
+        StartCoroutine(PrintSentenceLetter());
     }
     /// <summary>
     /// sentences 리스트의 문장마다 한글자씩 텀을주어 출력하는 코루틴
     /// </summary>
     /// <returns></returns>
-    IEnumerator PrintSenteces()
+    IEnumerator PrintSentenceLetter()
     {
         for (int i = 0; i < sentences.Count; i++)
         {
@@ -190,6 +182,7 @@ public class InteractController : MonoBehaviour
             }
             if (i == sentences.Count - 1)
                 break;
+
             dialog_Text.text += "\n";
         }
     }
