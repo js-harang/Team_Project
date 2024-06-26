@@ -13,9 +13,11 @@ public class DragAbleUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     // 오브젝트의 스킬 정보
     public PlayerAttack skill;
     // 버튼의 현재 스킬
-    SkillButton currentSkill;
+    [SerializeField]
+    SkillButton currentButton;
     // 버튼의 이전 스킬
-    SkillButton previousSkill;
+    [SerializeField]
+    SkillButton previousButton;
 
     private void Awake()
     {
@@ -24,20 +26,22 @@ public class DragAbleUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         canvasGroup = GetComponent<CanvasGroup>();
     }
 
-    private void Update()
-    {
-        if (currentSkill == null)
-            return;
 
-        if (currentSkill.CoolTime > 0)
-            ClickDisAble();
-        else
-            ClickAble();
-    }
 
     // 현재 오브젝트 를 드래그 하기 시작 할 때 1회 호출
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (currentButton != null)
+        {
+            if (currentButton.CoolTime > 0)
+            {
+                ClickDisAble();
+            }
+            else
+            {
+                ClickDisAble();
+            }
+        }
         // 드래그 직전 소속되어 있던 부모 오브젝트의 Transform 을 저장
         previousParent = transform.parent;
 
@@ -66,20 +70,26 @@ public class DragAbleUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
         // 클릭 활성화
         ClickAble();
-
-        // 이전 스킬칸 스킬 리셋
-        if (previousParent.GetComponent<SkillButton>())     // 이전 부모오브젝트가 SkillButton 이면 스킬 리셋
+        if (previousButton != null && previousButton.CoolTime > 0)
         {
-            Debug.Log("스킬버튼 리셋");
-            previousSkill = previousParent.GetComponent<SkillButton>();
-            previousSkill.skill = null;
+            rect.position = previousParent.position;
         }
-        // 현재 스킬칸 스킬 등록
-        if (transform.parent.GetComponent<SkillButton>())
+        else if (previousButton.CoolTime <= 0)
         {
-            Debug.Log("스킬버튼");
-            currentSkill = transform.parent.GetComponent<SkillButton>();
-            currentSkill.skill = skill;
+            // 이전 스킬칸 스킬 리셋
+            if (previousParent.GetComponent<SkillButton>())     // 이전 부모오브젝트가 SkillButton 이면 스킬 리셋
+            {
+                Debug.Log("스킬 리셋");
+                previousButton = previousParent.GetComponent<SkillButton>();
+                previousButton.skill = null;
+            }
+            // 현재 스킬칸 스킬 등록
+            if (transform.parent.GetComponent<SkillButton>())
+            {
+                Debug.Log("스킬 등록");
+                currentButton = transform.parent.GetComponent<SkillButton>();
+                currentButton.skill = skill;
+            }
         }
     }
 
