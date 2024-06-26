@@ -17,12 +17,9 @@ public class PlayerInteract : MonoBehaviour
 
     // player가 접촉한 상호작용 가능 오브젝트의 정보를 저장하는 변수
     InteractProperty interPP;
-    [SerializeField]
-    InteractType interactType;
-    [SerializeField]
-    int interactId;
-    [SerializeField]
-    string interactName;
+    [SerializeField] InteractType interactType;
+    [SerializeField] int interactId;
+    [SerializeField] string interactName;
 
     private void Start()
     {

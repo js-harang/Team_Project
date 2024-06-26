@@ -3,18 +3,15 @@ using UnityEngine;
 public class LobbyController : MonoBehaviour
 {
     // CreateCharacter 버튼 관련 변수
-    [SerializeField]
-    Transform mainCamera;
-    [SerializeField]
-    GameObject lobbyCanvas;
+    [SerializeField] Transform mainCamera;
+    [SerializeField] GameObject lobbyCanvas;
     bool isLooby = true;
     // Camera 위치 변수
     Vector3 originPos = new(0, 0, -10f);
     Vector3 createPos = new(-100f, 0, -10f);
 
     // Preference 버튼 관련 변수
-    [SerializeField, Space(10)]
-    GameObject preferencePopup;
+    [SerializeField, Space(10)] GameObject preferencePopup;
     bool isPreferencePopup = false;
 
     private void Update()

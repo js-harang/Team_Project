@@ -10,25 +10,20 @@ public enum InteractType
 
 public class InteractProperty : MonoBehaviour
 {
-    [SerializeField]
-    InteractType interactType;
+    [SerializeField] InteractType interactType;
 
     public InteractType InteractType { get { return interactType; } }
 
-    [SerializeField]
-    int interactId;
+    [SerializeField] int interactId;
     public int InteractId { get { return interactId; } }
 
-    [SerializeField]
-    string interactName;
+    [SerializeField] string interactName;
     public string InteractName { get { return interactName; } }
 
     // NPC 머리 위에 정보창 Text 변수들
-    [SerializeField]
-    TMP_Text myRole_Text;
+    [SerializeField] TMP_Text myRole_Text;
 
-    [SerializeField]
-    TMP_Text myName_Text;
+    [SerializeField] TMP_Text myName_Text;
 
     private void Start()
     {

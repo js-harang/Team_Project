@@ -16,8 +16,7 @@ public enum BattleState
 
 public class BattleController : MonoBehaviour
 {
-    [SerializeField]
-    BattleState battleState;
+    [SerializeField] BattleState battleState;
     public BattleState BattleState
     {
         get
@@ -59,14 +58,11 @@ public class BattleController : MonoBehaviour
     }
 
     PlayerState pS;
-    [SerializeField]
-    GameObject hyperMoveZone;
-    [SerializeField]
-    GameObject[] blockWall;
+    [SerializeField] GameObject hyperMoveZone;
+    [SerializeField] GameObject[] blockWall;
 
     // 현재 스테이지의 전체 웨이브의 수
-    [SerializeField]
-    int totalWaveCount;
+    [SerializeField] int totalWaveCount;
 
     // 현재 진행되는 전투에 스폰된 에너미의 수
     [SerializeField]
@@ -138,7 +134,7 @@ public class BattleController : MonoBehaviour
     }
 
     // 진행 가능 상태일 때, 플레이어가 대기상화이라면 UI 표시
-    void GoSignOnOff()
+    private void GoSignOnOff()
     {
         if (battleState == BattleState.Running && pS.UnitState == UnitState.Idle)
         {
@@ -200,13 +196,13 @@ public class BattleController : MonoBehaviour
     }
 
     // 게임오버시 호출되는 메소드(게임오버 매뉴 활성화)
-    void GameOver()
+    private void GameOver()
     {
         gameOverUI.SetActive(true);
     }
 
     // 배틀 종료 시 시작되는 동작 메소드
-    void BattleEndProcess()
+    private void BattleEndProcess()
     {
         Instantiate(battleShopNPC, endShopSpawn.position, Quaternion.identity);
         battleEndUI.SetActive(true);

@@ -21,10 +21,8 @@ public enum UnitBattleState
 
 public class PlayerState : MonoBehaviour
 {
-    [SerializeField]
-    UnitState unitState;
-    [SerializeField]
-    UnitBattleState unitBattleState;
+    [SerializeField] UnitState unitState;
+    [SerializeField] UnitBattleState unitBattleState;
 
     public UnitState UnitState
     { get { return unitState; } set { unitState = value; } }

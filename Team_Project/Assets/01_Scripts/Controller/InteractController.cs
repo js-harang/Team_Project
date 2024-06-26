@@ -1,8 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
 using TMPro;
 using UnityEngine;
-using System.IO;
-using System.Collections.Generic;
-using System.Collections;
 
 // npc와의 대화 단계 열거형 예)인사, 선택지 고르기 등
 public enum InteractStep
@@ -42,15 +42,15 @@ public class InteractController : MonoBehaviour
     }
 
     bool nowInteracting;
-    public bool NowInteracting 
-    { 
-        get { return nowInteracting; } 
-        set 
+    public bool NowInteracting
+    {
+        get { return nowInteracting; }
+        set
         {
             nowInteracting = value;
             if (nowInteracting)
                 TalkStart();
-        } 
+        }
     }
 
     PlayerState pS;
@@ -104,7 +104,7 @@ public class InteractController : MonoBehaviour
     }
 
     // 상호작용 끝낼 시의 동작 관리
-    void EndInteracting()
+    private void EndInteracting()
     {
         dialogWindow.enabled = false;
         pS.UnitState = UnitState.Idle;
@@ -128,7 +128,7 @@ public class InteractController : MonoBehaviour
     /// </summary>
     /// <param name="id">대화중인 NPC의 ID</param>
     /// <param name="num">NPC와의 대화 단계</param>
-    void ReadLineAndStore(int id, InteractStep interactStep)
+    private void ReadLineAndStore(int id, InteractStep interactStep)
     {
         filePath = $"C:\\Users\\YONSAI\\Desktop\\Team_Project\\Team_Project\\Assets\\21_Data\\{id} Dialogue\\{interactStep}.txt";
 
@@ -149,7 +149,7 @@ public class InteractController : MonoBehaviour
     /// <summary>
     /// 대화 시작 시 실행할 동작들을 실행한다.
     /// </summary>
-    void TalkStart()
+    private void TalkStart()
     {
         gameUI.enabled = false;
         dialogWindow.enabled = true;
@@ -161,7 +161,7 @@ public class InteractController : MonoBehaviour
     /// <summary>
     /// 플레이어의 조작 및 필요한 상황에 따라 대화를 다음 단계로 진행
     /// </summary>
-    void PrintSentences()
+    private void PrintSentences()
     {
         dialog_Text.text = string.Empty;
         ReadLineAndStore(InteractId, interactStep);

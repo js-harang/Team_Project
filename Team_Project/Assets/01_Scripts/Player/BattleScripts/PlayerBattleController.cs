@@ -55,7 +55,8 @@ public class PlayerBattleController : BattleStatus
     }
 
     void Update()
-    {// 죽은 상태면 키입력 금지
+    {
+        // 죽은 상태면 키입력 금지
         if (pState.UnitState == UnitState.Die)
             return;
 

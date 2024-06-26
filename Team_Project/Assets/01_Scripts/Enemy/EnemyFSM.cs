@@ -244,6 +244,7 @@ public class EnemyFSM : BattleStatus
         // 피격 상태를 처리하기 위한 코루틴 실행
         StartCoroutine(DamageProcess());
     }
+
     // 데미지 처리용 코루틴 함수
     IEnumerator DamageProcess()
     {
@@ -254,6 +255,7 @@ public class EnemyFSM : BattleStatus
         m_State = EnemyState.Move;
         print("상태 전환 : Damaged => Move");
     }
+
     // 데미지 실행 함수
     public void HitEnemy(int hitPower)
     {
@@ -296,6 +298,7 @@ public class EnemyFSM : BattleStatus
             Die();
         }
     }
+
     // 죽음 상태 함수
     private void Die()
     {
@@ -305,6 +308,7 @@ public class EnemyFSM : BattleStatus
         // 죽음 상태를 처리하기 위한 코루틴을 실행
         StartCoroutine(DieProcess());
     }
+
     IEnumerator DieProcess()
     {
         // 캐릭터 컨트롤러 컴포넌트를 비활성화

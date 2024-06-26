@@ -1,12 +1,12 @@
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.Timeline;
 using UnityEngine.UI;
 
 public class AudioController : MonoBehaviour
 {
     [SerializeField] AudioMixer audioMixer;
-    [SerializeField] Slider masterSlider;
+
+    [SerializeField, Space(10)] Slider masterSlider;
     [SerializeField] Slider bgmSlider;
     [SerializeField] Slider sfxSlider;
 
@@ -16,18 +16,19 @@ public class AudioController : MonoBehaviour
             masterSlider.value = PlayerPrefs.GetFloat("Master");
         else
             masterSlider.value = PlayerPrefs.GetFloat("Master", 1);
-        masterSlider.onValueChanged.AddListener(SetMasterVolume);
 
         if (PlayerPrefs.HasKey("BGM"))
-            masterSlider.value = PlayerPrefs.GetFloat("BGM");
+            bgmSlider.value = PlayerPrefs.GetFloat("BGM");
         else
-            masterSlider.value = PlayerPrefs.GetFloat("BGM", 1);
-        bgmSlider.onValueChanged.AddListener(SetMusicVolume);
+            bgmSlider.value = PlayerPrefs.GetFloat("BGM", 1);
 
         if (PlayerPrefs.HasKey("SFX"))
-            masterSlider.value = PlayerPrefs.GetFloat("SFX");
+            sfxSlider.value = PlayerPrefs.GetFloat("SFX");
         else
-            masterSlider.value = PlayerPrefs.GetFloat("SFX", 1);
+            sfxSlider.value = PlayerPrefs.GetFloat("SFX", 1);
+
+        masterSlider.onValueChanged.AddListener(SetMasterVolume);
+        bgmSlider.onValueChanged.AddListener(SetMusicVolume);
         sfxSlider.onValueChanged.AddListener(SetSFXVolume);
     }
 
@@ -56,12 +57,12 @@ public class AudioController : MonoBehaviour
         audioMixer.SetFloat("SFX", Mathf.Log10(volume) * 20);
     }
 
-    //private void OnDisable()
-    //{
-    //    masterSlider.onValueChanged.RemoveListener(SetMasterVolume);
-    //    bgmSlider.onValueChanged.RemoveListener(SetMusicVolume);
-    //    sfxSlider.onValueChanged.RemoveListener(SetSFXVolume);
-    //}
+    private void OnDisable()
+    {
+        masterSlider.onValueChanged.RemoveListener(SetMasterVolume);
+        bgmSlider.onValueChanged.RemoveListener(SetMusicVolume);
+        sfxSlider.onValueChanged.RemoveListener(SetSFXVolume);
+    }
 
     //public AudioMixer _mixer;
 

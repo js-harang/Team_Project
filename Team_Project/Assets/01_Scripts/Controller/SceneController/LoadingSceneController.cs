@@ -6,15 +6,11 @@ using UnityEngine.UI;
 
 public class LoadingSceneController : MonoBehaviour
 {
-    [SerializeField, Space(10)]
-    Slider loadingBar;
-    [SerializeField]
-    TextMeshProUGUI loadingTxt;
+    [SerializeField] Slider loadingBar;
+    [SerializeField] TextMeshProUGUI loadingTxt;
 
-    [SerializeField, Space(10)]
-    Image background;
-    [SerializeField]
-    Sprite[] backgroundImg;
+    [SerializeField, Space(10)] Image background;
+    [SerializeField] Sprite[] backgroundImg;
 
     public void Start()
     {

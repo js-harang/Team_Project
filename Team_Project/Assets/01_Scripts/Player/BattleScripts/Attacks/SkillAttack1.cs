@@ -17,6 +17,7 @@ public class SkillAttack1 : PlayerAttack
         // 소모 마나
         aST.useMana = 10;
     }
+
     public override void Attack(Transform atkPosition, int atkPower)
     {
         base.Attack(atkPosition, atkPower);

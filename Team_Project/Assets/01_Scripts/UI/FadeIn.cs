@@ -19,10 +19,8 @@ public class FadeIn : MonoBehaviour
         }
     }
 
-    [SerializeField, Space(10)]
-    Image fadeImg;
-    [SerializeField]
-    float fadeTime;
+    [SerializeField] Image fadeImg;
+    [SerializeField] float fadeTime;
 
     private void Start()
     {

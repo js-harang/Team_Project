@@ -15,8 +15,7 @@ public class PlayerMove : MonoBehaviour
     Vector3 inputMove;
 
     // ¿Ãµø
-    [SerializeField]
-    float speed;
+    [SerializeField] float speed;
     public float jumpForce;
 
 

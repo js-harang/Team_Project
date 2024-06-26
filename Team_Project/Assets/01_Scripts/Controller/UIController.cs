@@ -4,14 +4,10 @@ using UnityEngine.SceneManagement;
 public class UIController : MonoBehaviour
 {
     // 키보드 입력시 동작할 UI들
-    [SerializeField]
-    GameObject inventoryUI;
-    [SerializeField]
-    GameObject statusUI;
-    [SerializeField]
-    GameObject escMenuUI;
-    [SerializeField]
-    Canvas gameUI;
+    [SerializeField] GameObject inventoryUI;
+    [SerializeField] GameObject statusUI;
+    [SerializeField] GameObject escMenuUI;
+    [SerializeField] Canvas gameUI;
 
     [SerializeField]
     GameObject gameOverUI;
