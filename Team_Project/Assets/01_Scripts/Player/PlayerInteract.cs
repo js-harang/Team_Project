@@ -31,6 +31,9 @@ public class PlayerInteract : MonoBehaviour
     // 오브젝트 근처에 있는 상태라면 X를 눌러 상호작용 상태가 된다.
     private void Update()
     {
+        if (interCon.NowInteracting)
+            return;
+
         if (isMeetInteract)
         {
             if (Input.GetKeyDown(KeyCode.X))
@@ -76,9 +79,9 @@ public class PlayerInteract : MonoBehaviour
     private void LetsTalk()
     {
         PassInteractInfo();
+        InteractCheck();
         interCon.NowInteracting = true;
         pState.UnitState = UnitState.Interact;
-        InteractCheck();
     }
 
     // isMeetInteract가 true면 활성화, false면 비활성화

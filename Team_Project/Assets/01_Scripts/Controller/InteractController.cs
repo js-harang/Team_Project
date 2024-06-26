@@ -8,6 +8,7 @@ using UnityEngine;
 public enum InteractStep
 {
     Meeting,
+    MenuChoice,
     Action,
     End,
 }
@@ -28,6 +29,9 @@ public class InteractController : MonoBehaviour
             {
                 case InteractStep.Meeting:
                     PrintSentences();
+                    break;
+                case InteractStep.MenuChoice:
+                    MenuOpen();
                     break;
                 case InteractStep.Action:
                     PrintSentences();
@@ -75,6 +79,10 @@ public class InteractController : MonoBehaviour
     // 불러온 텍스트 문장들을 모아두는 리스트 변수
     List<string> sentences = new List<string>();
 
+    // 대화 출력 코루틴이 실행 중인지를 확인하는 변수
+    bool activatePrinting;
+    bool stopTalking;
+
     // 플레이어로부터 전달받을 현재 대화중인 상대 오브젝트의 정보
     InteractType interactType;
     public InteractType InteractType { get { return interactType; } set { interactType = value; } }
@@ -97,11 +105,24 @@ public class InteractController : MonoBehaviour
         if (interactStep == InteractStep.End)
             return;
 
+        DialogControll();
+    }
+
+    // 대화중 키 입력에 따른 조작
+    void DialogControll()
+    {
         if (Input.GetKeyDown(KeyCode.Escape))
             NowInteracting = false;
 
         if (Input.GetKeyDown(KeyCode.X))
-            InteractStep++;
+        {
+            if (activatePrinting)
+            {
+                stopTalking = true;
+                return;
+            }
+
+        }
     }
 
     // 상호작용 끝낼 시의 동작 관리
@@ -147,6 +168,7 @@ public class InteractController : MonoBehaviour
             sentences.Add(lines[i]);
         }
     }
+
     /// <summary>
     /// 대화 시작 시 실행할 동작들을 실행한다.
     /// </summary>
@@ -165,7 +187,6 @@ public class InteractController : MonoBehaviour
     private void PrintSentences()
     {
         dialog_Text.text = string.Empty;
-        StopAllCoroutines();
         sentences.Clear();
         ReadLineAndStore(InteractId, interactStep);
         StartCoroutine(PrintSentenceLetter());
@@ -176,17 +197,42 @@ public class InteractController : MonoBehaviour
     /// <returns></returns>
     IEnumerator PrintSentenceLetter()
     {
+        activatePrinting = true;
+
         for (int i = 0; i < sentences.Count; i++)
         {
             foreach (char letter in sentences[i])
             {
                 dialog_Text.text += letter;
+
+                if (stopTalking)                        // 출력중 X 키를 누르면 스킵하고 전체 출력
+                    continue;
+
                 yield return new WaitForSeconds(0.05f);
             }
             if (i == sentences.Count - 1)
                 break;
 
             dialog_Text.text += "\n";
+        }
+        activatePrinting = false;
+        stopTalking = false;
+        InteractStep++;
+    }
+
+    void MenuOpen()
+    {
+        switch (interactType)
+        {
+            case InteractType.Shop:
+                break;
+            case InteractType.EquipmentShop:
+                break;
+            case InteractType.GateKeeper:
+                selectStageUI.SetActive(true);
+                break;
+            default:
+                break;
         }
     }
 
