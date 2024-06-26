@@ -33,7 +33,6 @@ public class InteractController : MonoBehaviour
                     PrintSentences();
                     break;
                 case InteractStep.End:
-                    EndInteracting();
                     break;
                 default:
                     break;
@@ -49,7 +48,9 @@ public class InteractController : MonoBehaviour
         {
             nowInteracting = value;
             if (nowInteracting)
-                TalkStart();
+                StartInteracting();
+            else
+                EndInteracting();
         }
     }
 
@@ -97,7 +98,7 @@ public class InteractController : MonoBehaviour
             return;
 
         if (Input.GetKeyDown(KeyCode.Escape))
-            InteractStep = InteractStep.End;
+            NowInteracting = false;
 
         if (Input.GetKeyDown(KeyCode.X))
             InteractStep++;
@@ -149,13 +150,13 @@ public class InteractController : MonoBehaviour
     /// <summary>
     /// 대화 시작 시 실행할 동작들을 실행한다.
     /// </summary>
-    private void TalkStart()
+    private void StartInteracting()
     {
         gameUI.enabled = false;
+        dialog_Text.text = string.Empty;
         dialogWindow.enabled = true;
         interactName_Text.text = interactName;
-        sentences.Clear();
-        InteractStep = 0;
+        InteractStep = InteractStep.Meeting;
     }
 
     /// <summary>
@@ -164,6 +165,8 @@ public class InteractController : MonoBehaviour
     private void PrintSentences()
     {
         dialog_Text.text = string.Empty;
+        StopAllCoroutines();
+        sentences.Clear();
         ReadLineAndStore(InteractId, interactStep);
         StartCoroutine(PrintSentenceLetter());
     }
