@@ -1396,8 +1396,9 @@ GameObject:
   m_Component:
   - component: {fileID: 399902458}
   - component: {fileID: 399902459}
+  - component: {fileID: 399902460}
   m_Layer: 5
-  m_Name: Bgm_Toggle
+  m_Name: BGMToggle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1471,9 +1472,9 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SoundToggle, Assembly-CSharp
-        m_MethodName: BGMToggleChecked
+      - m_Target: {fileID: 399902460}
+        m_TargetAssemblyTypeName: ToggleChecked, Assembly-CSharp
+        m_MethodName: IsChecked
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1484,6 +1485,19 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 0
+--- !u!114 &399902460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399902457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e09325005d5ac648b905baac00321f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ac: {fileID: 1174773299}
 --- !u!1 &445552531
 GameObject:
   m_ObjectHideFlags: 0
@@ -2776,8 +2790,9 @@ GameObject:
   m_Component:
   - component: {fileID: 745797772}
   - component: {fileID: 745797773}
+  - component: {fileID: 745797774}
   m_Layer: 5
-  m_Name: Master_Toggle
+  m_Name: MasterToggle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2851,9 +2866,9 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SoundToggle, Assembly-CSharp
-        m_MethodName: MasterToggleChecked
+      - m_Target: {fileID: 745797774}
+        m_TargetAssemblyTypeName: ToggleChecked, Assembly-CSharp
+        m_MethodName: IsChecked
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2864,6 +2879,19 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 0
+--- !u!114 &745797774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 745797771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e09325005d5ac648b905baac00321f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ac: {fileID: 1174773299}
 --- !u!1 &850392999
 GameObject:
   m_ObjectHideFlags: 0
@@ -4220,8 +4248,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1147572287}
   - component: {fileID: 1147572288}
+  - component: {fileID: 1147572289}
   m_Layer: 5
-  m_Name: SFX_Toggle
+  m_Name: SFXToggle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4295,9 +4324,9 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SoundToggle, Assembly-CSharp
-        m_MethodName: SFXToggleChecked
+      - m_Target: {fileID: 1147572289}
+        m_TargetAssemblyTypeName: ToggleChecked, Assembly-CSharp
+        m_MethodName: IsChecked
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4308,6 +4337,19 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 0
+--- !u!114 &1147572289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147572286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e09325005d5ac648b905baac00321f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ac: {fileID: 1174773299}
 --- !u!1 &1174773296
 GameObject:
   m_ObjectHideFlags: 0
@@ -4375,7 +4417,9 @@ MonoBehaviour:
   masterSlider: {fileID: 1609582193}
   bgmSlider: {fileID: 1853935730}
   sfxSlider: {fileID: 1676393756}
-  masterAudio: {fileID: 0}
+  masterToggle: {fileID: 745797773}
+  bmgToggle: {fileID: 399902459}
+  sfxToggle: {fileID: 1147572288}
 --- !u!1 &1190175834
 GameObject:
   m_ObjectHideFlags: 0
