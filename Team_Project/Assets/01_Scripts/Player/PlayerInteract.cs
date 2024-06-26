@@ -4,7 +4,6 @@ using UnityEngine;
 public class PlayerInteract : MonoBehaviour
 {
     PlayerState pState;
-    PlayerBattleController pBC;
     // player가 상호작용 가능한 오브젝트 근처에 있는지의 bool 변수
     bool isMeetInteract;
 

@@ -23,7 +23,7 @@ public class UIController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (!gameUI.enabled)                // InteractController에서 비활성환 UI 캔버스를 확인후 동작
+            if (!gameUI.enabled)                // InteractController에서 비활성화한 UI 캔버스를 확인후 동작
             {
                 gameUI.enabled = true;
                 return;
