@@ -30,14 +30,14 @@ public class AudioController : MonoBehaviour
             sfxSlider.value = PlayerPrefs.GetFloat("SFX", 1);
 
         masterSlider.onValueChanged.AddListener(SetMasterVolume);
-        bgmSlider.onValueChanged.AddListener(SetMusicVolume);
+        bgmSlider.onValueChanged.AddListener(SetBGMVolume);
         sfxSlider.onValueChanged.AddListener(SetSFXVolume);
     }
 
     private void Start()
     {
         SetMasterVolume(PlayerPrefs.GetFloat("Master"));
-        SetMusicVolume(PlayerPrefs.GetFloat("BGM"));
+        SetBGMVolume(PlayerPrefs.GetFloat("BGM"));
         SetSFXVolume(PlayerPrefs.GetFloat("SFX"));
     }
 
@@ -47,7 +47,7 @@ public class AudioController : MonoBehaviour
         audioMixer.SetFloat("Master", Mathf.Log10(volume) * 20);
     }
 
-    public void SetMusicVolume(float volume)
+    public void SetBGMVolume(float volume)
     {
         PlayerPrefs.SetFloat("BGM", volume);
         audioMixer.SetFloat("BGM", Mathf.Log10(volume) * 20);
@@ -59,20 +59,49 @@ public class AudioController : MonoBehaviour
         audioMixer.SetFloat("SFX", Mathf.Log10(volume) * 20);
     }
 
-    //public void MasterVolumeMute(bool isChecked)
-    //{
-    //    if (isChecked)
-    //        masterAudio.mute = true;
-    //    else
-    //        masterAudio.mute = false;
+    public void MasterVolumeMute(bool isChecked)
+    {
+        if (isChecked)
+        {
+            PlayerPrefs.SetFloat("SaveMaster", PlayerPrefs.GetFloat("Master"));
+            SetMasterVolume(0.001f);
+        }
+        else
+            SetMasterVolume(PlayerPrefs.GetFloat("SaveMaster"));
 
-    //    SetSlider();
-    //}
+        masterSlider.value = PlayerPrefs.GetFloat("Master");
+    }
+    
+    public void BGMVolumeMute(bool isChecked)
+    {
+        if (isChecked)
+        {
+            PlayerPrefs.SetFloat("SaveBGM", PlayerPrefs.GetFloat("BGM"));
+            SetMasterVolume(0.001f);
+        }
+        else
+            SetMasterVolume(PlayerPrefs.GetFloat("SaveBGM"));
+
+        bgmSlider.value = PlayerPrefs.GetFloat("BGM");
+    }
+    
+    public void SFXVolumeMute(bool isChecked)
+    {
+        if (isChecked)
+        {
+            PlayerPrefs.SetFloat("SaveMaster", PlayerPrefs.GetFloat("SFX"));
+            SetMasterVolume(0.001f);
+        }
+        else
+            SetMasterVolume(PlayerPrefs.GetFloat("SaveMaster"));
+
+       sfxSlider.value = PlayerPrefs.GetFloat("SFX");
+    }
 
     private void OnDisable()
     {
         masterSlider.onValueChanged.RemoveListener(SetMasterVolume);
-        bgmSlider.onValueChanged.RemoveListener(SetMusicVolume);
+        bgmSlider.onValueChanged.RemoveListener(SetBGMVolume);
         sfxSlider.onValueChanged.RemoveListener(SetSFXVolume);
     }
 
