@@ -10,6 +10,8 @@ public class AudioController : MonoBehaviour
     [SerializeField] Slider bgmSlider;
     [SerializeField] Slider sfxSlider;
 
+    [SerializeField, Space(10)] AudioSource masterAudio;
+
     private void OnEnable()
     {
         if (PlayerPrefs.HasKey("Master"))
@@ -56,6 +58,16 @@ public class AudioController : MonoBehaviour
         PlayerPrefs.SetFloat("SFX", volume);
         audioMixer.SetFloat("SFX", Mathf.Log10(volume) * 20);
     }
+
+    //public void MasterVolumeMute(bool isChecked)
+    //{
+    //    if (isChecked)
+    //        masterAudio.mute = true;
+    //    else
+    //        masterAudio.mute = false;
+
+    //    SetSlider();
+    //}
 
     private void OnDisable()
     {
