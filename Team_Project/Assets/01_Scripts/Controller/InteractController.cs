@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 // npc와의 대화 단계 열거형 예)인사, 선택지 고르기 등
 public enum InteractStep
 {
     Meeting,
-    ChoiceMenu,
     Action,
     End,
 }
@@ -29,9 +29,7 @@ public class InteractController : MonoBehaviour
             {
                 case InteractStep.Meeting:
                     PrintSentences();
-                    ChoiceMenuOpen();
-                    break;
-                case InteractStep.ChoiceMenu:
+                    ChoiceMenuOnOff();
                     break;
                 case InteractStep.Action:
                     PrintSentences();
@@ -91,13 +89,21 @@ public class InteractController : MonoBehaviour
     bool activatePrinting;
     bool stopTalking;
 
+    // 코루틴 중지용 PrintSentencesLetter 코르틴을 담을 변수
+    IEnumerator sentencePrintLetter;
+
     // NPC 타입별 대화 선택창 변수
     public GameObject shopDialogChoiceUI;
     public GameObject equipShopDialogChoiceUI;
     public GameObject gateKeeperDialogChoiceUI;
 
-    // 배틀 스테이지 선택창 변수
+    // 메뉴 활성화 시 NPC들의 타입에 따른 UI 변수
+    public GameObject shopUI;
+    public GameObject equipShopUI;
     public GameObject selectStageUI;
+
+    // 상점 UI 활성화 시 같이 필요한 플레이어의 인벤토리
+    public GameObject playerInventory;
 
     private void Start()
     {
@@ -122,8 +128,7 @@ public class InteractController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.X))
         {
-            if (activatePrinting)
-                stopTalking = true;
+            PrintSentencesSkip();
         }
     }
 
@@ -133,18 +138,30 @@ public class InteractController : MonoBehaviour
     private void StartInteracting()
     {
         gameUI.enabled = false;
-        dialog_Text.text = string.Empty;
         dialogWindow.enabled = true;
         interactName_Text.text = interactName;
         InteractStep = InteractStep.Meeting;
     }
 
     // 상호작용 끝낼 시의 동작 관리
-    public void EndInteracting()
-    {
-        ChoiceMenuClose();
+    void EndInteracting()
+    {   
+        if (activatePrinting)                   //만약 텍스트 출력 코루틴이 실행중이었다면 중단
+            StopCoroutine(sentencePrintLetter);     
+        ChoiceMenuOnOff();
         dialogWindow.enabled = false;
-        pS.UnitState = UnitState.Idle;
+        activatePrinting = false;
+        stopTalking = false;
+        NPCTypeMenuOnOff();
+        InteractStep = InteractStep.End;
+        pS.UnitState = UnitState.Idle; 
+    }
+
+    // 대화 종료 버튼을 따로 눌렀을 시의 동작
+    public void EndInteractingBtn()
+    {
+        gameUI.enabled = true;
+        NowInteracting = false;
     }
 
     /// <summary>
@@ -176,17 +193,20 @@ public class InteractController : MonoBehaviour
     /// </summary>
     private void PrintSentences()
     {
+        if (activatePrinting)                  
+            StopCoroutine(sentencePrintLetter);
         dialog_Text.text = string.Empty;
         sentences.Clear();
         ReadLineAndStore(InteractId, interactStep);
-        StartCoroutine(PrintSentenceLetter());
+        sentencePrintLetter = PrintSentencesLetter();
+        StartCoroutine(sentencePrintLetter);
     }
     /// <summary>
     /// sentences 리스트의 문장마다 한글자씩 텀을주어 출력하는 코루틴
     /// </summary>
     /// <returns></returns>
     /// 
-    IEnumerator PrintSentenceLetter()
+    IEnumerator PrintSentencesLetter()
     {
         activatePrinting = true;
 
@@ -210,45 +230,55 @@ public class InteractController : MonoBehaviour
         stopTalking = false;
     }
 
-    // NPC 타입에 따른 UI 활성화
-    void ChoiceMenuOpen()
+    // PrintSentencesLetter 코루틴이 실행중이라면 stopTalking 를 true로 바꿔 출력 스킵
+    public void PrintSentencesSkip()
     {
-        switch (interactType)
+        if (activatePrinting)
+            stopTalking = true;
+    }
+
+    // NPC 타입에 따른 선택지 UI 활성화, 비활성화
+    void ChoiceMenuOnOff()
+    {
+        switch (interactType)                  
         {
             case InteractType.Shop:
-                shopDialogChoiceUI.SetActive(true);
+                shopDialogChoiceUI.SetActive(NowInteracting);
                 break;
             case InteractType.EquipmentShop:
-                equipShopDialogChoiceUI.SetActive(true);
+                equipShopDialogChoiceUI.SetActive(NowInteracting);
                 break;
             case InteractType.GateKeeper:
-                gateKeeperDialogChoiceUI.SetActive(true);
+                gateKeeperDialogChoiceUI.SetActive(NowInteracting);
                 break;
             default:
                 break;
         }
     }
 
-    // NPC 타입에 따른 UI 비활성화
-    public void ChoiceMenuClose()
+    // 각 NPC 역할에 따른 메뉴 선택 시의 동작
+    public void NPCTypeMenuOnOff()
     {
+        if (dialogWindow.enabled)
+            InteractStep = InteractStep.Action;
+
         switch (interactType)
         {
             case InteractType.Shop:
-                shopDialogChoiceUI.SetActive(false);
+                shopUI.SetActive(dialogWindow.enabled);
+                playerInventory.SetActive(dialogWindow.enabled);
                 break;
             case InteractType.EquipmentShop:
-                equipShopDialogChoiceUI.SetActive(false);
+                equipShopUI.SetActive(dialogWindow.enabled);
+                playerInventory.SetActive(dialogWindow.enabled);
                 break;
             case InteractType.GateKeeper:
-                gateKeeperDialogChoiceUI.SetActive(false);
-                selectStageUI.SetActive(false);
+                selectStageUI.SetActive(dialogWindow.enabled);
                 break;
             default:
                 break;
         }
     }
-
     public void GoBattle(int sceneNumber)
     {
         GameManager.gm.MoveScene(sceneNumber);

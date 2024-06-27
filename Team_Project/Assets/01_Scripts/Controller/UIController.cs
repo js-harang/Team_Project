@@ -29,7 +29,7 @@ public class UIController : MonoBehaviour
                 return;
             }
 
-            EscButtonOnOff();
+            EscMenuOnOff();
         }
 
         switch (Input.inputString)
@@ -67,7 +67,7 @@ public class UIController : MonoBehaviour
     }
 
     // ESC 메뉴 UI 활성 / 비활성화
-    public void EscButtonOnOff()
+    public void EscMenuOnOff()
     {
         if (escMenuUI.activeSelf)
         {
