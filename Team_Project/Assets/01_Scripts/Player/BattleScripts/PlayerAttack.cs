@@ -10,7 +10,7 @@ public struct AttackStatus
     public bool isCoolTime;
 
     // 공격력
-    public int atkPower;
+    public float atkPower;
     // 공격 딜레이
     public float atkDelay;
     // 공격 범위
@@ -41,10 +41,12 @@ public abstract class PlayerAttack : MonoBehaviour
         {
             if (enemy.gameObject.CompareTag("Enemy"))
             {
-                Debug.Log("적 공격 데미지 :" + aST.atkPower);
+                float atkDamage = atkPower * aST.atkPower;
+                Debug.Log("적 공격 데미지 :" + atkDamage);
 
-                EnemyFSM enemyFsm = enemy.GetComponent<EnemyFSM>();
-                enemyFsm.HitEnemy(aST.atkPower);
+                // float 로 변환 필요
+                /*EnemyFSM enemyFsm = enemy.GetComponent<EnemyFSM>();
+                enemyFsm.HitEnemy(aST.atkPower);*/
             }
         }
     }

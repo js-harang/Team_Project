@@ -9,9 +9,11 @@ public class DragAbleUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     private Transform canvas;           // UI 가 소속되어있는 최상단 Canvas
     [SerializeField]
     private CanvasGroup canvasGroup;    // UI 알파값 과 상호작용 제어를 위한 CanvasGroup
+    
     [Space(10)]
     [SerializeField]
     private RectTransform rect;         // UI 위치 제어를 위한 RectTransform
+    
     [SerializeField]
     private Transform previousParent;   // 해당 오브젝트 직전에 소속되어 있던 부모 오브젝트의 Transform
 
@@ -95,14 +97,14 @@ public class DragAbleUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         {
             Debug.Log("스킬 리셋");
             previousButton = previousParent.GetComponent<SkillButton>();
-            previousButton.skill = null;
+            previousButton.Skill = null;
         }
         // 현재 스킬칸 스킬 등록
         if (transform.parent.GetComponent<SkillButton>())
         {
             Debug.Log("스킬 등록");
             previousButton = transform.parent.GetComponent<SkillButton>();
-            previousButton.skill = skill;
+            previousButton.Skill = skill;
             previousButton.transform.SetAsLastSibling();
         }
 

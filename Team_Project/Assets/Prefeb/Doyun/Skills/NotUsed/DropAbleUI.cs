@@ -35,5 +35,6 @@ public class DropAbleUI : MonoBehaviour, IPointerEnterHandler, IDropHandler, IPo
             eventData.pointerDrag.transform.SetParent(transform);
             eventData.pointerDrag.GetComponent<RectTransform>().position = rect.position;
         }
+        image.sprite = eventData.pointerDrag.GetComponent<Image>().sprite;
     }
 }

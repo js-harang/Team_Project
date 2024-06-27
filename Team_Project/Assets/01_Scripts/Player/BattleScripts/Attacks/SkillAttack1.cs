@@ -7,8 +7,8 @@ public class SkillAttack1 : PlayerAttack
         // 공격타입 (아따따뚜르겐)
         aST.atkType = 1;
 
-        // 공격력
-        aST.atkPower = 3;
+        // 공격 배율
+        aST.atkPower = 1.2f;
         // 공격 딜레이
         aST.atkDelay = 10f;
         // 공격 범위
