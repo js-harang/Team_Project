@@ -6,7 +6,6 @@ public class ToggleChecked : MonoBehaviour
 
     public void IsChecked(bool isChecked)
     {
-        ac.masterCheck = isChecked;
-        ac.ToggleChecked(gameObject.name, isChecked);
+        ac.AudioMute(gameObject.name, isChecked);
     }
 }
