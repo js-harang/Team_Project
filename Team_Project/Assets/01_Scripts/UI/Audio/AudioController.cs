@@ -48,10 +48,6 @@ public class AudioController : MonoBehaviour
     private void SetMasterVolume(float volume)
     {
         PlayerPrefs.SetFloat("Master", volume);
-
-        if (masterCheck)
-            return;
-
         audioMixer.SetFloat("Master", Mathf.Log10(volume) * 20);
     }
 
@@ -62,12 +58,12 @@ public class AudioController : MonoBehaviour
             case "MasterToggle":
                 if (isChecked)
                 {
+                    PlayerPrefs.SetFloat("SaveMaster", PlayerPrefs.GetFloat("Master"));
                     SetMasterVolume(0.001f);
                 }
                 else
                 {
-                    PlayerPrefs.SetFloat("Master", masterSlider.value);
-                    SetMasterVolume(PlayerPrefs.GetFloat("Master"));
+                    SetMasterVolume(PlayerPrefs.GetFloat("SaveMaster"));
                 }
                 break;
                 //case "BGMToggle":
