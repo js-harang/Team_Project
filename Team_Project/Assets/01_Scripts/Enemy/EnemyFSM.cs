@@ -257,7 +257,7 @@ public class EnemyFSM : BattleStatus
     }
 
     // 데미지 실행 함수
-    public void HitEnemy(int hitPower)
+    public void HitEnemy(float hitPower)
     {
         Debug.Log("에너미 피격 호출");
         // 만일, 이미 피격 상태이거나 사망 상태 또는 복귀 상태라면
