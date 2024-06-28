@@ -1,4 +1,3 @@
-using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -112,7 +111,7 @@ public class AudioController : MonoBehaviour
     {
         switch (toggleName)
         {
-            case "MasterToggle":
+            case "Master_Toggle":
                 if (isChecked)
                 {
                     PlayerPrefs.SetInt("MasterMute", 1);
@@ -124,7 +123,7 @@ public class AudioController : MonoBehaviour
                     SetMasterVolume(PlayerPrefs.GetFloat("Master"));
                 }
                 break;
-            case "BGMToggle":
+            case "BGM_Toggle":
                 if (isChecked)
                 {
                     PlayerPrefs.SetInt("BGMMute", 1);
@@ -136,7 +135,7 @@ public class AudioController : MonoBehaviour
                     SetBGMVolume(PlayerPrefs.GetFloat("BGM"));
                 }
                 break;
-            case "SFXToggle":
+            case "SFX_Toggle":
                 if (isChecked)
                 {
                     PlayerPrefs.SetInt("SFXMute", 1);
