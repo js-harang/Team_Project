@@ -3,6 +3,9 @@ using UnityEngine;
 
 public struct AttackStatus
 {
+    //공격 번호
+    public int atkNum;
+
     //공격 타입
     public int atkType;
 

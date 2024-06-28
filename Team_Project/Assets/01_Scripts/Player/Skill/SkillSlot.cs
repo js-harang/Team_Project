@@ -7,6 +7,10 @@ using UnityEngine.EventSystems;
 // 스킬창에서 끌어오는 스킬
 public class SkillSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+    public SkillDirectory skillPannel;
+
+    [SerializeField] int skillIndex;
+
     #region 스킬 아이콘 속성
     [SerializeField] private Image skillIcon;
     public Image SkillIcon { get { return skillIcon; } set { skillIcon = value; } }
@@ -61,14 +65,19 @@ public class SkillSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     #region 시작 세팅
     void StartSetting()
     {
-        skill = GetComponent<PlayerAttack>();
-        skillIcon = GetComponent<Image>();
-
         canvas = GetComponentInParent<Canvas>().transform;
         canvasGroup = GetComponent<CanvasGroup>();
 
+        skillIcon = GetComponent<Image>();
+
         originPos = transform.parent;
         rect = GetComponent<RectTransform>();
+
+        if (skillPannel.skillAtk[skillIndex] == null || skillPannel.skillIcon[skillIndex].sprite == null)
+            return;
+
+        skill = skillPannel.skillAtk[skillIndex];
+        skillIcon.sprite = skillPannel.skillIcon[skillIndex].sprite;
     }
     #endregion
 }

@@ -10,6 +10,7 @@ public class SkillButton : MonoBehaviour
     #region 스킬 데이터 관련
     [SerializeField]
     SkillData skillData;
+
     [SerializeField]
     PlayerAttack skill;
     public PlayerAttack Skill { get { return skill; } set { skill = value; } }
