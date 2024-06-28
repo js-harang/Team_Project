@@ -1150,7 +1150,7 @@ GameObject:
   - component: {fileID: 443728188}
   - component: {fileID: 443728187}
   m_Layer: 5
-  m_Name: DialogBG_Btn
+  m_Name: DialogWindow_Btn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2830,6 +2830,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 759498609}
+        m_TargetAssemblyTypeName: InteractController, Assembly-CSharp
+        m_MethodName: NPCMenuButtonActiveOrFalse
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1411705499}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1411705502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3862,6 +3874,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 759498609}
+        m_TargetAssemblyTypeName: InteractController, Assembly-CSharp
+        m_MethodName: NPCMenuButtonActiveOrFalse
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1589577610}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1589577613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3991,6 +4015,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 759498609}
+        m_TargetAssemblyTypeName: InteractController, Assembly-CSharp
+        m_MethodName: NPCMenuButtonActiveOrFalse
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1608975984}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
