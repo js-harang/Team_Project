@@ -12,6 +12,11 @@ public class DropSkill : MonoBehaviour, IPointerEnterHandler, IDropHandler, IPoi
     [SerializeField] private GameObject childObj;
     [SerializeField] private SkillButton skillButton;
 
+    private void Awake()
+    {
+        Debug.Log(this.name);
+    }
+
     // 무언가 드랍 될때
     public void OnDrop(PointerEventData eventData)
     {
@@ -67,4 +72,19 @@ public class DropSkill : MonoBehaviour, IPointerEnterHandler, IDropHandler, IPoi
 
     // 포인터가 나갈때
     public void OnPointerExit(PointerEventData eventData) { }
+
+    // 스킬 저장
+    void SaveSKillData()
+    {
+        if (skillData.Skill != null)
+        {
+            PlayerPrefs.SetInt(this.name,skillData.Skill.aST.atkNum);
+        }
+        PlayerPrefs.Save();
+    }
+    void LoadSkillData()
+    {
+        int idx = PlayerPrefs.GetInt(this.name);
+
+    }
 }

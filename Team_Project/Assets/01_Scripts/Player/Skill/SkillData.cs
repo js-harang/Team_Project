@@ -63,15 +63,18 @@ public class SkillData : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     #region 드래그 끝날때
     public void OnEndDrag(PointerEventData eventData)
     {
+        rect.position = originsPos.position;
+        canvasGroup.blocksRaycasts = true;
+
+        if (skillButton.CoolTime > 0)
+            return;
+
         if (transform.parent != canvas)
         {
             skill = null;
             skillIcon.sprite = null;
             skillButton.Skill = null;
         }
-
-        rect.position = originsPos.position;
-        canvasGroup.blocksRaycasts = true;
     }
     #endregion
 }

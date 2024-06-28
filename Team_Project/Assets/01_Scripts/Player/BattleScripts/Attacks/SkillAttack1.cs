@@ -4,6 +4,9 @@ public class SkillAttack1 : PlayerAttack
 {
     public override void InitSetting()
     {
+        // 공격 번호
+        aST.atkNum = 1;
+
         // 공격타입 (아따따뚜르겐)
         aST.atkType = 1;
 

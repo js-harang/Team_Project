@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 628866603433986879}
   - component: {fileID: 8170460442354536364}
   - component: {fileID: 1567410610636161768}
+  - component: {fileID: 961186904379565146}
   m_Layer: 0
   m_Name: SkillAttack
   m_TagString: Untagged
@@ -191,8 +192,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: f44707d980a2e39418f9641459d0ffbc, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -225,10 +226,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b872e6233386944aa3061bd7221e5df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skillPannel: {fileID: 0}
+  skillIndex: 0
   skillIcon: {fileID: 0}
   skill: {fileID: 0}
   originPos: {fileID: 0}
   canvas: {fileID: 0}
+--- !u!114 &961186904379565146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4779827100998448079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19e7584ff015c34dac2aec2bd191779, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemys: []
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 2097152
 --- !u!1 &8673516638903949235
 GameObject:
   m_ObjectHideFlags: 0
@@ -308,5 +327,5 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC2A4\uD0AC \uC774\uB984 \uC791\uC131, SkillAttack \uC624\uBE0C\uC81D\uD2B8\uC5D0\nPlayerAttack
-    \uC2A4\uD06C\uB9BD\uD2B8 \uB123\uAE30"
+  m_Text: "\uD5C8\uB9AC\uCF00\uC778\uD0A5!\n\uD0C0\uACA9\uB9C8\uB2E4 \uD50C\uB808\uC774\uC5B4
+    \uACF5\uACA9\uB825 * 1.2 \uC758 \uD53C\uD574\uB97C \uC90C"
