@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 // npc와의 대화 단계 열거형 예)인사, 선택지 고르기 등
 public enum InteractStep
@@ -35,6 +34,7 @@ public class InteractController : MonoBehaviour
                     PrintSentences();
                     break;
                 case InteractStep.End:
+                    PrintSentences();
                     break;
                 default:
                     break;
@@ -102,6 +102,9 @@ public class InteractController : MonoBehaviour
     public GameObject equipShopUI;
     public GameObject selectStageUI;
 
+    // 현재 눌린 NPC 메뉴 버튼을 담는 변수
+    GameObject npcMenu_Btn;
+
     // 상점 UI 활성화 시 같이 필요한 플레이어의 인벤토리
     public GameObject playerInventory;
 
@@ -124,7 +127,7 @@ public class InteractController : MonoBehaviour
     void DialogControll()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
-            NowInteracting = false;
+            InteractStep = InteractStep.End;
 
         if (Input.GetKeyDown(KeyCode.X))
         {
@@ -147,21 +150,24 @@ public class InteractController : MonoBehaviour
     void EndInteracting()
     {   
         if (activatePrinting)                   //만약 텍스트 출력 코루틴이 실행중이었다면 중단
-            StopCoroutine(sentencePrintLetter);     
+            StopCoroutine(sentencePrintLetter);
+
+        if (npcMenu_Btn != null)                 // NPC 메뉴 버튼이 눌린적 있을 떄만 실행
+            NPCMenuButtonActiveOrFalse(npcMenu_Btn);
+
+        NPCTypeMenuOnOff();
         ChoiceMenuOnOff();
         dialogWindow.enabled = false;
         activatePrinting = false;
         stopTalking = false;
-        NPCTypeMenuOnOff();
-        InteractStep = InteractStep.End;
+        gameUI.enabled = true;
         pS.UnitState = UnitState.Idle; 
     }
 
     // 대화 종료 버튼을 따로 눌렀을 시의 동작
     public void EndInteractingBtn()
     {
-        gameUI.enabled = true;
-        NowInteracting = false;
+        InteractStep = InteractStep.End;
     }
 
     /// <summary>
@@ -193,8 +199,9 @@ public class InteractController : MonoBehaviour
     /// </summary>
     private void PrintSentences()
     {
-        if (activatePrinting)                  
+        if (activatePrinting)                           // 문장이 출력중이면 중단한다.
             StopCoroutine(sentencePrintLetter);
+
         dialog_Text.text = string.Empty;
         sentences.Clear();
         ReadLineAndStore(InteractId, interactStep);
@@ -226,8 +233,15 @@ public class InteractController : MonoBehaviour
 
             dialog_Text.text += "\n";
         }
+
         activatePrinting = false;
         stopTalking = false;
+
+        if (interactStep == InteractStep.End)
+        {
+            yield return new WaitForSeconds(1f);
+            NowInteracting = false;
+        }
     }
 
     // PrintSentencesLetter 코루틴이 실행중이라면 stopTalking 를 true로 바꿔 출력 스킵
@@ -259,26 +273,39 @@ public class InteractController : MonoBehaviour
     // 각 NPC 역할에 따른 메뉴 선택 시의 동작
     public void NPCTypeMenuOnOff()
     {
-        if (dialogWindow.enabled)
+        if (NowInteracting)
             InteractStep = InteractStep.Action;
 
         switch (interactType)
         {
             case InteractType.Shop:
-                shopUI.SetActive(dialogWindow.enabled);
-                playerInventory.SetActive(dialogWindow.enabled);
+                shopUI.SetActive(NowInteracting);
+                playerInventory.SetActive(NowInteracting);
                 break;
             case InteractType.EquipmentShop:
-                equipShopUI.SetActive(dialogWindow.enabled);
-                playerInventory.SetActive(dialogWindow.enabled);
+                equipShopUI.SetActive(NowInteracting);
+                playerInventory.SetActive(NowInteracting);
                 break;
             case InteractType.GateKeeper:
-                selectStageUI.SetActive(dialogWindow.enabled);
+                selectStageUI.SetActive(NowInteracting);
                 break;
             default:
                 break;
         }
     }
+
+    public void NPCMenuButtonActiveOrFalse(GameObject button)
+    {
+        if (button.activeSelf)
+        {
+            npcMenu_Btn = button;
+            button.SetActive(false);
+            return;
+        }
+
+        button.SetActive(true);
+    }
+
     public void GoBattle(int sceneNumber)
     {
         GameManager.gm.MoveScene(sceneNumber);
