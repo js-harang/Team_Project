@@ -34,6 +34,7 @@ public class InteractController : MonoBehaviour
                     PrintSentences();
                     break;
                 case InteractStep.End:
+                    ChoiceMenuOff();
                     PrintSentences();
                     break;
                 default:
@@ -117,7 +118,7 @@ public class InteractController : MonoBehaviour
 
     private void Update()
     {
-        if (interactStep == InteractStep.End)
+        if (!NowInteracting)
             return;
 
         DialogControll();
@@ -268,6 +269,25 @@ public class InteractController : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    void ChoiceMenuOff()
+    {
+        switch (interactType)
+        {
+            case InteractType.Shop:
+                shopDialogChoiceUI.SetActive(false);
+                break;
+            case InteractType.EquipmentShop:
+                equipShopDialogChoiceUI.SetActive(false);
+                break;
+            case InteractType.GateKeeper:
+                gateKeeperDialogChoiceUI.SetActive(false);
+                break;
+            default:
+                break;
+        }
+
     }
 
     // 각 NPC 역할에 따른 메뉴 선택 시의 동작
