@@ -23,11 +23,8 @@ public class UIController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (!gameUI.enabled)                // InteractController에서 비활성화한 UI 캔버스를 확인후 동작
-            {
-                gameUI.enabled = true;
+            if (pState.UnitState == UnitState.Interact)
                 return;
-            }
 
             EscMenuOnOff();
         }
@@ -72,11 +69,9 @@ public class UIController : MonoBehaviour
         if (escMenuUI.activeSelf)
         {
             escMenuUI.SetActive(false);
-            pState.UnitState = UnitState.Idle;
             return;
         }
         escMenuUI.SetActive(true);
-        pState.UnitState = UnitState.Interact;
     }
 
     // 캐릭터 선택화면으로 이동
