@@ -16,8 +16,8 @@ public class DefualtAttack : PlayerAttack
         // 소모 마나
         aST.useMana = 0;
     }
-    public override void Attack(Transform atkPosition, int atkPower)
+    public override void Attack(Transform atkPosition, int atkPower, LayerMask enemyLayer)
     {
-        base.Attack(atkPosition, atkPower);
+        base.Attack(atkPosition, atkPower, enemyLayer);
     }
 }

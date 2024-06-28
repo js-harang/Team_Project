@@ -29,12 +29,11 @@ public abstract class PlayerAttack : MonoBehaviour
 
     [SerializeField]
     Collider[] enemys;
-    [SerializeField]
-    LayerMask enemyLayer;
+
 
     public abstract void InitSetting();
 
-    public virtual void Attack(Transform atkPosition, int atkPower)
+    public virtual void Attack(Transform atkPosition, int atkPower, LayerMask enemyLayer)
     {
 
         Vector3 position = atkPosition.transform.position;
@@ -48,8 +47,8 @@ public abstract class PlayerAttack : MonoBehaviour
                 Debug.Log("적 공격 데미지 :" + atkDamage);
 
                 // float 로 변환 필요
-                /*EnemyFSM enemyFsm = enemy.GetComponent<EnemyFSM>();
-                enemyFsm.HitEnemy(aST.atkPower);*/
+                EnemyFSM enemyFsm = enemy.GetComponent<EnemyFSM>();
+                enemyFsm.HitEnemy(aST.atkPower);
             }
         }
     }

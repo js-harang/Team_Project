@@ -1,44 +1,30 @@
-using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TitleController : MonoBehaviour
 {
-    [SerializeField] TMP_InputField id;
-    [SerializeField] TMP_InputField pw;
-    [SerializeField] TextMeshProUGUI idPlaceholder;
-    [SerializeField] TextMeshProUGUI pwPlaceholder;
-    [SerializeField] TextMeshProUGUI loginResultTxt;
-
-    // Preference 버튼 관련 변수
     [SerializeField, Space(10)]
-    GameObject preferencePopup;
-    bool isPreferencePopup = false;
-
-    private void Start()
-    {
-        idPlaceholder.DOFade(0.1f, 1f).SetLoops(-1, LoopType.Yoyo);
-        pwPlaceholder.DOFade(0.1f, 1f).SetLoops(-1, LoopType.Yoyo);
-    }
-
-    private void Update()
-    {
-        // 환경설정 탈출
-        if (Input.GetKeyDown(KeyCode.Escape) && isPreferencePopup)
-            ClickPreferencesBtn();
-    }
+    TMP_InputField id;
+    [SerializeField]
+    TMP_InputField pw;
+    [SerializeField]
+    TextMeshProUGUI loginResultTxt;
 
     /// <summary>
     /// 로그인
     /// </summary>
-    public void LoginCheck(int sceneNumber)
+    public void LoginCheck()
     {
         if (!CheckInput(id.text, pw.text))
             return;
 
         string pass = PlayerPrefs.GetString(id.text);
         if (pw.text == pass)
-            GameManager.gm.MoveScene(sceneNumber);
+        {
+            GameManager.gm.sceneNumber = 1;
+            SceneManager.LoadScene("99_LoadingScene");
+        }
         else
             loginResultTxt.text = "입력하신 아이디와 패스워드가 일치하지 않습니다.";
     }
@@ -66,14 +52,5 @@ public class TitleController : MonoBehaviour
         }
         else
             return true;
-    }
-
-    /// <summary>
-    /// 환경설정 버튼
-    /// </summary>
-    public void ClickPreferencesBtn()
-    {
-        isPreferencePopup = !isPreferencePopup;
-        preferencePopup.SetActive(isPreferencePopup);
     }
 }

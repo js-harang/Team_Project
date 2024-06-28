@@ -15,33 +15,34 @@ public class EnemyFSM : BattleStatus
         Damaged,
         Die,
     }
+    
     // 에너미 상태 변수
     EnemyState m_State;
 
     // 캐릭터 컨트롤러 컴포넌트
     CharacterController cc;
 
-    // BattleController 컴포넌트 변수
-    BattleController bC;
-
     // 플레이어 발견 범위
     public float findDistance = 8f;
+    
     // 공격 가능 범위
     public float attackDistance = 2f;
 
     // 플레이어 트랜스폼
-    Transform player;
+    public Transform player;
 
     // 이동 속도
     public float moveSpeed = 5f;
 
 
-/*    // 에너미 공격력
-    public int atkPower = 3;*/
+    /*    // 에너미 공격력
+        public int atkPower = 3;*/
+    
     // 누적 시간
     float currentTime = 0;
+    
     // 공격 딜레이 시간
-    readonly float attackDelay = 2f;
+    float attackDelay = 2f;
 
     // 초기 위치 저장용 변수
     Vector3 originPos;
@@ -50,8 +51,8 @@ public class EnemyFSM : BattleStatus
     // 이동 가능 범위
     public float moveDistance = 20f;
 
-/*    // 에너미의 체력
-    public float currentHp = 15;*/
+    /*    // 에너미의 체력
+        public float currentHp = 15;*/
 
     /*    // 에너미의 최대 체력
         int maxHp = 15;*/
@@ -67,19 +68,13 @@ public class EnemyFSM : BattleStatus
 
     private void Start()
     {
-        // 생성 시 플레이어의 위치를 가져옴
-        player = FindObjectOfType<PlayerMove>().transform;
-
-        // 배틀컨트롤러 참조
-        // bC = FindObjectOfType<BattleController>().GetComponent<BattleController>();
-
         // 최초의 에너미 상태를 대기
         m_State = EnemyState.Idle;
 
         // 캐릭터 컴트롤러 컴포넌트 받아오기
         cc = GetComponent<CharacterController>();
 
-        // 자신의 초기 위치 저장하기
+        // 자신의 초기 위치와 회전 값을 저장하기
         originPos = transform.position;
         originRot = transform.rotation;
 
@@ -119,20 +114,22 @@ public class EnemyFSM : BattleStatus
         hpSlider.value = (float)currentHp / maxHp;
     }
 
-    private void Idle()
+    void Idle()
     {
         // 만일, 플레이어와 거리가 액션 범위 이내라면 Move 상태로 전환
         if (Vector3.Distance(transform.position, player.position) < findDistance)
         {
+            Debug.Log("IdleToMove");
+
             m_State = EnemyState.Move;
             print("상태 전환: Idle -> Move");
 
-            /* // 이동 애니메이션으로 전환
-            anim.SetTrigger("IdleToMove"); */
+            // 이동 애니메이션으로 전환
+            anim.SetTrigger("IdleToMove");
         }
     }
 
-    private void Move()
+    void Move()
     {
         // 만일, 현재 위치가 초기 위치에서 이동 가능 범위를 넘어간다면
         if (Vector3.Distance(transform.position, originPos) > moveDistance)
@@ -149,26 +146,32 @@ public class EnemyFSM : BattleStatus
 
             // 내비게이션의 목적지를 플레이어의 위치로 설정
             enemyNav.destination = player.position;
+
+            /* // 이동 방향 설정
+             Vector3 dir = (player.position - transform.position).normalized;
+
+             // 플레이어를 향해 방향을 전환한다.
+             transform.forward = dir; */
         }
         // 그렇지 않다면, 현재 상태를 공격(Attack)으로 전환
         else
         {
             // 내비게이션 에이전트의 이동을 멈추고 경로를 초기화
-            /* Enemy.isStopped = true;
+            /*Enemy.isStopped = true;
             Enemy.ResetPath(); */
 
             m_State = EnemyState.Attack;
-            // print("상태 전환: Move -> Attack");
+            print("상태 전환: Move -> Attack");
 
             // 누적 시간을 공격 딜레이 시간만큼 미리 진행시켜 놓음
             currentTime = attackDelay;
 
             // 공격 대기 애니메이션 플레이
-            /* anim.SetTrigger("MoveToAttackDelay"); */
+            anim.SetTrigger("MoveToAttackDelay");
         }
     }
 
-    private void Attack()
+    void Attack()
     {
         // 만일, 플레이어가 공격 범위 이내에 있다면 플레이어를 공격
         if (Vector3.Distance(transform.position, player.position) < attackDistance)
@@ -178,13 +181,13 @@ public class EnemyFSM : BattleStatus
 
             if (currentTime > attackDelay)
             {
-                // player.GetComponent<PlayerMove>().DamageAction(attackPower);
-                // print("공격");
+                //player.GetComponent<PlayerMove>().DamageAction(attackPower);
+                //print("공격");
                 currentTime = 0;
 
-                AttackAction();
+                /* AttackAction(); */
                 // 공격 애니메이션 플레이
-                /* anim.SetTrigger("StartAttack"); */
+                anim.SetTrigger("StartAttack");
             }
         }
         // 그렇지 않다면, 현재상태를 이동으로 전환(재추격 실시)
@@ -195,7 +198,7 @@ public class EnemyFSM : BattleStatus
             currentTime = 0;
 
             // 이동 애니메이션 플레이
-            //anim.SetTrigger("AttackToMove");
+            anim.SetTrigger("AttackToMove");
         }
     }
 
@@ -206,7 +209,7 @@ public class EnemyFSM : BattleStatus
         pbc.Hurt(atkPower);
     }
 
-    private void Return()
+    void Return()
     {
         // 만일, 초기 위치에서 거리가 0.1f 이상이라면 초기 위치 쪽으로 이동
         if (Vector3.Distance(transform.position, originPos) > 0.1f)
@@ -225,7 +228,8 @@ public class EnemyFSM : BattleStatus
             enemyNav.ResetPath();
 
             // 위치 값과 회전 값을 초기 상태로 변환
-            transform.SetPositionAndRotation(originPos, originRot);
+            transform.position = originPos;
+            transform.rotation = originRot;
 
             // hp를 다시 회복
             currentHp = maxHp;
@@ -234,17 +238,16 @@ public class EnemyFSM : BattleStatus
             print("상태 전환 : Return -> Idle");
 
             // 대기 애니메이션으로 전환하는 트랜지션을 호출
-            //anim.SetTrigger("MoveToIdle");
+            anim.SetTrigger("MoveToIdle");
         }
     }
 
     //////////// 피격쪽 /////////////
-    private void Damaged()
+    void Damaged()
     {
         // 피격 상태를 처리하기 위한 코루틴 실행
         StartCoroutine(DamageProcess());
     }
-
     // 데미지 처리용 코루틴 함수
     IEnumerator DamageProcess()
     {
@@ -255,7 +258,6 @@ public class EnemyFSM : BattleStatus
         m_State = EnemyState.Move;
         print("상태 전환 : Damaged => Move");
     }
-
     // 데미지 실행 함수
     public void HitEnemy(float hitPower)
     {
@@ -263,7 +265,7 @@ public class EnemyFSM : BattleStatus
         // 만일, 이미 피격 상태이거나 사망 상태 또는 복귀 상태라면
         // 아무런 처리도 하지 않고 함수를 종료
         if (m_State == EnemyState.Die || m_State == EnemyState.Return
-            || m_State == EnemyState.Damaged) 
+            )
         {
             return;
         }
@@ -285,7 +287,6 @@ public class EnemyFSM : BattleStatus
             anim.SetTrigger("Damaged");
 
             Damaged();
-            currentHp -= hitPower;
         }
         // 그렇지 않다면 죽음 상태로 전환
         else
@@ -298,9 +299,8 @@ public class EnemyFSM : BattleStatus
             Die();
         }
     }
-
     // 죽음 상태 함수
-    private void Die()
+    void Die()
     {
         // 진행중인 피격 코루틴을 중지
         StopAllCoroutines();
@@ -308,12 +308,10 @@ public class EnemyFSM : BattleStatus
         // 죽음 상태를 처리하기 위한 코루틴을 실행
         StartCoroutine(DieProcess());
     }
-
     IEnumerator DieProcess()
     {
         // 캐릭터 컨트롤러 컴포넌트를 비활성화
         cc.enabled = false;
-        bC.EnemyCount--;
 
         // 2초 동안 기다린 후에 자기 자신을 제거
         yield return new WaitForSeconds(2f);

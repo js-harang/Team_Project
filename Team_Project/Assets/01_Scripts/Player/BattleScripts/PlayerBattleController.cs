@@ -43,6 +43,9 @@ public class PlayerBattleController : BattleStatus
     public Button skillSBtn;
     #endregion
 
+    [SerializeField]
+    LayerMask enemyLayer;
+
     // 플레이어 애니메이터
     Animator pAnim;
 
@@ -112,7 +115,7 @@ public class PlayerBattleController : BattleStatus
     #region 공격 판정(애니메이션에서 이벤트로 불러짐)
     public void AttackEnemy()
     {
-        pAttack.Attack(atkPos, atkPower);
+        pAttack.Attack(atkPos, atkPower, enemyLayer);
     }
     #endregion
 

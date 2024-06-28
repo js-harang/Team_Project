@@ -21,8 +21,8 @@ public class SkillAttack1 : PlayerAttack
         aST.useMana = 10;
     }
 
-    public override void Attack(Transform atkPosition, int atkPower)
+    public override void Attack(Transform atkPosition, int atkPower, LayerMask enemyLayer)
     {
-        base.Attack(atkPosition, atkPower);
+        base.Attack(atkPosition, atkPower, enemyLayer);
     }
 }

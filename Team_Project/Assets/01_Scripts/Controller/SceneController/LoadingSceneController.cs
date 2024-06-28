@@ -6,16 +6,13 @@ using UnityEngine.UI;
 
 public class LoadingSceneController : MonoBehaviour
 {
-    [SerializeField] Slider loadingBar;
-    [SerializeField] TextMeshProUGUI loadingTxt;
-
-    [SerializeField, Space(10)] Image background;
-    [SerializeField] Sprite[] backgroundImg;
+    [SerializeField, Space(10)]
+    Slider loadingBar;
+    [SerializeField]
+    TextMeshProUGUI loadingTxt;
 
     public void Start()
     {
-        background.sprite = backgroundImg[Random.Range(0, backgroundImg.Length)];
-
         StartCoroutine(LoadingProcessCoroutine(GameManager.gm.sceneNumber));
     }
 
@@ -35,8 +32,6 @@ public class LoadingSceneController : MonoBehaviour
 
             yield return null;
         }
-
-        yield return new WaitForSeconds(1f);
 
         loadingBar.value = 1f;
         loadingTxt.text = "100%";
