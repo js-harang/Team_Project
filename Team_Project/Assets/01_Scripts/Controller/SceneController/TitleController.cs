@@ -1,15 +1,42 @@
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
 public class TitleController : MonoBehaviour
 {
-    [SerializeField, Space(10)]
-    TMP_InputField id;
-    [SerializeField]
-    TMP_InputField pw;
-    [SerializeField]
-    TextMeshProUGUI loginResultTxt;
+    [SerializeField] TMP_InputField id;
+    [SerializeField] TMP_InputField pw;
+    [SerializeField] TextMeshProUGUI loginResultTxt;
+
+    [SerializeField, Space(10)] TextMeshProUGUI idPlaceholder;
+    [SerializeField] TextMeshProUGUI pwPlaceholder;
+
+    // Preference 버튼 관련 변수
+    [SerializeField, Space(10)] GameObject preferencePopup;
+    bool isPreferencePopup = false;
+
+    [SerializeField, Space(10)] GameObject exitPopup;
+    bool isExitPopup = false;
+
+    private void Start()
+    {
+        idPlaceholder.DOFade(0.1f, 1f).SetLoops(-1, LoopType.Yoyo);
+        pwPlaceholder.DOFade(0.1f, 1f).SetLoops(-1, LoopType.Yoyo);
+    }
+
+    private void Update()
+    {
+        // 환경설정 탈출
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (isPreferencePopup)
+                ClickPreferencesBtn();
+            else
+                ExitGamePopup();
+        }
+    }
 
     /// <summary>
     /// 로그인
@@ -52,5 +79,29 @@ public class TitleController : MonoBehaviour
         }
         else
             return true;
+    }
+
+    /// <summary>
+    /// 환경설정 버튼
+    /// </summary>
+    public void ClickPreferencesBtn()
+    {
+        isPreferencePopup = !isPreferencePopup;
+        preferencePopup.SetActive(isPreferencePopup);
+    }
+
+    public void ExitGamePopup()
+    {
+        isExitPopup = !isExitPopup;
+        exitPopup.SetActive(isExitPopup);
+    }
+
+    public void ExitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
 }

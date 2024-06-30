@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: DLG_BUTTON_TAB_9
+      name: DLG_BUTTON_TAB_0
       rect:
         serializedVersion: 2
         x: 1
@@ -125,7 +125,7 @@ TextureImporter:
         width: 73
         height: 28
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -138,7 +138,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DLG_BUTTON_TAB_10
+      name: DLG_BUTTON_TAB_1
       rect:
         serializedVersion: 2
         x: 75
@@ -146,7 +146,7 @@ TextureImporter:
         width: 73
         height: 28
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -159,7 +159,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DLG_BUTTON_TAB_11
+      name: DLG_BUTTON_TAB_2
       rect:
         serializedVersion: 2
         x: 149
@@ -167,7 +167,7 @@ TextureImporter:
         width: 73
         height: 28
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -190,10 +190,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      DLG_BUTTON_TAB_0: 707463421
-      DLG_BUTTON_TAB_1: 1829581261
-      DLG_BUTTON_TAB_10: 225638842
-      DLG_BUTTON_TAB_11: 1907976903
+      DLG_BUTTON_TAB_0: 742256021
+      DLG_BUTTON_TAB_1: 225638842
       DLG_BUTTON_TAB_12: 319743733
       DLG_BUTTON_TAB_13: 1300455209
       DLG_BUTTON_TAB_14: -2024359196
@@ -202,7 +200,7 @@ TextureImporter:
       DLG_BUTTON_TAB_17: 467980981
       DLG_BUTTON_TAB_18: -1939443157
       DLG_BUTTON_TAB_19: -489553088
-      DLG_BUTTON_TAB_2: 2046781758
+      DLG_BUTTON_TAB_2: 1907976903
       DLG_BUTTON_TAB_20: -137211386
       DLG_BUTTON_TAB_21: 1995023395
       DLG_BUTTON_TAB_22: -815460406
@@ -216,7 +214,6 @@ TextureImporter:
       DLG_BUTTON_TAB_6: -28197551
       DLG_BUTTON_TAB_7: -243358465
       DLG_BUTTON_TAB_8: -1453034757
-      DLG_BUTTON_TAB_9: 742256021
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

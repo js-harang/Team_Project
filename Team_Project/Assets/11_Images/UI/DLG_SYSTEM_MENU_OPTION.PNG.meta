@@ -180,7 +180,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DLG_SYSTEM_MENU_OPTION_4
+      name: DLG_SYSTEM_MENU_OPTION_3
       rect:
         serializedVersion: 2
         x: 3
@@ -188,7 +188,7 @@ TextureImporter:
         width: 302
         height: 10
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -214,8 +214,7 @@ TextureImporter:
       DLG_SYSTEM_MENU_OPTION_0: -1041379347
       DLG_SYSTEM_MENU_OPTION_1: -1868781203
       DLG_SYSTEM_MENU_OPTION_2: -650922728
-      DLG_SYSTEM_MENU_OPTION_3: -1655805651
-      DLG_SYSTEM_MENU_OPTION_4: 827014531
+      DLG_SYSTEM_MENU_OPTION_3: 827014531
       DLG_SYSTEM_MENU_OPTION_5: 791090189
   spritePackingTag: 
   pSDRemoveMatte: 0

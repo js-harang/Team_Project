@@ -19,7 +19,11 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector] public int sceneNumber;
 
+    // 환경설정 선택되어 있는 옵션
     [HideInInspector] public GameObject selectObject;
+
+    // 전체화면 / 창모드 선택
+    [HideInInspector] public bool isFullscreen = true;
 
     /// <summary>
     /// 0 = TitleScene

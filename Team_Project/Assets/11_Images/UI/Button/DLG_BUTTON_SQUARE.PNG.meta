@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: DLG_BUTTON_SQUARE_11
+      name: DLG_BUTTON_SQUARE_0
       rect:
         serializedVersion: 2
         x: 1
@@ -138,7 +138,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DLG_BUTTON_SQUARE_12
+      name: DLG_BUTTON_SQUARE_1
       rect:
         serializedVersion: 2
         x: 36
@@ -159,7 +159,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DLG_BUTTON_SQUARE_0
+      name: DLG_BUTTON_SQUARE_2
       rect:
         serializedVersion: 2
         x: 33
@@ -167,7 +167,7 @@ TextureImporter:
         width: 26
         height: 21
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -180,7 +180,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DLG_BUTTON_SQUARE_1
+      name: DLG_BUTTON_SQUARE_3
       rect:
         serializedVersion: 2
         x: 61
@@ -188,7 +188,7 @@ TextureImporter:
         width: 26
         height: 21
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -201,7 +201,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DLG_BUTTON_SQUARE_2
+      name: DLG_BUTTON_SQUARE_4
       rect:
         serializedVersion: 2
         x: 89
@@ -209,7 +209,7 @@ TextureImporter:
         width: 26
         height: 21
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -232,11 +232,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      DLG_BUTTON_SQUARE_0: -595850255
-      DLG_BUTTON_SQUARE_1: -310528100
+      DLG_BUTTON_SQUARE_0: 273449579
+      DLG_BUTTON_SQUARE_1: -828705469
       DLG_BUTTON_SQUARE_10: 1335351457
-      DLG_BUTTON_SQUARE_11: 273449579
-      DLG_BUTTON_SQUARE_12: -828705469
       DLG_BUTTON_SQUARE_13: -748539516
       DLG_BUTTON_SQUARE_14: 863577377
       DLG_BUTTON_SQUARE_15: 1405202085
@@ -244,7 +242,7 @@ TextureImporter:
       DLG_BUTTON_SQUARE_17: -1247540350
       DLG_BUTTON_SQUARE_18: 1770569973
       DLG_BUTTON_SQUARE_19: 2005888161
-      DLG_BUTTON_SQUARE_2: 704439099
+      DLG_BUTTON_SQUARE_2: -595850255
       DLG_BUTTON_SQUARE_20: -1577709175
       DLG_BUTTON_SQUARE_21: 1815250007
       DLG_BUTTON_SQUARE_22: 1093519752
@@ -255,7 +253,7 @@ TextureImporter:
       DLG_BUTTON_SQUARE_27: 1541798964
       DLG_BUTTON_SQUARE_28: 1191541724
       DLG_BUTTON_SQUARE_29: 482525625
-      DLG_BUTTON_SQUARE_3: 720838666
+      DLG_BUTTON_SQUARE_3: -310528100
       DLG_BUTTON_SQUARE_30: 1835589786
       DLG_BUTTON_SQUARE_31: 965820560
       DLG_BUTTON_SQUARE_32: -977409573
@@ -266,7 +264,7 @@ TextureImporter:
       DLG_BUTTON_SQUARE_37: 1263318614
       DLG_BUTTON_SQUARE_38: 1629195770
       DLG_BUTTON_SQUARE_39: -1281006057
-      DLG_BUTTON_SQUARE_4: -1200700938
+      DLG_BUTTON_SQUARE_4: 704439099
       DLG_BUTTON_SQUARE_40: 635021077
       DLG_BUTTON_SQUARE_41: -2114220499
       DLG_BUTTON_SQUARE_42: -1440043939

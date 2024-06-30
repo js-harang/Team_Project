@@ -125,7 +125,7 @@ TextureImporter:
         width: 135
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -138,7 +138,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DLG_BUTTON_BASIC_1_2
+      name: DLG_BUTTON_BASIC_1_1
       rect:
         serializedVersion: 2
         x: 1
@@ -146,7 +146,7 @@ TextureImporter:
         width: 135
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -159,7 +159,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DLG_BUTTON_BASIC_1_13
+      name: DLG_BUTTON_BASIC_1_2
       rect:
         serializedVersion: 2
         x: 1
@@ -167,7 +167,7 @@ TextureImporter:
         width: 135
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -175,6 +175,69 @@ TextureImporter:
       bones: []
       spriteID: 733cd0588f52d3b4b965705f86726368
       internalID: -1826969773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DLG_BUTTON_BASIC_1_3
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 230
+        width: 118
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d62f574d926700478e8297f186c9c5c
+      internalID: -824138989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DLG_BUTTON_BASIC_1_4
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 203
+        width: 118
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7411ddfeecc004341a8c0ba44165c4ef
+      internalID: 2124512295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DLG_BUTTON_BASIC_1_5
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 68
+        width: 118
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c60b9e599ce490c4cb984b5ae7b9bf76
+      internalID: 86278999
       vertices: []
       indices: 
       edges: []
@@ -191,19 +254,18 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       DLG_BUTTON_BASIC_1_0: 1182495001
-      DLG_BUTTON_BASIC_1_1: -824138989
+      DLG_BUTTON_BASIC_1_1: -40352298
       DLG_BUTTON_BASIC_1_10: 1639672923
       DLG_BUTTON_BASIC_1_11: -195386159
       DLG_BUTTON_BASIC_1_12: -2052900986
-      DLG_BUTTON_BASIC_1_13: -1826969773
       DLG_BUTTON_BASIC_1_14: -849274748
       DLG_BUTTON_BASIC_1_15: -1815294309
       DLG_BUTTON_BASIC_1_16: -926443650
       DLG_BUTTON_BASIC_1_17: 1980168022
-      DLG_BUTTON_BASIC_1_2: -40352298
-      DLG_BUTTON_BASIC_1_3: 2124512295
-      DLG_BUTTON_BASIC_1_4: -1016364478
-      DLG_BUTTON_BASIC_1_5: 1222862680
+      DLG_BUTTON_BASIC_1_2: -1826969773
+      DLG_BUTTON_BASIC_1_3: -824138989
+      DLG_BUTTON_BASIC_1_4: 2124512295
+      DLG_BUTTON_BASIC_1_5: 86278999
       DLG_BUTTON_BASIC_1_6: -1520995976
       DLG_BUTTON_BASIC_1_7: 709678590
       DLG_BUTTON_BASIC_1_8: -1506526950
