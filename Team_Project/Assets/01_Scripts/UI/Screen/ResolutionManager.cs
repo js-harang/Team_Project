@@ -7,8 +7,12 @@ public class ResolutionManager : MonoBehaviour
     public List<Resolution> resolutions;
     public TMP_Dropdown resolutionDropdown;
 
-    void Start()
+    List<string> options;
+
+    private void Start()
     {
+        Debug.Log(name);
+
         resolutions = new List<Resolution>
         {
             new() { width = 1920, height = 1080 },
@@ -22,15 +26,17 @@ public class ResolutionManager : MonoBehaviour
 
         // 해상도 옵션을 Dropdown에 추가하기
         resolutionDropdown.ClearOptions();
-        var options = new List<string>();
+        options = new List<string>();
         foreach (var resolution in resolutions)
             options.Add(resolution.width + "x" + resolution.height);
         resolutionDropdown.AddOptions(options);
 
+        if (!PlayerPrefs.HasKey("ResolutionIndex"))
+            PlayerPrefs.SetInt("ResolutionIndex", 0);
+
         // 현재 해상도 선택하기
-        var currentResolution = Screen.currentResolution;
-        var currentResolutionIndex = resolutions.FindIndex(r => r.Equals(currentResolution));
-        resolutionDropdown.value = currentResolutionIndex;
+        var resolutionIndex = PlayerPrefs.GetInt("ResolutionIndex");
+        resolutionDropdown.value = resolutionIndex;
     }
 
     /// <summary>
@@ -39,6 +45,22 @@ public class ResolutionManager : MonoBehaviour
     public void SetResolution(int index)
     {
         Resolution resolution = resolutions[index];
-        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+
+        bool fullScreen;
+        
+        if(PlayerPrefs.GetInt("IsFullScreen") == 1)
+            fullScreen = true;
+        else
+            fullScreen = false;
+            
+
+        Screen.SetResolution(resolution.width, resolution.height, fullScreen);
+
+        SaveResolutionSettings();
+    }
+
+    private void SaveResolutionSettings()
+    {
+        PlayerPrefs.SetInt("ResolutionIndex", resolutionDropdown.value);
     }
 }
