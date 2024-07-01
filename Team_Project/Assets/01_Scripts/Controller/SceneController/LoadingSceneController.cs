@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,9 +12,14 @@ public class LoadingSceneController : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI loadingTxt;
 
+    [SerializeField, Space(10)] Image background;
+    [SerializeField] List<Sprite> backgroundImg;
+
     public void Start()
     {
         StartCoroutine(LoadingProcessCoroutine(GameManager.gm.sceneNumber));
+
+        background.sprite = backgroundImg[Random.Range(0, backgroundImg.Count)];
     }
 
     // 비동기화 씬 로드

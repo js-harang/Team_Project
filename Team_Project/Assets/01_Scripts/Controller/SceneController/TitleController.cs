@@ -2,7 +2,6 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Video;
 
 public class TitleController : MonoBehaviour
 {
@@ -36,6 +35,8 @@ public class TitleController : MonoBehaviour
             else
                 ExitGamePopup();
         }
+
+        Debug.Log(PlayerPrefs.GetInt("IsFullScreen"));
     }
 
     /// <summary>

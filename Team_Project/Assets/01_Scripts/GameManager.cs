@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -46,10 +45,10 @@ public class GameManager : MonoBehaviour
             switch (value)
             {
                 case 0:
-                    boolIsFullScreen = !boolIsFullScreen;
+                    boolIsFullScreen = false;
                     break;
                 case 1:
-                    boolIsFullScreen = !boolIsFullScreen;
+                    boolIsFullScreen = true;
                     break;
             }
         }

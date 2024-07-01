@@ -32,7 +32,7 @@ public class ResolutionManager : MonoBehaviour
         resolutionDropdown.AddOptions(options);
 
         if (!PlayerPrefs.HasKey("ResolutionIndex"))
-            PlayerPrefs.SetInt("ResolutionIndex", 0);
+            PlayerPrefs.SetInt("ResolutionIndex", 1);
 
         // 현재 해상도 선택하기
         var resolutionIndex = PlayerPrefs.GetInt("ResolutionIndex");
@@ -52,7 +52,6 @@ public class ResolutionManager : MonoBehaviour
             fullScreen = true;
         else
             fullScreen = false;
-            
 
         Screen.SetResolution(resolution.width, resolution.height, fullScreen);
 
