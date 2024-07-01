@@ -4472,6 +4472,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneNumber: 0
   selectObject: {fileID: 0}
+  isFullscreen: 0
 --- !u!114 &781991973292374248
 MonoBehaviour:
   m_ObjectHideFlags: 0

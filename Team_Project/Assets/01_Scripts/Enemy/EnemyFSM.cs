@@ -34,10 +34,9 @@ public class EnemyFSM : BattleStatus
     // 이동 속도
     public float moveSpeed = 5f;
 
-
     /*    // 에너미 공격력
         public int atkPower = 3;*/
-    
+
     // 누적 시간
     float currentTime = 0;
     

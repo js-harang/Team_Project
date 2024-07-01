@@ -320,14 +320,14 @@ public class InteractController : MonoBehaviour
 
     public void NPCMenuButtonActiveOrFalse(GameObject button)
     {
-        if (button.activeSelf)
+        if (button.activeSelf)              // NPC 메뉴 버튼이 눌렸다면 버튼을 비활성화하고 변수에 저장
         {
             button.SetActive(false);
             npcMenu_Btn = button;
             return;
         }
 
-        button.SetActive(true);
+        button.SetActive(true);             // 위의 이유로 비활성화 상태라면 활성화 하고 변수 초기화
         npcMenu_Btn = null;
     }
 

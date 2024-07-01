@@ -8,7 +8,7 @@ public enum BattleState
     Start,
     Running,
     NowBattle,
-    BossRound,
+    BossFight,
     Clear,
     Defeat,
     BattleEnd,
@@ -40,7 +40,7 @@ public class BattleController : MonoBehaviour
                 case BattleState.NowBattle:
                     StartCoroutine(BlockWallOnOff(waveNum));
                     break;
-                case BattleState.BossRound:
+                case BattleState.BossFight:
                     break;
                 case BattleState.Clear:
                     StartCoroutine(ClearProcess());
@@ -83,6 +83,20 @@ public class BattleController : MonoBehaviour
                 BattleState = BattleState.Running;
                 waveNum++;
             }
+        }
+    }
+
+    int bossCount;
+    public int BossCount
+    {
+        get
+        {
+            return bossCount;
+        }
+        set
+        {
+            bossCount = value;
+
         }
     }
 
