@@ -128,7 +128,10 @@ public class InteractController : MonoBehaviour
     void DialogControll()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(InteractStep != InteractStep.End)
             InteractStep = InteractStep.End;
+        }
 
         if (Input.GetKeyDown(KeyCode.X))
         {
@@ -153,15 +156,16 @@ public class InteractController : MonoBehaviour
         if (activatePrinting)                   //만약 텍스트 출력 코루틴이 실행중이었다면 중단
             StopCoroutine(sentencePrintLetter);
 
+        stopTalking = false;
+        activatePrinting = false;
+
         if (npcMenu_Btn != null)                 // NPC 메뉴 버튼이 눌린적 있을 떄만 실행
             NPCMenuButtonActiveOrFalse(npcMenu_Btn);
 
+        dialogWindow.enabled = false;
+        gameUI.enabled = true;
         NPCTypeMenuOnOff();
         ChoiceMenuOnOff();
-        dialogWindow.enabled = false;
-        activatePrinting = false;
-        stopTalking = false;
-        gameUI.enabled = true;
         pS.UnitState = UnitState.Idle; 
     }
 
@@ -318,12 +322,13 @@ public class InteractController : MonoBehaviour
     {
         if (button.activeSelf)
         {
-            npcMenu_Btn = button;
             button.SetActive(false);
+            npcMenu_Btn = button;
             return;
         }
 
         button.SetActive(true);
+        npcMenu_Btn = null;
     }
 
     public void GoBattle(int sceneNumber)
