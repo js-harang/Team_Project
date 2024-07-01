@@ -23,7 +23,6 @@ public class WaveTrigger : MonoBehaviour
         for (int i = 0; i < enemys.Length; i++)
         {
             enemys[i].SetActive(true);
-            bC.EnemyCount++;
             yield return new WaitForSeconds(0.5f);
         }
     }

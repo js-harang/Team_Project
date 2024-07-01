@@ -87,6 +87,7 @@ public class EnemyFSM : BattleStatus
         enemyNav = GetComponent<NavMeshAgent>();
 
         bC = FindObjectOfType<BattleController>().GetComponent<BattleController>();
+        bC.EnemyCount++;
     }
 
     private void Update()
@@ -321,6 +322,6 @@ public class EnemyFSM : BattleStatus
         // 2초 동안 기다린 후에 자기 자신을 제거
         yield return new WaitForSeconds(2f);
         print("소멸!");
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }
