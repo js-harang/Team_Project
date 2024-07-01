@@ -10,8 +10,8 @@ public class LobbyController : MonoBehaviour
     GameObject lobbyCanvas;
     bool isLooby = true;
     // Camera 위치 변수
-    Vector3 originPos = new Vector3(0, 0, -10f);
-    Vector3 createPos = new Vector3(-100f, 0, -10f);
+    Vector3 originPos = new(0, 0, -10f);
+    Vector3 createPos = new(-100f, 0, -10f);
 
     // Preference 버튼 관련 변수
     [SerializeField, Space(10)]
