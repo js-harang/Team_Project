@@ -1,19 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
     // 키보드 입력시 동작할 UI들
-    [SerializeField]
-    GameObject inventoryUI;
-    [SerializeField]
-    GameObject statusUI;
-    [SerializeField]
-    GameObject escMenuUI;
-    [SerializeField]
-    Canvas gameUI;
+    [SerializeField] GameObject inventoryUI;
+    [SerializeField] GameObject statusUI;
+    [SerializeField] GameObject escMenuUI;
+    [SerializeField] Canvas gameUI;
 
     [SerializeField]
     GameObject gameOverUI;
@@ -29,13 +23,10 @@ public class UIController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (!gameUI.enabled)                // InteractController에서 비활성환 UI 캔버스를 확인후 동작
-            {
-                gameUI.enabled = true;
+            if (pState.UnitState == UnitState.Interact)
                 return;
-            }
 
-            EscButtonOnOff();
+            EscMenuOnOff();
         }
 
         switch (Input.inputString)
@@ -73,16 +64,14 @@ public class UIController : MonoBehaviour
     }
 
     // ESC 메뉴 UI 활성 / 비활성화
-    public void EscButtonOnOff()
+    public void EscMenuOnOff()
     {
         if (escMenuUI.activeSelf)
         {
             escMenuUI.SetActive(false);
-            pState.UnitState = UnitState.Idle;
             return;
         }
         escMenuUI.SetActive(true);
-        pState.UnitState = UnitState.Interact;
     }
 
     // 캐릭터 선택화면으로 이동
