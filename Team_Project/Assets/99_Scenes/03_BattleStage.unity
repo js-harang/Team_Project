@@ -55644,6 +55644,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 198909067, guid: 9dfdb7577e001b64abc1c2f4e3069382, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 198909067, guid: 9dfdb7577e001b64abc1c2f4e3069382, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4887954356906493138, guid: 9dfdb7577e001b64abc1c2f4e3069382, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -55723,6 +55731,10 @@ PrefabInstance:
     - target: {fileID: 4887954356906493140, guid: 9dfdb7577e001b64abc1c2f4e3069382, type: 3}
       propertyPath: m_Name
       value: BattleController
+      objectReference: {fileID: 0}
+    - target: {fileID: 5161959374875752825, guid: 9dfdb7577e001b64abc1c2f4e3069382, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9dfdb7577e001b64abc1c2f4e3069382, type: 3}

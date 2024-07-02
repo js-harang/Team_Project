@@ -53856,6 +53856,7 @@ GameObject:
   - component: {fileID: 1190208299}
   - component: {fileID: 1190208298}
   - component: {fileID: 1190208302}
+  - component: {fileID: 1190208303}
   m_Layer: 0
   m_Name: FirstBoss
   m_TagString: Untagged
@@ -53892,13 +53893,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bCon: {fileID: 0}
   bossNav: {fileID: 0}
+  bossAnim: {fileID: 0}
+  bossStateUI: {fileID: 4887954357369586233}
+  bossName_text: {fileID: 0}
+  bossHpBar: {fileID: 103000443}
+  playerPosition: {x: 0, y: 0, z: 0}
   bossName: "\uB354\uBCF4\uC2A4"
   currentHp: 15
   maxHp: 15
   atkPower: 3
-  bossStateUI: {fileID: 4887954357369586233}
-  bossNameViewer: {fileID: 4887954357369586232}
-  bossHpBar: {fileID: 103000443}
   appearAnimTime: 0
 --- !u!136 &1190208299
 CapsuleCollider:
@@ -53986,6 +53989,22 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!54 &1190208303
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1190208296}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1263236862 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4364149039295171776, guid: f1e263f9adecf2e40a14dc4fe8231b7a, type: 3}
@@ -55897,17 +55916,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9dfdb7577e001b64abc1c2f4e3069382, type: 3}
---- !u!114 &4887954357369586232 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1149388927797963463, guid: 9dfdb7577e001b64abc1c2f4e3069382, type: 3}
-  m_PrefabInstance: {fileID: 4887954357369586231}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4887954357369586233 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5161959374875752825, guid: 9dfdb7577e001b64abc1c2f4e3069382, type: 3}
