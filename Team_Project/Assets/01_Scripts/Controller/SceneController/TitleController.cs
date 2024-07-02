@@ -100,10 +100,9 @@ public class TitleController : MonoBehaviour
     {
         rm.resolutionDropdown.value = 0;
         rm.SetResolution(0);
-
         fullScreenToggle.isOn = true;
 
-        ac.masterSlider.value = 1;
+        ac.masterSlider.value = 0.5f;
         ac.bgmSlider.value = 1;
         ac.sfxSlider.value = 1;
         ac.masterToggle.isOn = false;
