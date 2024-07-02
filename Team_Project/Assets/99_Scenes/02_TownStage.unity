@@ -575,11 +575,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1000272098 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 298446442, guid: 8775acec7efed374898815f3be4b85c0, type: 3}
-  m_PrefabInstance: {fileID: 1359416329}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1231311963
 GameObject:
   m_ObjectHideFlags: 0
@@ -991,22 +986,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 298446444, guid: 8775acec7efed374898815f3be4b85c0, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 1000272098}
-    - target: {fileID: 417314584, guid: 8775acec7efed374898815f3be4b85c0, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 1945049833}
-    - target: {fileID: 1960957402, guid: 8775acec7efed374898815f3be4b85c0, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 1660161497}
-    - target: {fileID: 4647744316651363859, guid: 8775acec7efed374898815f3be4b85c0, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4647744317304588226, guid: 8775acec7efed374898815f3be4b85c0, type: 3}
       propertyPath: m_Name
       value: InteractController
@@ -1244,11 +1223,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &1660161497 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1960957400, guid: 8775acec7efed374898815f3be4b85c0, type: 3}
-  m_PrefabInstance: {fileID: 1359416329}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1769948831
 GameObject:
   m_ObjectHideFlags: 0
@@ -1285,11 +1259,6 @@ RectTransform:
   m_AnchoredPosition: {x: 75, y: -75}
   m_SizeDelta: {x: 110, y: 110}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1945049833 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 417314582, guid: 8775acec7efed374898815f3be4b85c0, type: 3}
-  m_PrefabInstance: {fileID: 1359416329}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2023321544 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8006254576129283584, guid: f0692187047fd27458b1a111913ef181, type: 3}
