@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 // 버튼에 넣어지는 스크립트
 public class DropSkill : MonoBehaviour, IPointerEnterHandler, IDropHandler, IPointerExitHandler
 {
-    // SkillData 오브젝트 넣기
+    // 외부에서 SkillData 오브젝트 가 넣어짐
     public SkillData skillData;
 
     [SerializeField] private GameObject childObj;
