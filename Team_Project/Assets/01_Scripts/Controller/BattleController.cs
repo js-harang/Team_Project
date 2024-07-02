@@ -8,7 +8,7 @@ public enum BattleState
     Start,
     Running,
     NowBattle,
-    BossFight,
+    BossAppear,
     Clear,
     Defeat,
     BattleEnd,
@@ -35,12 +35,12 @@ public class BattleController : MonoBehaviour
                 case BattleState.Start:
                     StartCoroutine(StageStart());
                     break;
-                case BattleState.Running:
-                    break;
+                /*case BattleState.Running:
+                    break;*/
                 case BattleState.NowBattle:
                     StartCoroutine(BlockWallOnOff(waveNum));
                     break;
-                case BattleState.BossFight:
+                case BattleState.BossAppear:
                     break;
                 case BattleState.Clear:
                     StartCoroutine(ClearProcess());
@@ -60,9 +60,6 @@ public class BattleController : MonoBehaviour
     PlayerState pS;
     [SerializeField] GameObject hyperMoveZone;
     [SerializeField] GameObject[] blockWall;
-
-    // 현재 스테이지의 전체 웨이브의 수
-    [SerializeField] int totalWaveCount;
 
     // 현재 진행되는 전투에 스폰된 에너미의 수
     [SerializeField]
@@ -100,7 +97,7 @@ public class BattleController : MonoBehaviour
         }
     }
 
-    // 현재 진행중인 배틀이 몇번째인지
+    // 현재 클리어한 웨이브의 수
     int waveNum;
 
     // 플레이어가 조작을 멈춘 시간 변수
