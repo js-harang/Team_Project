@@ -65,7 +65,7 @@ public class EnemyFSM : BattleStatus
     // 내비게이션 에이전트 변수
     NavMeshAgent enemyNav;
 
-    BattleController bC;
+    BattleController bCon;
 
     private void Start()
     {
@@ -85,8 +85,9 @@ public class EnemyFSM : BattleStatus
         // 내비게이션 에이전트 컴포넌트 받아오기
         enemyNav = GetComponent<NavMeshAgent>();
 
-        bC = FindObjectOfType<BattleController>().GetComponent<BattleController>();
-        bC.EnemyCount++;
+        // 등장하면서 배틀 컨트롤러의 현재 에너미 카운터를 하나 올린다. 
+        bCon = FindObjectOfType<BattleController>().GetComponent<BattleController>();
+        bCon.EnemyCount++;
     }
 
     private void Update()
@@ -316,7 +317,7 @@ public class EnemyFSM : BattleStatus
     {
         // 캐릭터 컨트롤러 컴포넌트를 비활성화
         cc.enabled = false;
-        bC.EnemyCount--;
+        bCon.EnemyCount--;
 
         // 2초 동안 기다린 후에 자기 자신을 제거
         yield return new WaitForSeconds(2f);
