@@ -71,10 +71,10 @@ public class InteractController : MonoBehaviour
     PlayerState pS;
 
     // UI 캔버스 변수
-    public Canvas gameUI;
+    public GameObject gameUI;
 
     // 대화창 캔버스 변수
-    public Canvas dialogWindow;
+    public GameObject dialogWindow;
 
     // 대화창 텍스트 변수들
     public TMP_Text interactName_Text;
@@ -144,8 +144,8 @@ public class InteractController : MonoBehaviour
     /// </summary>
     private void StartInteracting()
     {
-        gameUI.enabled = false;
-        dialogWindow.enabled = true;
+        gameUI.SetActive(false);
+        dialogWindow.SetActive(true);
         interactName_Text.text = interactName;
         InteractStep = InteractStep.Meeting;
     }
@@ -162,8 +162,8 @@ public class InteractController : MonoBehaviour
         if (npcMenu_Btn != null)                 // NPC 메뉴 버튼이 눌린적 있을 떄만 실행
             NPCMenuButtonActiveOrFalse(npcMenu_Btn);
 
-        dialogWindow.enabled = false;
-        gameUI.enabled = true;
+        dialogWindow.SetActive(false);
+        gameUI.SetActive(true);
         NPCTypeMenuOnOff();
         ChoiceMenuOnOff();
         pS.UnitState = UnitState.Idle; 
