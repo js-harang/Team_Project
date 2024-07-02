@@ -2,6 +2,7 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class TitleController : MonoBehaviour
 {
@@ -19,8 +20,14 @@ public class TitleController : MonoBehaviour
     [SerializeField, Space(10)] GameObject exitPopup;
     bool isExitPopup = false;
 
+    [SerializeField, Space(10)] ResolutionManager rm;
+    [SerializeField] Toggle fullScreenToggle;
+    AudioController ac;
+
     private void Start()
     {
+        ac = GetComponent<AudioController>();
+
         idPlaceholder.DOFade(0.1f, 1f).SetLoops(-1, LoopType.Yoyo);
         pwPlaceholder.DOFade(0.1f, 1f).SetLoops(-1, LoopType.Yoyo);
     }
@@ -35,8 +42,6 @@ public class TitleController : MonoBehaviour
             else
                 ExitGamePopup();
         }
-
-        Debug.Log(PlayerPrefs.GetInt("IsFullScreen"));
     }
 
     /// <summary>
@@ -89,6 +94,31 @@ public class TitleController : MonoBehaviour
     {
         isPreferencePopup = !isPreferencePopup;
         preferencePopup.SetActive(isPreferencePopup);
+    }
+
+    public void BasicSettingBtn()
+    {
+        rm.resolutionDropdown.value = 0;
+        rm.SetResolution(0);
+
+        fullScreenToggle.isOn = true;
+
+        ac.masterSlider.value = 1;
+        ac.bgmSlider.value = 1;
+        ac.sfxSlider.value = 1;
+        ac.masterToggle.isOn = false;
+        ac.bgmToggle.isOn = false;
+        ac.sfxToggle.isOn = false;
+    }
+
+    public void SaveSettingBtn()
+    {
+
+    }
+
+    public void CancleBtn()
+    {
+
     }
 
     public void ExitGamePopup()

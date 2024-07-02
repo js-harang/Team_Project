@@ -6,13 +6,13 @@ public class AudioController : MonoBehaviour
 {
     [SerializeField] AudioMixer audioMixer;
 
-    [SerializeField, Space(10)] Slider masterSlider;
-    [SerializeField] Slider bgmSlider;
-    [SerializeField] Slider sfxSlider;
+    [SerializeField, Space(10)] public Slider masterSlider;
+    [SerializeField] public Slider bgmSlider;
+    [SerializeField] public Slider sfxSlider;
 
-    [SerializeField, Space(10)] Toggle masterToggle;
-    [SerializeField] Toggle bgmToggle;
-    [SerializeField] Toggle sfxToggle;
+    [SerializeField, Space(10)] public Toggle masterToggle;
+    [SerializeField] public Toggle bgmToggle;
+    [SerializeField] public Toggle sfxToggle;
 
     private void OnEnable()
     {
@@ -68,7 +68,7 @@ public class AudioController : MonoBehaviour
 
     }
 
-    private void SetMasterVolume(float volume)
+    public void SetMasterVolume(float volume)
     {
         PlayerPrefs.SetFloat("Master", volume);
 
@@ -81,7 +81,7 @@ public class AudioController : MonoBehaviour
         audioMixer.SetFloat("Master", Mathf.Log10(volume) * 20);
     }
 
-    private void SetBGMVolume(float volume)
+    public void SetBGMVolume(float volume)
     {
         PlayerPrefs.SetFloat("BGM", volume);
 
@@ -94,7 +94,7 @@ public class AudioController : MonoBehaviour
         audioMixer.SetFloat("BGM", Mathf.Log10(volume) * 20);
     }
 
-    private void SetSFXVolume(float volume)
+    public void SetSFXVolume(float volume)
     {
         PlayerPrefs.SetFloat("SFX", volume);
 
