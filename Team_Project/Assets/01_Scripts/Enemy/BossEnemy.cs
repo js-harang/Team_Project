@@ -10,6 +10,7 @@ public enum BossState
     Idle,
     Move,
     Attack,
+    Damaged,
     Die,
 }
 
@@ -35,6 +36,8 @@ public abstract class BossEnemy : MonoBehaviour
                 case BossState.Attack:
                     Attack();
                     break;
+                case BossState.Damaged:
+                    break;
                 case BossState.Die:
                     Die();
                     break;
@@ -50,7 +53,7 @@ public abstract class BossEnemy : MonoBehaviour
     public GameObject bossStateUI;
     public TMP_Text bossName_text;
     public Slider bossHpBar;
-    public Vector3 playerPosition;
+    public GameObject player;
 
     // 보스의 이름
     public string bossName;
@@ -60,6 +63,10 @@ public abstract class BossEnemy : MonoBehaviour
     public int maxHp;
     // 공격력
     public int atkPower;
+    // 공격 가능 범위
+    public float attackDistance;
+    // 공격 후 대기 시간
+    public float attackDelay;
 
 
     void Start() 
@@ -69,23 +76,36 @@ public abstract class BossEnemy : MonoBehaviour
         bCon.BattleState = BattleState.BossAppear;
         bCon.BossCount++;
 
-        //필요한 컴포넌트들 가져옴
+        //필요한 참조들 가져옴
         bossNav = GetComponent<NavMeshAgent>();
         bossAnim = GetComponentInChildren<Animator>();
-        playerPosition = GameObject.FindWithTag("Player").transform.position;
+        player = GameObject.FindWithTag("Player");
 
         Appear();
     }
 
     void Update() 
     {
+        if (bCon.BattleState != BattleState.NowBattle)
+            return;
+
         Move();
     }
 
+    // 보스 등장 시의 동작
     public abstract void Appear();
+    // 보스 대기 상태 시의 동작
     public abstract void Idle();
+    // 보스 내비게이션 정지 및 경로 초기화
+    public abstract void StopMove();
+    // 보스 이동 시의 동작
     public abstract void Move();
+    // 보스 공격 시의 동작
     public abstract void Attack();
+    // 보스가 피격 시의 동작
     public abstract void Hit();
+    // 보스 상태 UI 갱신하여 표시
+    public abstract void BossStateUpdate();
+    // 보스 사망 시의 동작
     public abstract void Die();
 }
