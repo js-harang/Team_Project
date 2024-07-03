@@ -120,12 +120,12 @@ TextureImporter:
       name: DLG_UNIT_SELECT_MENU_0
       rect:
         serializedVersion: 2
-        x: 98
-        y: 15
-        width: 83
-        height: 38
+        x: 63
+        y: 462
+        width: 118
+        height: 40
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -141,12 +141,12 @@ TextureImporter:
       name: DLG_UNIT_SELECT_MENU_1
       rect:
         serializedVersion: 2
-        x: 288
-        y: 15
-        width: 83
-        height: 38
+        x: 253
+        y: 462
+        width: 118
+        height: 40
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -154,6 +154,216 @@ TextureImporter:
       bones: []
       spriteID: a5939f0cf706bf04ba4ac0de9582cb40
       internalID: -757580829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DLG_UNIT_SELECT_MENU_2
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 334
+        width: 64
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5be5a8e5766f1347bf05e7f556f68a8
+      internalID: 1754833232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DLG_UNIT_SELECT_MENU_3
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 334
+        width: 64
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5105fd61a210d54459bd00ea616dad36
+      internalID: 1202189172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DLG_UNIT_SELECT_MENU_4
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 270
+        width: 110
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33fe8f12f49e79d43ab66ca8deda065c
+      internalID: 315900530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DLG_UNIT_SELECT_MENU_5
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 270
+        width: 110
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08a605855f7dda145beffe59dbec56a7
+      internalID: -409353399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DLG_UNIT_SELECT_MENU_6
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 142
+        width: 106
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46090674c57e1994d89ebb567af28853
+      internalID: 159423686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DLG_UNIT_SELECT_MENU_7
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 142
+        width: 106
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa6039a390910604c9adb9198598aa01
+      internalID: 1218505406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DLG_UNIT_SELECT_MENU_8
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 78
+        width: 44
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 614a5fbce0d58ce499e140baaa57028f
+      internalID: -2045410401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DLG_UNIT_SELECT_MENU_9
+      rect:
+        serializedVersion: 2
+        x: 327
+        y: 78
+        width: 44
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 568a705bcb2d0ed4a923b2e88f534ac1
+      internalID: -353475457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DLG_UNIT_SELECT_MENU_10
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 14
+        width: 84
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce6eb26c40b29b641affa56a50f37a4e
+      internalID: 1106748512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DLG_UNIT_SELECT_MENU_11
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 14
+        width: 84
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cff3a4727cd059e47857333b77dc0d3d
+      internalID: -1638834273
       vertices: []
       indices: 
       edges: []
@@ -171,6 +381,17 @@ TextureImporter:
     nameFileIdTable:
       DLG_UNIT_SELECT_MENU_0: -8960000
       DLG_UNIT_SELECT_MENU_1: -757580829
+      DLG_UNIT_SELECT_MENU_10: 1106748512
+      DLG_UNIT_SELECT_MENU_11: -1638834273
+      DLG_UNIT_SELECT_MENU_12: -1671335443
+      DLG_UNIT_SELECT_MENU_2: 1754833232
+      DLG_UNIT_SELECT_MENU_3: 1202189172
+      DLG_UNIT_SELECT_MENU_4: 315900530
+      DLG_UNIT_SELECT_MENU_5: -409353399
+      DLG_UNIT_SELECT_MENU_6: 159423686
+      DLG_UNIT_SELECT_MENU_7: 1218505406
+      DLG_UNIT_SELECT_MENU_8: -2045410401
+      DLG_UNIT_SELECT_MENU_9: -353475457
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

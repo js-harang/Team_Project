@@ -20,16 +20,12 @@ public class LobbyController : MonoBehaviour
 
     private void Update()
     {
-        // 환경설정 탈출
-        if (Input.GetKeyDown(KeyCode.Escape) && isPreferencePopup)
-            ClickPreferencesBtn();
-
         // 캐릭터 생성 창 탈출
         if (Input.GetKeyDown(KeyCode.Escape) && !isLooby)
             ReturnLobby();
     }
 
-    public void ClickGameStartBtn()
+    public void GameStartBtn()
     {
         GameManager.gm.sceneNumber = 2;
         SceneManager.LoadScene("99_LoadingScene");
@@ -38,7 +34,7 @@ public class LobbyController : MonoBehaviour
     /// <summary>
     /// 캐릭터 생성 버튼
     /// </summary>
-    public void ClickCreateCharacterBtn()
+    public void CreateCharacterBtn()
     {
         isLooby = false;
         lobbyCanvas.SetActive(isLooby);
@@ -55,16 +51,7 @@ public class LobbyController : MonoBehaviour
         mainCamera.position = originPos;
     }
 
-    /// <summary>
-    /// 환경설정 버튼
-    /// </summary>
-    public void ClickPreferencesBtn()
-    {
-        isPreferencePopup = !isPreferencePopup;
-        preferencePopup.SetActive(isPreferencePopup);
-    }
-
-    public void ClickBackBtn()
+    public void BackBtn()
     {
         GameManager.gm.sceneNumber = 0;
         SceneManager.LoadScene("99_LoadingScene");
