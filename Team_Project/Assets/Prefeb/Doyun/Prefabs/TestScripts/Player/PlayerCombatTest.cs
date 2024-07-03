@@ -5,9 +5,13 @@ using UnityEngine;
 public class PlayerCombatTest : BattleStatus
 {
     public AttackSO attack;
+    public AttackSO previousAttack;
+
     public float delayComboTime;
     float lastClickedTime;
     int comboCounter;
+    float atkDamage;
+
     public LayerMask enemyLayer;
 
     public Animator anim;
@@ -20,17 +24,18 @@ public class PlayerCombatTest : BattleStatus
 
     private void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
-        {
-            Attack();
-        }
         ExitAttack();
     }
 
-    void Attack()
+    public void Attack()
     {
         if (attack == null)
             return;
+
+        if (previousAttack != attack)
+        {
+            comboCounter = 0;
+        }
 
         // 공격 상태 가 아니며 콤보 회수가 공격 배열들 보다 작거나 같을때 실행
         if (pbs.UnitBS == UnitBattleState.Idle && comboCounter <= attack.animOCs.Length)
@@ -41,13 +46,19 @@ public class PlayerCombatTest : BattleStatus
             if (Time.time - lastClickedTime >= 0.2f)
             {
                 anim.runtimeAnimatorController = attack.animOCs[comboCounter];
+
+                atkDamage = attack.damage[comboCounter];
                 anim.Play("Attack", 0, 0);
+
+                previousAttack = attack;
 
                 comboCounter++;
                 lastClickedTime = Time.time;
 
                 if (comboCounter + 1 > attack.animOCs.Length)
-                    comboCounter = 0;
+                {
+                    ResetCombo();
+                }
             }
         }
     }
@@ -59,7 +70,6 @@ public class PlayerCombatTest : BattleStatus
         // normalizeTime : 애니메이션 진행사항(0이면 시작안함, 1이면 애니매이션 완료)
         if (pbs.UnitBS == UnitBattleState.Idle && anim.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
         {
-            Debug.Log("asdasd");
             // 설정된 시간 후에 콤보 리셋
             Invoke("ResetCombo", delayComboTime);
         }
@@ -70,10 +80,9 @@ public class PlayerCombatTest : BattleStatus
         comboCounter = 0;
     }
 
+
     public void AttackEnemy()
     {
-        Debug.Log(attack.damage[comboCounter]);
-        
         atkPos = atkPositions[attack.atkPosIdx];
         Vector3 position = atkPos.transform.position;
 
@@ -83,16 +92,11 @@ public class PlayerCombatTest : BattleStatus
         {
             if (enemy.gameObject.CompareTag("Enemy"))
             {
-                float atkDamage = atkPower * attack.damage[comboCounter];
-                Debug.Log("적 공격 데미지 :" + atkDamage);
-
-                // float 로 변환 필요
+                float sumDamage = atkPower * atkDamage;
                 EnemyFSM enemyFsm = enemy.GetComponent<EnemyFSM>();
-                enemyFsm.HitEnemy(atkDamage);
+                enemyFsm.HitEnemy(sumDamage);
             }
         }
-
-        // 무기 공격력,이펙트 등등
     }
 
     public void AttackStateTrue()
