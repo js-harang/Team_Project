@@ -33,6 +33,9 @@ public abstract class BossEnemy : MonoBehaviour
                 case BossState.Idle:
                     Idle();
                     break;
+                case BossState.Move:
+                    LookAtPlayer();
+                    break;
                 case BossState.Attack:
                     Attack();
                     break;
@@ -48,7 +51,6 @@ public abstract class BossEnemy : MonoBehaviour
     }
 
     // 보스에게 필요한 변수들
-    public NavMeshAgent bossNav;
     public Animator bossAnim;
     public GameObject bossStateUI;
     public TMP_Text bossName_text;
@@ -63,6 +65,8 @@ public abstract class BossEnemy : MonoBehaviour
     public int maxHp;
     // 공격력
     public int atkPower;
+    // 이동속도
+    public int moveSpped;
     // 공격 가능 범위
     public float attackDistance;
     // 공격 후 대기 시간
@@ -77,7 +81,6 @@ public abstract class BossEnemy : MonoBehaviour
         bCon.BossCount++;
 
         //필요한 참조들 가져옴
-        bossNav = GetComponent<NavMeshAgent>();
         bossAnim = GetComponentInChildren<Animator>();
         player = GameObject.FindWithTag("Player");
 
@@ -86,7 +89,7 @@ public abstract class BossEnemy : MonoBehaviour
 
     void Update() 
     {
-        if (bCon.BattleState != BattleState.NowBattle)
+        if (bCon.BattleState != BattleState.NowBattle || bState != BossState.Move)
             return;
 
         Move();
@@ -98,6 +101,8 @@ public abstract class BossEnemy : MonoBehaviour
     public abstract void Idle();
     // 보스 내비게이션 정지 및 경로 초기화
     public abstract void StopMove();
+    // 보스가 플레이어를 쳐다보게함
+    public abstract void LookAtPlayer();
     // 보스 이동 시의 동작
     public abstract void Move();
     // 보스 공격 시의 동작
