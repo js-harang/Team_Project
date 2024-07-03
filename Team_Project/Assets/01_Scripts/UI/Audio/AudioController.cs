@@ -6,13 +6,13 @@ public class AudioController : MonoBehaviour
 {
     [SerializeField] AudioMixer audioMixer;
 
-    [SerializeField, Space(10)] public Slider masterSlider;
-    [SerializeField] public Slider bgmSlider;
-    [SerializeField] public Slider sfxSlider;
+    [Space(10)] public Slider masterSlider;
+    public Slider bgmSlider;
+    public Slider sfxSlider;
 
-    [SerializeField, Space(10)] public Toggle masterToggle;
-    [SerializeField] public Toggle bgmToggle;
-    [SerializeField] public Toggle sfxToggle;
+    [Space(10)] public Toggle masterToggle;
+    public Toggle bgmToggle;
+    public Toggle sfxToggle;
 
     private void OnEnable()
     {
@@ -65,44 +65,28 @@ public class AudioController : MonoBehaviour
         }
         else
             PlayerPrefs.SetInt("SFXMute", 0);
-
     }
 
     public void SetMasterVolume(float volume)
     {
-        PlayerPrefs.SetFloat("Master", volume);
-
-        if (PlayerPrefs.GetInt("MasterMute") == 1)
-        {
-            PlayerPrefs.SetFloat("SaveMaster", volume);
+        if (masterToggle.isOn)
             return;
-        }
 
         audioMixer.SetFloat("Master", Mathf.Log10(volume) * 20);
     }
 
     public void SetBGMVolume(float volume)
     {
-        PlayerPrefs.SetFloat("BGM", volume);
-
-        if (PlayerPrefs.GetInt("BGMMute") == 1)
-        {
-            PlayerPrefs.SetFloat("SaveBGM", volume);
+        if (bgmToggle.isOn)
             return;
-        }
 
         audioMixer.SetFloat("BGM", Mathf.Log10(volume) * 20);
     }
 
     public void SetSFXVolume(float volume)
     {
-        PlayerPrefs.SetFloat("SFX", volume);
-
-        if (PlayerPrefs.GetInt("SFXMute") == 1)
-        {
-            PlayerPrefs.SetFloat("SaveSFX", volume);
+        if (sfxToggle.isOn)
             return;
-        }
 
         audioMixer.SetFloat("SFX", Mathf.Log10(volume) * 20);
     }
@@ -113,42 +97,63 @@ public class AudioController : MonoBehaviour
         {
             case "Master_Toggle":
                 if (isChecked)
-                {
-                    PlayerPrefs.SetInt("MasterMute", 1);
                     audioMixer.SetFloat("Master", -80f);
-                }
                 else
-                {
-                    PlayerPrefs.SetInt("MasterMute", 0);
-                    SetMasterVolume(PlayerPrefs.GetFloat("Master"));
-                }
+                    SetMasterVolume(masterSlider.value);
                 break;
             case "BGM_Toggle":
                 if (isChecked)
-                {
-                    PlayerPrefs.SetInt("BGMMute", 1);
                     audioMixer.SetFloat("BGM", -80f);
-                }
                 else
-                {
-                    PlayerPrefs.SetInt("BGMMute", 0);
-                    SetBGMVolume(PlayerPrefs.GetFloat("BGM"));
-                }
+                    SetBGMVolume(bgmSlider.value);
                 break;
             case "SFX_Toggle":
                 if (isChecked)
-                {
-                    PlayerPrefs.SetInt("SFXMute", 1);
                     audioMixer.SetFloat("SFX", -80f);
-                }
                 else
-                {
-                    PlayerPrefs.SetInt("SFXMute", 0);
-                    SetSFXVolume(PlayerPrefs.GetFloat("SFX"));
-                }
+                    SetSFXVolume(sfxSlider.value);
                 break;
         }
     }
+
+    //public void SetMasterVolume(float volume)
+    //{
+    //    PlayerPrefs.SetFloat("Master", volume);
+
+    //    if (PlayerPrefs.GetInt("MasterMute") == 1)
+    //    {
+    //        PlayerPrefs.SetFloat("SaveMaster", volume);
+    //        return;
+    //    }
+
+    //    audioMixer.SetFloat("Master", Mathf.Log10(volume) * 20);
+    //}
+
+    //public void SetBGMVolume(float volume)
+    //{
+    //    PlayerPrefs.SetFloat("BGM", volume);
+
+    //    if (PlayerPrefs.GetInt("BGMMute") == 1)
+    //    {
+    //        PlayerPrefs.SetFloat("SaveBGM", volume);
+    //        return;
+    //    }
+
+    //    audioMixer.SetFloat("BGM", Mathf.Log10(volume) * 20);
+    //}
+
+    //public void SetSFXVolume(float volume)
+    //{
+    //    PlayerPrefs.SetFloat("SFX", volume);
+
+    //    if (PlayerPrefs.GetInt("SFXMute") == 1)
+    //    {
+    //        PlayerPrefs.SetFloat("SaveSFX", volume);
+    //        return;
+    //    }
+
+    //    audioMixer.SetFloat("SFX", Mathf.Log10(volume) * 20);
+    //}
 
     private void OnDisable()
     {

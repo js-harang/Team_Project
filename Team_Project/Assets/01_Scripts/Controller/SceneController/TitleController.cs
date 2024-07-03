@@ -21,8 +21,11 @@ public class TitleController : MonoBehaviour
     bool isExitPopup = false;
 
     [SerializeField, Space(10)] ResolutionManager rm;
-    [SerializeField] Toggle fullScreenToggle;
+    [SerializeField] FullScreen fullScreen;
     AudioController ac;
+
+    [SerializeField, Space(10)] GameObject saveSettingPopup;
+    bool isSaveSettingPopup = false;
 
     private void Start()
     {
@@ -37,10 +40,15 @@ public class TitleController : MonoBehaviour
         // 환경설정 탈출
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (isPreferencePopup)
-                ClickPreferencesBtn();
-            else
+            if (!isPreferencePopup)
                 ExitGamePopup();
+            else
+            {
+                if (isSaveSettingPopup)
+                    BasicSettingNoBtn();
+                else
+                    ResetSetting();
+            }
         }
     }
 
@@ -87,10 +95,7 @@ public class TitleController : MonoBehaviour
             return true;
     }
 
-    /// <summary>
-    /// 환경설정 버튼
-    /// </summary>
-    public void ClickPreferencesBtn()
+    public void PreferencesBtn()
     {
         isPreferencePopup = !isPreferencePopup;
         preferencePopup.SetActive(isPreferencePopup);
@@ -98,26 +103,92 @@ public class TitleController : MonoBehaviour
 
     public void BasicSettingBtn()
     {
-        rm.resolutionDropdown.value = 0;
-        rm.SetResolution(0);
-        fullScreenToggle.isOn = true;
+        isSaveSettingPopup = !isSaveSettingPopup;
+        saveSettingPopup.SetActive(isSaveSettingPopup);
+    }
 
-        ac.masterSlider.value = 0.5f;
-        ac.bgmSlider.value = 1;
-        ac.sfxSlider.value = 1;
+    public void BasicSettingYesBtn()
+    {
+        BasicSetting();
+        BasicSettingNoBtn();
+    }
+
+    public void BasicSettingNoBtn()
+    {
+        isSaveSettingPopup = !isSaveSettingPopup;
+        saveSettingPopup.SetActive(isSaveSettingPopup);
+    }
+
+    private void BasicSetting()
+    {
+        PlayerPrefs.SetInt("ResolutionIndex", rm.resolutionDropdown.value = 0);
+        PlayerPrefs.SetInt("FullScreen", 1);
+        fullScreen.toggles[0].GetComponent<Toggle>().isOn = true;
+
+        PlayerPrefs.SetFloat("Master", ac.masterSlider.value = 1);
+        PlayerPrefs.SetFloat("BGM", ac.bgmSlider.value = 1);
+        PlayerPrefs.SetFloat("SFX", ac.sfxSlider.value = 1);
+
+        PlayerPrefs.SetInt("MasterMute", 0);
         ac.masterToggle.isOn = false;
+        PlayerPrefs.SetInt("BGMMute", 0);
         ac.bgmToggle.isOn = false;
+        PlayerPrefs.SetInt("SFXMute", 0);
         ac.sfxToggle.isOn = false;
     }
 
     public void SaveSettingBtn()
     {
+        PlayerPrefs.SetInt("ResolutionIndex", rm.resolutionDropdown.value);
+        PlayerPrefs.SetInt("FullScreen", GameManager.gm.IsFullScreen);
 
+        PlayerPrefs.SetFloat("Master", ac.masterSlider.value);
+        PlayerPrefs.SetFloat("BGM", ac.bgmSlider.value);
+        PlayerPrefs.SetFloat("SFX", ac.sfxSlider.value);
+
+        if (ac.masterToggle.isOn)
+            PlayerPrefs.SetInt("MasterMute", 1);
+        else
+            PlayerPrefs.SetInt("MasterMute", 0);
+        if (ac.bgmToggle.isOn)
+            PlayerPrefs.SetInt("BGMMute", 1);
+        else
+            PlayerPrefs.SetInt("BGMMute", 0);
+        if (ac.sfxToggle.isOn)
+            PlayerPrefs.SetInt("SFXMute", 1);
+        else
+            PlayerPrefs.SetInt("SFXMute", 0);
+
+        isPreferencePopup = !isPreferencePopup;
+        preferencePopup.SetActive(isPreferencePopup);
     }
 
-    public void CancleBtn()
+    public void ResetSetting()
     {
+        rm.resolutionDropdown.value = PlayerPrefs.GetInt("ResolutionIndex");
+        if (PlayerPrefs.GetInt("FullScreen") == 1)
+            fullScreen.toggles[0].GetComponent<Toggle>().isOn = true;
+        else
+            fullScreen.toggles[1].GetComponent<Toggle>().isOn = true;
 
+        ac.masterSlider.value = PlayerPrefs.GetFloat("Master");
+        ac.bgmSlider.value = PlayerPrefs.GetFloat("BGM");
+        ac.sfxSlider.value = PlayerPrefs.GetFloat("SFX");
+        if (PlayerPrefs.GetInt("MasterMute") == 1)
+            ac.masterToggle.isOn = true;
+        else
+            ac.masterToggle.isOn = false;
+        if (PlayerPrefs.GetInt("BGMMute") == 1)
+            ac.bgmToggle.isOn = true;
+        else
+            ac.bgmToggle.isOn = false;
+        if (PlayerPrefs.GetInt("SFXMute") == 1)
+            ac.sfxToggle.isOn = true;
+        else
+            ac.sfxToggle.isOn = false;
+
+        isPreferencePopup = !isPreferencePopup;
+        preferencePopup.SetActive(isPreferencePopup);
     }
 
     public void ExitGamePopup()

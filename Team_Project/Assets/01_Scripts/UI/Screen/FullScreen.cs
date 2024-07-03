@@ -3,20 +3,30 @@ using UnityEngine.UI;
 
 public class FullScreen : MonoBehaviour
 {
+    public GameObject[] toggles;
+
     private void Start()
     {
-        if (GameManager.gm.IsFullScreen == 1)
-            GetComponent<Toggle>().isOn = true;
+        if (!PlayerPrefs.HasKey("FullScreen"))
+            PlayerPrefs.SetInt("FullScreen", 1);
+
+        if (PlayerPrefs.GetInt("FullScreen") == 1)
+            toggles[0].GetComponent<Toggle>().isOn = true;
         else
-            GameObject.Find("Window_Toggle").GetComponent<Toggle>().isOn = true;
+            toggles[1].GetComponent<Toggle>().isOn = true;
     }
 
-    public void ToggleFullscreenMode(bool isChecked)
+    public void ScreenMode(bool isChecked)
     {
-        if (GameManager.gm.IsFullScreen == 1)
-            return;
+        if (isChecked)
+        {
+            GameManager.gm.IsFullScreen = 1;
+        }
+        else
+        {
+            GameManager.gm.IsFullScreen = 0;
+        }
 
-        GameManager.gm.IsFullScreen = 1;
         Screen.fullScreen = GameManager.gm.boolIsFullScreen;
     }
 }
