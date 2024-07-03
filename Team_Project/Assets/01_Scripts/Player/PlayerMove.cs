@@ -43,7 +43,7 @@ public class PlayerMove : MonoBehaviour
 
     private void Update()
     {
-        if (pState.UnitState == UnitState.Die)
+        if (pState.UnitState == UnitState.Die || pState.UnitState == UnitState.Interact)
             return;
 
         GrondCheck();
@@ -51,16 +51,11 @@ public class PlayerMove : MonoBehaviour
         InputKey();
 
         LookDirection();
-
     }
 
     private void InputKey()
     {
         if (pState.UnitBS == UnitBattleState.Die || pState.UnitState == UnitState.Die)
-            return;
-
-        // Å°ÀÔ·Â
-        if (pState.UnitState == UnitState.Interact)
             return;
 
         inputX = Input.GetAxisRaw("Horizontal");
