@@ -18,4 +18,9 @@ public class OptionContent : MonoBehaviour
                 break;
         }
     }
+
+    private void OnDisable()
+    {
+        GameManager.gm.selectObject = content[0];
+    }
 }

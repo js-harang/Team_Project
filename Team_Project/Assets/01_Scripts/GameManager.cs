@@ -26,21 +26,10 @@ public class GameManager : MonoBehaviour
     // 전체화면 / 창모드 선택
     public int IsFullScreen
     {
-        get
-        {
-            if (PlayerPrefs.HasKey("IsFullScreen"))
-                isFullScreen = PlayerPrefs.GetInt("IsFullScreen");
-            else
-            {
-                isFullScreen = 0;
-                PlayerPrefs.SetInt("IsFullScreen", 0);
-            }
-            return isFullScreen;
-        }
+        get { return isFullScreen; }
         set
         {
             isFullScreen = value;
-            PlayerPrefs.SetInt("IsFullScreen", isFullScreen);
 
             switch (value)
             {
@@ -53,7 +42,7 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-    public bool boolIsFullScreen = true;
+    public bool boolIsFullScreen;
 
     /// <summary>
     /// 0 = TitleScene

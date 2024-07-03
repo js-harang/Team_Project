@@ -11,8 +11,6 @@ public class ResolutionManager : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log(name);
-
         resolutions = new List<Resolution>
         {
             new() { width = 1920, height = 1080 },
@@ -44,22 +42,15 @@ public class ResolutionManager : MonoBehaviour
     /// </summary>
     public void SetResolution(int index)
     {
-        Resolution resolution = resolutions[index];
-
         bool fullScreen;
         
-        if(PlayerPrefs.GetInt("IsFullScreen") == 1)
+        if(GameManager.gm.IsFullScreen == 1)
             fullScreen = true;
         else
             fullScreen = false;
 
+        Resolution resolution = resolutions[index];
+
         Screen.SetResolution(resolution.width, resolution.height, fullScreen);
-
-        SaveResolutionSettings();
-    }
-
-    private void SaveResolutionSettings()
-    {
-        PlayerPrefs.SetInt("ResolutionIndex", resolutionDropdown.value);
     }
 }
