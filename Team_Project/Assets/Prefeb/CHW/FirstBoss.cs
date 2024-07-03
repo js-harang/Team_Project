@@ -9,17 +9,19 @@ public class FirstBoss : BossEnemy
 
     public override void Appear()
     {
+        LookAtPlayer();
         StartCoroutine(AppearAction(appearAnimTime));
     }
 
     IEnumerator AppearAction(float appearAnimTime)
     {
-        //bossAnim.SetTrigger("appear");
         yield return new WaitForSeconds(appearAnimTime);
         BState = BossState.Idle;
 
         yield return new WaitForSeconds(1f);
         bCon.BattleState = BattleState.NowBattle;
+        BState = BossState.Move;
+        bossAnim.SetTrigger("move");
     }
 
     public override void Idle()
@@ -30,20 +32,26 @@ public class FirstBoss : BossEnemy
 
     public override void StopMove()
     {
-        bossNav.isStopped = true;
-        bossNav.ResetPath();
+    }
+
+    public override void LookAtPlayer()
+    {
+        if (transform.position.x > player.transform.position.x)
+            transform.forward = Vector3.left;
+        else
+            transform.forward = Vector3.right;
     }
 
     public override void Move()
     {
         if (Vector3.Distance(transform.position, player.transform.position) >= attackDistance)
         {
-            bossNav.destination = player.transform.position;
+            LookAtPlayer();
             return;
         }
-        else
+        /*else
             StopMove();
-            //BState = BossState.Attack;
+            BState = BossState.Attack;*/
             
     }
 
