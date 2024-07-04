@@ -18,6 +18,8 @@ public class SkillButton : MonoBehaviour
 
     #region 스킬 쿨타임 관련
     float coolTime;
+
+    bool isCoolTime;
     public float CoolTime { get { return coolTime; } set { coolTime = value; } }
     public Image coolTimeIcon;
     #endregion
@@ -34,6 +36,7 @@ public class SkillButton : MonoBehaviour
         {
             return;
         }
+
         // 스킬이 있을때만 실행
         if (skill == null)
         {
@@ -41,13 +44,19 @@ public class SkillButton : MonoBehaviour
             return;
         }
 
-        if (coolTime > 0)
-            return;
+        // 스킬 쿨타임 이 0 이하거나 콤보 중 이면 실행
+        if (coolTime <= 0 || skill.isComboing)
+        {
+            if (skill.useMana > player.CurrentMp)
+            {
+                Debug.Log("마나가 부족합니다.");
+                return;
+            }
 
-        skill = skillData.Skill;
+            skill = skillData.Skill;
 
-
-        AttackProcess();
+            AttackProcess();
+        }
     }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -58,7 +67,11 @@ public class SkillButton : MonoBehaviour
         // 공격 실행
         SkillSetting();
         // 쿨타임 실행
-        StartCoroutine(SkillCoolTime());
+        if (!isCoolTime)
+        {
+            Debug.Log("쿨타임 실행");
+            StartCoroutine(SkillCoolTime());
+        }
     }
     #endregion
 
@@ -73,6 +86,8 @@ public class SkillButton : MonoBehaviour
     #region 스킬 쿨타임 작동
     IEnumerator SkillCoolTime()
     {
+        isCoolTime = true;
+
         float t = 0;
         float tick = 1f / skill.coolTime;
         coolTime = skill.coolTime;
@@ -88,7 +103,7 @@ public class SkillButton : MonoBehaviour
 
             yield return null;
         }
-        skill.canAttack = true;
+        isCoolTime = false;
     }
     #endregion
 

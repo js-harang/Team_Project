@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerCombat : BattleStatus
 {
@@ -12,7 +13,25 @@ public class PlayerCombat : BattleStatus
     int comboCounter;
     float atkDamage;
 
+
     public LayerMask enemyLayer;
+
+    #region 플레이어 수치 관련(체력,공격력 등 은 BattleStatus 에서 상속 받음)
+    // 플레이어 현재 마나
+    [SerializeField]
+    float currentMp;
+    public float CurrentMp { get { return currentMp; } set { currentMp = value; } }
+
+    // 플레이어 최대 마나
+    [SerializeField]
+    int maxMp;
+    #endregion
+
+    [Space(10)]
+    #region 플레이어 슬라이더 바
+    public Slider hpSld;
+    public Slider mpSld;
+    #endregion
 
     public Animator anim;
     public PlayerState pbs;
@@ -29,13 +48,16 @@ public class PlayerCombat : BattleStatus
 
     public void Attack()
     {
+        // 공격이 없으면 리턴
         if (attack == null)
             return;
 
+        #region 이전 공격과 지금 공격이 다르면 이전공격 콤보 초기화
         if (previousAttack != attack)
         {
-            comboCounter = 0;
+            ResetCombo();
         }
+        #endregion
 
         // 공격 상태 가 아니며 콤보 회수가 공격 배열들 보다 작거나 같을때 실행
         if (pbs.UnitBS == UnitBattleState.Idle && comboCounter <= attack.animOCs.Length)
@@ -43,26 +65,36 @@ public class PlayerCombat : BattleStatus
             // 공격중지 매소드 실행 취소
             CancelInvoke("ResetCombo");
 
-            if (Time.time - lastClickedTime >= 0.2f)
+
+            anim.runtimeAnimatorController = attack.animOCs[comboCounter];
+
+            atkDamage = attack.damage[comboCounter];
+
+            // 콤보중이 아니면 마나 소모
+            if (!attack.isComboing)
             {
-                anim.runtimeAnimatorController = attack.animOCs[comboCounter];
-
-                atkDamage = attack.damage[comboCounter];
-                anim.Play("Attack", 0, 0);
-
-                previousAttack = attack;
-
-                comboCounter++;
-                lastClickedTime = Time.time;
-
-                if (comboCounter + 1 > attack.animOCs.Length)
-                {
-                    ResetCombo();
-                }
+                currentMp -= attack.useMana;
             }
+            SetPlayerSlider();
+
+            anim.Play("Attack", 0, 0);
+
+            previousAttack = attack;
+            previousAttack.isComboing = true;
+
+            comboCounter++;
+            lastClickedTime = Time.time;
+
+            if (comboCounter + 1 > attack.animOCs.Length)
+            {
+                Debug.Log("콤보초기화");
+                ResetCombo();
+            }
+
         }
     }
 
+    #region 공격 중지(인보크 시간내에 공격 없으면 실행됨)
     void ExitAttack()
     {
         // GetCurrentAnimatorStateInfo(0) : 현재 애니메이션의 정보
@@ -74,13 +106,21 @@ public class PlayerCombat : BattleStatus
             Invoke("ResetCombo", delayComboTime);
         }
     }
+    #endregion
 
+    #region 콤보 리셋
     void ResetCombo()
     {
         comboCounter = 0;
+        // 이전 공격이 있을때
+        if (previousAttack != null)
+        {
+            previousAttack.isComboing = false;
+        }
     }
+    #endregion
 
-
+    #region 공격 판정(플레이어 공격력 * 스킬계수)
     public void AttackEnemy()
     {
         atkPos = atkPositions[attack.atkPosIdx];
@@ -98,7 +138,9 @@ public class PlayerCombat : BattleStatus
             }
         }
     }
+    #endregion
 
+    #region 공격중인지 확인
     public void AttackStateTrue()
     {
         pbs.UnitBS = UnitBattleState.Attack;
@@ -108,6 +150,7 @@ public class PlayerCombat : BattleStatus
     {
         pbs.UnitBS = UnitBattleState.Idle;
     }
+    #endregion
 
     #region 플레이어 데미지 입을때
     public void Hurt(float damage)
@@ -120,7 +163,7 @@ public class PlayerCombat : BattleStatus
 
         currentHp -= damage;
 
-/*        SetPlayerSlider();*/
+        SetPlayerSlider();
 
         if (currentHp > 0)
         {
@@ -136,6 +179,22 @@ public class PlayerCombat : BattleStatus
             UIController uiCon = GameObject.FindAnyObjectByType<UIController>();
             uiCon.GameOverUI();
         }
+    }
+    #endregion
+
+    #region 슬라이더 세팅
+    public void SetPlayerSlider()
+    {
+        SetHpSlider();
+        SetMpSlider();
+    }
+    private void SetHpSlider()
+    {
+        hpSld.value = currentHp / maxHp;
+    }
+    private void SetMpSlider()
+    {
+        mpSld.value = currentMp / maxMp;
     }
     #endregion
 }

@@ -12,7 +12,10 @@ public class AttackSO : ScriptableObject
     // 콤보공격시 대미지 순서
     public float[] damage;
     public float coolTime;
-    public bool canAttack;
+
+    public bool isComboing;
+
+    public int useMana;
     
     [Space(10)]
     // 스킬 아이콘
