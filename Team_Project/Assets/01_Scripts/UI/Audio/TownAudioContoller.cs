@@ -19,17 +19,17 @@ public class TownAudioContoller : MonoBehaviour
         if (PlayerPrefs.HasKey("Master"))
             pm.masterSlider.value = PlayerPrefs.GetFloat("Master");
         else
-            pm.masterSlider.value = PlayerPrefs.GetFloat("Master", 1);
+            pm.masterSlider.value = PlayerPrefs.GetFloat("Master", 0);
 
         if (PlayerPrefs.HasKey("BGM"))
             pm.bgmSlider.value = PlayerPrefs.GetFloat("BGM");
         else
-            pm.bgmSlider.value = PlayerPrefs.GetFloat("BGM", 1);
+            pm.bgmSlider.value = PlayerPrefs.GetFloat("BGM", 0);
 
         if (PlayerPrefs.HasKey("SFX"))
             pm.sfxSlider.value = PlayerPrefs.GetFloat("SFX");
         else
-            pm.sfxSlider.value = PlayerPrefs.GetFloat("SFX", 1);
+            pm.sfxSlider.value = PlayerPrefs.GetFloat("SFX", 0);
 
         SetMasterVolume(PlayerPrefs.GetFloat("Master"));
         SetBGMVolume(PlayerPrefs.GetFloat("BGM"));

@@ -19,13 +19,9 @@ public class FullScreen : MonoBehaviour
     public void ScreenMode(bool isChecked)
     {
         if (isChecked)
-        {
             GameManager.gm.IsFullScreen = 1;
-        }
         else
-        {
             GameManager.gm.IsFullScreen = 0;
-        }
 
         Screen.fullScreen = GameManager.gm.boolIsFullScreen;
     }

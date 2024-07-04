@@ -1,9 +1,12 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ResolutionManager : MonoBehaviour
 {
+    [SerializeField] FullScreen fs;
+
     public List<Resolution> resolutions;
     public TMP_Dropdown resolutionDropdown;
 
@@ -30,7 +33,7 @@ public class ResolutionManager : MonoBehaviour
         resolutionDropdown.AddOptions(options);
 
         if (!PlayerPrefs.HasKey("ResolutionIndex"))
-            PlayerPrefs.SetInt("ResolutionIndex", 1);
+            PlayerPrefs.SetInt("ResolutionIndex", 0);
 
         // 현재 해상도 선택하기
         var resolutionIndex = PlayerPrefs.GetInt("ResolutionIndex");
@@ -43,8 +46,8 @@ public class ResolutionManager : MonoBehaviour
     public void SetResolution(int index)
     {
         bool fullScreen;
-        
-        if(GameManager.gm.IsFullScreen == 1)
+
+        if (fs.toggles[0].GetComponent<Toggle>().isOn)
             fullScreen = true;
         else
             fullScreen = false;
