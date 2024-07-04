@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     PlayerState pState;
+    PlayerCombat playerCombat;
     Animator anim;
 
     // 바라보는 방향 변수
@@ -48,7 +49,8 @@ public class PlayerMove : MonoBehaviour
 
         GrondCheck();
 
-        if (pState.UnitState == UnitState.Interact || pState.UnitState == UnitState.Wait)
+        if (pState.UnitState == UnitState.Interact || pState.UnitState == UnitState.Wait ||
+            (pState.UnitBS != UnitBattleState.Idle && !playerCombat.canMoveAtk))
             return;
 
         InputKey();
@@ -189,6 +191,8 @@ public class PlayerMove : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
 
         pState = GetComponent<PlayerState>();
+
+        playerCombat = GetComponent<PlayerCombat>();
     }
 
     private void OnDrawGizmos()

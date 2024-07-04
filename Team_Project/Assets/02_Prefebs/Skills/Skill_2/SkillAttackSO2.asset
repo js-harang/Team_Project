@@ -18,7 +18,8 @@ MonoBehaviour:
   damage:
   - 1.5
   coolTime: 10
-  canAttack: 1
+  isComboing: 0
+  canMoveAtk: 1
   useMana: 8
   sprite: {fileID: 21300000, guid: 22f48537039d664438a600ceec1f39ae, type: 3}
   atkPosIdx: 1

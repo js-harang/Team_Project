@@ -14,6 +14,7 @@ public class AttackSO : ScriptableObject
     public float coolTime;
 
     public bool isComboing;
+    public bool canMoveAtk;
 
     public int useMana;
     

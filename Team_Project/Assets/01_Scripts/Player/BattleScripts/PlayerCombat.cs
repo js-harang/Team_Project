@@ -5,17 +5,6 @@ using UnityEngine.UI;
 
 public class PlayerCombat : BattleStatus
 {
-    public AttackSO attack;
-    public AttackSO previousAttack;
-
-    public float delayComboTime;
-    float lastClickedTime;
-    int comboCounter;
-    float atkDamage;
-
-
-    public LayerMask enemyLayer;
-
     #region 플레이어 수치 관련(체력,공격력 등 은 BattleStatus 에서 상속 받음)
     // 플레이어 현재 마나
     [SerializeField]
@@ -27,6 +16,31 @@ public class PlayerCombat : BattleStatus
     int maxMp;
     #endregion
 
+    #region 공격 관련
+    [Space(10)]
+    public AttackSO attack;
+    public AttackSO previousAttack;
+
+    [Space(10)]
+    public float delayComboTime;
+    int comboCounter;
+    float atkDamage;
+
+    [Space(10)]
+    Collider[] enemys;
+    public LayerMask enemyLayer;
+
+    [Space(10)]
+    public Transform atkPos;
+    public Transform[] atkPositions;
+
+    [Space(10)]
+    public bool canMoveAtk;
+
+    [Space(10)]
+    public GameObject effectPrefebs;
+    #endregion
+
     [Space(10)]
     #region 플레이어 슬라이더 바
     public Slider hpSld;
@@ -36,10 +50,6 @@ public class PlayerCombat : BattleStatus
     public Animator anim;
     public PlayerState pbs;
 
-    public Transform atkPos;
-    public Transform[] atkPositions;
-
-    Collider[] enemys;
 
     private void Update()
     {
@@ -69,6 +79,7 @@ public class PlayerCombat : BattleStatus
             anim.runtimeAnimatorController = attack.animOCs[comboCounter];
 
             atkDamage = attack.damage[comboCounter];
+            canMoveAtk = attack.canMoveAtk;
 
             // 콤보중이 아니면 마나 소모
             if (!attack.isComboing)
@@ -83,7 +94,6 @@ public class PlayerCombat : BattleStatus
             previousAttack.isComboing = true;
 
             comboCounter++;
-            lastClickedTime = Time.time;
 
             if (comboCounter + 1 > attack.animOCs.Length)
             {
@@ -135,6 +145,7 @@ public class PlayerCombat : BattleStatus
                 float sumDamage = atkPower * atkDamage;
                 EnemyFSM enemyFsm = enemy.GetComponent<EnemyFSM>();
                 enemyFsm.HitEnemy(sumDamage);
+                Instantiate(effectPrefebs, enemyFsm.transform.position, Quaternion.identity);
             }
         }
     }
