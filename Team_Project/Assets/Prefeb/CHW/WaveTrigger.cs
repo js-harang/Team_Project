@@ -11,19 +11,23 @@ public class WaveTrigger : MonoBehaviour
     // 플레이어와 접촉시의 동작
     private void OnTriggerEnter(Collider other)
     {
-        bC = FindObjectOfType<BattleController>().GetComponent<BattleController>();
-        bC.BattleState = BattleState.NowBattle;
-        StartCoroutine(EnemysActivate(enemys));
-        gameObject.SetActive(false);
+        if (other.gameObject.CompareTag("Player"))
+        {
+            bC = FindObjectOfType<BattleController>().GetComponent<BattleController>();
+            StartCoroutine(EnemysActivate(enemys));
+            StartCoroutine(bC.BlockWallOnOff(bC.waveNum));
+            bC.BattleState = BattleState.NowBattle;
+            gameObject.SetActive(false);
+        }
     }
 
     // 에너미 스포너들을 약간의 간격을 주고 활성화 시킴
-    IEnumerator EnemysActivate(GameObject[] enemys) 
+    IEnumerator EnemysActivate(GameObject[] enemys)
     {
         for (int i = 0; i < enemys.Length; i++)
         {
             enemys[i].SetActive(true);
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.1f);
         }
     }
 }
