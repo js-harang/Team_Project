@@ -125,7 +125,7 @@ TextureImporter:
         width: 413
         height: 89
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -138,7 +138,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DLG_UNIT_SELECT_TITLE_3
+      name: DLG_UNIT_SELECT_TITLE_1
       rect:
         serializedVersion: 2
         x: 2
@@ -146,7 +146,7 @@ TextureImporter:
         width: 169
         height: 34
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -170,7 +170,7 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       DLG_UNIT_SELECT_TITLE_0: -700754943
-      DLG_UNIT_SELECT_TITLE_1: -699782551
+      DLG_UNIT_SELECT_TITLE_1: 1778614916
       DLG_UNIT_SELECT_TITLE_10: -1798071316
       DLG_UNIT_SELECT_TITLE_11: -463070326
       DLG_UNIT_SELECT_TITLE_12: -1774540689
@@ -192,7 +192,6 @@ TextureImporter:
       DLG_UNIT_SELECT_TITLE_27: 1665752914
       DLG_UNIT_SELECT_TITLE_28: 1132574647
       DLG_UNIT_SELECT_TITLE_29: -1946216499
-      DLG_UNIT_SELECT_TITLE_3: 1778614916
       DLG_UNIT_SELECT_TITLE_30: 1062692590
       DLG_UNIT_SELECT_TITLE_4: 1448365074
       DLG_UNIT_SELECT_TITLE_5: 269670481
