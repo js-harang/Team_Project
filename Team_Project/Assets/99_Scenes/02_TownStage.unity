@@ -60096,6 +60096,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8c36777cf3a4694596b786cdfdd4d65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fs: {fileID: 0}
   resolutionDropdown: {fileID: 9105075748796115804}
 --- !u!224 &9105075748779687713
 RectTransform:
