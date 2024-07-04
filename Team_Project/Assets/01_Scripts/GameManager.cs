@@ -42,7 +42,9 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-    [HideInInspector] public bool boolIsFullScreen;
+    [HideInInspector] public bool boolIsFullScreen = true;
+
+    [HideInInspector] public bool isPreferencePopup = false;
 
     /// <summary>
     /// 0 = TitleScene

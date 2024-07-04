@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class TitleAudioController : MonoBehaviour
+public class TownAudioContoller : MonoBehaviour
 {
     [SerializeField] PerferencesManager pm;
 
