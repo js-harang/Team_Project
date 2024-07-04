@@ -210,7 +210,7 @@ public class EnemyFSM : BattleStatus
     // 플레이어의 스크립트의 데미지 처리 함수를 실행
     public void AttackAction()
     {
-        PlayerBattleController pbc = player.gameObject.GetComponent<PlayerBattleController>();
+        PlayerCombat pbc = player.gameObject.GetComponent<PlayerCombat>();
         pbc.Hurt(atkPower);
     }
 

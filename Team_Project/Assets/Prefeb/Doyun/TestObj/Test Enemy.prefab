@@ -266,8 +266,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48256648986198f48bd4a0ef4911c3cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 15
   currentHp: 15
+  maxHp: 15
   atkPower: 3
   findDistance: 25
   attackDistance: 2
