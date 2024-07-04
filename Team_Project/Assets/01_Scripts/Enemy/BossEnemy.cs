@@ -18,7 +18,7 @@ public enum BossState
 public abstract class BossEnemy : MonoBehaviour
 {
     public BattleController bCon;
-
+    
     BossState bState;
     public BossState BState 
     { 
@@ -29,6 +29,8 @@ public abstract class BossEnemy : MonoBehaviour
         set 
         {
             bState = value;
+            CalcBehaveDelay();
+            time = 0;
             switch (bState)
             {
                 case BossState.Attack:
@@ -60,12 +62,14 @@ public abstract class BossEnemy : MonoBehaviour
     public int maxHp;
     // 공격력
     public int atkPower;
+    // 보스로부터 플레이어로의 벡터
+    public Vector3 dir;
     // 이동속도
-    public int moveSpped;
-    // 공격 가능 범위
-    public float attackDistance;
-    // 공격 후 대기 시간
-    public float attackDelay;
+    public float moveSpeed;
+    // 행동간의 대기 시간
+    public float behaveDelay;
+    // 대기 시간 계산 하는 변수
+    public float time;
 
 
     void Start() 
@@ -81,6 +85,8 @@ public abstract class BossEnemy : MonoBehaviour
 
     // 보스 활성화 시 Start 실행 동작
     public abstract void BossStart();
+    // 보스가 Update에서 실핼하는 동작
+    public abstract void BossMovement();
     // 보스 등장 시의 동작
     public abstract void Appear();
     // 보스 대기 상태 시의 동작
@@ -89,8 +95,12 @@ public abstract class BossEnemy : MonoBehaviour
     public abstract void LookAtPlayer();
     // 보스 이동 시의 동작
     public abstract void Move();
-    // 보스의 행동 간 텀
-    public abstract void BehaviorDelay();
+    // 보스의 행동 간 텀을 랜덤으로 구함
+    public abstract void CalcBehaveDelay();
+    // 시간의 흐름을 구해서 딜레이 시간에 도달했는지 계산
+    public abstract bool TimeCount();
+    // 랜덤으로 패턴을 실행함
+    public abstract void RandomPattern();
     // 보스 공격 시의 동작
     public abstract void Attack();
     // 보스가 피격 시의 동작
@@ -99,6 +109,4 @@ public abstract class BossEnemy : MonoBehaviour
     public abstract void BossStateUpdate();
     // 보스 사망 시의 동작
     public abstract void Die();
-    // Update에서 실행될 보스의 행동들
-    public abstract void BossMovement();
 }

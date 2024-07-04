@@ -6404,7 +6404,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  jumpForce: 8
+  jumpForce: 25
   checkDis: 1.2
   grdLayer:
     serializedVersion: 2
@@ -6435,6 +6435,10 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 2097152
+  currentMp: 0
+  maxMp: 0
+  hpSld: {fileID: 0}
+  mpSld: {fileID: 0}
   anim: {fileID: 3962989372843851776}
   pbs: {fileID: 6633205992098927533}
   atkPos: {fileID: 0}
