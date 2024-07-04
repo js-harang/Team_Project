@@ -331,6 +331,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6164712920721527637}
   - component: {fileID: 6164712920721527636}
+  - component: {fileID: 1848786661888376026}
   m_Layer: 0
   m_Name: UIController
   m_TagString: Untagged
@@ -372,6 +373,25 @@ MonoBehaviour:
   escMenuUI: {fileID: 6164712919818062515}
   gameUI: {fileID: 1023289517966592855}
   gameOverUI: {fileID: 0}
+--- !u!114 &1848786661888376026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6164712920721527626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3214d14ffd1cccd49a61854d27d71614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: 6eae0a71e064f1f4fa23e81a268c807c, type: 2}
+  masterSlider: {fileID: 0}
+  bgmSlider: {fileID: 0}
+  sfxSlider: {fileID: 0}
+  masterToggle: {fileID: 0}
+  bgmToggle: {fileID: 0}
+  sfxToggle: {fileID: 0}
 --- !u!1 &6164712920736786456
 GameObject:
   m_ObjectHideFlags: 0

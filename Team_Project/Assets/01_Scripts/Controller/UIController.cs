@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
@@ -14,6 +13,8 @@ public class UIController : MonoBehaviour
 
     PlayerState pState;
 
+    [SerializeField, Space(10)] GameObject preferencePopup;
+
     private void Start()
     {
         pState = FindObjectOfType<PlayerState>().GetComponent<PlayerState>();
@@ -23,7 +24,7 @@ public class UIController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (pState.UnitState == UnitState.Interact)
+            if (pState.UnitState == UnitState.Interact || GameManager.gm.isPreferencePopup)
                 return;
 
             EscMenuOnOff();
@@ -94,13 +95,21 @@ public class UIController : MonoBehaviour
         gameOverUI.SetActive(true);
     }
 
+    public void PreferencesBtn()
+    {
+        EscMenuOnOff();
+
+        GameManager.gm.isPreferencePopup = true;
+        preferencePopup.SetActive(GameManager.gm.isPreferencePopup);
+    }
+
     // 게임 종료
     public void QuitGame()
     {
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
-        Application.Quit(); 
+        Application.Quit();
 #endif
     }
 }

@@ -2763,8 +2763,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1174773297}
-        m_TargetAssemblyTypeName: TitleController, Assembly-CSharp
+      - m_Target: {fileID: 1776327119}
+        m_TargetAssemblyTypeName: PerferencesManager, Assembly-CSharp
         m_MethodName: BasicSettingNoBtn
         m_Mode: 1
         m_Arguments:
@@ -4763,8 +4763,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1174773297}
-        m_TargetAssemblyTypeName: TitleController, Assembly-CSharp
+      - m_Target: {fileID: 1776327119}
+        m_TargetAssemblyTypeName: PerferencesManager, Assembly-CSharp
         m_MethodName: SaveSettingBtn
         m_Mode: 1
         m_Arguments:
@@ -5095,6 +5095,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8c36777cf3a4694596b786cdfdd4d65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fs: {fileID: 1615159126}
   resolutionDropdown: {fileID: 885236011}
 --- !u!1 &877346211
 GameObject:
@@ -6855,9 +6856,6 @@ MonoBehaviour:
   pwPlaceholder: {fileID: 445552534}
   preferencePopup: {fileID: 1776327115}
   exitPopup: {fileID: 560788127}
-  rm: {fileID: 869201239}
-  fullScreen: {fileID: 1615159126}
-  saveSettingPopup: {fileID: 1214168758}
 --- !u!4 &1174773298
 Transform:
   m_ObjectHideFlags: 0
@@ -6885,13 +6883,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1374a58222fc681429cfee309cd91847, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pm: {fileID: 1776327119}
   audioMixer: {fileID: 24100000, guid: 2fe8b7f2ed7186246b846d0e03b947b3, type: 2}
-  masterSlider: {fileID: 1609582193}
-  bgmSlider: {fileID: 840421111}
-  sfxSlider: {fileID: 600215341}
-  masterToggle: {fileID: 745797773}
-  bgmToggle: {fileID: 1295721631}
-  sfxToggle: {fileID: 176137238}
 --- !u!1 &1214168758
 GameObject:
   m_ObjectHideFlags: 0
@@ -7376,8 +7369,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1174773297}
-        m_TargetAssemblyTypeName: TitleController, Assembly-CSharp
+      - m_Target: {fileID: 1776327119}
+        m_TargetAssemblyTypeName: PerferencesManager, Assembly-CSharp
         m_MethodName: BasicSettingBtn
         m_Mode: 1
         m_Arguments:
@@ -8673,9 +8666,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1174773297}
-        m_TargetAssemblyTypeName: TitleController, Assembly-CSharp
-        m_MethodName: ResetSetting
+      - m_Target: {fileID: 1776327119}
+        m_TargetAssemblyTypeName: PerferencesManager, Assembly-CSharp
+        m_MethodName: ResetSettingBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8806,9 +8799,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1174773297}
-        m_TargetAssemblyTypeName: TitleController, Assembly-CSharp
-        m_MethodName: ResetSetting
+      - m_Target: {fileID: 1776327119}
+        m_TargetAssemblyTypeName: PerferencesManager, Assembly-CSharp
+        m_MethodName: ResetSettingBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9957,6 +9950,7 @@ GameObject:
   - component: {fileID: 1776327116}
   - component: {fileID: 1776327118}
   - component: {fileID: 1776327117}
+  - component: {fileID: 1776327119}
   m_Layer: 5
   m_Name: Preferences_Pnl
   m_TagString: Untagged
@@ -10023,6 +10017,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1776327115}
   m_CullTransparentMesh: 1
+--- !u!114 &1776327119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1776327115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: deac4453a1902e34eb3326a63a552a07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rm: {fileID: 869201239}
+  fullScreen: {fileID: 1615159126}
+  masterSlider: {fileID: 1609582193}
+  bgmSlider: {fileID: 840421111}
+  sfxSlider: {fileID: 600215341}
+  masterToggle: {fileID: 745797773}
+  bgmToggle: {fileID: 1295721631}
+  sfxToggle: {fileID: 176137238}
+  saveSettingPopup: {fileID: 1214168758}
 --- !u!1 &1783408149
 GameObject:
   m_ObjectHideFlags: 0
@@ -11248,8 +11263,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1174773297}
-        m_TargetAssemblyTypeName: TitleController, Assembly-CSharp
+      - m_Target: {fileID: 1776327119}
+        m_TargetAssemblyTypeName: PerferencesManager, Assembly-CSharp
         m_MethodName: BasicSettingYesBtn
         m_Mode: 1
         m_Arguments:
@@ -12824,6 +12839,7 @@ MonoBehaviour:
   sceneNumber: 0
   selectObject: {fileID: 0}
   boolIsFullScreen: 1
+  isPreferencePopup: 0
 --- !u!4 &6827689882179360911
 Transform:
   m_ObjectHideFlags: 0
