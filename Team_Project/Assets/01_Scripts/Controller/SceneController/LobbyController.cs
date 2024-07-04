@@ -20,9 +20,7 @@ public class LobbyController : MonoBehaviour
 
     private void Update()
     {
-        // 캐릭터 생성 창 탈출
-        if (Input.GetKeyDown(KeyCode.Escape) && !isLooby)
-            ReturnLobby();
+
     }
 
     public void GameStartBtn()
@@ -36,19 +34,7 @@ public class LobbyController : MonoBehaviour
     /// </summary>
     public void CreateCharacterBtn()
     {
-        isLooby = false;
-        lobbyCanvas.SetActive(isLooby);
-        mainCamera.position = createPos;
-    }
 
-    /// <summary>
-    /// Lobby로 되돌아가기
-    /// </summary>
-    public void ReturnLobby()
-    {
-        isLooby = true;
-        lobbyCanvas.SetActive(isLooby);
-        mainCamera.position = originPos;
     }
 
     public void BackBtn()

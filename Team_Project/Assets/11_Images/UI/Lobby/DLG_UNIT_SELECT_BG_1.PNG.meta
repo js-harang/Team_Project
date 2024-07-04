@@ -146,7 +146,7 @@ TextureImporter:
         width: 307
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 7, y: 0, z: 294, w: 0}
       outline: []
       physicsShape: []
@@ -154,6 +154,69 @@ TextureImporter:
       bones: []
       spriteID: d088e7171d7941d45a7c7682abaa5330
       internalID: 915229731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DLG_UNIT_SELECT_BG_1_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 436
+        width: 296
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ae93fa066799e547bc7686e023f4e9d
+      internalID: -209253645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DLG_UNIT_SELECT_BG_1_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 359
+        width: 296
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32eb7bb824deeef44b1b139ad46c02b3
+      internalID: -1886412740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DLG_UNIT_SELECT_BG_1_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 282
+        width: 296
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec89da23f237efe4aa7ca77cbd9fac16
+      internalID: 553373112
       vertices: []
       indices: 
       edges: []
@@ -171,6 +234,9 @@ TextureImporter:
     nameFileIdTable:
       DLG_UNIT_SELECT_BG_1_0: 1999418523
       DLG_UNIT_SELECT_BG_1_1: 915229731
+      DLG_UNIT_SELECT_BG_1_2: -209253645
+      DLG_UNIT_SELECT_BG_1_3: -1886412740
+      DLG_UNIT_SELECT_BG_1_4: 553373112
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

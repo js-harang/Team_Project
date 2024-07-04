@@ -22,14 +22,14 @@ public class TitleController : MonoBehaviour
 
     [SerializeField, Space(10)] ResolutionManager rm;
     [SerializeField] FullScreen fullScreen;
-    AudioController ac;
+    TitleAudioController ac;
 
     [SerializeField, Space(10)] GameObject saveSettingPopup;
     bool isSaveSettingPopup = false;
 
     private void Start()
     {
-        ac = GetComponent<AudioController>();
+        ac = GetComponent<TitleAudioController>();
 
         idPlaceholder.DOFade(0.1f, 1f).SetLoops(-1, LoopType.Yoyo);
         pwPlaceholder.DOFade(0.1f, 1f).SetLoops(-1, LoopType.Yoyo);

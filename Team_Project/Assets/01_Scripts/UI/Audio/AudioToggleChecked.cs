@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class AudioToggleChecked : MonoBehaviour
 {
-    [SerializeField] AudioController ac;
+    [SerializeField] TitleAudioController ac;
 
     public void IsChecked(bool isChecked)
     {

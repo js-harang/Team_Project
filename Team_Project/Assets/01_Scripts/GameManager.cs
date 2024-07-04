@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-    public bool boolIsFullScreen;
+    [HideInInspector] public bool boolIsFullScreen;
 
     /// <summary>
     /// 0 = TitleScene
