@@ -14,7 +14,6 @@ public class FirstBoss : BossEnemy
         //필요한 참조들 가져옴
         bossAnim = GetComponentInChildren<Animator>();
         player = GameObject.FindWithTag("Player");
-        playerPosition = player.transform.position;
     }
 
     public override void Appear()
@@ -25,8 +24,10 @@ public class FirstBoss : BossEnemy
 
     IEnumerator AppearAction()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2.6f);
         BState = BossState.Idle;
+        yield return new WaitForSeconds(1f);
+        BState = BossState.Move;
     }
 
     public override void Idle()
@@ -44,12 +45,13 @@ public class FirstBoss : BossEnemy
 
     public override void Move()
     {
-        if (Vector3.Distance(transform.position, playerPosition) >= attackDistance)
-        {
-            BState = BossState.Move;
-            transform.Translate(playerPosition * moveSpped * Time.deltaTime);
-            bossAnim.SetTrigger("move");
-        }
+        transform.Translate(player.transform.position * moveSpped * Time.deltaTime);
+        LookAtPlayer();
+        bossAnim.SetTrigger("move");
+    }
+
+    public override void BehaviorDelay()
+    {
         
     }
 
@@ -72,7 +74,7 @@ public class FirstBoss : BossEnemy
 
     public override void Die()
     {
-        
+
     }
 
     public override void BossMovement()

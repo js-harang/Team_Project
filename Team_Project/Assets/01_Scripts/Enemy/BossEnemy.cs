@@ -51,7 +51,6 @@ public abstract class BossEnemy : MonoBehaviour
     public TMP_Text bossName_text;
     public Slider bossHpBar;
     public GameObject player;
-    public Vector3 playerPosition;
 
     // 보스의 이름
     public string bossName;
@@ -90,6 +89,8 @@ public abstract class BossEnemy : MonoBehaviour
     public abstract void LookAtPlayer();
     // 보스 이동 시의 동작
     public abstract void Move();
+    // 보스의 행동 간 텀
+    public abstract void BehaviorDelay();
     // 보스 공격 시의 동작
     public abstract void Attack();
     // 보스가 피격 시의 동작
