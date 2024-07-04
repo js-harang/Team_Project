@@ -60,7 +60,7 @@ public class PlayerBattleControllerOld : BattleStatus
     void Update()
     {
         // 죽은 상태면 키입력 금지
-        if (pState.UnitState == UnitState.Die)
+        if (pState.UnitBS == UnitBattleState.Die)
             return;
 
         BattleKeyInput();       // 공격키 입력
@@ -143,7 +143,7 @@ public class PlayerBattleControllerOld : BattleStatus
     #region 플레이어 데미지 입을때
     public void Hurt(float damage)
     {
-        if (pState.UnitState == UnitState.Die)
+        if (pState.UnitBS == UnitBattleState.Die)
             return;
 
         pState.UnitState = UnitState.Hurt;
@@ -161,7 +161,7 @@ public class PlayerBattleControllerOld : BattleStatus
         {
             Debug.Log("플레이어 사망");
 
-            pState.UnitState = UnitState.Die;
+            pState.UnitBS = UnitBattleState.Die;
             pAnim.SetTrigger("PlayerDie");
 
             UIController uiCon = GameObject.FindAnyObjectByType<UIController>();

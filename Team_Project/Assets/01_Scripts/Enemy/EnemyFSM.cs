@@ -29,7 +29,7 @@ public class EnemyFSM : BattleStatus
     public float attackDistance = 2f;
 
     // 플레이어 트랜스폼
-    public Transform player;
+    Transform player;
 
     // 이동 속도
     public float moveSpeed = 5f;
@@ -71,6 +71,9 @@ public class EnemyFSM : BattleStatus
     {
         // 최초의 에너미 상태를 대기
         m_State = EnemyState.Idle;
+
+        // 플레이어 트랜스폼 가져오기
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
 
         // 캐릭터 컴트롤러 컴포넌트 받아오기
         cc = GetComponent<CharacterController>();

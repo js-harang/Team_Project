@@ -31,16 +31,7 @@ public class FirstBoss : BossEnemy
 
     public override void Idle()
     {
-        if (Vector3.Distance(transform.position, playerPosition) >= attackDistance)
-        {
-            BState = BossState.Move;
-            transform.Translate(playerPosition * moveSpped * Time.deltaTime);
-
-        }
-        else
-        {
-            bossAnim.SetTrigger("idle");
-        }
+        bossAnim.SetTrigger("idle");
     }
 
     public override void LookAtPlayer()
@@ -53,7 +44,13 @@ public class FirstBoss : BossEnemy
 
     public override void Move()
     {
-        bossAnim.SetTrigger("move");
+        if (Vector3.Distance(transform.position, playerPosition) >= attackDistance)
+        {
+            BState = BossState.Move;
+            transform.Translate(playerPosition * moveSpped * Time.deltaTime);
+            bossAnim.SetTrigger("move");
+        }
+        
     }
 
     public override void Attack()

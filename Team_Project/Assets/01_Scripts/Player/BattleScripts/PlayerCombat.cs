@@ -112,7 +112,7 @@ public class PlayerCombat : BattleStatus
     #region 플레이어 데미지 입을때
     public void Hurt(float damage)
     {
-        if (pbs.UnitState == UnitState.Die)
+        if (pbs.UnitBS == UnitBattleState.Die)
             return;
 
         pbs.UnitState = UnitState.Hurt;
@@ -130,7 +130,7 @@ public class PlayerCombat : BattleStatus
         {
             Debug.Log("플레이어 사망");
 
-            pbs.UnitState = UnitState.Die;
+            pbs.UnitBS = UnitBattleState.Die;
             anim.SetTrigger("PlayerDie");
 
             UIController uiCon = GameObject.FindAnyObjectByType<UIController>();

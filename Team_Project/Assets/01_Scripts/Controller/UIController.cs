@@ -69,9 +69,11 @@ public class UIController : MonoBehaviour
         if (escMenuUI.activeSelf)
         {
             escMenuUI.SetActive(false);
+            pState.UnitState = UnitState.Idle;
             return;
         }
         escMenuUI.SetActive(true);
+        pState.UnitState = UnitState.Wait;
     }
 
     // 캐릭터 선택화면으로 이동

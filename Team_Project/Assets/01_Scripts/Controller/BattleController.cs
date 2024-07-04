@@ -123,7 +123,7 @@ public class BattleController : MonoBehaviour
     private void Update()
     {
         // 플레이어 사망시 동작
-        if (pS.UnitState == UnitState.Die)
+        if (pS.UnitBS == UnitBattleState.Die)
         {
             BattleState = BattleState.Defeat;
             return;

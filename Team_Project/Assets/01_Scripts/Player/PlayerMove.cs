@@ -16,7 +16,7 @@ public class PlayerMove : MonoBehaviour
 
     // 이동
     [SerializeField] float speed;
-    public float jumpForce;
+    public float jumpForce = 25;
 
 
     //감지거리
@@ -43,10 +43,13 @@ public class PlayerMove : MonoBehaviour
 
     private void Update()
     {
-        if (pState.UnitBS == UnitBattleState.Die || pState.UnitState == UnitState.Interact)
+        if (pState.UnitBS == UnitBattleState.Die)
             return;
 
         GrondCheck();
+
+        if (pState.UnitState == UnitState.Interact || pState.UnitState == UnitState.Wait)
+            return;
 
         InputKey();
 

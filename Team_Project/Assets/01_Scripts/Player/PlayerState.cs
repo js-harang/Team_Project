@@ -3,12 +3,12 @@ using UnityEngine;
 public enum UnitState
 {
     Idle,
+    Wait,
     Interact,
     Run,
     Jump,
     Attack,
     Hurt,
-    Die,
 }
 
 public enum UnitBattleState
