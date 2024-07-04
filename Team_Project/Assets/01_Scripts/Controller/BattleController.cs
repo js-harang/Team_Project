@@ -36,10 +36,9 @@ public class BattleController : MonoBehaviour
                     StartCoroutine(StageStart());
                     break;
                 /*case BattleState.Running:
-                    break;*/
-                case BattleState.NowBattle:
-                    StartCoroutine(BlockWallOnOff(waveNum));
                     break;
+                case BattleState.NowBattle:
+                    break;*/
                 case BattleState.BossAppear:
                     break;
                 case BattleState.Clear:
@@ -98,7 +97,7 @@ public class BattleController : MonoBehaviour
     }
 
     // 현재 클리어한 웨이브의 수
-    int waveNum;
+    public int waveNum;
 
     // 플레이어가 조작을 멈춘 시간 변수
     float playerDive;
@@ -172,7 +171,7 @@ public class BattleController : MonoBehaviour
     }
 
     // 배틀 시작 시 구역을 나누는 벽을 관리하는 메소드
-    IEnumerator BlockWallOnOff(int waveNum)
+    public IEnumerator BlockWallOnOff(int waveNum)
     {
         if (!blockWall[waveNum].activeSelf)
             blockWall[waveNum].SetActive(true);

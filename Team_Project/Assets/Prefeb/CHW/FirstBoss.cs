@@ -4,34 +4,43 @@ using UnityEngine;
 
 public class FirstBoss : BossEnemy
 {
-    // 등장 애니메이션 재생 시간
-    float appearAnimTime = 2.33f;
+    public override void BossStart()
+    {
+        // 등장 시 배틀 컨트롤러의 보스 개체수 증가시킴
+        bCon = FindObjectOfType<BattleController>().GetComponent<BattleController>();
+        bCon.BattleState = BattleState.BossAppear;
+        bCon.BossCount++;
+
+        //필요한 참조들 가져옴
+        bossAnim = GetComponentInChildren<Animator>();
+        player = GameObject.FindWithTag("Player");
+        playerPosition = player.transform.position;
+    }
 
     public override void Appear()
     {
         LookAtPlayer();
-        StartCoroutine(AppearAction(appearAnimTime));
+        StartCoroutine(AppearAction());
     }
 
-    IEnumerator AppearAction(float appearAnimTime)
+    IEnumerator AppearAction()
     {
-        yield return new WaitForSeconds(appearAnimTime);
+        yield return new WaitForSeconds(3f);
         BState = BossState.Idle;
-
-        yield return new WaitForSeconds(1f);
-        bCon.BattleState = BattleState.NowBattle;
-        BState = BossState.Move;
-        bossAnim.SetTrigger("move");
     }
 
     public override void Idle()
     {
-        StopMove();
-        bossAnim.SetTrigger("idle");
-    }
+        if (Vector3.Distance(transform.position, playerPosition) >= attackDistance)
+        {
+            BState = BossState.Move;
+            transform.Translate(playerPosition * moveSpped * Time.deltaTime);
 
-    public override void StopMove()
-    {
+        }
+        else
+        {
+            bossAnim.SetTrigger("idle");
+        }
     }
 
     public override void LookAtPlayer()
@@ -44,20 +53,12 @@ public class FirstBoss : BossEnemy
 
     public override void Move()
     {
-        if (Vector3.Distance(transform.position, player.transform.position) >= attackDistance)
-        {
-            LookAtPlayer();
-            return;
-        }
-        /*else
-            StopMove();
-            BState = BossState.Attack;*/
-            
+        bossAnim.SetTrigger("move");
     }
 
     public override void Attack()
     {
-        
+        LookAtPlayer();
     }
 
     public override void Hit()
@@ -75,5 +76,21 @@ public class FirstBoss : BossEnemy
     public override void Die()
     {
         
+    }
+
+    public override void BossMovement()
+    {
+        switch (BState)
+        {
+
+            case BossState.Idle:
+                Idle();
+                break;
+            case BossState.Move:
+                Move();
+                break;
+            default:
+                break;
+        }
     }
 }
