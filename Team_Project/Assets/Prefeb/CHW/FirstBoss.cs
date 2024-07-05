@@ -25,6 +25,22 @@ public class FirstBoss : BossEnemy
         bossAnim = GetComponentInChildren<Animator>();
         player = GameObject.FindWithTag("Player");
     }
+
+    public override void Appear()
+    {
+        LookAtPlayer();
+        CalcBehaveDelay();
+        StartCoroutine(AppearAction());
+    }
+
+    IEnumerator AppearAction()
+    {
+        yield return new WaitForSeconds(2.6f);
+        bossAnim.SetTrigger("idle");
+        yield return new WaitForSeconds(1f);
+        BState = BossState.Move;
+    }
+
     public override void BossMovement()
     {
         switch (BState)
@@ -41,21 +57,6 @@ public class FirstBoss : BossEnemy
             default:
                 break;
         }
-    }
-
-    public override void Appear()
-    {
-        LookAtPlayer();
-        CalcBehaveDelay();
-        StartCoroutine(AppearAction());
-    }
-
-    IEnumerator AppearAction()
-    {
-        yield return new WaitForSeconds(2.6f);
-        bossAnim.SetTrigger("idle");
-        yield return new WaitForSeconds(1f);
-        BState = BossState.Move;
     }
 
     public override void Idle()
@@ -85,7 +86,7 @@ public class FirstBoss : BossEnemy
 
     public override void CalcBehaveDelay()
     {
-        behaveDelay = Random.Range(1f, 3f);
+        behaveDelay = Random.Range(1f, 2f);
         Debug.Log(behaveDelay);
     }
 
@@ -106,7 +107,13 @@ public class FirstBoss : BossEnemy
         delayDone = false;
         nowAttack = 0;
 
-        int randomState = Random.Range(1, 4);
+        int randomState;
+
+        if (BState == BossState.Idle)
+            randomState = Random.Range(2, 4);
+        else
+            randomState = Random.Range(1, 4);
+
         switch (randomState)
         {
             case 1:
@@ -140,6 +147,7 @@ public class FirstBoss : BossEnemy
             BState = BossState.Move;
             return;
         }
+
         LookAtPlayer();
         MyAttackPattern();
     }
