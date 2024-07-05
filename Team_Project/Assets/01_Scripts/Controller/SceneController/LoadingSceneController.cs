@@ -42,7 +42,7 @@ public class LoadingSceneController : MonoBehaviour
         loadingBar.value = 1f;
         loadingTxt.text = "100%";
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
 
         ao.allowSceneActivation = true;
     }

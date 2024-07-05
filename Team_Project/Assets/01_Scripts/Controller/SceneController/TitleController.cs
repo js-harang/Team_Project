@@ -1,7 +1,8 @@
 using DG.Tweening;
+using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.Networking;
 
 public class TitleController : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class TitleController : MonoBehaviour
     [SerializeField, Space(10)] GameObject preferencePopup;
     [SerializeField] GameObject exitPopup;
     bool isExitPopup = false;
+
+    string path = "http://192.168.52.187/team_project/";
 
     private void Start()
     {
@@ -38,14 +41,40 @@ public class TitleController : MonoBehaviour
         if (!CheckInput(id.text, pw.text))
             return;
 
-        string pass = PlayerPrefs.GetString(id.text);
-        if (pw.text == pass)
+        StartCoroutine(LoginDataPost(id.text, pw.text));
+
+        //string pass = PlayerPrefs.GetString(id.text);
+        //if (pw.text == pass)
+        //{
+        //    GameManager.gm.sceneNumber = 1;
+        //    SceneManager.LoadScene("99_LoadingScene");
+        //}
+        //else
+        //    loginResultTxt.text = "입력하신 아이디와 패스워드가 일치하지 않습니다.";
+    }
+
+    IEnumerator LoginDataPost(string id, string pw)
+    {
+        string url = path + "login.php";
+        WWWForm form = new();
+        form.AddField("userid", id);
+        form.AddField("userpw", pw);
+        using (UnityWebRequest www = UnityWebRequest.Post(url, form))
         {
-            GameManager.gm.sceneNumber = 1;
-            SceneManager.LoadScene("99_LoadingScene");
+            yield return www.SendWebRequest();
+            if (www.error == null)
+                switch (www.downloadHandler.text)
+                {
+                    case "1":
+                        Debug.Log("성공");
+                        //GameManager.gm.sceneNumber = 1;
+                        //SceneManager.LoadScene("99_LoadingScene");
+                        break;
+                    case "2":
+                        loginResultTxt.text = "로그인 실패";
+                        break;
+                }
         }
-        else
-            loginResultTxt.text = "입력하신 아이디와 패스워드가 일치하지 않습니다.";
     }
 
     public void SaveUserData()
@@ -53,13 +82,39 @@ public class TitleController : MonoBehaviour
         if (!CheckInput(id.text, pw.text))
             return;
 
-        if (!PlayerPrefs.HasKey(id.text))
+        StartCoroutine(SaveDataPost(id.text, pw.text));
+
+        //if (!PlayerPrefs.HasKey(id.text))
+        //{
+        //    PlayerPrefs.SetString(id.text, pw.text);
+        //    loginResultTxt.text = "아이디 생성이 완료됐습니다.";
+        //}
+        //else
+        //    loginResultTxt.text = "이미 존재하는 아이디입니다.";
+    }
+
+    IEnumerator SaveDataPost(string id, string pw)
+    {
+        string url = path + "login.php";
+        WWWForm form = new();
+
+        using (UnityWebRequest www = UnityWebRequest.Post(url, form))
         {
-            PlayerPrefs.SetString(id.text, pw.text);
-            loginResultTxt.text = "아이디 생성이 완료됐습니다.";
+            yield return www.SendWebRequest();
+            if (www.error == null)
+                switch (www.downloadHandler.text)
+                {
+                    case "1":
+                        loginResultTxt.text = "로그인!";
+                        Debug.Log(1);
+                        //GameManager.gm.sceneNumber = 1;
+                        //SceneManager.LoadScene("99_LoadingScene");
+                        break;
+                    case "2":
+                        loginResultTxt.text = "로그인 실패";
+                        break;
+                }
         }
-        else
-            loginResultTxt.text = "이미 존재하는 아이디입니다.";
     }
 
     private bool CheckInput(string id, string pw)
