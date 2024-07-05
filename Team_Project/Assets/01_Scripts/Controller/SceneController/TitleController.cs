@@ -3,6 +3,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 
 public class TitleController : MonoBehaviour
 {
@@ -40,7 +41,6 @@ public class TitleController : MonoBehaviour
     {
         if (!CheckInput(id.text, pw.text))
             return;
-
         StartCoroutine(LoginDataPost(id.text, pw.text));
 
         //string pass = PlayerPrefs.GetString(id.text);
@@ -66,9 +66,8 @@ public class TitleController : MonoBehaviour
                 switch (www.downloadHandler.text)
                 {
                     case "1":
-                        Debug.Log("성공");
-                        //GameManager.gm.sceneNumber = 1;
-                        //SceneManager.LoadScene("99_LoadingScene");
+                        GameManager.gm.sceneNumber = 1;
+                        SceneManager.LoadScene("99_LoadingScene");
                         break;
                     case "2":
                         loginResultTxt.text = "로그인 실패";

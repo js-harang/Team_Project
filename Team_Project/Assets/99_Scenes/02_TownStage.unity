@@ -58463,19 +58463,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &9105075748405015289
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9105075748405015292}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e09325005d5ac648b905baac00321f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ac: {fileID: 0}
 --- !u!114 &9105075748405015290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58523,8 +58510,8 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 9105075748405015289}
-        m_TargetAssemblyTypeName: ToggleChecked, Assembly-CSharp
+      - m_Target: {fileID: 9105075748405015293}
+        m_TargetAssemblyTypeName: TownAudioToggleChecked, Assembly-CSharp
         m_MethodName: IsChecked
         m_Mode: 0
         m_Arguments:
@@ -58567,7 +58554,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9105075748405015291}
   - component: {fileID: 9105075748405015290}
-  - component: {fileID: 9105075748405015289}
+  - component: {fileID: 9105075748405015293}
   m_Layer: 5
   m_Name: Master_Toggle
   m_TagString: Untagged
@@ -58575,6 +58562,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &9105075748405015293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9105075748405015292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0665bbe14704a9f419641bfd3aa03649, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ac: {fileID: 1848786661489658242}
 --- !u!1 &9105075748409681104
 GameObject:
   m_ObjectHideFlags: 0
@@ -60096,7 +60096,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8c36777cf3a4694596b786cdfdd4d65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fs: {fileID: 0}
+  fs: {fileID: 9105075749542614305}
   resolutionDropdown: {fileID: 9105075748796115804}
 --- !u!224 &9105075748779687713
 RectTransform:
@@ -60762,8 +60762,8 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 9105075748908576354}
-        m_TargetAssemblyTypeName: ToggleChecked, Assembly-CSharp
+      - m_Target: {fileID: 9105075748908576357}
+        m_TargetAssemblyTypeName: TownAudioToggleChecked, Assembly-CSharp
         m_MethodName: IsChecked
         m_Mode: 0
         m_Arguments:
@@ -60775,19 +60775,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 0
---- !u!114 &9105075748908576354
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9105075748908576356}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e09325005d5ac648b905baac00321f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ac: {fileID: 0}
 --- !u!224 &9105075748908576355
 RectTransform:
   m_ObjectHideFlags: 0
@@ -60819,7 +60806,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9105075748908576355}
   - component: {fileID: 9105075748908576353}
-  - component: {fileID: 9105075748908576354}
+  - component: {fileID: 9105075748908576357}
   m_Layer: 5
   m_Name: SFX_Toggle
   m_TagString: Untagged
@@ -60827,6 +60814,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &9105075748908576357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9105075748908576356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0665bbe14704a9f419641bfd3aa03649, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ac: {fileID: 1848786661489658242}
 --- !u!222 &9105075748931393669
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -65298,8 +65298,8 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 9105075750037139177}
-        m_TargetAssemblyTypeName: ToggleChecked, Assembly-CSharp
+      - m_Target: {fileID: 9105075750037139180}
+        m_TargetAssemblyTypeName: TownAudioToggleChecked, Assembly-CSharp
         m_MethodName: IsChecked
         m_Mode: 0
         m_Arguments:
@@ -65311,19 +65311,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 0
---- !u!114 &9105075750037139177
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9105075750037139179}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e09325005d5ac648b905baac00321f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ac: {fileID: 0}
 --- !u!224 &9105075750037139178
 RectTransform:
   m_ObjectHideFlags: 0
@@ -65355,7 +65342,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9105075750037139178}
   - component: {fileID: 9105075750037139176}
-  - component: {fileID: 9105075750037139177}
+  - component: {fileID: 9105075750037139180}
   m_Layer: 5
   m_Name: BGM_Toggle
   m_TagString: Untagged
@@ -65363,6 +65350,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &9105075750037139180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9105075750037139179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0665bbe14704a9f419641bfd3aa03649, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ac: {fileID: 1848786661489658242}
 --- !u!222 &9105075750047191097
 CanvasRenderer:
   m_ObjectHideFlags: 0
