@@ -6,7 +6,7 @@ public class AttackSO : ScriptableObject
     // 공격재생 애니메이션들
     public AnimatorOverrideController[] animOCs;
 
-    // 스킬창 에 위치할 인덱스 번호
+    // 스킬의 인덱스 번호
     public int skillIdx;
 
     // 콤보공격시 대미지 순서

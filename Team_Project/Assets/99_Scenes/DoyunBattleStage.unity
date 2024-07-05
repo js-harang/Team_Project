@@ -540,6 +540,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 400, y: 1, z: 30}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &242036395 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9040163872321866769, guid: fc96369a4636d7640a7c59add740978a, type: 3}
+  m_PrefabInstance: {fileID: 1922461238}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f35e6a2e3406ae34592530ad95498395, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &248456862
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -56148,10 +56159,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1394173000307811400, guid: fc96369a4636d7640a7c59add740978a, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3990721671288568173, guid: fc96369a4636d7640a7c59add740978a, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -56234,54 +56241,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3990721671288568173, guid: fc96369a4636d7640a7c59add740978a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6497933181590801487, guid: fc96369a4636d7640a7c59add740978a, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6497933181590801487, guid: fc96369a4636d7640a7c59add740978a, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6497933181590801487, guid: fc96369a4636d7640a7c59add740978a, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6497933181590801487, guid: fc96369a4636d7640a7c59add740978a, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6497933181590801487, guid: fc96369a4636d7640a7c59add740978a, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6497933181590801487, guid: fc96369a4636d7640a7c59add740978a, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6497933182398884752, guid: fc96369a4636d7640a7c59add740978a, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6497933182398884752, guid: fc96369a4636d7640a7c59add740978a, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6497933182398884752, guid: fc96369a4636d7640a7c59add740978a, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6497933182398884752, guid: fc96369a4636d7640a7c59add740978a, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6497933182398884752, guid: fc96369a4636d7640a7c59add740978a, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6497933182398884752, guid: fc96369a4636d7640a7c59add740978a, type: 3}
-      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8036756318168218642, guid: fc96369a4636d7640a7c59add740978a, type: 3}
@@ -56570,6 +56529,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1601350926271232992, guid: 399367771189c4943918f7c9d63fa1f3, type: 3}
+      propertyPath: skillDirectory
+      value: 
+      objectReference: {fileID: 242036395}
+    - target: {fileID: 2013877377953123730, guid: 399367771189c4943918f7c9d63fa1f3, type: 3}
+      propertyPath: skillDirectory
+      value: 
+      objectReference: {fileID: 242036395}
     - target: {fileID: 2910409632625343459, guid: 399367771189c4943918f7c9d63fa1f3, type: 3}
       propertyPath: m_Pivot.x
       value: 0

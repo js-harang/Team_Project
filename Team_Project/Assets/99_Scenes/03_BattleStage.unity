@@ -282,6 +282,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f00990e68261f944a1451fe7f47a31c, type: 3}
+--- !u!114 &28255237 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9040163872321866769, guid: fc96369a4636d7640a7c59add740978a, type: 3}
+  m_PrefabInstance: {fileID: 1101876498}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f35e6a2e3406ae34592530ad95498395, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &41433243 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1023289518676550366, guid: f1e263f9adecf2e40a14dc4fe8231b7a, type: 3}
@@ -52572,6 +52583,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6232634379832862316, guid: 5a6ea80acdb47ad47a0cf4970f8b394e, type: 3}
   m_PrefabInstance: {fileID: 6232634379831284791}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &490417611 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 45065760855410216, guid: 399367771189c4943918f7c9d63fa1f3, type: 3}
+  m_PrefabInstance: {fileID: 944241408}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &518784004
 GameObject:
   m_ObjectHideFlags: 0
@@ -53595,6 +53617,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1601350926271232992, guid: 399367771189c4943918f7c9d63fa1f3, type: 3}
+      propertyPath: skillDirectory
+      value: 
+      objectReference: {fileID: 28255237}
+    - target: {fileID: 2013877377953123730, guid: 399367771189c4943918f7c9d63fa1f3, type: 3}
+      propertyPath: coolTimeIcon
+      value: 
+      objectReference: {fileID: 490417611}
+    - target: {fileID: 2013877377953123730, guid: 399367771189c4943918f7c9d63fa1f3, type: 3}
+      propertyPath: skillDirectory
+      value: 
+      objectReference: {fileID: 28255237}
     - target: {fileID: 2910409632625343459, guid: 399367771189c4943918f7c9d63fa1f3, type: 3}
       propertyPath: m_Pivot.x
       value: 0

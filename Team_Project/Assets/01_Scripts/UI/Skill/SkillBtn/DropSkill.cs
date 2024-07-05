@@ -8,13 +8,15 @@ public class DropSkill : MonoBehaviour, IPointerEnterHandler, IDropHandler, IPoi
 {
     // 자식 SkillData 오브젝트 가 넣어짐
     public SkillData skillData;
-
     [SerializeField] private GameObject childObj;
+    
+    [Space(10)]
     [SerializeField] private SkillButton skillButton;
 
     private void Awake()
     {
         Debug.Log(this.name);
+        skillButton = GetComponent<SkillButton>();
     }
 
     // 무언가 드랍 될때
@@ -40,7 +42,7 @@ public class DropSkill : MonoBehaviour, IPointerEnterHandler, IDropHandler, IPoi
         {
             Debug.Log("SkillData 드롭");
             SkillData eventSkillData = eventData.pointerDrag.GetComponent<SkillData>();
-            if (eventSkillData.Button.CoolTime <= 0)
+            if (eventSkillData.SkillButton.CoolTime <= 0)
             {
                 skillData.SkillIcon.sprite = eventSkillData.SkillIcon.sprite;
                 skillData.Skill = eventSkillData.Skill;
@@ -66,26 +68,15 @@ public class DropSkill : MonoBehaviour, IPointerEnterHandler, IDropHandler, IPoi
             skillData.SkillIcon.sprite = eventSkillData.SkillIcon.sprite;
         }
         #endregion
+
+        skillButton.SaveSkillData();
     }
 
+    #region 안쓰는 함수
     // 포인터가 들어올때
     public void OnPointerEnter(PointerEventData eventData) { }
 
     // 포인터가 나갈때
     public void OnPointerExit(PointerEventData eventData) { }
-
-    // 스킬 저장
-    void SaveSKillData()
-    {
-        if (skillData.Skill != null)
-        {
-            PlayerPrefs.SetInt(this.name,skillData.Skill.skillIdx);
-        }
-        PlayerPrefs.Save();
-    }
-    void LoadSkillData()
-    {
-        int idx = PlayerPrefs.GetInt(this.name);
-
-    }
+    #endregion
 }

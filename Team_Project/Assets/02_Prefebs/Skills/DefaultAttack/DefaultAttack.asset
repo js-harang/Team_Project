@@ -14,11 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animOCs:
   - {fileID: 22100000, guid: b8748e635c6ea284394c53281f90a43c, type: 2}
-  skillIdx: 2
+  skillIdx: 0
   damage:
   - 1
   coolTime: 2
-  canAttack: 1
+  isComboing: 0
+  canMoveAtk: 0
+  useMana: 0
   sprite: {fileID: 21300000, guid: 22f48537039d664438a600ceec1f39ae, type: 3}
   atkPosIdx: 0
   atkLength: {x: 2, y: 2.5, z: 2.5}

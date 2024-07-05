@@ -26,7 +26,7 @@ public class SkillData : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     [Space(10)]
     #region 부모 버튼 속성
     [SerializeField] private SkillButton skillButton;
-    public SkillButton Button { get { return skillButton; } set { skillButton = value; } }
+    public SkillButton SkillButton { get { return skillButton; } set { skillButton = value; } }
     #endregion
 
     #region 캔바스 변수
@@ -75,6 +75,7 @@ public class SkillData : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
             skillIcon.sprite = null;
             skillButton.Skill = null;
         }
+        SkillButton.SaveSkillData();
     }
     #endregion
 }

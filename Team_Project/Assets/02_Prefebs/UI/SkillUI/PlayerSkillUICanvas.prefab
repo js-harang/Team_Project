@@ -110,6 +110,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2910409632625343459}
     m_Modifications:
+    - target: {fileID: 216766561880274818, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
+      propertyPath: skillButton
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3242657433022865029, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
       propertyPath: m_Name
       value: SkillButton_A
@@ -198,6 +202,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6263716087785292668, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
+      propertyPath: skillButton
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6572057685534779481, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
+      propertyPath: buttonName
+      value: SkillButton_A
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
 --- !u!224 &711334570809575552 stripped
@@ -212,6 +224,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2910409632625343459}
     m_Modifications:
+    - target: {fileID: 216766561880274818, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
+      propertyPath: skillButton
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3242657433022865029, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
       propertyPath: m_Name
       value: SkillButton_S
@@ -299,6 +315,14 @@ PrefabInstance:
     - target: {fileID: 5267296690740997451, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6263716087785292668, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
+      propertyPath: skillButton
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6572057685534779481, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
+      propertyPath: buttonName
+      value: SkillButton_S
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}

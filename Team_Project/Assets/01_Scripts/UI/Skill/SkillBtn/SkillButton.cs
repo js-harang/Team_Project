@@ -5,28 +5,45 @@ using UnityEngine.UI;
 
 public class SkillButton : MonoBehaviour
 {
+    // 태그로 자동 참조
     PlayerCombat player;
 
-    #region 스킬 데이터 관련
-    [SerializeField]
-    SkillData skillData;
+    #region 스킬 저장용 변수
 
-    [SerializeField]
+    // 현재 버튼 이름
+    public string buttonName;
+    
+    [Space(10)]
+    // 스킬 가져올 디렉토리
+    [SerializeField] SkillDirectory skillDirectory;
+
+    #endregion
+
+    #region 스킬 데이터 관련
+    [Space(10)]
+    // 자식오브젝트 SkillData 를 참조 할 것
+    [SerializeField] SkillData skillData;
+
+    // 자동으로 참조됨
     AttackSO skill;
     public AttackSO Skill { get { return skill; } set { skill = value; } }
     #endregion
 
     #region 스킬 쿨타임 관련
-    float coolTime;
-
+    // 쿨타임 코루틴 실행 확인용 변수
     bool isCoolTime;
+
+    float coolTime;
     public float CoolTime { get { return coolTime; } set { coolTime = value; } }
-    public Image coolTimeIcon;
+
+    // 자식오브젝트 의 쿨타임 아이콘 넣기
+    [SerializeField] public Image coolTimeIcon;
     #endregion
 
 
     private void Start()
     {
+        // PlayerPrefs.DeleteAll();
         StartSetting();
     }
 
@@ -109,12 +126,42 @@ public class SkillButton : MonoBehaviour
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    void LoadSkillData()
+    {
+        int idx = PlayerPrefs.GetInt(buttonName);
+
+        // 0 이상이면 불러오기
+        if (idx > 0)
+        {
+            skill = skillDirectory.skillAtk[idx];
+            skillData.Skill = skill;
+            skillData.SkillIcon.sprite = skillDirectory.skillSprites[idx];
+        }
+        // 0 이면 기본적으로 null 값임
+    }
+
+    public void SaveSkillData()
+    {
+        int idx;
+        if (skillData.Skill == null)
+            idx = 0;
+        else
+           idx = skillData.Skill.skillIdx;
+
+        PlayerPrefs.SetInt(buttonName, idx);
+        PlayerPrefs.Save();
+    }
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     #region 시작 세팅
     void StartSetting()
     {
         player = GameObject.FindWithTag("Player").GetComponent<PlayerCombat>();
         coolTimeIcon.fillAmount = 0;
         coolTime = 0f;
+
+        LoadSkillData();
     }
     #endregion
 }
