@@ -54,6 +54,7 @@ public abstract class BossEnemy : MonoBehaviour
     public Slider bossHpBar;
     public GameObject player;
 
+    [Space(10)]
     // 보스의 이름
     public string bossName;
     // 현재 체력
@@ -70,7 +71,10 @@ public abstract class BossEnemy : MonoBehaviour
     public float behaveDelay;
     // 대기 시간 계산 하는 변수
     public float time;
-
+    // 딜레이 시간이 끝났는지 확인하는 변수
+    public bool delayDone;
+    // 지금 공격 중인지 확인하는 변수 0 : 기본 상태, 1 : 공격 중, 2 : 공격 종료
+    public int nowAttack;
 
     void Start() 
     {
@@ -81,6 +85,11 @@ public abstract class BossEnemy : MonoBehaviour
     void Update() 
     {
         BossMovement();
+
+        if (nowAttack == 1 || bState == BossState.Appear)
+            return;
+
+        DelayTimeCount();
     }
 
     // 보스 활성화 시 Start 실행 동작
@@ -98,11 +107,13 @@ public abstract class BossEnemy : MonoBehaviour
     // 보스의 행동 간 텀을 랜덤으로 구함
     public abstract void CalcBehaveDelay();
     // 시간의 흐름을 구해서 딜레이 시간에 도달했는지 계산
-    public abstract bool TimeCount();
+    public abstract void DelayTimeCount();
     // 랜덤으로 패턴을 실행함
     public abstract void RandomPattern();
     // 보스 공격 시의 동작
     public abstract void Attack();
+    // 보스가 공격 중인지 확인하는 애니메이션 이벤트용 메소드
+    public abstract void NowAttackCheck();
     // 보스가 피격 시의 동작
     public abstract void Hit();
     // 보스 상태 UI 갱신하여 표시

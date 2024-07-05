@@ -9,7 +9,10 @@ public class FirstBoss : BossEnemy
     float meleeAttackDistance;
     [SerializeField]
     // 원거리 공격 범위
-    float rangeAttackDistance; 
+    float rangeAttackDistance;
+    // 공격 범위 한계
+    [SerializeField]
+    float limitAttackRange;
 
     public override void BossStart()
     {
@@ -31,6 +34,9 @@ public class FirstBoss : BossEnemy
                 break;
             case BossState.Move:
                 Move();
+                break;
+            case BossState.Attack:
+                StartNextPattern();
                 break;
             default:
                 break;
@@ -56,8 +62,7 @@ public class FirstBoss : BossEnemy
     {
         bossAnim.SetTrigger("idle");
 
-        if (TimeCount())
-            RandomPattern();
+        StartNextPattern();
     }
 
     public override void LookAtPlayer()
@@ -75,38 +80,93 @@ public class FirstBoss : BossEnemy
         bossAnim.SetTrigger("move");
         transform.position += dir * moveSpeed * Time.deltaTime;
 
-        if (TimeCount())
-            RandomPattern();
+        StartNextPattern();
     }
 
     public override void CalcBehaveDelay()
     {
         behaveDelay = Random.Range(1f, 3f);
+        Debug.Log(behaveDelay);
     }
 
-    public override bool TimeCount()
+    public override void DelayTimeCount()
     {
         time += Time.deltaTime;
+        Debug.Log(time);
         if (time >= behaveDelay)
-            return true;
+            delayDone = true;
         else
-            return false;
+            delayDone = false;
     }
 
     public override void RandomPattern()
     {
-        var randomState = System.Enum.GetValues(enumType:typeof(BossState));
-        BState = (BossState)randomState.GetValue(Random.Range(1, 4));
+        /*var randomState = System.Enum.GetValues(enumType:typeof(BossState));
+        BState = (BossState)randomState.GetValue(Random.Range(1, 4));*/
+        delayDone = false;
+        nowAttack = 0;
+
+        int randomState = Random.Range(1, 4);
+        switch (randomState)
+        {
+            case 1:
+                BState = BossState.Idle;
+                break;
+            case 2:
+                BState = BossState.Move;
+                break;
+            case 3:
+                BState = BossState.Attack;
+                break;
+            default:
+                break;
+        }
+
         Debug.Log(BState);
+    }
+
+    // 딜레이가 끝났을 경우 다음 행동을 개시
+    public void StartNextPattern()
+    {
+        if (delayDone)
+            RandomPattern();
     }
 
     public override void Attack()
     {
+        float distance = Vector3.Distance(player.transform.position, transform.position);
+        if (distance >= limitAttackRange)
+        {
+            BState = BossState.Move;
+            return;
+        }
         LookAtPlayer();
-        bossAnim.SetTrigger("biteAttack");
+        MyAttackPattern();
+    }
 
-        if (TimeCount())
-            RandomPattern();
+    // 플레이어와의 거리에 따라 공격패턴이 다름
+    void MyAttackPattern()
+    {
+        float distance = Vector3.Distance(player.transform.position, transform.position);
+        if (distance <= meleeAttackDistance)
+            bossAnim.SetTrigger("biteAttack");
+        else if (distance >= rangeAttackDistance && distance <= limitAttackRange)
+            bossAnim.SetTrigger("fireAttack");
+    }
+
+    public override void NowAttackCheck()
+    {
+        switch (nowAttack)
+        {
+            case 0:
+                nowAttack = 1; time = 0;
+                break;
+            case 1:
+                nowAttack = 2;
+                break;
+            default:
+                break;
+        }
     }
 
     public override void Hit()
