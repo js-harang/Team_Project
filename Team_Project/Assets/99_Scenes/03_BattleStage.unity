@@ -67812,7 +67812,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC774\uAC70\uBA87\uAE00\uC790\uB2C9\uAE4C\uC9C0\uB418\uB294\uAC70\uC5D0\uC694"
+  m_text: "\uC774\uAC70\uBA87\uAE00\uC790\uAE4C\uC9C0\uB418\uB294\uAC70\uC5D0\uC694"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7d24d44cf0324544a8a94109328d8a10, type: 2}
   m_sharedMaterial: {fileID: 1732768169387940429, guid: 7d24d44cf0324544a8a94109328d8a10, type: 2}

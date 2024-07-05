@@ -41,16 +41,8 @@ public class TitleController : MonoBehaviour
     {
         if (!CheckInput(id.text, pw.text))
             return;
-        StartCoroutine(LoginDataPost(id.text, pw.text));
 
-        //string pass = PlayerPrefs.GetString(id.text);
-        //if (pw.text == pass)
-        //{
-        //    GameManager.gm.sceneNumber = 1;
-        //    SceneManager.LoadScene("99_LoadingScene");
-        //}
-        //else
-        //    loginResultTxt.text = "입력하신 아이디와 패스워드가 일치하지 않습니다.";
+        StartCoroutine(LoginDataPost(id.text, pw.text));
     }
 
     IEnumerator LoginDataPost(string id, string pw)
@@ -70,7 +62,7 @@ public class TitleController : MonoBehaviour
                         SceneManager.LoadScene("99_LoadingScene");
                         break;
                     case "2":
-                        loginResultTxt.text = "로그인 실패";
+                        loginResultTxt.text = "가입하지 않은 아이디이거나 잘못된 비밀번호입니다.";
                         break;
                 }
         }
@@ -81,21 +73,21 @@ public class TitleController : MonoBehaviour
         if (!CheckInput(id.text, pw.text))
             return;
 
-        StartCoroutine(SaveDataPost(id.text, pw.text));
+        if(id.text.Length > 20)
+        {
+            loginResultTxt.text = "아이디는 20자까지 입력할 수 있습니다.";
+            return;
+        }
 
-        //if (!PlayerPrefs.HasKey(id.text))
-        //{
-        //    PlayerPrefs.SetString(id.text, pw.text);
-        //    loginResultTxt.text = "아이디 생성이 완료됐습니다.";
-        //}
-        //else
-        //    loginResultTxt.text = "이미 존재하는 아이디입니다.";
+        StartCoroutine(SaveDataPost(id.text, pw.text));
     }
 
     IEnumerator SaveDataPost(string id, string pw)
     {
-        string url = path + "login.php";
+        string url = path + "create.php";
         WWWForm form = new();
+        form.AddField("userid", id);
+        form.AddField("userpw", pw);
 
         using (UnityWebRequest www = UnityWebRequest.Post(url, form))
         {
@@ -104,13 +96,10 @@ public class TitleController : MonoBehaviour
                 switch (www.downloadHandler.text)
                 {
                     case "1":
-                        loginResultTxt.text = "로그인!";
-                        Debug.Log(1);
-                        //GameManager.gm.sceneNumber = 1;
-                        //SceneManager.LoadScene("99_LoadingScene");
+                        loginResultTxt.text = "아이디 생성이 완료됐습니다.";
                         break;
-                    case "2":
-                        loginResultTxt.text = "로그인 실패";
+                    default:
+                        loginResultTxt.text = "이미 존재하는 아이디입니다.";
                         break;
                 }
         }
