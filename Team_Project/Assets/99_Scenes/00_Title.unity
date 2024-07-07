@@ -3685,7 +3685,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1174773297}
         m_TargetAssemblyTypeName: TitleController, Assembly-CSharp
-        m_MethodName: SaveUserData
+        m_MethodName: SaveDataBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6849,6 +6849,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0505c33235705064d8849b95697f98be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  network: 1
   id: {fileID: 448557238}
   pw: {fileID: 1881481332}
   loginResultTxt: {fileID: 1630090071}
@@ -7505,7 +7506,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1174773297}
         m_TargetAssemblyTypeName: TitleController, Assembly-CSharp
-        m_MethodName: LoginCheck
+        m_MethodName: LoginBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
