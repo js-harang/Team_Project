@@ -46,6 +46,8 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector] public bool isPreferencePopup = false;
 
+    [HideInInspector] public string characterName;
+
     /// <summary>
     /// 0 = TitleScene
     /// 1 = LobbyScene
