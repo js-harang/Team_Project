@@ -1,10 +1,19 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerBattleControllerOld : BattleStatus
+public class PlayerBattleControllerOld : MonoBehaviour
 {
     // (X 키 일반공격), (C 점프), (A, S, D 스킬)
-    #region 플레이어 수치 관련(체력,공격력 등 은 BattleStatus 에서 상속 받음)
+    #region 플레이어 수치 관련
+    // 현재 체력
+    [SerializeField]
+    float currentHp;
+    // 최대체력
+    [SerializeField]
+    int maxHp;
+    // 공격력
+    [SerializeField]
+    int atkPower;
     // 플레이어 현재 마나
     [SerializeField]
     float currentMp;

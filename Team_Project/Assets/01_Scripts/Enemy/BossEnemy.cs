@@ -15,7 +15,7 @@ public enum BossState
     Die,
 }
 
-public abstract class BossEnemy : MonoBehaviour
+public abstract class BossEnemy : DamagedAction
 {
     public BattleController bCon;
     
@@ -29,8 +29,8 @@ public abstract class BossEnemy : MonoBehaviour
         set 
         {
             bState = value;
-            CalcBehaveDelay();
             time = 0;
+            CalcBehaveDelay();
             switch (bState)
             {
                 case BossState.Attack:
@@ -73,8 +73,8 @@ public abstract class BossEnemy : MonoBehaviour
     public float time;
     // 딜레이 시간이 끝났는지 확인하는 변수
     public bool delayDone;
-    // 지금 공격 중인지 확인하는 변수 0 : 기본 상태, 1 : 공격 중, 2 : 공격 종료
-    public int nowAttack;
+    // 지금 공격 중인지 확인하는 변수
+    public bool nowAttack;
 
     void Start() 
     {
@@ -84,12 +84,15 @@ public abstract class BossEnemy : MonoBehaviour
 
     void Update() 
     {
-        BossMovement();
+        if (bState != BossState.Die)
+        {
+            BossMovement();
 
-        if (nowAttack == 1 || bState == BossState.Appear)
-            return;
+            if (nowAttack == true || bState == BossState.Appear)
+                return;
 
-        DelayTimeCount();
+            DelayTimeCount();
+        }
     }
 
     // 보스 활성화 시 Start 실행 동작
@@ -109,13 +112,11 @@ public abstract class BossEnemy : MonoBehaviour
     // 시간의 흐름을 구해서 딜레이 시간에 도달했는지 계산
     public abstract void DelayTimeCount();
     // 랜덤으로 패턴을 실행함
-    public abstract void RandomPattern();
+    public abstract void StartRandomPattern();
     // 보스 공격 시의 동작
     public abstract void Attack();
     // 보스가 공격 중인지 확인하는 애니메이션 이벤트용 메소드
     public abstract void NowAttackCheck();
-    // 보스가 피격 시의 동작
-    public abstract void Hit();
     // 보스 상태 UI 갱신하여 표시
     public abstract void BossStateUpdate();
     // 보스 사망 시의 동작

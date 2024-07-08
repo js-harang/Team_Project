@@ -454,6 +454,27 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0.58064514
+        functionName: BiteAttack
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: b94907f39f36573429f337729fddfacc, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.600449
+        functionName: BiteAttack
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: b94907f39f36573429f337729fddfacc, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.63100564
+        functionName: BiteAttack
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: b94907f39f36573429f337729fddfacc, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       - time: 1
         functionName: NowAttackCheck
         data: 

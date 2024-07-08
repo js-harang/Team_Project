@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class EnemyFSM : BattleStatus
+public class EnemyFSM : DamagedAction
 {
     // 에너미 상태 상수
     enum EnemyState
@@ -50,11 +50,15 @@ public class EnemyFSM : BattleStatus
     // 이동 가능 범위
     public float moveDistance = 20f;
 
-    /*    // 에너미의 체력
-        public float currentHp = 15;*/
-
-    /*    // 에너미의 최대 체력
-        int maxHp = 15;*/
+    // 현재 체력
+    [SerializeField]
+    float currentHp;
+    // 최대체력
+    [SerializeField]
+    int maxHp;
+    // 공격력
+    [SerializeField]
+    int atkPower;
 
     // 에너미 hp 슬라이더 변수
     public Slider hpSlider;
@@ -214,7 +218,7 @@ public class EnemyFSM : BattleStatus
     public void AttackAction()
     {
         PlayerCombat pbc = player.gameObject.GetComponent<PlayerCombat>();
-        pbc.Hurt(atkPower);
+        pbc.Damaged(atkPower);
     }
 
     void Return()
@@ -251,7 +255,7 @@ public class EnemyFSM : BattleStatus
     }
 
     //////////// 피격쪽 /////////////
-    void Damaged()
+    void DamagedAct()
     {
         // 피격 상태를 처리하기 위한 코루틴 실행
         StartCoroutine(DamageProcess());
@@ -267,7 +271,7 @@ public class EnemyFSM : BattleStatus
         print("상태 전환 : Damaged => Move");
     }
     // 데미지 실행 함수
-    public void HitEnemy(float hitPower)
+    public override void Damaged(float hitPower)
     {
         Debug.Log("에너미 피격 호출");
         // 만일, 이미 피격 상태이거나 사망 상태 또는 복귀 상태라면
@@ -294,7 +298,7 @@ public class EnemyFSM : BattleStatus
             // 피격 애니메이션을 플레이
             anim.SetTrigger("Damaged");
 
-            Damaged();
+            DamagedAct();
         }
         // 그렇지 않다면 죽음 상태로 전환
         else

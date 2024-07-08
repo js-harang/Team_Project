@@ -48,7 +48,7 @@ public abstract class PlayerAttackOld : MonoBehaviour
 
                 // float 로 변환 필요
                 EnemyFSM enemyFsm = enemy.GetComponent<EnemyFSM>();
-                enemyFsm.HitEnemy(atkDamage);
+                enemyFsm.Damaged(atkDamage);
             }
         }
     }

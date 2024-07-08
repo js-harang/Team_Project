@@ -5,14 +5,16 @@ using UnityEngine;
 public class FirstBoss : BossEnemy
 {
     // 근거리 공격 범위
-    [SerializeField, Space(10)]
-    float meleeAttackDistance;
-    [SerializeField]
+    [Space(10)]
+    public float meleeAttackDistance;
     // 원거리 공격 범위
-    float rangeAttackDistance;
+    public float rangeAttackDistance;
     // 공격 범위 한계
     [SerializeField]
     float limitAttackRange;
+    // 보스의 렌더러 변수
+    [SerializeField]
+    SkinnedMeshRenderer bossSkin;
 
     public override void BossStart()
     {
@@ -51,9 +53,6 @@ public class FirstBoss : BossEnemy
             case BossState.Move:
                 Move();
                 break;
-            case BossState.Attack:
-                StartNextPattern();
-                break;
             default:
                 break;
         }
@@ -62,8 +61,6 @@ public class FirstBoss : BossEnemy
     public override void Idle()
     {
         bossAnim.SetTrigger("idle");
-
-        StartNextPattern();
     }
 
     public override void LookAtPlayer()
@@ -76,37 +73,29 @@ public class FirstBoss : BossEnemy
 
     public override void Move()
     {
-        Vector3 dir = player.transform.position - transform.position;
-        LookAtPlayer();
         bossAnim.SetTrigger("move");
+        LookAtPlayer();
+        Vector3 dir = player.transform.position - transform.position;
         transform.position += dir * moveSpeed * Time.deltaTime;
-
-        StartNextPattern();
     }
 
     public override void CalcBehaveDelay()
     {
         behaveDelay = Random.Range(1f, 2f);
-        Debug.Log(behaveDelay);
     }
 
     public override void DelayTimeCount()
     {
         time += Time.deltaTime;
-        Debug.Log(time);
         if (time >= behaveDelay)
-            delayDone = true;
-        else
-            delayDone = false;
+        {
+            time = 0;
+            StartRandomPattern();
+        }
     }
 
-    public override void RandomPattern()
+    public override void StartRandomPattern()
     {
-        /*var randomState = System.Enum.GetValues(enumType:typeof(BossState));
-        BState = (BossState)randomState.GetValue(Random.Range(1, 4));*/
-        delayDone = false;
-        nowAttack = 0;
-
         int randomState;
 
         if (BState == BossState.Idle)
@@ -128,15 +117,6 @@ public class FirstBoss : BossEnemy
             default:
                 break;
         }
-
-        Debug.Log(BState);
-    }
-
-    // 딜레이가 끝났을 경우 다음 행동을 개시
-    public void StartNextPattern()
-    {
-        if (delayDone)
-            RandomPattern();
     }
 
     public override void Attack()
@@ -149,13 +129,12 @@ public class FirstBoss : BossEnemy
         }
 
         LookAtPlayer();
-        MyAttackPattern();
+        MyAttackPattern(distance);
     }
 
     // 플레이어와의 거리에 따라 공격패턴이 다름
-    void MyAttackPattern()
+    void MyAttackPattern(float distance)
     {
-        float distance = Vector3.Distance(player.transform.position, transform.position);
         if (distance <= meleeAttackDistance)
             bossAnim.SetTrigger("biteAttack");
         else if (distance >= rangeAttackDistance && distance <= limitAttackRange)
@@ -164,22 +143,39 @@ public class FirstBoss : BossEnemy
 
     public override void NowAttackCheck()
     {
-        switch (nowAttack)
+        if (nowAttack)
         {
-            case 0:
-                nowAttack = 1; time = 0;
-                break;
-            case 1:
-                nowAttack = 2;
-                break;
-            default:
-                break;
+            nowAttack = false;
+            return;
+        }
+        nowAttack = true;
+        time = 0;
+    }
+
+    // 보스 피격시의 동작
+    public override void Damaged(float hitPow)
+    {
+        if (BState == BossState.Die)
+            return;
+        currentHp -= hitPow;
+
+        if (currentHp > 0)
+        {
+            StartCoroutine(DamagedEffect());
+            BossStateUpdate();
+        }
+        else
+        {
+            BossStateUpdate();
+            BState = BossState.Die;
         }
     }
 
-    public override void Hit()
+    IEnumerator DamagedEffect()
     {
-        BossStateUpdate();
+        bossSkin.material.color = Color.gray;
+        yield return new WaitForSeconds(0.1f);
+        bossSkin.material.color = Color.white;
     }
 
     public override void BossStateUpdate()
@@ -191,6 +187,16 @@ public class FirstBoss : BossEnemy
 
     public override void Die()
     {
+        bossAnim.SetTrigger("die");
+        StartCoroutine(DieProcess());
+    }
 
+    IEnumerator DieProcess()
+    {
+        Time.timeScale = 0.1f;
+        yield return new WaitForSeconds(0.5f);
+        Time.timeScale = 1;
+        yield return new WaitForSeconds(5f);
+        gameObject.SetActive(false);
     }
 }

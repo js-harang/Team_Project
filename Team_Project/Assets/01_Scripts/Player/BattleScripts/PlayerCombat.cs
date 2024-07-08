@@ -3,9 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerCombat : BattleStatus
+public class PlayerCombat : DamagedAction
 {
-    #region 플레이어 수치 관련(체력,공격력 등 은 BattleStatus 에서 상속 받음)
+    #region 플레이어 수치 관련
+    // 현재 체력
+    [SerializeField]
+    float currentHp;
+    // 최대체력
+    [SerializeField]
+    int maxHp;
+    // 공격력
+    [SerializeField]
+    int atkPower;
+
     // 플레이어 현재 마나
     [SerializeField]
     float currentMp;
@@ -143,9 +153,9 @@ public class PlayerCombat : BattleStatus
             if (enemy.gameObject.CompareTag("Enemy"))
             {
                 float sumDamage = atkPower * atkDamage;
-                EnemyFSM enemyFsm = enemy.GetComponent<EnemyFSM>();
-                enemyFsm.HitEnemy(sumDamage);
-                Instantiate(effectPrefebs, enemyFsm.transform.position, Quaternion.identity);
+                DamagedAction damageAct = enemy.GetComponent<DamagedAction>();
+                damageAct.Damaged(sumDamage);
+                Instantiate(effectPrefebs, damageAct.transform.position, Quaternion.identity);
             }
         }
     }
@@ -164,7 +174,7 @@ public class PlayerCombat : BattleStatus
     #endregion
 
     #region 플레이어 데미지 입을때
-    public void Hurt(float damage)
+    public override void Damaged(float damage)
     {
         if (pbs.UnitBS == UnitBattleState.Die)
             return;
