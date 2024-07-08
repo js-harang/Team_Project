@@ -23,11 +23,6 @@ public class TheBossAttactkPatterns : MonoBehaviour
         fBoss = GetComponent<FirstBoss>();
     }
 
-    private void Update()
-    {
-        //OnDrawGizmos();
-    }
-
     public void BiteAttack()
     {
         int atkPower = fBoss.atkPower;
