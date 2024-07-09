@@ -103,6 +103,9 @@ public class TitleController : MonoBehaviour
                     case "2":
                         loginResultTxt.text = "가입하지 않은 아이디이거나 잘못된 비밀번호입니다.";
                         break;
+                    default:
+                        loginResultTxt.text = "알 수 없는 오류";
+                        break;
                 }
         }
     }

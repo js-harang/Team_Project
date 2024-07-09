@@ -33,7 +33,7 @@ public class LobbyController : MonoBehaviour
     /// </summary>
     public void CreateCharacterBtn()
     {
-
+        SceneManager.LoadScene("11_CreateCharacter");
     }
 
     public void BackBtn()
