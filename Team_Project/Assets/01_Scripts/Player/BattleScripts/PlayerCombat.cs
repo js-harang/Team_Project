@@ -155,7 +155,14 @@ public class PlayerCombat : DamagedAction
                 float sumDamage = atkPower * atkDamage;
                 DamagedAction damageAct = enemy.GetComponent<DamagedAction>();
                 damageAct.Damaged(sumDamage);
-                Instantiate(effectPrefebs, damageAct.transform.position, Quaternion.identity);
+
+                Vector3 epos = enemy.transform.position;
+                Ray ray = new (transform.position, epos - transform.position);
+
+                if (Physics.Raycast(ray, out RaycastHit hit))
+                {
+                    Instantiate(effectPrefebs, hit.point, Quaternion.identity);
+                }
             }
         }
     }
