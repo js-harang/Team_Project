@@ -25,7 +25,7 @@ public class SkillData : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     [Space(10)]
     #region 부모 버튼 속성
-    [SerializeField] private SkillButton skillButton;
+    private SkillButton skillButton;
     public SkillButton SkillButton { get { return skillButton; } set { skillButton = value; } }
     #endregion
 

@@ -11,7 +11,7 @@ public class DropSkill : MonoBehaviour, IPointerEnterHandler, IDropHandler, IPoi
     [SerializeField] private GameObject childObj;
     
     [Space(10)]
-    [SerializeField] private SkillButton skillButton;
+    private SkillButton skillButton;
 
     private void Awake()
     {

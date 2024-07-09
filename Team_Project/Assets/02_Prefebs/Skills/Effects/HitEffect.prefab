@@ -9604,6 +9604,7 @@ GameObject:
   - component: {fileID: 2304518887512959097}
   - component: {fileID: 2304518887528164665}
   - component: {fileID: 2304518887528125593}
+  - component: {fileID: 4875489790897952417}
   m_Layer: 21
   m_Name: HitEffect
   m_TagString: FxTemporaire
@@ -14307,6 +14308,18 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &4875489790897952417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2304518887513060441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86d1b2afb4615bf44b8f1692b69b92b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9186668917033989204
 GameObject:
   m_ObjectHideFlags: 0
