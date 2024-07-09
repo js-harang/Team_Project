@@ -33,10 +33,12 @@ public class UIController : MonoBehaviour
         switch (Input.inputString)
         {
             case "u":
+            case "U":
                 StatusOnOff();
                 break;
 
             case "i":
+            case "I":
                 InventoryOnOff();
                 break;
         }

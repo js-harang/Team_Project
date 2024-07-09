@@ -454,17 +454,17 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0.56729877
+        functionName: FireAttack
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: b94907f39f36573429f337729fddfacc, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       - time: 1
         functionName: NowAttackCheck
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 78c2c04671cd84f42af6ea4f91bdf9df, type: 3}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.67514193
-        functionName: FireAttack
-        data: 
-        objectReferenceParameter: {fileID: 11500000, guid: b94907f39f36573429f337729fddfacc, type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
