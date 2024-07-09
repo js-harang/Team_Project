@@ -68730,7 +68730,7 @@ PrefabInstance:
     - target: {fileID: 1564716203436370467, guid: 251eaa5a561f49a4c8d2ba2aa3d38514, type: 3}
       propertyPath: fireBall
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 724825347201853786, guid: 2eac6973741f956439d9e22f9725dd43, type: 3}
     - target: {fileID: 1564716203436370467, guid: 251eaa5a561f49a4c8d2ba2aa3d38514, type: 3}
       propertyPath: biteLength
       value: 1.5
@@ -68743,6 +68743,10 @@ PrefabInstance:
       propertyPath: bossStateUI
       value: 
       objectReference: {fileID: 4887954357369586233}
+    - target: {fileID: 1564716203436370467, guid: 251eaa5a561f49a4c8d2ba2aa3d38514, type: 3}
+      propertyPath: fireBallPrefs
+      value: 
+      objectReference: {fileID: 724825347201853786, guid: 2eac6973741f956439d9e22f9725dd43, type: 3}
     - target: {fileID: 1564716203436370467, guid: 251eaa5a561f49a4c8d2ba2aa3d38514, type: 3}
       propertyPath: mouseTransform
       value: 

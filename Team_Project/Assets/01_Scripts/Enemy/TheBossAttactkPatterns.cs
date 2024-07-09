@@ -9,10 +9,10 @@ public class TheBossAttactkPatterns : MonoBehaviour
     // 보스의 공격 판정 생성 위치
     [SerializeField]
     Transform mouseTransform;
-    [SerializeField]
+
     Queue<GameObject> fireBalls;
     [SerializeField]
-    GameObject fireBall;
+    GameObject firePref;
 
     [SerializeField]
     float biteLength;
@@ -24,9 +24,13 @@ public class TheBossAttactkPatterns : MonoBehaviour
     private void Start()
     {
         fBoss = GetComponent<FirstBoss>();
-        for (int i = 0; i < 3; i++)
+        fireBalls = new Queue<GameObject>();
+        int firePoolSize = 3;
+        for (int i = 0; i < firePoolSize; i++)
         {
+            GameObject fireBall = Instantiate(firePref);
             fireBalls.Enqueue(fireBall);
+            fireBall.SetActive(false);
         }
     }
 
@@ -48,6 +52,8 @@ public class TheBossAttactkPatterns : MonoBehaviour
 
     public void FireAttack()
     {
+        GameObject fireBall = fireBalls.Dequeue();
+
         fireBall.transform.position = mouseTransform.position;
 
         if (fBoss.player.transform.position.x < transform.position.x)
