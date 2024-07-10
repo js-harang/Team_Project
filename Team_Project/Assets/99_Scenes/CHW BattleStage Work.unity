@@ -68835,7 +68835,8 @@ PrefabInstance:
       propertyPath: bossName_text
       value: 
       objectReference: {fileID: 2015451779}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6219077010148069345, guid: 251eaa5a561f49a4c8d2ba2aa3d38514, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 251eaa5a561f49a4c8d2ba2aa3d38514, type: 3}
 --- !u!1001 &4647744317333636441
 PrefabInstance:

@@ -2,24 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FirstBoss : BossFSM
+public class FirstEnemy : EnemyFSM
 {
-    // 근거리 공격 범위
-    [Space(10)]
-    public float meleeAttackDistance;
-    // 원거리 공격 범위
-    public float rangeAttackDistance;
     // 공격 범위 한계
     [SerializeField]
     float limitAttackRange;
-    // 보스의 렌더러 변수
-    [SerializeField]
-    SkinnedMeshRenderer bossSkin;
 
-    public override void BossStart()
+    public override void EnemyStart()
     {
         //필요한 참조들 가져옴
-        bossAnim = GetComponentInChildren<Animator>();
+        enemyAnim = GetComponentInChildren<Animator>();
         player = GameObject.FindWithTag("Player");
 
         Appear();
@@ -34,20 +26,18 @@ public class FirstBoss : BossFSM
 
     IEnumerator AppearAction()
     {
-        yield return new WaitForSeconds(2.6f);
-        bossAnim.SetTrigger("idle");
         yield return new WaitForSeconds(1f);
-        BState = BossState.Move;
+        EState = EnemyState.Move;
     }
 
-    public override void BossMovement()
+    public override void EnemyMovement()
     {
-        switch (BState)
+        switch (EState)
         {
-            case BossState.Idle:
+            case EnemyState.Idle:
                 Idle();
                 break;
-            case BossState.Move:
+            case EnemyState.Move:
                 Move();
                 break;
             default:
@@ -57,7 +47,7 @@ public class FirstBoss : BossFSM
 
     public override void Idle()
     {
-        bossAnim.SetTrigger("idle");
+        enemyAnim.SetTrigger("idle");
     }
 
     public override void LookAtPlayer()
@@ -70,10 +60,10 @@ public class FirstBoss : BossFSM
 
     public override void Move()
     {
-        bossAnim.SetTrigger("move");
         LookAtPlayer();
         Vector3 dir = player.transform.position - transform.position;
         transform.position += dir * moveSpeed * Time.deltaTime;
+        enemyAnim.SetTrigger("move");
     }
 
     public override void CalcBehaveDelay()
@@ -95,7 +85,7 @@ public class FirstBoss : BossFSM
     {
         int randomState;
 
-        if (BState == BossState.Idle)
+        if (EState == EnemyState.Idle)
             randomState = Random.Range(2, 4);
         else
             randomState = Random.Range(1, 4);
@@ -103,13 +93,13 @@ public class FirstBoss : BossFSM
         switch (randomState)
         {
             case 1:
-                BState = BossState.Idle;
+                EState = EnemyState.Idle;
                 break;
             case 2:
-                BState = BossState.Move;
+                EState = EnemyState.Move;
                 break;
             case 3:
-                BState = BossState.Attack;
+                EState = EnemyState.Attack;
                 break;
             default:
                 break;
@@ -121,21 +111,12 @@ public class FirstBoss : BossFSM
         float distance = Vector3.Distance(player.transform.position, transform.position);
         if (distance >= limitAttackRange)
         {
-            BState = BossState.Move;
+            EState = EnemyState.Move;
             return;
         }
 
         LookAtPlayer();
-        MyAttackPattern(distance);
-    }
-
-    // 플레이어와의 거리에 따라 공격패턴이 다름
-    void MyAttackPattern(float distance)
-    {
-        if (distance <= meleeAttackDistance)
-            bossAnim.SetTrigger("biteAttack");
-        else if (distance >= rangeAttackDistance && distance <= limitAttackRange)
-            bossAnim.SetTrigger("fireAttack");
+        enemyAnim.SetTrigger("attack");
     }
 
     public override void NowAttackCheck()
@@ -149,52 +130,47 @@ public class FirstBoss : BossFSM
         time = 0;
     }
 
-    // 보스 피격시의 동작
     public override void Damaged(float hitPow)
     {
-        if (BState == BossState.Die)
+        if (EState == EnemyState.Die)
             return;
         currentHp -= hitPow;
 
         if (currentHp > 0)
         {
             StartCoroutine(DamagedEffect());
-            BossStateUpdate();
+            EnemyStateUpdate();
         }
         else
         {
-            BossStateUpdate();
-            BState = BossState.Die;
+            EnemyStateUpdate();
+            EState = EnemyState.Die;
         }
     }
 
     IEnumerator DamagedEffect()
     {
-        bossSkin.material.color = Color.gray;
+        
         yield return new WaitForSeconds(0.1f);
-        bossSkin.material.color = Color.white;
+        
     }
 
-    public override void BossStateUpdate()
+    public override void EnemyStateUpdate()
     {
-        bossStateUI.SetActive(true);
-        bossName_text.text = bossName;
-        bossHpBar.value = currentHp / maxHp;
+        enemyStateUI.SetActive(true);
+        enemyHpBar.value = currentHp / maxHp;
     }
 
     public override void Die()
     {
-        bossAnim.SetTrigger("die");
+        enemyAnim.SetTrigger("die");
         StartCoroutine(DieProcess());
     }
 
     IEnumerator DieProcess()
     {
-        Time.timeScale = 0.1f;
-        yield return new WaitForSeconds(0.5f);
-        Time.timeScale = 1;
-        yield return new WaitForSeconds(3f);
         imDying = true;
+        yield return new WaitForSeconds(2f);
         gameObject.SetActive(false);
     }
 }

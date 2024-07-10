@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using TMPro;
 
 public enum BossState
+
 {
     Appear,
     Idle,
@@ -16,9 +17,7 @@ public enum BossState
 }
 
 public abstract class BossFSM : DamagedAction
-{
-    public BattleController bCon;
-    
+{   
     BossState bState;
     public BossState BState 
     { 
@@ -46,6 +45,8 @@ public abstract class BossFSM : DamagedAction
             }
         } 
     }
+
+    public BattleController bCon;
 
     // 보스에게 필요한 변수들
     public Animator bossAnim;
@@ -100,7 +101,7 @@ public abstract class BossFSM : DamagedAction
             DelayTimeCount();
         }
         else if (imDying)
-            bCon.BattleState = BattleState.Clear;
+            bCon.BossCount--;
     }
 
     // 보스 활성화 시 Start 실행 동작

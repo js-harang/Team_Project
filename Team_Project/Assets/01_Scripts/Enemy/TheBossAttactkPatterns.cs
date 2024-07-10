@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TheBossAttactkPatterns : MonoBehaviour
+public class FirstBossAttactkPatterns : MonoBehaviour
 {
     FirstBoss fBoss;
 
