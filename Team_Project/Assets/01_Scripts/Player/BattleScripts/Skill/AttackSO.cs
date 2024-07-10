@@ -17,7 +17,10 @@ public class AttackSO : ScriptableObject
     public bool canMoveAtk;
 
     public int useMana;
-    
+
+    public float knockBackForce;
+    public float delayComboTime;
+
     [Space(10)]
     // 스킬 아이콘
     public Sprite sprite;

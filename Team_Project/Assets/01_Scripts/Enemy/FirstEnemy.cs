@@ -13,6 +13,7 @@ public class FirstEnemy : EnemyFSM
         //필요한 참조들 가져옴
         enemyAnim = GetComponentInChildren<Animator>();
         player = GameObject.FindWithTag("Player");
+        rb = GetComponent<Rigidbody>();
 
         Appear();
     }
@@ -172,5 +173,17 @@ public class FirstEnemy : EnemyFSM
         imDying = true;
         yield return new WaitForSeconds(2f);
         gameObject.SetActive(false);
+    }
+
+    public override void KnockBack(Vector3 atkPos, float knockBackForce)
+    {
+        rb.velocity = Vector3.zero;
+
+        float dis = Vector3.Distance(transform.position, atkPos);
+
+        Vector3 dir = atkPos - transform.position;
+        dir.Normalize();
+
+        rb.AddForce(dir * (knockBackForce / dis),ForceMode.Impulse);
     }
 }

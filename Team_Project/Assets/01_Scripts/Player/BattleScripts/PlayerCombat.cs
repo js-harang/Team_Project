@@ -60,6 +60,12 @@ public class PlayerCombat : DamagedAction
     public Animator anim;
     public PlayerState pbs;
 
+    Rigidbody rb;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
 
     private void Update()
     {
@@ -154,7 +160,9 @@ public class PlayerCombat : DamagedAction
             {
                 float sumDamage = atkPower * atkDamage;
                 DamagedAction damageAct = enemy.GetComponent<DamagedAction>();
+
                 damageAct.Damaged(sumDamage);
+                damageAct.KnockBack(transform.position, attack.knockBackForce);
 
                 Vector3 epos = enemy.transform.position;
                 Ray ray = new (transform.position, epos - transform.position);
@@ -209,6 +217,18 @@ public class PlayerCombat : DamagedAction
         }
     }
     #endregion
+
+    public override void KnockBack(Vector3 atkPos, float knockBackForce)
+    {
+        rb.velocity = Vector3.zero;
+        
+        float dis = Vector3.Distance(transform.position, atkPos);
+
+        Vector3 dir = atkPos - transform.position;
+        dir.Normalize();
+
+        rb.AddForce(dir * (knockBackForce / dis), ForceMode.Impulse);
+    }
 
     #region 슬라이더 세팅
     public void SetPlayerSlider()

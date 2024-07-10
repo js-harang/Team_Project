@@ -197,4 +197,6 @@ public class FirstBoss : BossFSM
         imDying = true;
         gameObject.SetActive(false);
     }
+
+    public override void KnockBack(Vector3 atkPos, float knockBackForce) {}
 }

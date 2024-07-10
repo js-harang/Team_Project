@@ -53,6 +53,7 @@ public abstract class EnemyFSM : DamagedAction
     public GameObject enemyStateUI;
     public Slider enemyHpBar;
     public GameObject player;
+    public Rigidbody rb;
 
     [Space(10)]
     // 현재 체력
@@ -75,6 +76,8 @@ public abstract class EnemyFSM : DamagedAction
     public bool nowAttack;
     // 죽고 다음 단계로 넘아갈지 확인하는 변수
     public bool imDying;
+
+
 
     private void Start()
     {

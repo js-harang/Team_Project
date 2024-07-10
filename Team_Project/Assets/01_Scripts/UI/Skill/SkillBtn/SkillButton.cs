@@ -55,11 +55,13 @@ public class SkillButton : MonoBehaviour
         }
 
         // 스킬이 있을때만 실행
-        if (skill == null)
+        if (skillData.Skill == null)
         {
             Debug.Log("비었음");
             return;
         }
+
+        skill = skillData.Skill;
 
         // 스킬 쿨타임 이 0 이하거나 콤보 중 이면 실행
         if (coolTime <= 0 || skill.isComboing)
@@ -69,8 +71,6 @@ public class SkillButton : MonoBehaviour
                 Debug.Log("마나가 부족합니다.");
                 return;
             }
-
-            skill = skillData.Skill;
 
             AttackProcess();
         }

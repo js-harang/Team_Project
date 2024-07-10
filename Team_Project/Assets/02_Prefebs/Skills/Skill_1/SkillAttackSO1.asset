@@ -20,8 +20,11 @@ MonoBehaviour:
   - 1.4
   - 2
   coolTime: 5
-  canAttack: 1
+  isComboing: 0
+  canMoveAtk: 0
   useMana: 4
+  knockBackForce: 20
+  delayComboTime: 2
   sprite: {fileID: 21300000, guid: 9278a3e82d001264f8c329feee6fb48f, type: 3}
   atkPosIdx: 0
   atkLength: {x: 2, y: 2.5, z: 2.5}
