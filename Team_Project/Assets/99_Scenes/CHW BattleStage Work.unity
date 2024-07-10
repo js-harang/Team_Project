@@ -347,14 +347,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 850023941}
     m_Modifications:
-    - target: {fileID: 1595298861242976690, guid: 4f00990e68261f944a1451fe7f47a31c, type: 3}
-      propertyPath: p
-      value: 
-      objectReference: {fileID: 209467143}
-    - target: {fileID: 1595298861242976690, guid: 4f00990e68261f944a1451fe7f47a31c, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 1595298861242976694, guid: 4f00990e68261f944a1451fe7f47a31c, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -405,15 +397,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1595298861242976700, guid: 4f00990e68261f944a1451fe7f47a31c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1595298862322300896, guid: 4f00990e68261f944a1451fe7f47a31c, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1595298862322300896, guid: 4f00990e68261f944a1451fe7f47a31c, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f00990e68261f944a1451fe7f47a31c, type: 3}
@@ -56384,10 +56376,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1749312458}
     m_Modifications:
-    - target: {fileID: 1595298861242976690, guid: 4f00990e68261f944a1451fe7f47a31c, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 1595298861242976694, guid: 4f00990e68261f944a1451fe7f47a31c, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -57786,10 +57774,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 518784005}
     m_Modifications:
-    - target: {fileID: 1595298861242976690, guid: 4f00990e68261f944a1451fe7f47a31c, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 1595298861242976694, guid: 4f00990e68261f944a1451fe7f47a31c, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -61363,10 +61347,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 328395485}
     m_Modifications:
-    - target: {fileID: 1595298861242976690, guid: 4f00990e68261f944a1451fe7f47a31c, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 1595298861242976694, guid: 4f00990e68261f944a1451fe7f47a31c, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -62868,10 +62848,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 154117451}
     m_Modifications:
-    - target: {fileID: 1595298861242976690, guid: 4f00990e68261f944a1451fe7f47a31c, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 1595298861242976694, guid: 4f00990e68261f944a1451fe7f47a31c, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -63294,11 +63270,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 400, y: 10, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!4 &1540088016 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1540088016, guid: 251eaa5a561f49a4c8d2ba2aa3d38514, type: 3}
-  m_PrefabInstance: {fileID: 3518640928927094482}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1546945288
 GameObject:
   m_ObjectHideFlags: 0
@@ -68337,10 +68308,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 811061440}
     m_Modifications:
-    - target: {fileID: 1595298861242976690, guid: 4f00990e68261f944a1451fe7f47a31c, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 1595298861242976694, guid: 4f00990e68261f944a1451fe7f47a31c, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -68727,38 +68694,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1564716203436370467, guid: 251eaa5a561f49a4c8d2ba2aa3d38514, type: 3}
-      propertyPath: fireBall
-      value: 
-      objectReference: {fileID: 724825347201853786, guid: 2eac6973741f956439d9e22f9725dd43, type: 3}
-    - target: {fileID: 1564716203436370467, guid: 251eaa5a561f49a4c8d2ba2aa3d38514, type: 3}
-      propertyPath: firePref
-      value: 
-      objectReference: {fileID: 724825347201853786, guid: 2eac6973741f956439d9e22f9725dd43, type: 3}
-    - target: {fileID: 1564716203436370467, guid: 251eaa5a561f49a4c8d2ba2aa3d38514, type: 3}
-      propertyPath: biteLength
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1564716203436370467, guid: 251eaa5a561f49a4c8d2ba2aa3d38514, type: 3}
-      propertyPath: fireBreath
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1564716203436370467, guid: 251eaa5a561f49a4c8d2ba2aa3d38514, type: 3}
-      propertyPath: bossStateUI
-      value: 
-      objectReference: {fileID: 4887954357369586233}
-    - target: {fileID: 1564716203436370467, guid: 251eaa5a561f49a4c8d2ba2aa3d38514, type: 3}
-      propertyPath: fireBallPrefs
-      value: 
-      objectReference: {fileID: 724825347201853786, guid: 2eac6973741f956439d9e22f9725dd43, type: 3}
-    - target: {fileID: 1564716203436370467, guid: 251eaa5a561f49a4c8d2ba2aa3d38514, type: 3}
-      propertyPath: mouseTransform
-      value: 
-      objectReference: {fileID: 1540088016}
-    - target: {fileID: 1564716203436370467, guid: 251eaa5a561f49a4c8d2ba2aa3d38514, type: 3}
-      propertyPath: playerLayer.m_Bits
-      value: 1048576
-      objectReference: {fileID: 0}
     - target: {fileID: 3518640928383752198, guid: 251eaa5a561f49a4c8d2ba2aa3d38514, type: 3}
       propertyPath: bossHpBar
       value: 
@@ -68819,24 +68754,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: TheBoss
       objectReference: {fileID: 0}
-    - target: {fileID: 3518640929406034880, guid: 251eaa5a561f49a4c8d2ba2aa3d38514, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6219077010148069345, guid: 251eaa5a561f49a4c8d2ba2aa3d38514, type: 3}
-      propertyPath: bossHpBar
-      value: 
-      objectReference: {fileID: 103000443}
-    - target: {fileID: 6219077010148069345, guid: 251eaa5a561f49a4c8d2ba2aa3d38514, type: 3}
-      propertyPath: bossStateUI
-      value: 
-      objectReference: {fileID: 4887954357369586233}
-    - target: {fileID: 6219077010148069345, guid: 251eaa5a561f49a4c8d2ba2aa3d38514, type: 3}
-      propertyPath: bossName_text
-      value: 
-      objectReference: {fileID: 2015451779}
-    m_RemovedComponents:
-    - {fileID: 6219077010148069345, guid: 251eaa5a561f49a4c8d2ba2aa3d38514, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 251eaa5a561f49a4c8d2ba2aa3d38514, type: 3}
 --- !u!1001 &4647744317333636441
 PrefabInstance:

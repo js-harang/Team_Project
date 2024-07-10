@@ -120,11 +120,11 @@ MonoBehaviour:
   enemyStateUI: {fileID: 1595298861299187695}
   enemyHpBar: {fileID: 1595298861622383920}
   player: {fileID: 0}
-  currentHp: 0
-  maxHp: 0
-  atkPower: 0
+  currentHp: 15
+  maxHp: 15
+  atkPower: 3
   dir: {x: 0, y: 0, z: 0}
-  moveSpeed: 0
+  moveSpeed: 0.7
   behaveDelay: 0
   time: 0
   delayDone: 0
