@@ -39,7 +39,7 @@ public class FirstBossAttactkPatterns : MonoBehaviour
             if (player.gameObject.CompareTag("Player"))
             {
                 DamagedAction damageAct = player.GetComponent<DamagedAction>();
-                damageAct.Damaged(atkPower);
+                damageAct.Damaged(atkPower * 2);
             }
         }
     }
