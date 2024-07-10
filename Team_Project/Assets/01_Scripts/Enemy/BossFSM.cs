@@ -15,7 +15,7 @@ public enum BossState
     Die,
 }
 
-public abstract class BossEnemy : DamagedAction
+public abstract class BossFSM : DamagedAction
 {
     public BattleController bCon;
     
@@ -75,11 +75,17 @@ public abstract class BossEnemy : DamagedAction
     public bool delayDone;
     // 지금 공격 중인지 확인하는 변수
     public bool nowAttack;
+    // 죽고 다음 단계로 넘아갈지 확인하는 변수
+    public bool imDying;
 
     void Start() 
     {
+        // 등장 시 배틀 컨트롤러의 보스 개체수 증가시킴
+        bCon = FindObjectOfType<BattleController>().GetComponent<BattleController>();
+        bCon.BattleState = BattleState.BossAppear;
+        bCon.BossCount++;
+
         BossStart();
-        Appear();
     }
 
     void Update() 
@@ -93,6 +99,8 @@ public abstract class BossEnemy : DamagedAction
 
             DelayTimeCount();
         }
+        else if (imDying)
+            bCon.BattleState = BattleState.Clear;
     }
 
     // 보스 활성화 시 Start 실행 동작

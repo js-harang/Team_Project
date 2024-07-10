@@ -749,6 +749,7 @@ GameObject:
   - component: {fileID: 3518640929415454306}
   - component: {fileID: 3518640928383752195}
   - component: {fileID: 3518640928383752193}
+  - component: {fileID: 6219077010148069345}
   - component: {fileID: 3518640928383752198}
   - component: {fileID: 1564716203436370467}
   m_Layer: 21
@@ -825,6 +826,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4, y: 4.7, z: 5.6085787}
   m_Center: {x: 0, y: 2, z: 0.37268603}
+--- !u!114 &6219077010148069345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3518640929406034880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc54f300ff773a34a8151a4c2dc78c59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossStateUI: {fileID: 0}
+  bossName_text: {fileID: 0}
+  bossHpBar: {fileID: 0}
 --- !u!114 &3518640928383752198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -870,7 +886,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseTransform: {fileID: 0}
-  fireBreath: {fileID: 0}
+  fireBalls: []
+  firePref: {fileID: 0}
+  biteLength: 0
   playerLayer:
     serializedVersion: 2
     m_Bits: 0

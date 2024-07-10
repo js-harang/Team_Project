@@ -68732,6 +68732,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 724825347201853786, guid: 2eac6973741f956439d9e22f9725dd43, type: 3}
     - target: {fileID: 1564716203436370467, guid: 251eaa5a561f49a4c8d2ba2aa3d38514, type: 3}
+      propertyPath: firePref
+      value: 
+      objectReference: {fileID: 724825347201853786, guid: 2eac6973741f956439d9e22f9725dd43, type: 3}
+    - target: {fileID: 1564716203436370467, guid: 251eaa5a561f49a4c8d2ba2aa3d38514, type: 3}
       propertyPath: biteLength
       value: 1.5
       objectReference: {fileID: 0}
@@ -68819,6 +68823,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6219077010148069345, guid: 251eaa5a561f49a4c8d2ba2aa3d38514, type: 3}
+      propertyPath: bossHpBar
+      value: 
+      objectReference: {fileID: 103000443}
+    - target: {fileID: 6219077010148069345, guid: 251eaa5a561f49a4c8d2ba2aa3d38514, type: 3}
+      propertyPath: bossStateUI
+      value: 
+      objectReference: {fileID: 4887954357369586233}
+    - target: {fileID: 6219077010148069345, guid: 251eaa5a561f49a4c8d2ba2aa3d38514, type: 3}
+      propertyPath: bossName_text
+      value: 
+      objectReference: {fileID: 2015451779}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 251eaa5a561f49a4c8d2ba2aa3d38514, type: 3}
 --- !u!1001 &4647744317333636441

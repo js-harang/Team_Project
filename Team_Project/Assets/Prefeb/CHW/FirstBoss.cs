@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FirstBoss : BossEnemy
+public class FirstBoss : BossFSM
 {
     // 근거리 공격 범위
     [Space(10)]
@@ -18,14 +18,11 @@ public class FirstBoss : BossEnemy
 
     public override void BossStart()
     {
-        // 등장 시 배틀 컨트롤러의 보스 개체수 증가시킴
-        bCon = FindObjectOfType<BattleController>().GetComponent<BattleController>();
-        bCon.BattleState = BattleState.BossAppear;
-        bCon.BossCount++;
-
         //필요한 참조들 가져옴
         bossAnim = GetComponentInChildren<Animator>();
         player = GameObject.FindWithTag("Player");
+
+        Appear();
     }
 
     public override void Appear()
@@ -196,7 +193,8 @@ public class FirstBoss : BossEnemy
         Time.timeScale = 0.1f;
         yield return new WaitForSeconds(0.5f);
         Time.timeScale = 1;
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3f);
+        imDying = true;
         gameObject.SetActive(false);
     }
 }
