@@ -770,7 +770,7 @@ GameObject:
   - component: {fileID: 50319529}
   - component: {fileID: 50319528}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Character_Select_4_Img
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1388,7 +1388,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 80852992}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1145993098}
+        m_TargetAssemblyTypeName: CreateCharacter, Assembly-CSharp
+        m_MethodName: SelectedSlot
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &80852992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11496,7 +11508,7 @@ GameObject:
   - component: {fileID: 641715627}
   - component: {fileID: 641715626}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Character_Select_3_Img
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20283,7 +20295,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1137075345}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1145993098}
+        m_TargetAssemblyTypeName: CreateCharacter, Assembly-CSharp
+        m_MethodName: SelectedSlot
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1137075345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20611,6 +20635,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1145993096}
   - component: {fileID: 1145993097}
+  - component: {fileID: 1145993098}
   m_Layer: 5
   m_Name: Slot
   m_TagString: Untagged
@@ -20669,6 +20694,25 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1145993098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1145993095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5c007848dcd3af44b757f45ab7d2f2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  createSprite: {fileID: 21300000, guid: 8b3a0d81872dcea45aa615760eda82f6, type: 3}
+  selectImg:
+  - {fileID: 1294168560}
+  - {fileID: 1549497171}
+  - {fileID: 641715624}
+  - {fileID: 50319526}
+  - {fileID: 1417830437}
 --- !u!1 &1146461049
 GameObject:
   m_ObjectHideFlags: 0
@@ -21278,7 +21322,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1169890199}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1145993098}
+        m_TargetAssemblyTypeName: CreateCharacter, Assembly-CSharp
+        m_MethodName: SelectedSlot
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1169890199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23741,7 +23797,7 @@ GameObject:
   - component: {fileID: 1294168563}
   - component: {fileID: 1294168562}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Character_Select_1_Img
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23787,7 +23843,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8b3a0d81872dcea45aa615760eda82f6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c507bc806d8cdcf4b8e005470d1ee879, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -25830,7 +25886,7 @@ GameObject:
   - component: {fileID: 1417830440}
   - component: {fileID: 1417830439}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Character_Select_5_Img
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28205,7 +28261,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1522094892}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1145993098}
+        m_TargetAssemblyTypeName: CreateCharacter, Assembly-CSharp
+        m_MethodName: SelectedSlot
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1522094892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28997,7 +29065,7 @@ GameObject:
   - component: {fileID: 1549497174}
   - component: {fileID: 1549497173}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Character_Select_2_Img
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36443,7 +36511,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2005034837}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1145993098}
+        m_TargetAssemblyTypeName: CreateCharacter, Assembly-CSharp
+        m_MethodName: SelectedSlot
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2005034837
 MonoBehaviour:
   m_ObjectHideFlags: 0
