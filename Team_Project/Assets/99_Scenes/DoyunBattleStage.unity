@@ -53884,21 +53884,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 990134857}
     - target: {fileID: 1332281161109069133, guid: 023fac8557a35594bb6c6067611fa018, type: 3}
-      propertyPath: maxMp
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 1332281161109069133, guid: 023fac8557a35594bb6c6067611fa018, type: 3}
       propertyPath: mpSld
       value: 
       objectReference: {fileID: 990134856}
-    - target: {fileID: 1332281161109069133, guid: 023fac8557a35594bb6c6067611fa018, type: 3}
-      propertyPath: currentMp
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 1332281161109069133, guid: 023fac8557a35594bb6c6067611fa018, type: 3}
-      propertyPath: effectPrefebs
-      value: 
-      objectReference: {fileID: 2304518887513060441, guid: 2ec5815959735cb4a9a8cc1492f2cbd9, type: 3}
     - target: {fileID: 5383289247254834283, guid: 023fac8557a35594bb6c6067611fa018, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -53946,10 +53934,6 @@ PrefabInstance:
     - target: {fileID: 8103070676740507455, guid: 023fac8557a35594bb6c6067611fa018, type: 3}
       propertyPath: m_Name
       value: Player SO
-      objectReference: {fileID: 0}
-    - target: {fileID: 8334660830435624812, guid: 023fac8557a35594bb6c6067611fa018, type: 3}
-      propertyPath: buttons.Array.size
-      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8334660830435624812, guid: 023fac8557a35594bb6c6067611fa018, type: 3}
       propertyPath: buttons.Array.data[0]
