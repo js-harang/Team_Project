@@ -10,7 +10,7 @@ public class TheBossAttactkPatterns : MonoBehaviour
     [SerializeField]
     Transform mouseTransform;
 
-    Queue<GameObject> fireBalls;
+    public List<GameObject> fireBalls;
     [SerializeField]
     GameObject firePref;
 
@@ -24,14 +24,8 @@ public class TheBossAttactkPatterns : MonoBehaviour
     private void Start()
     {
         fBoss = GetComponent<FirstBoss>();
-        fireBalls = new Queue<GameObject>();
-        int firePoolSize = 3;
-        for (int i = 0; i < firePoolSize; i++)
-        {
-            GameObject fireBall = Instantiate(firePref);
-            fireBalls.Enqueue(fireBall);
-            fireBall.SetActive(false);
-        }
+        
+        FireBallReload();
     }
 
     public void BiteAttack()
@@ -52,8 +46,8 @@ public class TheBossAttactkPatterns : MonoBehaviour
 
     public void FireAttack()
     {
-        GameObject fireBall = fireBalls.Dequeue();
-
+        GameObject fireBall = fireBalls[0];
+        fireBalls.Remove(fireBall);
         fireBall.transform.position = mouseTransform.position;
 
         if (fBoss.player.transform.position.x < transform.position.x)
@@ -64,10 +58,14 @@ public class TheBossAttactkPatterns : MonoBehaviour
         fireBall.SetActive(true);
     }
 
-   /* private void OnDrawGizmos()
+    void FireBallReload()
     {
-        Vector3 attackSize = new Vector3(biteLength, biteLength, biteLength);
-        Gizmos.color = Color.red;
-        Gizmos.DrawCube(mouseTransform.position, attackSize);
-    }*/
+        fireBalls = new List<GameObject>();
+        int firePoolSize = 3;
+        for (int i = 0; i < firePoolSize; i++)
+        {
+            GameObject fireBall = Instantiate(firePref);
+            fireBalls.Add(fireBall);
+        }
+    }
 }
