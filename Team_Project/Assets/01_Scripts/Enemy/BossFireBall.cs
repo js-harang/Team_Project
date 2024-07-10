@@ -5,7 +5,7 @@ using UnityEngine;
 public class BossFireBall : MonoBehaviour
 {
     FirstBoss fBoss;
-    TheBossAttactkPatterns bPattern;
+    FirstBossAttactkPatterns bPattern;
 
     GameObject player;
     Vector3 target;
@@ -30,7 +30,7 @@ public class BossFireBall : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player");
         fBoss = FindObjectOfType<FirstBoss>().GetComponent<FirstBoss>();
-        bPattern = FindObjectOfType<TheBossAttactkPatterns>().GetComponent<TheBossAttactkPatterns>();
+        bPattern = FindObjectOfType<FirstBossAttactkPatterns>().GetComponent<FirstBossAttactkPatterns>();
     }
 
     private void OnEnable()
@@ -50,14 +50,14 @@ public class BossFireBall : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.gameObject.CompareTag("Enemy"))
-        {
+        if (other.gameObject.CompareTag("Enemy"))
+            return;
+
             imGoing = false;
             fire.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
             explosion.Play();
             ExplosionDamage();
             StartCoroutine(FireBallActiveFalse());
-        }
     }
 
     void ExplosionDamage()

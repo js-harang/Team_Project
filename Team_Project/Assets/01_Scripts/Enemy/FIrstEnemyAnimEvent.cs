@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAnimationEvent : MonoBehaviour
+public class FIrstEnemyAnimEvent : MonoBehaviour
 {
-    public EnemyFSM enemyFSM;
+    public FirstEnemy fEnemy;
     void Attack()
     {
-        enemyFSM.AttackAction();
+        
     }
 }

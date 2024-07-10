@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TheBossAttactkPatterns : MonoBehaviour
+public class FirstBossAttactkPatterns : MonoBehaviour
 {
     FirstBoss fBoss;
 
@@ -39,7 +39,7 @@ public class TheBossAttactkPatterns : MonoBehaviour
             if (player.gameObject.CompareTag("Player"))
             {
                 DamagedAction damageAct = player.GetComponent<DamagedAction>();
-                damageAct.Damaged(atkPower);
+                damageAct.Damaged(atkPower * 2);
             }
         }
     }
