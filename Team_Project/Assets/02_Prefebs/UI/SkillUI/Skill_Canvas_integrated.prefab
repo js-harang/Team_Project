@@ -111,10 +111,10 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 21300000, guid: 9278a3e82d001264f8c329feee6fb48f, type: 3}
   - {fileID: 21300000, guid: 22f48537039d664438a600ceec1f39ae, type: 3}
-  skillAtk:
+  skillAtks:
   - {fileID: 0}
-  - {fileID: 11400000, guid: 01665216ad2f4284d912e0a62a3b51ff, type: 2}
-  - {fileID: 11400000, guid: bdf4ce3c7d42b8f49b6ab88531248e5f, type: 2}
+  - {fileID: 5841856123283688197, guid: b9d0c4e3e37419246b43fad7bc057c16, type: 3}
+  - {fileID: 7185064107871320432, guid: 95b21f06afd5583498d97a759aa736f6, type: 3}
 --- !u!1 &1664222017805698354
 GameObject:
   m_ObjectHideFlags: 0

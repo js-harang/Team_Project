@@ -18,6 +18,9 @@ public class PlayerCombatInput : MonoBehaviour
 
     private void Update()
     {
+        if (player.pbs.UnitState ==  UnitState.Interact || player.pbs.UnitState == UnitState.Wait)
+            return;
+
         ButtonInput();
     }
     void ButtonInput()
