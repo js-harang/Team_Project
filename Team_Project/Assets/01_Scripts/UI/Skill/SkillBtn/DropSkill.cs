@@ -15,7 +15,6 @@ public class DropSkill : MonoBehaviour, IPointerEnterHandler, IDropHandler, IPoi
 
     private void Awake()
     {
-        Debug.Log(this.name);
         skillButton = GetComponent<SkillButton>();
     }
 
@@ -42,6 +41,7 @@ public class DropSkill : MonoBehaviour, IPointerEnterHandler, IDropHandler, IPoi
         {
             Debug.Log("SkillData 드롭");
             SkillData eventSkillData = eventData.pointerDrag.GetComponent<SkillData>();
+
             if (eventSkillData.SkillButton.CoolTime <= 0)
             {
                 skillData.SkillIcon.sprite = eventSkillData.SkillIcon.sprite;
@@ -61,6 +61,7 @@ public class DropSkill : MonoBehaviour, IPointerEnterHandler, IDropHandler, IPoi
         else if (eventData.pointerDrag.GetComponent<SkillSlot>())
         {
             Debug.Log("SkillSlot 드롭");
+
             SkillSlot eventSkillData = eventData.pointerDrag.GetComponent<SkillSlot>();
 
             skillData.Skill = eventSkillData.Skill;

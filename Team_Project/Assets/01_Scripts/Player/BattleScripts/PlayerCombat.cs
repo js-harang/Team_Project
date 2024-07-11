@@ -62,8 +62,6 @@ public class PlayerCombat : DamagedAction
     public Animator anim;
     public PlayerState pbs;
 
-    Rigidbody rb;
-
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
