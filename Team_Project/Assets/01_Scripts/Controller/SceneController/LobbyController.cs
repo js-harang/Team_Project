@@ -17,11 +17,6 @@ public class LobbyController : MonoBehaviour
     GameObject preferencePopup;
     bool isPreferencePopup = false;
 
-    private void Update()
-    {
-
-    }
-
     public void GameStartBtn()
     {
         GameManager.gm.sceneNumber = 2;

@@ -97,6 +97,7 @@ public class TitleController : MonoBehaviour
                 switch (www.downloadHandler.text)
                 {
                     case "1":
+                        StartCoroutine(UserData(id));
                         GameManager.gm.sceneNumber = 1;
                         SceneManager.LoadScene("99_LoadingScene");
                         break;
@@ -107,6 +108,19 @@ public class TitleController : MonoBehaviour
                         loginResultTxt.text = "알 수 없는 오류";
                         break;
                 }
+        }
+    }
+
+    IEnumerator UserData(string id)
+    {
+        string url = path + "user_data.php";
+        WWWForm form = new();
+        form.AddField("userid", id);
+        using (UnityWebRequest www = UnityWebRequest.Post(url, form))
+        {
+            yield return www.SendWebRequest();
+            if (www.error == null)
+                PlayerPrefs.SetString("uid", www.downloadHandler.text);
         }
     }
 
