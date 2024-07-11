@@ -7,6 +7,7 @@ public class SkillButton : MonoBehaviour
 {
     // 태그로 자동 참조
     PlayerCombat player;
+    CheckDuplication chkDup;
 
     #region 스킬 저장용 변수
 
@@ -140,6 +141,11 @@ public class SkillButton : MonoBehaviour
             skillData.Skill = skill;
             skillData.SkillIcon.sprite = skillDirectory.skillSprites[idx];
         }
+
+        if (chkDup.CheckSkillDuplication(idx))
+        {
+            Debug.Log("중복 발견 " + buttonName);
+        }
         // 0 이면 기본적으로 null 값임
     }
 
@@ -163,7 +169,7 @@ public class SkillButton : MonoBehaviour
         player = GameObject.FindWithTag("Player").GetComponent<PlayerCombat>();
         coolTimeIcon.fillAmount = 0;
         coolTime = 0f;
-
+        chkDup = GetComponentInParent<CheckDuplication>();
         LoadSkillData();
     }
     #endregion
