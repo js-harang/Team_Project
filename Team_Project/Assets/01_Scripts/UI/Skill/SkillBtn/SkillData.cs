@@ -13,8 +13,11 @@ public class SkillData : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     #endregion
 
     #region 스킬 속성
-    [SerializeField] private AttackSO skill;
-    public AttackSO Skill { get { return skill; } set { skill = value; } }
+    // [SerializeField] private AttackSO skill;
+    [SerializeField] private Attack skill;
+
+    // public AttackSO Skill { get { return skill; } set { skill = value; } }
+    public Attack Skill { get { return skill; } set { skill = value; } }
     #endregion
 
     [Space(10)]

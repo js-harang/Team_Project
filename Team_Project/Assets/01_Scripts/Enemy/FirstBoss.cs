@@ -5,22 +5,22 @@ using UnityEngine;
 public class FirstBoss : BossFSM
 {
     // 근거리 공격 범위
-    [Space(10)]
-    public float meleeAttackDistance;
+    [SerializeField, Space(10)]
+    float meleeAttackDistance;
     // 원거리 공격 범위
-    public float rangeAttackDistance;
+    [SerializeField]
+    float rangeAttackDistance;
     // 공격 범위 한계
     [SerializeField]
     float limitAttackRange;
-    // 보스의 렌더러 변수
-    [SerializeField]
-    SkinnedMeshRenderer bossSkin;
 
     public override void BossStart()
     {
         //필요한 참조들 가져옴
         bossAnim = GetComponentInChildren<Animator>();
         player = GameObject.FindWithTag("Player");
+        rb = GetComponent<Rigidbody>();
+        myColl = GetComponent<Collider>();
 
         Appear();
     }
@@ -149,7 +149,7 @@ public class FirstBoss : BossFSM
         time = 0;
     }
 
-    // 보스 피격시의 동작
+    // // DamagedAction 에서 상속받은 메서드를 선언
     public override void Damaged(float hitPow)
     {
         if (BState == BossState.Die)
@@ -184,6 +184,8 @@ public class FirstBoss : BossFSM
 
     public override void Die()
     {
+        rb.useGravity = false;
+        myColl.enabled = false;
         bossAnim.SetTrigger("die");
         StartCoroutine(DieProcess());
     }
@@ -191,6 +193,7 @@ public class FirstBoss : BossFSM
     IEnumerator DieProcess()
     {
         Time.timeScale = 0.1f;
+        bossStateUI.SetActive(false);
         yield return new WaitForSeconds(0.5f);
         Time.timeScale = 1;
         yield return new WaitForSeconds(3f);
@@ -198,5 +201,6 @@ public class FirstBoss : BossFSM
         gameObject.SetActive(false);
     }
 
+    // DamagedAction 에서 상속받은 메서드를 선언
     public override void KnockBack(Vector3 atkPos, float knockBackForce) {}
 }

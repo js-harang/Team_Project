@@ -11,12 +11,21 @@ public class PlayerCombatInput : MonoBehaviour
         Q = 6, W = 7, E = 8, R = 9, T = 10, G = 11,
     }
     public PlayerCombat player;
-    public AttackSO defaultAttack;
+    // public AttackSO defaultAttack;
+    public Attack defaultAttack;
 
     public Button[] buttons;
 
     private void Update()
-    {   // A = 0, S = 1, D = 2, F = 3, C = 4, V = 5,
+    {
+        if (player.pbs.UnitState ==  UnitState.Interact || player.pbs.UnitState == UnitState.Wait)
+            return;
+
+        ButtonInput();
+    }
+    void ButtonInput()
+    {
+        // A = 0, S = 1, D = 2, F = 3, C = 4, V = 5,
         // Q = 6, W = 7, E = 8, R = 9, T = 10, G = 11
         switch (Input.inputString)
         {

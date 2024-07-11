@@ -21,6 +21,8 @@ public class AttackSO : ScriptableObject
     public float knockBackForce;
     public float delayComboTime;
 
+    public AudioClip hitSound;
+
     [Space(10)]
     // 스킬 아이콘
     public Sprite sprite;

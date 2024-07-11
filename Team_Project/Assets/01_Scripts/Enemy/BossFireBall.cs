@@ -53,11 +53,11 @@ public class BossFireBall : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
             return;
 
-            imGoing = false;
-            fire.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
-            explosion.Play();
-            ExplosionDamage();
-            StartCoroutine(FireBallActiveFalse());
+        imGoing = false;
+        fire.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        explosion.Play();
+        ExplosionDamage();
+        StartCoroutine(FireBallActiveFalse());
     }
 
     void ExplosionDamage()

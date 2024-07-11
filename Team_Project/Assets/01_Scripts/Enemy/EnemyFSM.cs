@@ -28,7 +28,6 @@ public abstract class EnemyFSM : DamagedAction
         set
         {
             eState = value;
-            time = 0;
             CalcBehaveDelay();
             switch (eState)
             {
@@ -53,7 +52,9 @@ public abstract class EnemyFSM : DamagedAction
     public GameObject enemyStateUI;
     public Slider enemyHpBar;
     public GameObject player;
-    public Rigidbody rb;
+    public Collider myColl;
+    // 에너미의 렌더러
+    public SkinnedMeshRenderer enemySkin;
 
     [Space(10)]
     // 현재 체력
@@ -75,9 +76,7 @@ public abstract class EnemyFSM : DamagedAction
     // 지금 공격 중인지 확인하는 변수
     public bool nowAttack;
     // 죽고 다음 단계로 넘아갈지 확인하는 변수
-    public bool imDying;
-
-
+    public bool imDying { set { if(value) bCon.EnemyCount--; } }
 
     private void Start()
     {
@@ -99,8 +98,6 @@ public abstract class EnemyFSM : DamagedAction
 
             DelayTimeCount();
         }
-        else if (imDying)
-            bCon.EnemyCount--;
     }
 
     // 에너미 활성화 시 Start 실행 동작

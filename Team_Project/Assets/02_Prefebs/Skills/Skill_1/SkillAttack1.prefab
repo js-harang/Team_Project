@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3185855203712952428
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3641883546883950955}
+  - component: {fileID: 5841856123283688197}
+  m_Layer: 0
+  m_Name: SkillAttack1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3641883546883950955
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3185855203712952428}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.0257993, y: 6.303338, z: 2.940769}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5841856123283688197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3185855203712952428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89350afaadf2e92459e3227e1b082abf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animOCs:
+  - {fileID: 22100000, guid: 5e9b9dd7e74680445b3e39e8846bd435, type: 2}
+  - {fileID: 22100000, guid: d1d5e2cb2398f1e4a80f074e3158eb74, type: 2}
+  skillIdx: 1
+  damage:
+  - 1.4
+  - 2
+  coolTime: 4
+  isComboing: 0
+  canMoveAtk: 0
+  useMana: 4
+  knockBackForce: 8
+  delayComboTime: 4
+  hitSound: {fileID: 8300000, guid: 5c55a31473e47c9478a6c08cc29d4a55, type: 3}
+  sprite: {fileID: 21300000, guid: 9278a3e82d001264f8c329feee6fb48f, type: 3}
+  atkPosIdx: 0
+  atkLength: {x: 2, y: 2.5, z: 2}

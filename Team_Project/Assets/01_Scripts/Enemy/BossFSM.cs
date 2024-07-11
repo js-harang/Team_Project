@@ -54,6 +54,9 @@ public abstract class BossFSM : DamagedAction
     public TMP_Text bossName_text;
     public Slider bossHpBar;
     public GameObject player;
+    public Collider myColl;
+    // 보스의 렌더러 변수
+    public SkinnedMeshRenderer bossSkin;
 
     [Space(10)]
     // 보스의 이름
@@ -77,7 +80,7 @@ public abstract class BossFSM : DamagedAction
     // 지금 공격 중인지 확인하는 변수
     public bool nowAttack;
     // 죽고 다음 단계로 넘아갈지 확인하는 변수
-    public bool imDying;
+    public bool imDying { set { if (value) bCon.BossCount--; } }
 
     void Start() 
     {
@@ -100,8 +103,6 @@ public abstract class BossFSM : DamagedAction
 
             DelayTimeCount();
         }
-        else if (imDying)
-            bCon.BossCount--;
     }
 
     // 보스 활성화 시 Start 실행 동작
