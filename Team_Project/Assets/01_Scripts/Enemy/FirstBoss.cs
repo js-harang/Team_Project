@@ -5,10 +5,11 @@ using UnityEngine;
 public class FirstBoss : BossFSM
 {
     // 근거리 공격 범위
-    [Space(10)]
-    public float meleeAttackDistance;
+    [SerializeField, Space(10)]
+    float meleeAttackDistance;
     // 원거리 공격 범위
-    public float rangeAttackDistance;
+    [SerializeField]
+    float rangeAttackDistance;
     // 공격 범위 한계
     [SerializeField]
     float limitAttackRange;
@@ -149,7 +150,7 @@ public class FirstBoss : BossFSM
         time = 0;
     }
 
-    // 보스 피격시의 동작
+    // // DamagedAction 에서 상속받은 메서드를 선언
     public override void Damaged(float hitPow)
     {
         if (BState == BossState.Die)
@@ -198,5 +199,6 @@ public class FirstBoss : BossFSM
         gameObject.SetActive(false);
     }
 
+    // DamagedAction 에서 상속받은 메서드를 선언
     public override void KnockBack(Vector3 atkPos, float knockBackForce) {}
 }
