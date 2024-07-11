@@ -750,6 +750,7 @@ GameObject:
   - component: {fileID: 3518640928383752195}
   - component: {fileID: 3518640928383752193}
   - component: {fileID: 3518640928383752198}
+  - component: {fileID: 3620795736800397633}
   m_Layer: 21
   m_Name: TheBoss
   m_TagString: Enemy
@@ -842,6 +843,7 @@ MonoBehaviour:
   bossName_text: {fileID: 0}
   bossHpBar: {fileID: 0}
   player: {fileID: 0}
+  bossSkin: {fileID: 3518640929411250216}
   bossName: "\uB354\uBCF4\uC2A4"
   currentHp: 15
   maxHp: 15
@@ -852,11 +854,28 @@ MonoBehaviour:
   time: 0
   delayDone: 0
   nowAttack: 0
-  imDying: 0
   meleeAttackDistance: 5
   rangeAttackDistance: 10
   limitAttackRange: 15
-  bossSkin: {fileID: 3518640929411250216}
+--- !u!114 &3620795736800397633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3518640929406034880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 689a53ef792a8e2478a53ffa745da345, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseTransform: {fileID: 1540088016}
+  fireBalls: []
+  firePref: {fileID: 724825347201853786, guid: 2eac6973741f956439d9e22f9725dd43, type: 3}
+  biteLength: 2
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 1048576
 --- !u!1 &3518640929406036062
 GameObject:
   m_ObjectHideFlags: 0

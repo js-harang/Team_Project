@@ -52,8 +52,9 @@ public abstract class EnemyFSM : DamagedAction
     public GameObject enemyStateUI;
     public Slider enemyHpBar;
     public GameObject player;
-    // DamagedAction 의 KnockBack 실행에 필요한 변수
-    public Rigidbody rb;
+    public Collider myColl;
+    // 에너미의 렌더러
+    public SkinnedMeshRenderer enemySkin;
 
     [Space(10)]
     // 현재 체력

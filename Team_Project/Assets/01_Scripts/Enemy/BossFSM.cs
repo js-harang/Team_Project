@@ -54,6 +54,9 @@ public abstract class BossFSM : DamagedAction
     public TMP_Text bossName_text;
     public Slider bossHpBar;
     public GameObject player;
+    public Collider myColl;
+    // 보스의 렌더러 변수
+    public SkinnedMeshRenderer bossSkin;
 
     [Space(10)]
     // 보스의 이름

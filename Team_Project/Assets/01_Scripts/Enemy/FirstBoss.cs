@@ -13,15 +13,14 @@ public class FirstBoss : BossFSM
     // 공격 범위 한계
     [SerializeField]
     float limitAttackRange;
-    // 보스의 렌더러 변수
-    [SerializeField]
-    SkinnedMeshRenderer bossSkin;
 
     public override void BossStart()
     {
         //필요한 참조들 가져옴
         bossAnim = GetComponentInChildren<Animator>();
         player = GameObject.FindWithTag("Player");
+        rb = GetComponent<Rigidbody>();
+        myColl = GetComponent<Collider>();
 
         Appear();
     }
@@ -185,6 +184,8 @@ public class FirstBoss : BossFSM
 
     public override void Die()
     {
+        rb.useGravity = false;
+        myColl.enabled = false;
         bossAnim.SetTrigger("die");
         StartCoroutine(DieProcess());
     }
@@ -192,6 +193,7 @@ public class FirstBoss : BossFSM
     IEnumerator DieProcess()
     {
         Time.timeScale = 0.1f;
+        bossStateUI.SetActive(false);
         yield return new WaitForSeconds(0.5f);
         Time.timeScale = 1;
         yield return new WaitForSeconds(3f);

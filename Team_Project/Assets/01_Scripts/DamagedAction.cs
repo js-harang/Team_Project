@@ -2,6 +2,9 @@ using UnityEngine;
 
 public abstract class DamagedAction : MonoBehaviour
 {
+    // KnockBack 실행에 필요한 변수
+    public Rigidbody rb;
+
     // 피격 시의 동작하는 메서드 선언
     public abstract void Damaged(float hitPow);
 
