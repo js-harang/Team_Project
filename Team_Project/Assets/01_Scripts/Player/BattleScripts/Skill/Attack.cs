@@ -1,7 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu (menuName ="AttackSO")]
-public class AttackSO : ScriptableObject
+public class Attack : MonoBehaviour
 {
     // 공격재생 애니메이션들
     public AnimatorOverrideController[] animOCs;

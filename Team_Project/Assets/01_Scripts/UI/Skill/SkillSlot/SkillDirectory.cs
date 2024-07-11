@@ -6,5 +6,6 @@ using UnityEngine.UI;
 public class SkillDirectory : MonoBehaviour
 {
     public Sprite[] skillSprites;
-    public AttackSO[] skillAtk;
+    // public AttackSO[] skillAtk;
+    public Attack[] skillAtks;
 }

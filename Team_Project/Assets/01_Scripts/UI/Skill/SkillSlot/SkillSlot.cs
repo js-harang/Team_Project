@@ -18,8 +18,10 @@ public class SkillSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     #endregion
 
     #region 스킬 속성
-    [SerializeField] private AttackSO skill;
-    public AttackSO Skill { get { return skill; } set { skill = value; } }
+    // [SerializeField] private AttackSO skill;
+    [SerializeField] private Attack skill;
+    // public AttackSO Skill { get { return skill; } set { skill = value; } }
+    public Attack Skill { get { return skill; } set { skill = value; } }
     #endregion
 
     [Space(10)]
@@ -78,13 +80,13 @@ public class SkillSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
         skillPannel = FindObjectOfType<SkillDirectory>();
 
-        if (skillPannel.skillAtk[skillIndex] == null || skillPannel.skillSprites[skillIndex] == null)
+        if (skillPannel.skillAtks[skillIndex] == null || skillPannel.skillSprites[skillIndex] == null)
         {
             Debug.Log("비었음");
             return;
         }
 
-        skill = skillPannel.skillAtk[skillIndex];
+        skill = skillPannel.skillAtks[skillIndex];
         skillIcon.sprite = skillPannel.skillSprites[skillIndex];
     }
     #endregion

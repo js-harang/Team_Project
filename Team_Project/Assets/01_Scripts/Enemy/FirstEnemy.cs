@@ -166,7 +166,7 @@ public class FirstEnemy : EnemyFSM
 
         float dis = Vector3.Distance(transform.position, atkPos);
 
-        Vector3 dir = atkPos - transform.position;
+        Vector3 dir = transform.position - atkPos;
         dir.Normalize();
 
         rb.AddForce(dir * (knockBackForce / dis),ForceMode.Impulse);

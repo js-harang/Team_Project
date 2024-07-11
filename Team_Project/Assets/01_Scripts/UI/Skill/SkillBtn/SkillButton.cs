@@ -25,8 +25,11 @@ public class SkillButton : MonoBehaviour
     [SerializeField] SkillData skillData;
 
     // 자동으로 참조됨
-    AttackSO skill;
-    public AttackSO Skill { get { return skill; } set { skill = value; } }
+    // AttackSO skill;
+    Attack skill;
+
+    // public AttackSO Skill { get { return skill; } set { skill = value; } }
+    public Attack Skill { get { return skill; } set { skill = value; } }
     #endregion
 
     #region 스킬 쿨타임 관련
@@ -133,7 +136,7 @@ public class SkillButton : MonoBehaviour
         // 0 이상이면 불러오기
         if (idx > 0)
         {
-            skill = skillDirectory.skillAtk[idx];
+            skill = skillDirectory.skillAtks[idx];
             skillData.Skill = skill;
             skillData.SkillIcon.sprite = skillDirectory.skillSprites[idx];
         }

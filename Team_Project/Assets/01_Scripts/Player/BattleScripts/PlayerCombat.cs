@@ -28,8 +28,10 @@ public class PlayerCombat : DamagedAction
 
     #region 공격 관련
     [Space(10)]
-    public AttackSO attack;
-    public AttackSO previousAttack;
+    // public AttackSO attack;
+    public Attack attack;
+    // public AttackSO previousAttack;
+    public Attack previousAttack;
 
     [Space(10)]
     public float delayComboTime;
@@ -91,7 +93,6 @@ public class PlayerCombat : DamagedAction
             // 공격중지 매소드 실행 취소
             CancelInvoke("ResetCombo");
 
-
             anim.runtimeAnimatorController = attack.animOCs[comboCounter];
 
             atkDamage = attack.damage[comboCounter];
@@ -99,9 +100,8 @@ public class PlayerCombat : DamagedAction
 
             // 콤보중이 아니면 마나 소모
             if (!attack.isComboing)
-            {
                 currentMp -= attack.useMana;
-            }
+
             SetPlayerSlider();
 
             anim.Play("Attack", 0, 0);
@@ -116,7 +116,6 @@ public class PlayerCombat : DamagedAction
                 Debug.Log("콤보초기화");
                 ResetCombo();
             }
-
         }
     }
 
@@ -169,6 +168,8 @@ public class PlayerCombat : DamagedAction
 
                 if (Physics.Raycast(ray, out RaycastHit hit))
                 {
+                    AudioSource audio = effectPrefebs.GetComponent<AudioSource>();
+                    audio.clip = attack.hitSound;
                     Instantiate(effectPrefebs, hit.point, Quaternion.identity);
                 }
             }
@@ -224,7 +225,7 @@ public class PlayerCombat : DamagedAction
         
         float dis = Vector3.Distance(transform.position, atkPos);
 
-        Vector3 dir = atkPos - transform.position;
+        Vector3 dir = transform.position - atkPos;
         dir.Normalize();
 
         rb.AddForce(dir * (knockBackForce / dis), ForceMode.Impulse);
