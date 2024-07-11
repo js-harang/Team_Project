@@ -14,6 +14,7 @@ public class FirstEnemy : EnemyFSM
         enemyAnim = GetComponentInChildren<Animator>();
         player = GameObject.FindWithTag("Player");
         rb = GetComponent<Rigidbody>();
+        myColl = GetComponent<Collider>();
 
         Appear();
     }
@@ -141,6 +142,7 @@ public class FirstEnemy : EnemyFSM
 
         if (currentHp > 0)
         {
+            EState = EnemyState.Damaged;
             StartCoroutine(DamagedEffect());
             EnemyStateUpdate();
         }
@@ -153,15 +155,17 @@ public class FirstEnemy : EnemyFSM
 
     IEnumerator DamagedEffect()
     {
-        EState = EnemyState.Damaged;
-        enemyAnim.SetTrigger("damaged");
-        yield return new WaitForSeconds(0.5f);
-        EState = EnemyState.Attack;
+        enemySkin.material.color = Color.gray;
+        yield return new WaitForSeconds(0.1f);
+        enemySkin.material.color = Color.white;
     }
 
     // DamagedAction 에서 상속받은 메서드를 선언
     public override void KnockBack(Vector3 atkPos, float knockBackForce)
     {
+        if (EState == EnemyState.Die)
+            return;
+
         rb.velocity = Vector3.zero;
 
         float dis = Vector3.Distance(transform.position, atkPos);
@@ -169,7 +173,7 @@ public class FirstEnemy : EnemyFSM
         Vector3 dir = transform.position - atkPos;
         dir.Normalize();
 
-        rb.AddForce(dir * (knockBackForce / dis),ForceMode.Impulse);
+        rb.AddForce(dir * (knockBackForce / dis), ForceMode.Impulse);
     }
 
     public override void EnemyStateUpdate()
@@ -180,6 +184,8 @@ public class FirstEnemy : EnemyFSM
 
     public override void Die()
     {
+        rb.useGravity = false;
+        myColl.enabled = false;
         enemyAnim.SetTrigger("die");
         StartCoroutine(DieProcess());
     }
