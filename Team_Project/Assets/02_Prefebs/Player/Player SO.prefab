@@ -6426,12 +6426,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb68986fcd0e05543b01a83317595063, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 316223621016006617}
   currentHp: 100
   maxHp: 100
-  atkPower: 1
+  atkPower: 0
   currentMp: 100
   maxMp: 100
-  attack: {fileID: 11400000, guid: 01665216ad2f4284d912e0a62a3b51ff, type: 2}
+  attack: {fileID: 0}
   previousAttack: {fileID: 0}
   delayComboTime: 1
   enemyLayer:
@@ -6460,7 +6461,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1332281161109069133}
-  defaultAttack: {fileID: 11400000, guid: bbe21c0a2908d6d499bad5b1ea49a367, type: 2}
+  defaultAttack: {fileID: 5314608549469378818, guid: c52948708a646c244924feaae89cc0ad, type: 3}
   buttons:
   - {fileID: 0}
   - {fileID: 0}
