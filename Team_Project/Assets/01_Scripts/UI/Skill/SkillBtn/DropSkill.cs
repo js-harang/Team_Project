@@ -37,21 +37,28 @@ public class DropSkill : MonoBehaviour, IPointerEnterHandler, IDropHandler, IPoi
         }
         #endregion
 
-
         #region 퀵슬롯 에서 퀵슬롯 으로 옮길때
         if (eventData.pointerDrag.GetComponent<SkillData>())
         {
-            Debug.Log("SkillData 드롭");
-            SkillData eventSkillData = eventData.pointerDrag.GetComponent<SkillData>();
+            SkillData dragSkillData = eventData.pointerDrag.GetComponent<SkillData>();
 
-            if (eventSkillData.SkillButton.CoolTime <= 0)
+            if (dragSkillData.Skill == null)
+                return;
+
+            if (dragSkillData.SkillButton.CoolTime <= 0)
             {
-                skillData.SkillIcon.sprite = eventSkillData.SkillIcon.sprite;
-                skillData.Skill = eventSkillData.Skill;
+                skillData.SkillIcon.sprite = dragSkillData.SkillIcon.sprite;
+                skillData.Skill = dragSkillData.Skill;
 
-                eventSkillData.Skill = null;
-                eventSkillData.SkillIcon.sprite = null;
-                eventSkillData.SkillButton.Skill = null;
+                dragSkillData.Skill = null;
+                dragSkillData.SkillIcon.sprite = null;
+                dragSkillData.SkillButton.Skill = null;
+
+                if (chkDup.CheckSkillDuplication(skillData.Skill.skillIdx))
+                {
+                    Debug.Log("중복 발견 " + this.name);
+                    return;
+                }
             }
             else
             {
@@ -64,24 +71,18 @@ public class DropSkill : MonoBehaviour, IPointerEnterHandler, IDropHandler, IPoi
         else if (eventData.pointerDrag.GetComponent<SkillSlot>())
         {
             Debug.Log("SkillSlot 드롭");
-            SkillSlot eventSkillData = eventData.pointerDrag.GetComponent<SkillSlot>();
+            SkillSlot dragSkillData = eventData.pointerDrag.GetComponent<SkillSlot>();
 
-
-            skillData.Skill = eventSkillData.Skill;
-            skillButton.Skill = eventSkillData.Skill;
-            skillData.SkillIcon.sprite = eventSkillData.SkillIcon.sprite;
+            if (chkDup.CheckSkillDuplication(dragSkillData.Skill.skillIdx))
+            {
+                Debug.Log("중복 발견 " + this.name);
+                return;
+            }
+            skillData.Skill = dragSkillData.Skill;
+            skillButton.Skill = dragSkillData.Skill;
+            skillData.SkillIcon.sprite = dragSkillData.SkillIcon.sprite;
         }
         #endregion
-
-        if (chkDup.CheckSkillDuplication(skillButton.buttonIdx, skillData.Skill.skillIdx))
-        {
-            Debug.Log("중복 발견 " + this.name);
-            skillData.Skill = null;
-            skillButton.Skill = null;
-            skillData.SkillIcon.sprite = null;
-            return;
-        }
-
         skillButton.SaveSkillData();
     }
 

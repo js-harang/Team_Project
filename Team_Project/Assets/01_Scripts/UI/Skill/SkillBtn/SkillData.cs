@@ -72,12 +72,12 @@ public class SkillData : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         if (skillButton.CoolTime > 0)
             return;
 
-        if (transform.parent != canvas)
+        /*if (transform.parent != canvas)
         {
             skill = null;
             skillIcon.sprite = null;
             skillButton.Skill = null;
-        }
+        }*/
         SkillButton.SaveSkillData();
     }
     #endregion
