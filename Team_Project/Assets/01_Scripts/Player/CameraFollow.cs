@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    [SerializeField] Transform player;
+    public Transform target;
     // 플레이어로부터 카메라가 둘 거리
     Vector3 distanceFromPlayer;
 
@@ -13,11 +13,15 @@ public class CameraFollow : MonoBehaviour
 
     private void Start()
     {
+        target = GameObject.FindWithTag("Player").transform;
         distanceFromPlayer = new Vector3(0, yDistance, zDistance);
     }
 
     private void Update()
     {
-        transform.position = Vector3.Lerp(transform.position, player.position + distanceFromPlayer, camSpeed * Time.deltaTime);
+        if (target.gameObject.CompareTag("Player"))
+            transform.position = Vector3.Lerp(transform.position, target.position + distanceFromPlayer, camSpeed * Time.deltaTime);
+        else
+            transform.position = Vector3.Lerp(transform.position, target.position, camSpeed * Time.deltaTime);
     }
 }

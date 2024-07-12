@@ -41,7 +41,7 @@ public class InteractProperty : MonoBehaviour
     // npc의 애니메이터 변수
     Animator npcAnim;
     // 대화 시 메인 카메라를 위치시킬 포인트
-    public Transform closeUp;
+    public Transform closeUpPoint;
 
     private void Start()
     {
@@ -73,9 +73,9 @@ public class InteractProperty : MonoBehaviour
     {
         npcProperty_Canvas.SetActive(false);
         CameraFollow cF = Camera.main.GetComponent<CameraFollow>();
-        cF.enabled = false;
-        Camera.main.transform.position = closeUp.position;
+        cF.target = closeUpPoint;
         Camera.main.transform.rotation = Quaternion.Euler(0, 0, 0);
+        Camera.main.cullingMask = ~(1 << LayerMask.NameToLayer("Player"));
         npcAnim.SetBool("end", false);
         npcAnim.SetBool("start", true);
     }
@@ -84,7 +84,8 @@ public class InteractProperty : MonoBehaviour
     {
         npcProperty_Canvas.SetActive(true);
         CameraFollow cF = Camera.main.GetComponent<CameraFollow>();
-        cF.enabled = true;
+        cF.target = GameObject.FindWithTag("Player").transform;
+        Camera.main.cullingMask |= 1 << LayerMask.NameToLayer("Player");
         Camera.main.transform.rotation = Quaternion.Euler(20, 0, 0);
         npcAnim.SetBool("end", true);
         npcAnim.SetBool("start", false);

@@ -1418,7 +1418,7 @@ MonoBehaviour:
   npcProperty_Canvas: {fileID: 6945872308159923112}
   myRole_Text: {fileID: 6945872307880507261}
   myName_Text: {fileID: 6945872307561202626}
-  closeUp: {fileID: 6428844253413229256}
+  closeUpPoint: {fileID: 6428844253413229256}
 --- !u!1 &6945872307679102692
 GameObject:
   m_ObjectHideFlags: 0

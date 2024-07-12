@@ -65,7 +65,7 @@ MonoBehaviour:
   npcProperty_Canvas: {fileID: 7332113727162941792}
   myRole_Text: {fileID: 7332113725295813401}
   myName_Text: {fileID: 7332113725887769236}
-  closeUp: {fileID: 2085272049886262055}
+  closeUpPoint: {fileID: 2085272049886262055}
 --- !u!1 &3689887641120813451
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,7 +90,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3689887641120813451}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.065, z: 0.11}
+  m_LocalPosition: {x: 0, y: 0.06, z: 0.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
