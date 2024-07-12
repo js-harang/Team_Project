@@ -26,11 +26,10 @@ public class SkillButton : MonoBehaviour
     [SerializeField] SkillData skillData;
 
     // 자동으로 참조됨
-    // AttackSO skill;
-    Attack skill;
-
-    // public AttackSO Skill { get { return skill; } set { skill = value; } }
-    public Attack Skill { get { return skill; } set { skill = value; } }
+    [SerializeField] Attack btnSkill;
+    [SerializeField] Image skillIcon;
+    public Attack Skill { get { return btnSkill; } set { btnSkill = value; } }
+    public Image SkillIcon { get { return skillIcon; } set { skillIcon = value; } }
     #endregion
 
     #region 스킬 쿨타임 관련
@@ -59,18 +58,16 @@ public class SkillButton : MonoBehaviour
         }
 
         // 스킬이 있을때만 실행
-        if (skillData.Skill == null)
+        if (Skill == null)
         {
             Debug.Log("비었음");
             return;
         }
 
-        skill = skillData.Skill;
-
         // 스킬 쿨타임 이 0 이하거나 콤보 중 이면 실행
-        if (coolTime <= 0 || skill.isComboing)
+        if (coolTime <= 0 || btnSkill.isComboing)
         {
-            if (skill.useMana > player.CurrentMp && skill.isComboing == false)
+            if (btnSkill.useMana > player.CurrentMp && btnSkill.isComboing == false)
             {
                 Debug.Log("마나가 부족합니다.");
                 return;
@@ -99,7 +96,7 @@ public class SkillButton : MonoBehaviour
     #region 변경 및 추가된 스킬로 설정후 공격
     void SkillSetting()
     {
-        player.attack = skill;
+        player.attack = btnSkill;
         player.Attack();
     }
     #endregion
@@ -110,8 +107,8 @@ public class SkillButton : MonoBehaviour
         isCoolTime = true;
 
         float t = 0;
-        float tick = 1f / skill.coolTime;
-        coolTime = skill.coolTime;
+        float tick = 1f / btnSkill.coolTime;
+        coolTime = btnSkill.coolTime;
 
         coolTimeIcon.fillAmount = 1;
 
@@ -133,20 +130,15 @@ public class SkillButton : MonoBehaviour
     void LoadSkillData()
     {
         int idx = PlayerPrefs.GetInt("SkillButton" + buttonIdx, 0);
-        Debug.Log("SkillButton" + buttonIdx + " 인덱스 번호 : " + idx);
+
         // 0 이상이면 불러오기
         if (idx > 0)
         {
-            skill = skillDirectory.skillAtks[idx];
-            skillData.Skill = skill;
-            skillData.SkillIcon.sprite = skillDirectory.skillSprites[idx];
+            btnSkill = skillDirectory.skillAtks[idx];
         }
 
-        if (skill == null)
-        {
-            Debug.Log(this.name + "스킬이 비었음");
+        if (btnSkill == null)
             return;
-        }
 
         if (chkDup.CheckSkillDuplication(idx))
         {
@@ -158,10 +150,10 @@ public class SkillButton : MonoBehaviour
     public void SaveSkillData()
     {
         int idx;
-        if (skillData.Skill == null)
+        if (btnSkill == null)
             idx = 0;
         else
-           idx = skillData.Skill.skillIdx;
+           idx = btnSkill.skillIdx;
 
         PlayerPrefs.SetInt("SkillButton" + buttonIdx, idx);
         PlayerPrefs.Save();
@@ -172,9 +164,12 @@ public class SkillButton : MonoBehaviour
     #region 시작 세팅
     void StartSetting()
     {
+        skillIcon = GetComponent<Image>();
         player = GameObject.FindWithTag("Player").GetComponent<PlayerCombat>();
+        
         coolTimeIcon.fillAmount = 0;
         coolTime = 0f;
+
         chkDup = GetComponentInParent<CheckDuplication>();
         LoadSkillData();
     }

@@ -56205,7 +56205,7 @@ MonoBehaviour:
   selectObject: {fileID: 0}
   boolIsFullScreen: 1
   isPreferencePopup: 0
-  characterName: 
+  path: 
 --- !u!4 &1853868361
 Transform:
   m_ObjectHideFlags: 0
@@ -57248,46 +57248,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2568294187308979851, guid: 0d443d24d4b9b2140ad8884909d7aaaf, type: 3}
-      propertyPath: buttonIdx
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2568294187317830040, guid: 0d443d24d4b9b2140ad8884909d7aaaf, type: 3}
-      propertyPath: buttonIdx
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2568294187338034283, guid: 0d443d24d4b9b2140ad8884909d7aaaf, type: 3}
-      propertyPath: buttonIdx
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2568294187416183608, guid: 0d443d24d4b9b2140ad8884909d7aaaf, type: 3}
-      propertyPath: buttonIdx
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2568294187552073182, guid: 0d443d24d4b9b2140ad8884909d7aaaf, type: 3}
-      propertyPath: buttonIdx
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2568294187800273306, guid: 0d443d24d4b9b2140ad8884909d7aaaf, type: 3}
-      propertyPath: buttonIdx
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 2568294187915238107, guid: 0d443d24d4b9b2140ad8884909d7aaaf, type: 3}
-      propertyPath: buttonIdx
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 2568294187968908071, guid: 0d443d24d4b9b2140ad8884909d7aaaf, type: 3}
-      propertyPath: buttonIdx
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2568294188002349856, guid: 0d443d24d4b9b2140ad8884909d7aaaf, type: 3}
-      propertyPath: buttonIdx
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2568294188446715363, guid: 0d443d24d4b9b2140ad8884909d7aaaf, type: 3}
-      propertyPath: buttonIdx
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 5760436417140359245, guid: 0d443d24d4b9b2140ad8884909d7aaaf, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -57375,10 +57335,6 @@ PrefabInstance:
     - target: {fileID: 7766970637996924264, guid: 0d443d24d4b9b2140ad8884909d7aaaf, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7974166844470955772, guid: 0d443d24d4b9b2140ad8884909d7aaaf, type: 3}
-      propertyPath: buttonIdx
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d443d24d4b9b2140ad8884909d7aaaf, type: 3}

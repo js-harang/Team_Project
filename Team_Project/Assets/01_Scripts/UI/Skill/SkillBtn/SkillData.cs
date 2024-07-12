@@ -52,6 +52,13 @@ public class SkillData : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     #region 드래그 시작
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (skillButton.Skill == null)
+        {
+            return;
+        }
+        skill = skillButton.Skill;
+        skillIcon.sprite = skillButton.Skill.sprite;
+
         canvasGroup.blocksRaycasts = false;
     }
     #endregion
@@ -59,6 +66,10 @@ public class SkillData : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     #region 드래그 중
     public void OnDrag(PointerEventData eventData)
     {
+        if (skillButton.Skill == null || skillButton.CoolTime > 0)
+        {
+            return;
+        }
         rect.transform.position = eventData.position;
     }
     #endregion
@@ -72,12 +83,13 @@ public class SkillData : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         if (skillButton.CoolTime > 0)
             return;
 
-        /*if (transform.parent != canvas)
+        if (transform.parent != canvas)
         {
             skill = null;
             skillIcon.sprite = null;
             skillButton.Skill = null;
-        }*/
+        }
+
         SkillButton.SaveSkillData();
     }
     #endregion
