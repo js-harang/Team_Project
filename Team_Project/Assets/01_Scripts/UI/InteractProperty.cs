@@ -20,15 +20,34 @@ public class InteractProperty : MonoBehaviour
     [SerializeField] string interactName;
     public string InteractName { get { return interactName; } }
 
-    // NPC 머리 위에 정보창 Text 변수들
-    [SerializeField] TMP_Text myRole_Text;
+    bool imtalking;
+    public bool ImTalking 
+    { 
+        set 
+        { 
+            imtalking = value;
+            if (value)
+                PlayerTalkToMe();
+            else
+                EndTalkWithPlayer();
+        } 
+    }
 
+    // NPC 머리 위에 정보창 변수들
+    [SerializeField] GameObject npcProperty_Canvas;
+    [SerializeField] TMP_Text myRole_Text;
     [SerializeField] TMP_Text myName_Text;
+
+    // npc의 애니메이터 변수
+    Animator npcAnim;
+    // 대화 시 메인 카메라를 위치시킬 포인트
+    public Transform closeUp;
 
     private void Start()
     {
         ShowMyRole();
         myName_Text.text = interactName;
+        npcAnim = GetComponentInParent<Animator>();
     }
 
     // 자신의 타입에 따라 역할을 줄력
@@ -48,5 +67,26 @@ public class InteractProperty : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    void PlayerTalkToMe()
+    {
+        npcProperty_Canvas.SetActive(false);
+        CameraFollow cF = Camera.main.GetComponent<CameraFollow>();
+        cF.enabled = false;
+        Camera.main.transform.position = closeUp.position;
+        Camera.main.transform.rotation = Quaternion.Euler(0, 0, 0);
+        npcAnim.SetBool("end", false);
+        npcAnim.SetBool("start", true);
+    }
+
+    void EndTalkWithPlayer()
+    {
+        npcProperty_Canvas.SetActive(true);
+        CameraFollow cF = Camera.main.GetComponent<CameraFollow>();
+        cF.enabled = true;
+        Camera.main.transform.rotation = Quaternion.Euler(20, 0, 0);
+        npcAnim.SetBool("end", true);
+        npcAnim.SetBool("start", false);
     }
 }

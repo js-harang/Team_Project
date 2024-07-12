@@ -8,22 +8,18 @@ public class PlayerInteract : MonoBehaviour
     bool isMeetInteract;
 
     // 대화 가능한 오브젝트를 표시하는 UI 변수
-    public GameObject interactCheck;
-    public TMP_Text interactName_Txt;
+    [SerializeField] GameObject interactCheck;
+    [SerializeField] TMP_Text interactName_Txt;
 
     // InteractController 클래스 변수
     InteractController interCon;
 
     // player가 접촉한 상호작용 가능 오브젝트의 정보를 저장하는 변수
     InteractProperty interPP;
-    [SerializeField] InteractType interactType;
-    [SerializeField] int interactId;
-    [SerializeField] string interactName;
 
     private void Start()
     {
         pState = GetComponent<PlayerState>();
-        //pBC = GetComponent<PlayerBattleController>();
         interCon = FindObjectOfType<InteractController>().GetComponent<InteractController>();
     }
 
@@ -68,18 +64,16 @@ public class PlayerInteract : MonoBehaviour
         //pBC.enabled = false;
         isMeetInteract = true;
         interPP = other.GetComponent<InteractProperty>();
-        interactType = interPP.InteractType;
-        interactId = interPP.InteractId;
-        interactName = interPP.InteractName;
         InteractCheck();
     }
 
     // NPC와 대화를 시작할 때의 동작
     private void LetsTalk()
     {
-        PassInteractInfo();
-        InteractCheck();
+        // InteractController 에게 대화를 시작한 NPC의 정보를 넘김
+        interCon.interPP = interPP;
         interCon.NowInteracting = true;
+        InteractCheck();
         pState.UnitState = UnitState.Interact;
     }
 
@@ -89,17 +83,9 @@ public class PlayerInteract : MonoBehaviour
         if (isMeetInteract)
         {
             interactCheck.SetActive(true);
-            interactName_Txt.text = interactName;
+            interactName_Txt.text = interPP.InteractName;
         }
         else if (!isMeetInteract)
             interactCheck.SetActive(false);
-    }
-
-    // InteractController 에게 대화를 시작한 NPC의 정보를 넘김
-    private void PassInteractInfo()
-    {
-        interCon.InteractType = interactType;
-        interCon.InteractId = interactId;
-        interCon.InteractName = interactName;
     }
 }
