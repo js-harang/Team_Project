@@ -13,6 +13,7 @@ public class BossFireBall : MonoBehaviour
     bool imGoing;
     [SerializeField]
     float speed;
+    float time;
 
     [SerializeField]
     ParticleSystem fire;
@@ -26,6 +27,7 @@ public class BossFireBall : MonoBehaviour
     [SerializeField]
     LayerMask playerLayer;
 
+    // OnEnable 보다 빠르게 실행할 동작
     private void Awake()
     {
         player = GameObject.FindWithTag("Player");
@@ -33,6 +35,7 @@ public class BossFireBall : MonoBehaviour
         bPattern = FindObjectOfType<FirstBossAttactkPatterns>().GetComponent<FirstBossAttactkPatterns>();
     }
 
+    // 파이어볼이 활성화 될때마다 실행
     private void OnEnable()
     {
         imGoing = true;
@@ -46,6 +49,7 @@ public class BossFireBall : MonoBehaviour
             return;
 
         transform.position += target * speed * Time.deltaTime;
+        FireExtinguishing();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -60,6 +64,7 @@ public class BossFireBall : MonoBehaviour
         StartCoroutine(FireBallActiveFalse());
     }
 
+    // 명중 시 오버랩으로 범위 내 플레이어들에게 대미지
     void ExplosionDamage()
     {
         players = Physics.OverlapSphere(transform.position, explosionRange, playerLayer);
@@ -74,10 +79,22 @@ public class BossFireBall : MonoBehaviour
         }
     }
 
+    // 명중시 다시 오브젝트풀로 장전하는 동작
     IEnumerator FireBallActiveFalse()
     {
         yield return new WaitForSeconds(1f);
         gameObject.SetActive(false);
         bPattern.fireBalls.Add(gameObject);
+    }
+
+    // 시간이 지나면 다시 오브젝트풀로 장전
+    void FireExtinguishing()
+    {
+        time += Time.deltaTime;
+        if (time >= 3)
+        {
+            gameObject.SetActive(false);
+            bPattern.fireBalls.Add(gameObject);
+        }
     }
 }

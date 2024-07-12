@@ -547,6 +547,37 @@ Transform:
   m_Father: {fileID: 3955923353747851360}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3498489659202039849
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8634075597777353039}
+  m_Layer: 0
+  m_Name: CloseUpPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8634075597777353039
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3498489659202039849}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.4, z: 0.8}
+  m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6364286091913469983}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3599052896852213043
 GameObject:
   m_ObjectHideFlags: 0
@@ -1384,8 +1415,10 @@ MonoBehaviour:
   interactType: 0
   interactId: 2000
   interactName: "\uC19D"
+  npcProperty_Canvas: {fileID: 6945872308159923112}
   myRole_Text: {fileID: 6945872307880507261}
   myName_Text: {fileID: 6945872307561202626}
+  closeUp: {fileID: 8634075597777353039}
 --- !u!1 &6945872307679102692
 GameObject:
   m_ObjectHideFlags: 0
@@ -1969,6 +2002,7 @@ Transform:
   - {fileID: 8186995612487230847}
   - {fileID: 6945872307615606178}
   - {fileID: 6945872308159923113}
+  - {fileID: 8634075597777353039}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}

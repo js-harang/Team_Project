@@ -59,14 +59,7 @@ public class InteractController : MonoBehaviour
     }
 
     // 플레이어로부터 전달받을 현재 대화중인 상대 오브젝트의 정보
-    InteractType interactType;
-    public InteractType InteractType { get { return interactType; } set { interactType = value; } }
-
-    int interactId;
-    public int InteractId { get { return interactId; } set { interactId = value; } }
-
-    string interactName;
-    public string InteractName { get { return interactName; } set { interactName = value; } }
+    public InteractProperty interPP;
 
     PlayerState pS;
 
@@ -144,9 +137,10 @@ public class InteractController : MonoBehaviour
     /// </summary>
     private void StartInteracting()
     {
+        interPP.ImTalking = true;
         gameUI.SetActive(false);
         dialogWindow.SetActive(true);
-        interactName_Text.text = interactName;
+        interactName_Text.text = interPP.InteractName;
         InteractStep = InteractStep.Meeting;
     }
 
@@ -166,6 +160,7 @@ public class InteractController : MonoBehaviour
         gameUI.SetActive(true);
         NPCTypeMenuOnOff();
         ChoiceMenuOnOff();
+        interPP.ImTalking = false;
         pS.UnitState = UnitState.Idle; 
     }
 
@@ -209,7 +204,7 @@ public class InteractController : MonoBehaviour
 
         dialog_Text.text = string.Empty;
         sentences.Clear();
-        ReadLineAndStore(InteractId, interactStep);
+        ReadLineAndStore(interPP.InteractId, interactStep);
         sentencePrintLetter = PrintSentencesLetter();
         StartCoroutine(sentencePrintLetter);
     }
@@ -259,7 +254,7 @@ public class InteractController : MonoBehaviour
     // NPC 타입에 따른 선택지 UI 활성화, 비활성화
     void ChoiceMenuOnOff()
     {
-        switch (interactType)                  
+        switch (interPP.InteractType)                  
         {
             case InteractType.Shop:
                 shopDialogChoiceUI.SetActive(NowInteracting);
@@ -277,7 +272,7 @@ public class InteractController : MonoBehaviour
 
     void ChoiceMenuOff()
     {
-        switch (interactType)
+        switch (interPP.InteractType)
         {
             case InteractType.Shop:
                 shopDialogChoiceUI.SetActive(false);
@@ -300,7 +295,7 @@ public class InteractController : MonoBehaviour
         if (NowInteracting)
             InteractStep = InteractStep.Action;
 
-        switch (interactType)
+        switch (interPP.InteractType)
         {
             case InteractType.Shop:
                 shopUI.SetActive(NowInteracting);
