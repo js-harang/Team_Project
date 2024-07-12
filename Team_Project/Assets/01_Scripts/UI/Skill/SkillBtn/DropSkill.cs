@@ -78,6 +78,7 @@ public class DropSkill : MonoBehaviour, IPointerEnterHandler, IDropHandler, IPoi
                 Debug.Log("중복 발견 " + this.name);
                 return;
             }
+            Debug.Log("asdasd");
             skillData.Skill = dragSkillData.Skill;
             skillButton.Skill = dragSkillData.Skill;
             skillData.SkillIcon.sprite = dragSkillData.SkillIcon.sprite;

@@ -148,7 +148,7 @@ public class SkillButton : MonoBehaviour
             return;
         }
 
-        if (chkDup.CheckSkillDuplication(buttonIdx, idx))
+        if (chkDup.CheckSkillDuplication(idx))
         {
             Debug.Log("중복 발견 " + this.name);
         }
