@@ -15,11 +15,13 @@ if ($conn->connect_error) {
 
 if (search($conn, $userid) === false) {
     $sql = "insert into user(userid, userpw)
-            values ('$userid', password($userpw));";
+            values ('$userid', password($userpw))";
     $result = mysqli_query($conn, $sql);
-    echo "1";
+    
+    if ($result)
+        echo "success";
 } else
-    echo "2";
+    echo "id exists";
 
 return;
 
@@ -29,13 +31,11 @@ function search($conn, $userid)
             from    user
             where   userid = '$userid'";
     $result = mysqli_query($conn, $sql);
+    $count = mysqli_num_rows($result);
 
-    if ($result) {
-        $count = mysqli_num_rows($result);
-        if ($count == 0)
-            return false;
-        else
-            return true;
-    }
+    if ($count == 0)
+        return false;
+    else
+        return true;
 }
 ?>

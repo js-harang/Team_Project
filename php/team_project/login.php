@@ -21,12 +21,12 @@ $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result) > 0) {
     if ($row = mysqli_fetch_assoc($result)) {
         if ($row['userpw'] == get_enc_str($conn, $userpw))
-            echo "1";
+            echo "success";
         else
-            echo "2";
+            echo "incorrect";
     }
 } else
-    echo "2";
+    echo "incorrect";
 
 return;
 

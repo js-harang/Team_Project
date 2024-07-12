@@ -1,21 +1,13 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LobbyController : MonoBehaviour
 {
-    // CreateCharacter 버튼 관련 변수
-    [SerializeField, Space(10)]
-    Transform mainCamera;
-    [SerializeField]
-    GameObject lobbyCanvas;
-    // Camera 위치 변수
-    Vector3 originPos = new(0, 0, -10f);
-    Vector3 createPos = new(-100f, 0, -10f);
+    [SerializeField] Sprite createSprite;
 
-    // Preference 버튼 관련 변수
-    [SerializeField, Space(10)]
-    GameObject preferencePopup;
-    bool isPreferencePopup = false;
+    [SerializeField, Space(10)] GameObject[] selectImg;
+    [SerializeField] GameObject[] selectCharater;
 
     public void GameStartBtn()
     {
@@ -23,17 +15,28 @@ public class LobbyController : MonoBehaviour
         SceneManager.LoadScene("99_LoadingScene");
     }
 
-    /// <summary>
-    /// 캐릭터 생성 버튼
-    /// </summary>
-    public void CreateCharacterBtn()
-    {
-        SceneManager.LoadScene("11_CreateCharacter");
-    }
-
     public void BackBtn()
     {
         GameManager.gm.sceneNumber = 0;
         SceneManager.LoadScene("99_LoadingScene");
+    }
+
+    public void SelectedSlot(int num)
+    {
+        Image image = selectImg[num].GetComponent<Image>();
+
+        if (image.sprite == createSprite)
+            SceneManager.LoadScene("11_CreateScene");
+        else
+        {
+            foreach (var charater in selectCharater)
+            {
+                Animator anim = charater.GetComponent<Animator>();
+                anim.SetBool("select", false);
+            }
+
+            Animator animator = selectCharater[num].GetComponent<Animator>();
+            animator.SetBool("select", true);
+        }
     }
 }

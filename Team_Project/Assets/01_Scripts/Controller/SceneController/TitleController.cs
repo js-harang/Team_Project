@@ -25,8 +25,6 @@ public class TitleController : MonoBehaviour
     [SerializeField] GameObject exitPopup;
     bool isExitPopup = false;
 
-    string path = "http://192.168.52.187/team_project/";
-
     private void Start()
     {
         idPlaceholder.DOFade(0.1f, 1f).SetLoops(-1, LoopType.Yoyo);
@@ -86,26 +84,27 @@ public class TitleController : MonoBehaviour
     #region
     IEnumerator LoginDataPost(string id, string pw)
     {
-        string url = path + "login.php";
+        string url = GameManager.gm.path + "login.php";
         WWWForm form = new();
         form.AddField("userid", id);
         form.AddField("userpw", pw);
         using (UnityWebRequest www = UnityWebRequest.Post(url, form))
         {
             yield return www.SendWebRequest();
+
             if (www.error == null)
                 switch (www.downloadHandler.text)
                 {
-                    case "1":
+                    case "success":
                         StartCoroutine(UserData(id));
                         GameManager.gm.sceneNumber = 1;
                         SceneManager.LoadScene("99_LoadingScene");
                         break;
-                    case "2":
+                    case "incorrect":
                         loginResultTxt.text = "가입하지 않은 아이디이거나 잘못된 비밀번호입니다.";
                         break;
                     default:
-                        loginResultTxt.text = "알 수 없는 오류";
+                        loginResultTxt.text = "알 수 없는 오류가 발생했습니다.";
                         break;
                 }
         }
@@ -113,12 +112,13 @@ public class TitleController : MonoBehaviour
 
     IEnumerator UserData(string id)
     {
-        string url = path + "user_data.php";
+        string url = GameManager.gm.path + "user_data.php";
         WWWForm form = new();
         form.AddField("userid", id);
         using (UnityWebRequest www = UnityWebRequest.Post(url, form))
         {
             yield return www.SendWebRequest();
+
             if (www.error == null)
                 PlayerPrefs.SetString("uid", www.downloadHandler.text);
         }
@@ -126,7 +126,7 @@ public class TitleController : MonoBehaviour
 
     IEnumerator SaveDataPost(string id, string pw)
     {
-        string url = path + "create.php";
+        string url = GameManager.gm.path + "create.php";
         WWWForm form = new();
         form.AddField("userid", id);
         form.AddField("userpw", pw);
@@ -134,14 +134,18 @@ public class TitleController : MonoBehaviour
         using (UnityWebRequest www = UnityWebRequest.Post(url, form))
         {
             yield return www.SendWebRequest();
+
             if (www.error == null)
                 switch (www.downloadHandler.text)
                 {
-                    case "1":
+                    case "success":
                         loginResultTxt.text = "아이디 생성이 완료됐습니다.";
                         break;
-                    default:
+                    case "id exists":
                         loginResultTxt.text = "이미 존재하는 아이디입니다.";
+                        break;
+                    default:
+                        loginResultTxt.text = "알 수 없는 오류가 발생했습니다.";
                         break;
                 }
         }

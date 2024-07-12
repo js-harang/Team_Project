@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         if (gm != null)
-            Destroy(this);
+            Destroy(gameObject);
         else
         {
             gm = this;
@@ -46,7 +46,12 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector] public bool isPreferencePopup = false;
 
-    [HideInInspector] public string characterName;
+    public string path;
+
+    private void Start()
+    {
+        PlayerPrefs.DeleteKey("uid");
+    }
 
     /// <summary>
     /// 0 = TitleScene

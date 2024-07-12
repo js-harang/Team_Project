@@ -4,8 +4,9 @@ $username = "root";
 $password = "1234";
 $dbname = "team_project";
 
-$userid = $_POST["userid"];
-$userpw = $_POST["userpw"];
+$uid = $_POST["uid"];
+$name = $_POST["name"];
+$class = $_POST["class"];
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -13,29 +14,29 @@ if ($conn->connect_error) {
     echo "Failed to connect to MySQL : " + $mysqli->connect_error;
 }
 
-if (search($conn, $userid) === false) {
-    $sql = "insert into user(userid, userpw)
-            values ('$userid', password($userpw));";
+if (search($conn, $name) === false) {
+    $sql = "insert into character_list(uid, name, lv, class)
+        values ('$uid', '$name', '1', '$class')";
     $result = mysqli_query($conn, $sql);
-    echo "1";
+    
+    if ($result)
+        echo "success";
 } else
-    echo "2";
+    echo "name exists";
 
 return;
 
-function search($conn, $userid)
+function search($conn, $name)
 {
-    $sql = "select  userid
-            from    user
-            where   userid = '$userid'";
+    $sql = "select  name
+            from    character_list
+            where   name = '$name'";
     $result = mysqli_query($conn, $sql);
+    $count = mysqli_num_rows($result);
 
-    if ($result) {
-        $count = mysqli_num_rows($result);
-        if ($count == 0)
-            return false;
-        else
-            return true;
-    }
+    if ($count == 0)
+        return false;
+    else
+        return true;
 }
 ?>

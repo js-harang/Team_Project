@@ -10,7 +10,7 @@ public class FadeIn : MonoBehaviour
     private void Awake()
     {
         if (fade != null)
-            Destroy(this);
+            Destroy(gameObject);
         else
         {
             fade = this;
