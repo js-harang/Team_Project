@@ -12,7 +12,7 @@ public class SkillButton : MonoBehaviour
     #region 스킬 저장용 변수
 
     // 현재 버튼 이름
-    public string buttonName;
+    public int buttonIdx;
     
     [Space(10)]
     // 스킬 가져올 디렉토리
@@ -70,7 +70,7 @@ public class SkillButton : MonoBehaviour
         // 스킬 쿨타임 이 0 이하거나 콤보 중 이면 실행
         if (coolTime <= 0 || skill.isComboing)
         {
-            if (skill.useMana > player.CurrentMp)
+            if (skill.useMana > player.CurrentMp && skill.isComboing == false)
             {
                 Debug.Log("마나가 부족합니다.");
                 return;
@@ -132,8 +132,8 @@ public class SkillButton : MonoBehaviour
 
     void LoadSkillData()
     {
-        int idx = PlayerPrefs.GetInt(buttonName);
-
+        int idx = PlayerPrefs.GetInt("SkillButton" + buttonIdx, 0);
+        Debug.Log("SkillButton" + buttonIdx + " 인덱스 번호 : " + idx);
         // 0 이상이면 불러오기
         if (idx > 0)
         {
@@ -142,9 +142,15 @@ public class SkillButton : MonoBehaviour
             skillData.SkillIcon.sprite = skillDirectory.skillSprites[idx];
         }
 
-        if (chkDup.CheckSkillDuplication(idx))
+        if (skill == null)
         {
-            Debug.Log("중복 발견 " + buttonName);
+            Debug.Log(this.name + "스킬이 비었음");
+            return;
+        }
+
+        if (chkDup.CheckSkillDuplication(buttonIdx, idx))
+        {
+            Debug.Log("중복 발견 " + this.name);
         }
         // 0 이면 기본적으로 null 값임
     }
@@ -157,7 +163,7 @@ public class SkillButton : MonoBehaviour
         else
            idx = skillData.Skill.skillIdx;
 
-        PlayerPrefs.SetInt(buttonName, idx);
+        PlayerPrefs.SetInt("SkillButton" + buttonIdx, idx);
         PlayerPrefs.Save();
     }
 
