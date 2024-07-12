@@ -1382,7 +1382,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactType: 0
-  interactId: 2000
+  interactId: 2001
   interactName: "\uC19D"
   myRole_Text: {fileID: 6945872307880507261}
   myName_Text: {fileID: 6945872307561202626}
@@ -1947,7 +1947,7 @@ GameObject:
   - component: {fileID: 6364286091913469983}
   - component: {fileID: 3952049112062528869}
   m_Layer: 0
-  m_Name: Shop_NPC
+  m_Name: BattleShop_NPC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
