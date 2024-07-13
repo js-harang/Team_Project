@@ -27,8 +27,9 @@ public class SkillButton : MonoBehaviour
 
     // 자동으로 참조됨
     [SerializeField] Attack btnSkill;
-    [SerializeField] Image skillIcon;
     public Attack Skill { get { return btnSkill; } set { btnSkill = value; } }
+    
+    [SerializeField] Image skillIcon;
     public Image SkillIcon { get { return skillIcon; } set { skillIcon = value; } }
     #endregion
 
@@ -135,6 +136,8 @@ public class SkillButton : MonoBehaviour
         if (idx > 0)
         {
             btnSkill = skillDirectory.skillAtks[idx];
+            SkillIcon.sprite = Skill.sprite;
+            SetSkillData();
         }
 
         if (btnSkill == null)
@@ -159,6 +162,12 @@ public class SkillButton : MonoBehaviour
         PlayerPrefs.Save();
     }
 
+    public void SetSkillData()
+    {
+        skillData.Skill = Skill;
+        skillData.SkillIcon.sprite = SkillIcon.sprite;
+    }
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     #region 시작 세팅
@@ -166,11 +175,13 @@ public class SkillButton : MonoBehaviour
     {
         skillIcon = GetComponent<Image>();
         player = GameObject.FindWithTag("Player").GetComponent<PlayerCombat>();
-        
+        skillData = GetComponentInChildren<SkillData>();
+
         coolTimeIcon.fillAmount = 0;
         coolTime = 0f;
 
         chkDup = GetComponentInParent<CheckDuplication>();
+
         LoadSkillData();
     }
     #endregion

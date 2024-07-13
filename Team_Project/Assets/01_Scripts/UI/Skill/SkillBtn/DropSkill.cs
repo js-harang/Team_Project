@@ -52,6 +52,7 @@ public class DropSkill : MonoBehaviour, IPointerEnterHandler, IDropHandler, IPoi
 
                 dragSkillData.SkillButton.Skill = null;
                 dragSkillData.SkillButton.SkillIcon.sprite = null;
+
             }
             else
             {
@@ -79,6 +80,8 @@ public class DropSkill : MonoBehaviour, IPointerEnterHandler, IDropHandler, IPoi
             skillButton.SkillIcon.sprite = dragSkillData.Skill.sprite;
         }
         #endregion
+
+        skillButton.SetSkillData();
 
         skillButton.SaveSkillData();
     }
