@@ -126,7 +126,7 @@ MonoBehaviour:
   maxHp: 10
   atkPower: 5
   dir: {x: 0, y: 0, z: 0}
-  moveSpeed: 0.7
+  moveSpeed: 4
   behaveDelay: 0
   time: 0
   delayDone: 0

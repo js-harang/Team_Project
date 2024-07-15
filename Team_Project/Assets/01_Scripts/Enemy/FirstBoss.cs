@@ -72,6 +72,7 @@ public class FirstBoss : BossFSM
     {
         LookAtPlayer();
         Vector3 dir = player.transform.position - transform.position;
+        dir.Normalize();
         transform.position += dir * moveSpeed * Time.deltaTime;
         bossAnim.SetTrigger("move");
     }

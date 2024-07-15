@@ -88,7 +88,7 @@ public abstract class BossFSM : DamagedAction
         bCon = FindObjectOfType<BattleController>().GetComponent<BattleController>();
         bCon.BattleState = BattleState.BossAppear;
         bCon.BossCount++;
-
+        
         BossStart();
     }
 

@@ -52,7 +52,7 @@ public class PlayerCombatInput : MonoBehaviour
             case "c":
             case "C":
                 int c = (int)ButtonNum.C;
-                buttons[c].onClick.Invoke(); break;
+                /*buttons[c].onClick.Invoke();*/ break;
 
             case "v":
             case "V":
