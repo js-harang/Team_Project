@@ -21,13 +21,17 @@ public class CheckDuplication : MonoBehaviour
         {
             if (btns[i].Skill != null)
             {
-                // 등록된 버튼들 의 스킬의 번호와 현재 버튼의 스킬번호와 같으면
+                // 스킬의 번호와 현재 버튼의 스킬번호와 같으면
                 if (btns[i].Skill.skillIdx == idx)
                 {
+                    Debug.Log("중복 발견");
                     isDuplication = true;
                     return isDuplication;
                 }
             }
+            else
+                Debug.Log("중복 없음");
+
         }
         return isDuplication;
     }

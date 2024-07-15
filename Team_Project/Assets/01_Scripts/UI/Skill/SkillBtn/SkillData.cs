@@ -7,20 +7,15 @@ using UnityEngine.UI;
 // 버튼 칸에 있는 버튼스킬
 public class SkillData : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    #region 스킬 아이콘 속성
+    #region 스킬 속성
+    [SerializeField] private Attack skill;
+    public Attack Skill { get { return skill; } set { skill = value; } }
+
+    [Space(10)]
     private Image skillIcon;
     public Image SkillIcon { get { return skillIcon; } set { skillIcon = value; } }
     #endregion
 
-    #region 스킬 속성
-    // [SerializeField] private AttackSO skill;
-    [SerializeField] private Attack skill;
-
-    // public AttackSO Skill { get { return skill; } set { skill = value; } }
-    public Attack Skill { get { return skill; } set { skill = value; } }
-    #endregion
-
-    [Space(10)]
     #region 위치값
     private RectTransform rect;
     private Transform originsPos;
@@ -52,10 +47,14 @@ public class SkillData : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     #region 드래그 시작
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (skillButton.Skill == null)
-        {
+        if (skillButton.Skill == null || skillButton.CoolTime > 0)
             return;
-        }
+
+        // 캔바스를 부모오브젝트로 설정
+        transform.SetParent(canvas);
+        // 자식오브젝트들 중 최하단으로 위치
+        transform.SetAsLastSibling();
+
         skill = skillButton.Skill;
         skillIcon.sprite = skillButton.Skill.sprite;
 
@@ -67,9 +66,8 @@ public class SkillData : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public void OnDrag(PointerEventData eventData)
     {
         if (skillButton.Skill == null || skillButton.CoolTime > 0)
-        {
             return;
-        }
+
         rect.transform.position = eventData.position;
     }
     #endregion
@@ -77,20 +75,31 @@ public class SkillData : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     #region 드래그 끝날때
     public void OnEndDrag(PointerEventData eventData)
     {
-        rect.position = originsPos.position;
+        if (transform.parent == canvas)
+        {
+            Debug.Log("부모 오브젝트가 캔버스 임");
+            skill = null;
+            skillIcon.sprite = null;
+
+            skillButton.Skill = null;
+            skillButton.SkillIcon.sprite = null;
+
+            SetParent();
+        }
+
         canvasGroup.blocksRaycasts = true;
 
         if (skillButton.CoolTime > 0)
             return;
 
-        if (transform.parent != canvas)
-        {
-            skill = null;
-            skillIcon.sprite = null;
-            skillButton.Skill = null;
-        }
-
+        // 부모 오브젝트가 캔버스 와 같을때
         SkillButton.SaveSkillData();
     }
     #endregion
+    public void SetParent()
+    {
+        rect.position = originsPos.position;
+        transform.SetParent(originsPos);
+        transform.SetAsFirstSibling();
+    }
 }

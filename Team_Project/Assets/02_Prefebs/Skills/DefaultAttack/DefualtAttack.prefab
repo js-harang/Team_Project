@@ -47,17 +47,17 @@ MonoBehaviour:
   animOCs:
   - {fileID: 22100000, guid: b8748e635c6ea284394c53281f90a43c, type: 2}
   - {fileID: 22100000, guid: f0a6a189a78b10d43885625519c82935, type: 2}
-  skillIdx: 0
   damage:
   - 1
   - 1
-  coolTime: 2
-  isComboing: 0
-  canMoveAtk: 0
   useMana: 0
   knockBackForce: 4
+  coolTime: 2
   delayComboTime: 3
-  hitSound: {fileID: 8300000, guid: 5c55a31473e47c9478a6c08cc29d4a55, type: 3}
-  sprite: {fileID: 0}
   atkPosIdx: 0
   atkLength: {x: 2, y: 2.5, z: 2}
+  hitSound: {fileID: 8300000, guid: 5c55a31473e47c9478a6c08cc29d4a55, type: 3}
+  isComboing: 0
+  canMoveAtk: 0
+  skillIdx: 0
+  sprite: {fileID: 0}

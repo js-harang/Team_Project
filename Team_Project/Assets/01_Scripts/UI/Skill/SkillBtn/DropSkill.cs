@@ -33,10 +33,76 @@ public class DropSkill : MonoBehaviour, IPointerEnterHandler, IDropHandler, IPoi
         if (childObj == eventData.pointerDrag)
         {
             Debug.Log("내 자식임 ㅇㅇ");
+            SkillData dragSkillData = eventData.pointerDrag.GetComponent<SkillData>();
+            dragSkillData.SetParent();
             return;
         }
         #endregion
 
+        QuickToQuick(eventData);
+        SlotToQuick(eventData);
+    }
+
+    #region 퀵슬롯 에서 퀵슬롯 으로 옮길때
+    void QuickToQuick(PointerEventData eventData)
+    {
+        if (eventData.pointerDrag.GetComponent<SkillData>())
+        {
+            SkillData dragSkillData = eventData.pointerDrag.GetComponent<SkillData>();
+
+            dragSkillData.SetParent();
+
+            if (dragSkillData.Skill == null)
+                return;
+
+            if (dragSkillData.SkillButton.CoolTime <= 0)
+            {
+                skillButton.Skill = dragSkillData.Skill;
+                skillButton.SkillIcon.sprite = dragSkillData.SkillIcon.sprite;
+
+                dragSkillData.Skill = null;
+                dragSkillData.SkillIcon.sprite = null;
+                dragSkillData.SkillButton.Skill = null;
+                dragSkillData.SkillButton.SkillIcon.sprite = null;
+
+                skillButton.SetSkillData();
+                skillButton.SaveSkillData();
+            }
+            else
+                return;
+
+        }
+    }
+    #endregion
+
+    #region 스킬창 에서 퀵슬롯으로 옮길때
+    void SlotToQuick(PointerEventData eventData)
+    {
+        if (eventData.pointerDrag.GetComponent<SkillSlot>())
+        {
+            SkillSlot dragSkillData = eventData.pointerDrag.GetComponent<SkillSlot>();
+
+            if (chkDup.CheckSkillDuplication(dragSkillData.Skill.skillIdx))
+                return;
+
+            skillButton.Skill = dragSkillData.Skill;
+            skillButton.SkillIcon.sprite = dragSkillData.Skill.sprite;
+
+            skillButton.SetSkillData();
+            skillButton.SaveSkillData();
+        }
+    }
+    #endregion
+
+    #region 안쓰는 함수
+    // 포인터가 들어올때
+    public void OnPointerEnter(PointerEventData eventData) { }
+
+    // 포인터가 나갈때
+    public void OnPointerExit(PointerEventData eventData) { }
+
+    void SetSkillButtonData(PointerEventData eventData) 
+    {
         #region 퀵슬롯 에서 퀵슬롯 으로 옮길때
         if (eventData.pointerDrag.GetComponent<SkillData>())
         {
@@ -47,9 +113,12 @@ public class DropSkill : MonoBehaviour, IPointerEnterHandler, IDropHandler, IPoi
 
             if (dragSkillData.SkillButton.CoolTime <= 0)
             {
+                Debug.Log("퀵 to 퀵");
                 skillButton.Skill = dragSkillData.Skill;
                 skillButton.SkillIcon.sprite = dragSkillData.SkillIcon.sprite;
 
+                dragSkillData.Skill = null;
+                dragSkillData.SkillIcon.sprite = null;
                 dragSkillData.SkillButton.Skill = null;
                 dragSkillData.SkillButton.SkillIcon.sprite = null;
 
@@ -80,17 +149,6 @@ public class DropSkill : MonoBehaviour, IPointerEnterHandler, IDropHandler, IPoi
             skillButton.SkillIcon.sprite = dragSkillData.Skill.sprite;
         }
         #endregion
-
-        skillButton.SetSkillData();
-
-        skillButton.SaveSkillData();
     }
-
-    #region 안쓰는 함수
-    // 포인터가 들어올때
-    public void OnPointerEnter(PointerEventData eventData) { }
-
-    // 포인터가 나갈때
-    public void OnPointerExit(PointerEventData eventData) { }
     #endregion
 }

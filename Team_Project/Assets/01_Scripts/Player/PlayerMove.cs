@@ -138,23 +138,16 @@ public class PlayerMove : MonoBehaviour
                 playerPointer.SetActive(true);
 
                 playerPointer.transform.position = hitInfo.point;
-                /*        new Vector3(
-                        hitInfo.transform.position.x,
-                        hitInfo.transform.position.y + 1,
-                        hitInfo.transform.position.z);
-                */
             }
             else
-            {
                 playerPointer.SetActive(false);
-            }
         }
     }
 
     private void Jump()
     {
         // 점프키 입력시
-        if (Input.GetKeyDown(KeyCode.Space) && isGround)
+        if (Input.GetKeyDown(KeyCode.X) && isGround)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             if (pState.UnitBS != UnitBattleState.Attack &&
