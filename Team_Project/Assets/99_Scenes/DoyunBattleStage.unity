@@ -54379,6 +54379,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TheBoss
       objectReference: {fileID: 0}
+    - target: {fileID: 3518640929406034880, guid: 251eaa5a561f49a4c8d2ba2aa3d38514, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 251eaa5a561f49a4c8d2ba2aa3d38514, type: 3}
 --- !u!1 &1266422441

@@ -62,6 +62,8 @@ public class PlayerCombat : DamagedAction
     public Animator anim;
     public PlayerState pbs;
 
+    bool resetCombo;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -88,6 +90,7 @@ public class PlayerCombat : DamagedAction
         // 공격 상태 가 아니며 콤보 회수가 공격 배열들 보다 작거나 같을때 실행
         if (pbs.UnitBS == UnitBattleState.Idle && comboCounter <= attack.animOCs.Length)
         {
+            Debug.Log(comboCounter);
             // 공격중지 매소드 실행 취소
             CancelInvoke("ResetCombo");
 
@@ -107,11 +110,12 @@ public class PlayerCombat : DamagedAction
             previousAttack = attack;
             previousAttack.isComboing = true;
 
+            Debug.Log("콤보 증가");
             comboCounter++;
 
             if (comboCounter + 1 > attack.animOCs.Length)
             {
-                Debug.Log("콤보초기화");
+                Debug.Log("콤보 리셋 실행");
                 ResetCombo();
             }
         }
@@ -123,7 +127,7 @@ public class PlayerCombat : DamagedAction
         // GetCurrentAnimatorStateInfo(0) : 현재 애니메이션의 정보
         // IsTag : 애니메이션 의 현재 스테이트 의 태그 비교
         // normalizeTime : 애니메이션 진행사항(0이면 시작안함, 1이면 애니매이션 완료)
-        if (pbs.UnitBS == UnitBattleState.Idle && anim.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
+        if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f && anim.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
         {
             // 설정된 시간 후에 콤보 리셋
             Invoke("ResetCombo", delayComboTime);
@@ -134,12 +138,12 @@ public class PlayerCombat : DamagedAction
     #region 콤보 리셋
     void ResetCombo()
     {
+        Debug.Log("콤보초기화");
         comboCounter = 0;
+
         // 이전 공격이 있을때
         if (previousAttack != null)
-        {
             previousAttack.isComboing = false;
-        }
     }
     #endregion
 
