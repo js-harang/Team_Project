@@ -35,11 +35,8 @@ public class BattleController : MonoBehaviour
                 case BattleState.Start:
                     StartCoroutine(StageStart());
                     break;
-                /*case BattleState.Running:
-                    break;
-                case BattleState.NowBattle:
-                    break;*/
                 case BattleState.BossAppear:
+                    StartCoroutine(BossAppearProcess());
                     break;
                 case BattleState.Clear:
                     StartCoroutine(ClearProcess());
@@ -92,7 +89,8 @@ public class BattleController : MonoBehaviour
         set
         {
             bossCount = value;
-
+            if (value == 0)
+                BattleState = BattleState.Clear;
         }
     }
 
@@ -105,6 +103,7 @@ public class BattleController : MonoBehaviour
     // 배틀 중 나타나는 UI들 변수
     [SerializeField] GameObject battleStartImg;
     [SerializeField] GameObject goArrowImg;
+    [SerializeField] GameObject bossAlertImg;
     [SerializeField] GameObject battleClearUI;
     [SerializeField] GameObject gameOverUI;
     [SerializeField] GameObject battleEndUI;
@@ -135,7 +134,7 @@ public class BattleController : MonoBehaviour
     // 스테이지 개시 전 잠시 대기하는 시간(여기에 시네머신 연출 재생한다거나)
     IEnumerator StartIntro()
     {
-        pS.UnitState = UnitState.Interact;
+        pS.UnitState = UnitState.Wait;
 
         yield return new WaitForSeconds(3f);
 
@@ -182,12 +181,25 @@ public class BattleController : MonoBehaviour
         }
     }
 
+    // 보스 등장 시의 동작
+    IEnumerator BossAppearProcess()
+    {
+        pS.UnitState = UnitState.Wait;
+        bossAlertImg.SetActive(true);
+
+        yield return new WaitForSeconds(3f);
+
+        bossAlertImg.SetActive(false);
+        BattleState = BattleState.NowBattle;
+        pS.UnitState = UnitState.Idle;
+    }
+
     // 배틀 클리어시 작동하는 과정
     IEnumerator ClearProcess()
     {
         yield return new WaitForSeconds(1f);
 
-        pS.UnitState = UnitState.Interact;
+        pS.UnitState = UnitState.Wait;
         battleClearUI.SetActive(true);
         Animator clearAnim = battleClearUI.GetComponent<Animator>();
         clearAnim.SetTrigger("stageClear");
@@ -214,7 +226,7 @@ public class BattleController : MonoBehaviour
     // 배틀 종료 시 시작되는 동작 메소드
     private void BattleEndProcess()
     {
-        Instantiate(battleShopNPC, endShopSpawn.position, Quaternion.identity);
+        Instantiate(battleShopNPC, endShopSpawn.position, Quaternion.Euler(0, 180, 0));
         battleEndUI.SetActive(true);
     }
 

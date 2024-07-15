@@ -50,7 +50,7 @@ GameObject:
   - component: {fileID: 7217570464688278150}
   - component: {fileID: 7818754893700672037}
   m_Layer: 21
-  m_Name: Test Enemy
+  m_Name: FirstEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -126,7 +126,7 @@ MonoBehaviour:
   maxHp: 10
   atkPower: 5
   dir: {x: 0, y: 0, z: 0}
-  moveSpeed: 0.7
+  moveSpeed: 4
   behaveDelay: 0
   time: 0
   delayDone: 0

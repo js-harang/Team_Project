@@ -126,7 +126,7 @@ public class InteractController : MonoBehaviour
             InteractStep = InteractStep.End;
         }
 
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.C))
         {
             PrintSentencesSkip();
         }
@@ -208,6 +208,7 @@ public class InteractController : MonoBehaviour
         sentencePrintLetter = PrintSentencesLetter();
         StartCoroutine(sentencePrintLetter);
     }
+
     /// <summary>
     /// sentences 리스트의 문장마다 한글자씩 텀을주어 출력하는 코루틴
     /// </summary>

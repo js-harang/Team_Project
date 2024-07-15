@@ -64,6 +64,7 @@ public class FirstEnemy : EnemyFSM
     {
         LookAtPlayer();
         Vector3 dir = player.transform.position - transform.position;
+        dir.Normalize();
         transform.position += dir * moveSpeed * Time.deltaTime;
         enemyAnim.SetTrigger("move");
     }
@@ -143,6 +144,7 @@ public class FirstEnemy : EnemyFSM
         if (currentHp > 0)
         {
             EState = EnemyState.Damaged;
+            enemyAnim.SetTrigger("damaged");
             StartCoroutine(DamagedEffect());
             EnemyStateUpdate();
         }

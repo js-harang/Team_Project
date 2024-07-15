@@ -950,12 +950,13 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   enemyCount: 0
+  waveNum: 0
   battleStartImg: {fileID: 4887954357210402291}
   goArrowImg: {fileID: 4887954357070699225}
   battleClearUI: {fileID: 4887954358423328980}
   gameOverUI: {fileID: 4887954358714754563}
   battleEndUI: {fileID: 4887954358081476535}
-  battleShopNPC: {fileID: 8006254576129283596, guid: b0765f6e04628d749aa147d9d063847f, type: 3}
+  battleShopNPC: {fileID: 7928910004241879564, guid: 13f42c62b51f1ad44b69c13b622da394, type: 3}
   endShopSpawn: {fileID: 0}
 --- !u!1 &4887954357070699225
 GameObject:

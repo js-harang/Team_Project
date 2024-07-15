@@ -757,7 +757,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3518640929405697428
 Transform:
   m_ObjectHideFlags: 0
@@ -837,19 +837,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78c2c04671cd84f42af6ea4f91bdf9df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
   bCon: {fileID: 0}
   bossAnim: {fileID: 0}
   bossStateUI: {fileID: 0}
   bossName_text: {fileID: 0}
   bossHpBar: {fileID: 0}
   player: {fileID: 0}
+  myColl: {fileID: 0}
   bossSkin: {fileID: 3518640929411250216}
   bossName: "\uB354\uBCF4\uC2A4"
   currentHp: 15
   maxHp: 15
   atkPower: 10
   dir: {x: 0, y: 0, z: 0}
-  moveSpeed: 0.8
+  moveSpeed: 6
   behaveDelay: 0
   time: 0
   delayDone: 0
