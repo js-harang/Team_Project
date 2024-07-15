@@ -517,7 +517,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 283531704e5388e4daa31fd90cd6d49f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 8325101009538335323}
+  target: {fileID: 0}
   yDistance: 6
   zDistance: -11
   camSpeed: 10
@@ -58126,7 +58126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  jumpForce: 8
+  jumpForce: 25
   checkDis: 1.2
   grdLayer:
     serializedVersion: 2
