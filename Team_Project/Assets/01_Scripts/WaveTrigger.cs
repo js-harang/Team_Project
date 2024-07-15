@@ -14,9 +14,9 @@ public class WaveTrigger : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             bC = FindObjectOfType<BattleController>().GetComponent<BattleController>();
+            bC.BattleState = BattleState.NowBattle;
             StartCoroutine(EnemysActivate(enemys));
             StartCoroutine(bC.BlockWallOnOff(bC.waveNum));
-            bC.BattleState = BattleState.NowBattle;
             gameObject.SetActive(false);
         }
     }

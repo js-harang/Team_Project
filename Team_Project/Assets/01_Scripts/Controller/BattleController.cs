@@ -35,11 +35,8 @@ public class BattleController : MonoBehaviour
                 case BattleState.Start:
                     StartCoroutine(StageStart());
                     break;
-                /*case BattleState.Running:
-                    break;
-                case BattleState.NowBattle:
-                    break;*/
                 case BattleState.BossAppear:
+                    StartCoroutine(BossAppearProcess());
                     break;
                 case BattleState.Clear:
                     StartCoroutine(ClearProcess());
@@ -92,7 +89,8 @@ public class BattleController : MonoBehaviour
         set
         {
             bossCount = value;
-
+            if (value == 0)
+                BattleState = BattleState.Clear;
         }
     }
 
@@ -135,7 +133,7 @@ public class BattleController : MonoBehaviour
     // 스테이지 개시 전 잠시 대기하는 시간(여기에 시네머신 연출 재생한다거나)
     IEnumerator StartIntro()
     {
-        pS.UnitState = UnitState.Interact;
+        pS.UnitState = UnitState.Wait;
 
         yield return new WaitForSeconds(3f);
 
@@ -182,12 +180,23 @@ public class BattleController : MonoBehaviour
         }
     }
 
+    // 보스 등장 시의 동작
+    IEnumerator BossAppearProcess()
+    {
+        pS.UnitState = UnitState.Wait;
+
+        yield return new WaitForSeconds(3f);
+
+        BattleState = BattleState.NowBattle;
+        pS.UnitState = UnitState.Idle;
+    }
+
     // 배틀 클리어시 작동하는 과정
     IEnumerator ClearProcess()
     {
         yield return new WaitForSeconds(1f);
 
-        pS.UnitState = UnitState.Interact;
+        pS.UnitState = UnitState.Wait;
         battleClearUI.SetActive(true);
         Animator clearAnim = battleClearUI.GetComponent<Animator>();
         clearAnim.SetTrigger("stageClear");

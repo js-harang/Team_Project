@@ -143,6 +143,7 @@ public class FirstEnemy : EnemyFSM
         if (currentHp > 0)
         {
             EState = EnemyState.Damaged;
+            enemyAnim.SetTrigger("damaged");
             StartCoroutine(DamagedEffect());
             EnemyStateUpdate();
         }
