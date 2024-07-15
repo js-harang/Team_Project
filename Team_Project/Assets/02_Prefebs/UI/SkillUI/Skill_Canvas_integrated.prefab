@@ -746,6 +746,10 @@ PrefabInstance:
       propertyPath: skillButton
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1078726196329311751, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3242657433022865029, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
       propertyPath: m_Name
       value: SkillButton_S
@@ -834,9 +838,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5849089488938557780, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6263716087785292668, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
       propertyPath: skillButton
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6572057685534779481, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
+      propertyPath: buttonIdx
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6572057685534779481, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
       propertyPath: buttonName
@@ -874,6 +886,18 @@ PrefabInstance:
     - target: {fileID: 216766561880274818, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
       propertyPath: skillButton
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1078726196329311751, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1078726196329311751, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1078726196329311751, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3242657433022865029, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
       propertyPath: m_Name
@@ -963,6 +987,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5849089488938557780, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6263716087785292668, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
       propertyPath: skillButton
       value: 
@@ -1026,7 +1054,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6497933181268955376, guid: dd4da3d1225d09742b2229cca1eeaa19, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6497933181268955376, guid: dd4da3d1225d09742b2229cca1eeaa19, type: 3}
       propertyPath: m_AnchorMin.x
@@ -1034,15 +1062,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6497933181268955376, guid: dd4da3d1225d09742b2229cca1eeaa19, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6497933181268955376, guid: dd4da3d1225d09742b2229cca1eeaa19, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 6497933181268955376, guid: dd4da3d1225d09742b2229cca1eeaa19, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 6497933181268955376, guid: dd4da3d1225d09742b2229cca1eeaa19, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1074,11 +1102,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6497933181268955376, guid: dd4da3d1225d09742b2229cca1eeaa19, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6497933181268955376, guid: dd4da3d1225d09742b2229cca1eeaa19, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -145
       objectReference: {fileID: 0}
     - target: {fileID: 6497933181268955376, guid: dd4da3d1225d09742b2229cca1eeaa19, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1113,6 +1141,10 @@ PrefabInstance:
     - target: {fileID: 216766561880274818, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
       propertyPath: skillButton
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1078726196329311751, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3242657433022865029, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
       propertyPath: m_Name
@@ -1202,9 +1234,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5849089488938557780, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6263716087785292668, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
       propertyPath: skillButton
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6572057685534779481, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
+      propertyPath: buttonIdx
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6572057685534779481, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
       propertyPath: buttonName
@@ -1242,6 +1282,10 @@ PrefabInstance:
     - target: {fileID: 216766561880274818, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
       propertyPath: skillButton
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1078726196329311751, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3242657433022865029, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
       propertyPath: m_Name
@@ -1331,9 +1375,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5849089488938557780, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6263716087785292668, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
       propertyPath: skillButton
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6572057685534779481, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
+      propertyPath: buttonIdx
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6572057685534779481, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
       propertyPath: buttonName
@@ -1371,6 +1423,10 @@ PrefabInstance:
     - target: {fileID: 216766561880274818, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
       propertyPath: skillButton
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1078726196329311751, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3242657433022865029, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
       propertyPath: m_Name
@@ -1460,9 +1516,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5849089488938557780, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6263716087785292668, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
       propertyPath: skillButton
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6572057685534779481, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
+      propertyPath: buttonIdx
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6572057685534779481, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
       propertyPath: buttonName
@@ -1500,6 +1564,10 @@ PrefabInstance:
     - target: {fileID: 216766561880274818, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
       propertyPath: skillButton
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1078726196329311751, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3242657433022865029, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
       propertyPath: m_Name
@@ -1589,9 +1657,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5849089488938557780, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6263716087785292668, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
       propertyPath: skillButton
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6572057685534779481, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
+      propertyPath: buttonIdx
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6572057685534779481, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
       propertyPath: buttonName
@@ -1629,6 +1705,10 @@ PrefabInstance:
     - target: {fileID: 216766561880274818, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
       propertyPath: skillButton
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1078726196329311751, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3242657433022865029, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
       propertyPath: m_Name
@@ -1718,9 +1798,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5849089488938557780, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6263716087785292668, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
       propertyPath: skillButton
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6572057685534779481, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
+      propertyPath: buttonIdx
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6572057685534779481, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
       propertyPath: buttonName
@@ -1758,6 +1846,10 @@ PrefabInstance:
     - target: {fileID: 216766561880274818, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
       propertyPath: skillButton
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1078726196329311751, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3242657433022865029, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
       propertyPath: m_Name
@@ -1847,9 +1939,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5849089488938557780, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6263716087785292668, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
       propertyPath: skillButton
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6572057685534779481, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
+      propertyPath: buttonIdx
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6572057685534779481, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
       propertyPath: buttonName
@@ -1887,6 +1987,10 @@ PrefabInstance:
     - target: {fileID: 216766561880274818, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
       propertyPath: skillButton
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1078726196329311751, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3242657433022865029, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
       propertyPath: m_Name
@@ -1976,9 +2080,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5849089488938557780, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6263716087785292668, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
       propertyPath: skillButton
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6572057685534779481, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
+      propertyPath: buttonIdx
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6572057685534779481, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
       propertyPath: buttonName
@@ -2017,6 +2129,10 @@ PrefabInstance:
       propertyPath: skillButton
       value: 
       objectReference: {fileID: 2568294187968908071}
+    - target: {fileID: 1078726196329311751, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3242657433022865029, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
       propertyPath: m_Name
       value: SkillButton_D
@@ -2105,10 +2221,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5849089488938557780, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6263716087785292668, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
       propertyPath: skillButton
       value: 
       objectReference: {fileID: 2568294187968908071}
+    - target: {fileID: 6572057685534779481, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
+      propertyPath: buttonIdx
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6572057685534779481, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
       propertyPath: buttonName
       value: SkillButton_D
@@ -2145,6 +2269,10 @@ PrefabInstance:
     - target: {fileID: 216766561880274818, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
       propertyPath: skillButton
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1078726196329311751, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3242657433022865029, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
       propertyPath: m_Name
@@ -2234,9 +2362,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5849089488938557780, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6263716087785292668, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
       propertyPath: skillButton
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6572057685534779481, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
+      propertyPath: buttonIdx
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6572057685534779481, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
       propertyPath: buttonName
@@ -2274,6 +2410,10 @@ PrefabInstance:
     - target: {fileID: 216766561880274818, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
       propertyPath: skillButton
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1078726196329311751, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3242657433022865029, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
       propertyPath: m_Name
@@ -2368,6 +2508,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6572057685534779481, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
+      propertyPath: buttonIdx
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6572057685534779481, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
       propertyPath: buttonName
       value: SkillButton_G
       objectReference: {fileID: 0}
@@ -2375,6 +2519,10 @@ PrefabInstance:
       propertyPath: skillDirectory
       value: 
       objectReference: {fileID: 424982636384695601}
+    - target: {fileID: 7540647897114120538, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78677fa07e3f9ef408b616e0601f9ec6, type: 3}
 --- !u!114 &2568294188446715363 stripped
@@ -2422,7 +2570,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6497933181268955376, guid: dd4da3d1225d09742b2229cca1eeaa19, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6497933181268955376, guid: dd4da3d1225d09742b2229cca1eeaa19, type: 3}
       propertyPath: m_AnchorMin.x
@@ -2430,15 +2578,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6497933181268955376, guid: dd4da3d1225d09742b2229cca1eeaa19, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6497933181268955376, guid: dd4da3d1225d09742b2229cca1eeaa19, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 6497933181268955376, guid: dd4da3d1225d09742b2229cca1eeaa19, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 6497933181268955376, guid: dd4da3d1225d09742b2229cca1eeaa19, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2470,11 +2618,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6497933181268955376, guid: dd4da3d1225d09742b2229cca1eeaa19, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6497933181268955376, guid: dd4da3d1225d09742b2229cca1eeaa19, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -55
       objectReference: {fileID: 0}
     - target: {fileID: 6497933181268955376, guid: dd4da3d1225d09742b2229cca1eeaa19, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

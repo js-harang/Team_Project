@@ -14,6 +14,7 @@ public class CheckDuplication : MonoBehaviour
     /// <returns></returns>
     public bool CheckSkillDuplication(int idx)
     {
+        Debug.Log("∞ÀªÁ¡ﬂ");
         bool isDuplication = false;
 
         for (int i = 0; i < btns.Length; i++)

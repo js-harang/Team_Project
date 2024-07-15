@@ -47,18 +47,12 @@ public class DropSkill : MonoBehaviour, IPointerEnterHandler, IDropHandler, IPoi
 
             if (dragSkillData.SkillButton.CoolTime <= 0)
             {
-                skillData.SkillIcon.sprite = dragSkillData.SkillIcon.sprite;
-                skillData.Skill = dragSkillData.Skill;
+                skillButton.Skill = dragSkillData.Skill;
+                skillButton.SkillIcon.sprite = dragSkillData.SkillIcon.sprite;
 
-                dragSkillData.Skill = null;
-                dragSkillData.SkillIcon.sprite = null;
                 dragSkillData.SkillButton.Skill = null;
+                dragSkillData.SkillButton.SkillIcon.sprite = null;
 
-                if (chkDup.CheckSkillDuplication(skillData.Skill.skillIdx))
-                {
-                    Debug.Log("중복 발견 " + this.name);
-                    return;
-                }
             }
             else
             {
@@ -71,6 +65,7 @@ public class DropSkill : MonoBehaviour, IPointerEnterHandler, IDropHandler, IPoi
         else if (eventData.pointerDrag.GetComponent<SkillSlot>())
         {
             Debug.Log("SkillSlot 드롭");
+
             SkillSlot dragSkillData = eventData.pointerDrag.GetComponent<SkillSlot>();
 
             if (chkDup.CheckSkillDuplication(dragSkillData.Skill.skillIdx))
@@ -78,12 +73,16 @@ public class DropSkill : MonoBehaviour, IPointerEnterHandler, IDropHandler, IPoi
                 Debug.Log("중복 발견 " + this.name);
                 return;
             }
-            Debug.Log("asdasd");
-            skillData.Skill = dragSkillData.Skill;
+
+            Debug.Log("중복 없음");
+
             skillButton.Skill = dragSkillData.Skill;
-            skillData.SkillIcon.sprite = dragSkillData.SkillIcon.sprite;
+            skillButton.SkillIcon.sprite = dragSkillData.Skill.sprite;
         }
         #endregion
+
+        skillButton.SetSkillData();
+
         skillButton.SaveSkillData();
     }
 
