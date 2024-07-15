@@ -23,7 +23,7 @@ public class PlayerInteract : MonoBehaviour
         interCon = FindObjectOfType<InteractController>().GetComponent<InteractController>();
     }
 
-    // 오브젝트 근처에 있는 상태라면 X를 눌러 상호작용 상태가 된다.
+    // 오브젝트 근처에 있는 상태라면 C를 눌러 상호작용 상태가 된다.
     private void Update()
     {
         if (interCon.NowInteracting)
@@ -31,7 +31,7 @@ public class PlayerInteract : MonoBehaviour
 
         if (isMeetInteract)
         {
-            if (Input.GetKeyDown(KeyCode.X))
+            if (Input.GetKeyDown(KeyCode.C))
             {
                 LetsTalk();
             }

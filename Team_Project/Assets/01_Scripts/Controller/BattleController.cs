@@ -103,6 +103,7 @@ public class BattleController : MonoBehaviour
     // 배틀 중 나타나는 UI들 변수
     [SerializeField] GameObject battleStartImg;
     [SerializeField] GameObject goArrowImg;
+    [SerializeField] GameObject bossAlertImg;
     [SerializeField] GameObject battleClearUI;
     [SerializeField] GameObject gameOverUI;
     [SerializeField] GameObject battleEndUI;
@@ -184,9 +185,11 @@ public class BattleController : MonoBehaviour
     IEnumerator BossAppearProcess()
     {
         pS.UnitState = UnitState.Wait;
+        bossAlertImg.SetActive(true);
 
         yield return new WaitForSeconds(3f);
 
+        bossAlertImg.SetActive(false);
         BattleState = BattleState.NowBattle;
         pS.UnitState = UnitState.Idle;
     }
@@ -223,7 +226,7 @@ public class BattleController : MonoBehaviour
     // 배틀 종료 시 시작되는 동작 메소드
     private void BattleEndProcess()
     {
-        Instantiate(battleShopNPC, endShopSpawn.position, Quaternion.identity);
+        Instantiate(battleShopNPC, endShopSpawn.position, Quaternion.Euler(0, 180, 0));
         battleEndUI.SetActive(true);
     }
 
