@@ -29,8 +29,8 @@ public class CheckDuplication : MonoBehaviour
                     return isDuplication;
                 }
             }
-            else
-                Debug.Log("중복 없음");
+/*            else
+                Debug.Log("중복 없음");*/
 
         }
         return isDuplication;

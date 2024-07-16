@@ -62,11 +62,13 @@ public class PlayerCombat : DamagedAction
     public Animator anim;
     public PlayerState pbs;
 
-    bool resetCombo;
+    bool isReset;
+    IEnumerator co;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        co = ResetCom();
     }
 
     private void Update()
@@ -90,14 +92,14 @@ public class PlayerCombat : DamagedAction
         // 공격 상태 가 아니며 콤보 회수가 공격 배열들 보다 작거나 같을때 실행
         if (pbs.UnitBS == UnitBattleState.Idle && comboCounter <= attack.animOCs.Length)
         {
-            Debug.Log(comboCounter);
-            // 공격중지 매소드 실행 취소
-            CancelInvoke("ResetCombo");
+            // 공격중지 코루틴을 정지
+            StopCoroutine(co);
 
             anim.runtimeAnimatorController = attack.animOCs[comboCounter];
 
             atkDamage = attack.damage[comboCounter];
             canMoveAtk = attack.canMoveAtk;
+            delayComboTime = attack.delayComboTime;
 
             // 콤보중이 아니면 마나 소모
             if (!attack.isComboing)
@@ -110,18 +112,17 @@ public class PlayerCombat : DamagedAction
             previousAttack = attack;
             previousAttack.isComboing = true;
 
-            Debug.Log("콤보 증가");
             comboCounter++;
 
             if (comboCounter + 1 > attack.animOCs.Length)
             {
-                Debug.Log("콤보 리셋 실행");
                 ResetCombo();
+                StopCoroutine(co);
             }
         }
     }
 
-    #region 공격 중지(인보크 시간내에 공격 없으면 실행됨)
+    #region 공격 중지(공격 딜레이 타임 안에 공격 없을시)
     void ExitAttack()
     {
         // GetCurrentAnimatorStateInfo(0) : 현재 애니메이션의 정보
@@ -129,21 +130,32 @@ public class PlayerCombat : DamagedAction
         // normalizeTime : 애니메이션 진행사항(0이면 시작안함, 1이면 애니매이션 완료)
         if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f && anim.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
         {
-            // 설정된 시간 후에 콤보 리셋
-            Invoke("ResetCombo", delayComboTime);
+            if (!isReset)
+                StartCoroutine(co);
         }
     }
     #endregion
 
     #region 콤보 리셋
+
     void ResetCombo()
     {
-        Debug.Log("콤보초기화");
         comboCounter = 0;
 
         // 이전 공격이 있을때
         if (previousAttack != null)
             previousAttack.isComboing = false;
+    }
+
+    IEnumerator ResetCom()
+    {
+        isReset = true;
+        yield return new WaitForSeconds(delayComboTime);
+
+        Debug.Log("코루틴 콤보초기화");
+        ResetCombo();
+
+        isReset = false;
     }
     #endregion
 
