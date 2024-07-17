@@ -129,43 +129,53 @@ public class SkillButton : MonoBehaviour
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    void LoadSkillData()
+    IEnumerator LoadSkill()
     {
-        string url = GameManager.gm.path + "loadskill.php";
-        WWWForm form = new WWWForm();
-
+        // 0000000013
         string cuid = PlayerPrefs.GetString("characteruid");
         string skill = "skill_" + buttonIdx;
-        // 0000000013
+        string url = GameManager.gm.path + "loadskill.php";
+        Debug.Log(skill);
+
+        WWWForm form = new WWWForm();
         form.AddField("cuid", cuid);
         form.AddField("skill", skill);
 
-        using(UnityWebRequest www = UnityWebRequest.Post(url, form))
+        using (UnityWebRequest www = UnityWebRequest.Post(url, form))
         {
+            yield return www.SendWebRequest();
             if (www.error == null)
             {
-                Debug.Log(www.downloadHandler.text);
+                int idx = int.Parse(www.downloadHandler.text);
+                Debug.Log(idx);
+
+                // 0 이상이면 불러오기
+                if (idx > 0)
+                {
+                    btnSkill = skillDirectory.skillAtks[idx];
+                    SkillIcon.sprite = Skill.sprite;
+                    SetSkillData();
+                }
+
+                if (btnSkill != null)
+                {
+                    if (chkDup.CheckSkillDuplication(idx))
+                    {
+                        Debug.Log("중복 발견 " + this.name);
+                    }
+                    // 0 이면 기본적으로 null 값임
+                }
+            }
+            else
+            {
+                Debug.Log(www.error);
             }
         }
+    }
 
-        int idx = PlayerPrefs.GetInt("skill_" + buttonIdx, 0);
-
-        // 0 이상이면 불러오기
-        if (idx > 0)
-        {
-            btnSkill = skillDirectory.skillAtks[idx];
-            SkillIcon.sprite = Skill.sprite;
-            SetSkillData();
-        }
-
-        if (btnSkill == null)
-            return;
-
-        if (chkDup.CheckSkillDuplication(idx))
-        {
-            Debug.Log("중복 발견 " + this.name);
-        }
-        // 0 이면 기본적으로 null 값임
+    void LoadSkillData()
+    {
+        StartCoroutine(LoadSkill());
     }
 
     public void SaveSkillData()

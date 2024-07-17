@@ -55314,7 +55314,7 @@ MonoBehaviour:
   selectObject: {fileID: 0}
   boolIsFullScreen: 1
   isPreferencePopup: 0
-  path: 
+  path: 192.168.52.187/team_project/
 --- !u!4 &1853868361
 Transform:
   m_ObjectHideFlags: 0
