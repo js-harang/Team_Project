@@ -4,21 +4,21 @@ $username = "root";
 $password = "1234";
 $dbname = "team_project";
 
-$cuid = $_GET["cuid"];
-$skill = $_GET["skill"];
-$tbl = "character_info";
+$cuid = $_POST["cuid"];
+$skill = $_POST["skill"];
 
 $conn = new mysqli($servername, $username, $password, $dbname);
+
 if ($conn->connect_error) {
 	echo "Failed to connect to MySQL : " + $mysqli->connect_error;
 }
 
 $sql = "select	$skill
-		from	$tbl
+		from	character_info
 		where	character_uid = '0000000013'";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
-echo $row['skill_0'];
+echo $row[$skill];
 
 return;
 ?>
