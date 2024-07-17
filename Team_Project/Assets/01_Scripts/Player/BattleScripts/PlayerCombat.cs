@@ -62,13 +62,11 @@ public class PlayerCombat : DamagedAction
     public Animator anim;
     public PlayerState pbs;
 
-    bool isReset;
-    IEnumerator co;
-
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        co = ResetCom();
+        hpSld = GameObject.FindWithTag("HPSlider").GetComponent<Slider>();
+        mpSld = GameObject.FindWithTag("MPSlider").GetComponent<Slider>();
     }
 
     private void Update()
@@ -83,23 +81,24 @@ public class PlayerCombat : DamagedAction
             return;
 
         #region 이전 공격과 지금 공격이 다르면 이전공격 콤보 초기화
-        if (previousAttack != attack)
+        if (previousAttack != null && previousAttack != attack)
         {
             ResetCombo();
+            Debug.Log("이전 공격 : " + previousAttack);
+            Debug.Log("이전 공격 콤보 : " + previousAttack.isComboing);
         }
         #endregion
 
         // 공격 상태 가 아니며 콤보 회수가 공격 배열들 보다 작거나 같을때 실행
         if (pbs.UnitBS == UnitBattleState.Idle && comboCounter <= attack.animOCs.Length)
         {
-            // 공격중지 코루틴을 정지
-            StopCoroutine(co);
+            // 공격중지 매소드 실행 취소
+            CancelInvoke("ResetCombo");
 
             anim.runtimeAnimatorController = attack.animOCs[comboCounter];
 
             atkDamage = attack.damage[comboCounter];
             canMoveAtk = attack.canMoveAtk;
-            delayComboTime = attack.delayComboTime;
 
             // 콤보중이 아니면 마나 소모
             if (!attack.isComboing)
@@ -116,46 +115,35 @@ public class PlayerCombat : DamagedAction
 
             if (comboCounter + 1 > attack.animOCs.Length)
             {
+                Debug.Log("콤보초기화");
                 ResetCombo();
-                StopCoroutine(co);
             }
         }
     }
 
-    #region 공격 중지(공격 딜레이 타임 안에 공격 없을시)
+    #region 공격 중지(인보크 시간내에 공격 없으면 실행됨)
     void ExitAttack()
     {
         // GetCurrentAnimatorStateInfo(0) : 현재 애니메이션의 정보
         // IsTag : 애니메이션 의 현재 스테이트 의 태그 비교
         // normalizeTime : 애니메이션 진행사항(0이면 시작안함, 1이면 애니매이션 완료)
-        if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f && anim.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
+        if (pbs.UnitBS == UnitBattleState.Idle && anim.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
         {
-            if (!isReset)
-                StartCoroutine(co);
+            // 설정된 시간 후에 콤보 리셋
+            Invoke("ResetCombo", delayComboTime);
         }
     }
     #endregion
 
     #region 콤보 리셋
-
     void ResetCombo()
     {
         comboCounter = 0;
-
         // 이전 공격이 있을때
         if (previousAttack != null)
+        {
             previousAttack.isComboing = false;
-    }
-
-    IEnumerator ResetCom()
-    {
-        isReset = true;
-        yield return new WaitForSeconds(delayComboTime);
-
-        Debug.Log("코루틴 콤보초기화");
-        ResetCombo();
-
-        isReset = false;
+        }
     }
     #endregion
 
@@ -178,7 +166,7 @@ public class PlayerCombat : DamagedAction
                 damageAct.KnockBack(transform.position, attack.knockBackForce);
 
                 Vector3 epos = enemy.transform.position;
-                Ray ray = new (transform.position, epos - transform.position);
+                Ray ray = new(transform.position, epos - transform.position);
 
                 if (Physics.Raycast(ray, out RaycastHit hit))
                 {
@@ -236,7 +224,7 @@ public class PlayerCombat : DamagedAction
     public override void KnockBack(Vector3 atkPos, float knockBackForce)
     {
         rb.velocity = Vector3.zero;
-        
+
         float dis = Vector3.Distance(transform.position, atkPos);
 
         Vector3 dir = transform.position - atkPos;

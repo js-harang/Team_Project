@@ -7,6 +7,9 @@ TagManager:
   - Enemy
   - InteractObj
   - FxTemporaire
+  - HPSlider
+  - MPSlider
+  - PlayerBtn
   layers:
   - Default
   - TransparentFX
