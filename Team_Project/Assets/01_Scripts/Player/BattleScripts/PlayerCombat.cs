@@ -225,6 +225,9 @@ public class PlayerCombat : DamagedAction
     {
         rb.velocity = Vector3.zero;
 
+        if (pbs.UnitBS == UnitBattleState.Die)
+            return;
+
         float dis = Vector3.Distance(transform.position, atkPos);
 
         Vector3 dir = transform.position - atkPos;
