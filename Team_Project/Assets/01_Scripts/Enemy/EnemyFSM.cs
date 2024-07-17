@@ -1,8 +1,5 @@
-using System.Collections;
 using UnityEngine;
-using UnityEngine.AI;
 using UnityEngine.UI;
-using TMPro;
 
 // 에너미 상태 상수
 public enum EnemyState
