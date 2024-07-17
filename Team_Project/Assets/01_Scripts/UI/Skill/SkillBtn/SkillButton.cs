@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
 public class SkillButton : MonoBehaviour
 {
@@ -130,7 +131,24 @@ public class SkillButton : MonoBehaviour
 
     void LoadSkillData()
     {
-        int idx = PlayerPrefs.GetInt("SkillButton" + buttonIdx, 0);
+        string url = GameManager.gm.path + "loadskill.php";
+        WWWForm form = new WWWForm();
+
+        string cuid = PlayerPrefs.GetString("characteruid");
+        string skill = "skill_" + buttonIdx;
+        // 0000000013
+        form.AddField("cuid", cuid);
+        form.AddField("skill", skill);
+
+        using(UnityWebRequest www = UnityWebRequest.Post(url, form))
+        {
+            if (www.error == null)
+            {
+                Debug.Log(www.downloadHandler.text);
+            }
+        }
+
+        int idx = PlayerPrefs.GetInt("skill_" + buttonIdx, 0);
 
         // 0 이상이면 불러오기
         if (idx > 0)
@@ -158,7 +176,7 @@ public class SkillButton : MonoBehaviour
         else
            idx = btnSkill.skillIdx;
 
-        PlayerPrefs.SetInt("SkillButton" + buttonIdx, idx);
+        PlayerPrefs.SetInt("skill_" + buttonIdx, idx);
         PlayerPrefs.Save();
     }
 
