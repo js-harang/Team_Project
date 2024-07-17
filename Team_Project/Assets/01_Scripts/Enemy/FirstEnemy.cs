@@ -164,10 +164,10 @@ public class FirstEnemy : EnemyFSM
     // DamagedAction 에서 상속받은 메서드를 선언
     public override void KnockBack(Vector3 atkPos, float knockBackForce)
     {
+        rb.velocity = Vector3.zero;
+
         if (EState == EnemyState.Die)
             return;
-
-        rb.velocity = Vector3.zero;
 
         float dis = Vector3.Distance(transform.position, atkPos);
 

@@ -4,6 +4,8 @@ using UnityEngine;
 public class PlayerInteract : MonoBehaviour
 {
     PlayerState pState;
+    PlayerCombatInput pComInput;
+
     // player가 상호작용 가능한 오브젝트 근처에 있는지의 bool 변수
     bool isMeetInteract;
 
@@ -20,6 +22,7 @@ public class PlayerInteract : MonoBehaviour
     private void Start()
     {
         pState = GetComponent<PlayerState>();
+        pComInput = GetComponent<PlayerCombatInput>();
         interCon = FindObjectOfType<InteractController>().GetComponent<InteractController>();
     }
 
@@ -31,7 +34,7 @@ public class PlayerInteract : MonoBehaviour
 
         if (isMeetInteract)
         {
-            if (Input.GetKeyDown(KeyCode.C))
+            if (Input.GetKeyDown(KeyCode.Z))
             {
                 LetsTalk();
             }
@@ -44,6 +47,7 @@ public class PlayerInteract : MonoBehaviour
         if (other.gameObject.CompareTag("InteractObj"))
         {
             WhoAreYou(other);
+            pComInput.enabled = false;
         }
     }
 
@@ -54,6 +58,7 @@ public class PlayerInteract : MonoBehaviour
         {
             //pBC.enabled = true;
             isMeetInteract = false;
+            pComInput.enabled = true;
             InteractCheck();
         }
     }
