@@ -126,7 +126,7 @@ public class InteractController : MonoBehaviour
             InteractStep = InteractStep.End;
         }
 
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             PrintSentencesSkip();
         }

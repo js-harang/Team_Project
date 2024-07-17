@@ -1322,6 +1322,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ecf95e90795f834390486e456a8cd98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doneQuestId: 
+  finQuestId: 
 --- !u!4 &2033952633
 Transform:
   m_ObjectHideFlags: 0
@@ -49334,7 +49336,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &5206279061062351237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58050,7 +58052,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: C
+  m_text: Z
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
