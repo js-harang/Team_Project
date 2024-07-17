@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         PlayerPrefs.DeleteKey("uid");
+        PlayerPrefs.DeleteKey("characteruid");
     }
 
     /// <summary>
