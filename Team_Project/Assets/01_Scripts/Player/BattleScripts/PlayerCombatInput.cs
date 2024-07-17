@@ -10,15 +10,29 @@ public class PlayerCombatInput : MonoBehaviour
         A = 0, S = 1, D = 2, F = 3, C = 4, V = 5,
         Q = 6, W = 7, E = 8, R = 9, T = 10, G = 11,
     }
-    public PlayerCombat player;
-    // public AttackSO defaultAttack;
     public Attack defaultAttack;
+    private PlayerCombat player;
 
-    public Button[] buttons;
+    [SerializeField] SkillButton[] skillBtn;
+    [SerializeField] Button[] btns;
 
+    private void Start()
+    {
+        player = GetComponent<PlayerCombat>();
+
+        skillBtn = GameObject.FindWithTag("PlayerBtn").GetComponent<CheckDuplication>().btns;
+        btns = new Button[skillBtn.Length];
+
+        for (int i = 0; i < skillBtn.Length; i++)
+        {
+            btns[i] = skillBtn[i].GetComponent<Button>();
+        }
+
+/*        StartSetting();*/
+    }
     private void Update()
     {
-        if (player.pbs.UnitState ==  UnitState.Interact || player.pbs.UnitState == UnitState.Wait)
+        if (player.pbs.UnitState == UnitState.Interact || player.pbs.UnitState == UnitState.Wait)
             return;
 
         ButtonInput();
@@ -29,73 +43,71 @@ public class PlayerCombatInput : MonoBehaviour
         // Q = 6, W = 7, E = 8, R = 9, T = 10, G = 11
         switch (Input.inputString)
         {
-            case "a":
-            case "A":
+            case "a":   case "A":
                 int a = (int)ButtonNum.A;
-                buttons[a].onClick.Invoke(); break;
+                btns[a].onClick.Invoke(); break;
 
-            case "s":
-            case "S":
+            case "s":   case "S":
                 int s = (int)ButtonNum.S;
-                buttons[s].onClick.Invoke(); break;
+                btns[s].onClick.Invoke(); break;
 
-            case "d":
-            case "D":
+            case "d":   case "D":
                 int d = (int)ButtonNum.D;
-                buttons[d].onClick.Invoke(); break;
+                btns[d].onClick.Invoke(); break;
 
-            case "f":
-            case "F":
+            case "f":   case "F":
                 int f = (int)ButtonNum.F;
-                buttons[f].onClick.Invoke(); break;
+                btns[f].onClick.Invoke(); break;
 
-            case "c":
-            case "C":
+            case "c":   case "C":
                 int c = (int)ButtonNum.C;
-                buttons[c].onClick.Invoke(); break;
+                btns[c].onClick.Invoke(); break;
 
-            case "v":
-            case "V":
+            case "v":   case "V":
                 int v = (int)ButtonNum.V;
-                buttons[v].onClick.Invoke(); break;
+                btns[v].onClick.Invoke(); break;
 
-            case "q":
-            case "Q":
+            case "q":   case "Q":
                 int q = (int)ButtonNum.Q;
-                buttons[q].onClick.Invoke(); break;
+                btns[q].onClick.Invoke(); break;
 
-            case "w":
-            case "W":
+            case "w":   case "W":
                 int w = (int)ButtonNum.W;
-                buttons[w].onClick.Invoke(); break;
+                btns[w].onClick.Invoke(); break;
 
-            case "e":
-            case "E":
+            case "e":   case "E":
                 int e = (int)ButtonNum.E;
-                buttons[e].onClick.Invoke(); break;
+                btns[e].onClick.Invoke(); break;
 
-            case "r":
-            case "R":
+            case "r":   case "R":
                 int r = (int)ButtonNum.R;
-                buttons[r].onClick.Invoke(); break;
+                btns[r].onClick.Invoke(); break;
 
-            case "t":
-            case "T":
+            case "t":   case "T":
                 int t = (int)ButtonNum.T;
-                buttons[t].onClick.Invoke(); break;
+                btns[t].onClick.Invoke(); break;
 
-            case "g":
-            case "G":
+            case "g":   case "G":
                 int g = (int)ButtonNum.G;
-                buttons[g].onClick.Invoke(); break;
+                btns[g].onClick.Invoke(); break;
 
-            case "z":
-            case "Z":
+            case "z":   case "Z":
                 player.attack = defaultAttack;
                 player.Attack();
                 break;
-            default:
-                break;
+            
+            default:    break;
+        }
+    }
+
+    void StartSetting()
+    {
+        player = GetComponent<PlayerCombat>();
+        skillBtn = FindObjectOfType<CheckDuplication>().btns;
+
+        for (int i = 0; i < skillBtn.Length; i++)
+        {
+            btns[i] = skillBtn[i].GetComponent<Button>();
         }
     }
 }

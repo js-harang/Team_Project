@@ -6431,8 +6431,8 @@ MonoBehaviour:
   currentHp: 100
   maxHp: 100
   atkPower: 0
-  currentMp: 100
-  maxMp: 100
+  currentMp: 10000
+  maxMp: 10000
   attack: {fileID: 0}
   previousAttack: {fileID: 0}
   delayComboTime: 1
@@ -6461,21 +6461,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e91a8f7c432e91842aa47fccb1c30b00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1332281161109069133}
   defaultAttack: {fileID: 5314608549469378818, guid: c52948708a646c244924feaae89cc0ad, type: 3}
-  buttons:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  skillBtn: []
+  btns: []
 --- !u!114 &3859711484619108246
 MonoBehaviour:
   m_ObjectHideFlags: 0
