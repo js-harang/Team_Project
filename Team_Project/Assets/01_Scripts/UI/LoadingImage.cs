@@ -1,10 +1,11 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.U2D;
 using UnityEngine.UI;
 
 public class LoadingImage : MonoBehaviour
 {
-    [SerializeField] Sprite[] images;
+    [SerializeField] SpriteAtlas spriteAtlas;
 
     private void Start()
     {
@@ -14,11 +15,27 @@ public class LoadingImage : MonoBehaviour
     IEnumerator SpriteSwap()
     {
         int index = 0;
+        bool isAscending = true;
+
         while (true)
         {
-            gameObject.GetComponent<Image>().sprite = images[index];
-            index = (index + 1) % images.Length;
-            yield return new WaitForSeconds(0.1f);
+            if (isAscending)
+            {
+                index++;
+
+                if (index == 2)
+                    isAscending = false;
+            }
+            else
+            {
+                index--;
+
+                if (index == 0)
+                    isAscending = true;
+            }
+            gameObject.GetComponent<Image>().sprite = spriteAtlas.GetSprite("ANI_LOADING_CASTER_" + index);
+
+            yield return new WaitForSeconds(0.2f);
         }
     }
 
