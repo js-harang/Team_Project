@@ -19,8 +19,8 @@ public class QuestData
     public QuestType questType;
     public TargetType targetType;
     public string questName;
-    public int questId;
-    public int targetId;
+    public int questID;
+    public int targetID;
     // 묙표수치
     public int requiredAmount;
     // 현재 수치
@@ -28,26 +28,26 @@ public class QuestData
     public bool isDone;
 
     // 퀘스트의 종류가 다른 NPC와의 대화인 경우
-    public QuestData(string questName, int questId, int targetId)
+    public QuestData(string questName, int questID, int targetID)
     {
         questType = QuestType.Conversation;
         this.questName = questName;
-        this.questId = questId;
-        this.targetId = targetId;
+        this.questID = questID;
+        this.targetID = targetID;
         isDone = false;
     }
 
     // 퀘스트의 중류가 매개변수로 받은 타겟타입에 따라 처치인지, 수집인지 분류
-    public QuestData(string questName, int questId, TargetType targetType, 
-                    int targetId, int requiredAmount)
+    public QuestData(string questName, int questID, TargetType targetType, 
+                    int targetID, int requiredAmount)
     {
         switch (targetType)
         {
             case TargetType.Monster:
                 questType = QuestType.Kill;
                 this.questName = questName;
-                this.questId = questId;
-                this.targetId = targetId;
+                this.questID = questID;
+                this.targetID = targetID;
                 this.requiredAmount = requiredAmount;
                 this.currentAmount = 0;
                 isDone = false;
@@ -55,8 +55,8 @@ public class QuestData
             case TargetType.Item:
                 questType = QuestType.Gathering;
                 this.questName = questName;
-                this.questId = questId;
-                this.targetId = targetId;
+                this.questID = questID;
+                this.targetID = targetID;
                 this.requiredAmount = requiredAmount;
                 this.currentAmount = 0;
                 isDone = false;

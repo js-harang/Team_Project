@@ -38,6 +38,7 @@ public class QuestGiver : IHaveQuest
         }
     }
 
+    // IHaveQuest 에서 자신에게 할당될 퀘스트 리스트를 받아옴
     void GetMyQuest()
     {
         if (!questDic.ContainsKey(interPP.InteractId))
@@ -46,19 +47,21 @@ public class QuestGiver : IHaveQuest
         myQuests = questDic[interPP.InteractId];
     }
 
+    // 플레이어가 자신의 퀘스트 클리어 조건을 만족했는지 확인함
     public void PlayerDoneMyQuest()
     {
         bool check = false;
 
         for (int i = 0; i < myQuests.Count; i++)
         {
-            if (myQuests[i].questId == questCon.doneQuestId[i])
+            if (myQuests[i].questID == questCon.doneQuestID[i])
                 check = true;
         }
 
         playerQuestDone = check ? true : false;
     }
 
+    // 플레이어가 자신의 퀘스트를 완전히 클리어 했는지 확인
     public void PlayerFinMyQuest()
     {
         bool check = true;
@@ -67,7 +70,7 @@ public class QuestGiver : IHaveQuest
         {
             for (int i = 0; i < myQuests.Count; i++)
             {
-                if (myQuests[i].questId == questCon.finQuestId[i])
+                if (myQuests[i].questID == questCon.finQuestID[i])
                 {
                     myQuests.RemoveAt(i);
                     break;
