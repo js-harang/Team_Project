@@ -4,7 +4,6 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager gm;
-
     private void Awake()
     {
         if (gm != null)
@@ -48,10 +47,29 @@ public class GameManager : MonoBehaviour
 
     public string path;
 
+    UIController ui;
+
+    #region 경험치 관련
+    [SerializeField] float currentExp;
+    public float CurrentExp { get { return currentExp; } set { currentExp = value; } }
+
+    [SerializeField] int maxExp;
+    public int MaxExp { get { return maxExp; } set { maxExp = value; } }
+
+    // 필요 경험치
+    [SerializeField] float requiredExp;
+
+    [SerializeField] int lv;
+    public int LV{ get { return lv; } set { lv = value; } }
+    #endregion
+
     private void Start()
     {
+        ui = FindObjectOfType<UIController>().GetComponent<UIController>();
         PlayerPrefs.DeleteKey("uid");
         PlayerPrefs.DeleteKey("characteruid");
+        maxExp = 100;
+        SetMaxExp();
     }
 
     /// <summary>
@@ -64,5 +82,26 @@ public class GameManager : MonoBehaviour
     {
         sceneNumber = number;
         SceneManager.LoadScene("99_LoadingScene");
+    }
+
+    void ChkExp()
+    {
+        if (currentExp >= maxExp)
+        {
+            currentExp -= maxExp;
+            LV++;
+
+            SetMaxExp();
+        }
+        ui.SetEXPSlider(currentExp, maxExp);
+    }
+    void SetMaxExp()
+    {
+        float tmp = 0f;
+        int i = LV - 1;
+        tmp = maxExp * (requiredExp * i);
+        maxExp += (int)tmp;
+
+        Debug.Log("maxExp : " + maxExp);
     }
 }

@@ -151,9 +151,6 @@ public class SkillButton : MonoBehaviour
                 idx = btnSkill.skillIdx;
         #endregion
 
-        string i = string.Format("{0:00}",idx);
-        Debug.Log("저장할 인덱스 번호" + i);
-
         // 0000000013
         string cuid = PlayerPrefs.GetString("characteruid");
         string skill = "skill_" + buttonIdx;
@@ -162,7 +159,7 @@ public class SkillButton : MonoBehaviour
         WWWForm form = new WWWForm();
         form.AddField("cuid", "0000000013");
         form.AddField("skill", skill);
-        form.AddField("idx", i);
+        form.AddField("idx", idx);
         #endregion
 
         #region 데이터 베이스에 값 전달
@@ -171,7 +168,7 @@ public class SkillButton : MonoBehaviour
             yield return www.SendWebRequest();
             if (www.error == null)
             {
-                Debug.Log(skill+ " : " + www.downloadHandler.text);
+                Debug.Log(skill + " : " + www.downloadHandler.text + "저장 성공");
             }
             else
             {

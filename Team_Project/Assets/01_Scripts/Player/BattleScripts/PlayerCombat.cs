@@ -7,14 +7,14 @@ public class PlayerCombat : DamagedAction
 {
     #region 플레이어 수치 관련
     // 현재 체력
-    [SerializeField]
-    float currentHp;
+    [SerializeField] float currentHp;
+    public float CurrentHp { get { return currentHp; } set { currentHp = value; } }
     // 최대체력
-    [SerializeField]
-    int maxHp;
+    [SerializeField] int maxHp;
+    public int MaxHp { get { return maxHp; } set { maxHp = value; } }
     // 공격력
-    [SerializeField]
-    int atkPower;
+    [SerializeField] int atkPower;
+    public int AtkPower { get { return atkPower; } set { atkPower = value; } }
 
     // 플레이어 현재 마나
     [SerializeField]
@@ -22,8 +22,8 @@ public class PlayerCombat : DamagedAction
     public float CurrentMp { get { return currentMp; } set { currentMp = value; } }
 
     // 플레이어 최대 마나
-    [SerializeField]
-    int maxMp;
+    [SerializeField] int maxMp;
+    public int MaxMp { get { return maxMp; } set { maxMp = value; } }
     #endregion
 
     #region 공격 관련
@@ -53,11 +53,7 @@ public class PlayerCombat : DamagedAction
     public GameObject effectPrefebs;
     #endregion
 
-    [Space(10)]
-    #region 플레이어 슬라이더 바
-    public Slider hpSld;
-    public Slider mpSld;
-    #endregion
+    UIController ui;
 
     public Animator anim;
     public PlayerState pbs;
@@ -65,8 +61,6 @@ public class PlayerCombat : DamagedAction
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        hpSld = GameObject.FindWithTag("HPSlider").GetComponent<Slider>();
-        mpSld = GameObject.FindWithTag("MPSlider").GetComponent<Slider>();
     }
 
     private void Update()
@@ -104,7 +98,7 @@ public class PlayerCombat : DamagedAction
             if (!attack.isComboing)
                 currentMp -= attack.useMana;
 
-            SetPlayerSlider();
+            ui.SetMpSlider(CurrentMp, MaxMp);
 
             anim.Play("Attack", 0, 0);
 
@@ -202,7 +196,7 @@ public class PlayerCombat : DamagedAction
 
         currentHp -= damage;
 
-        SetPlayerSlider();
+        ui.SetHpSlider(CurrentHp, MaxHp);
 
         if (currentHp > 0)
         {
@@ -235,20 +229,4 @@ public class PlayerCombat : DamagedAction
 
         rb.AddForce(dir * (knockBackForce / dis), ForceMode.Impulse);
     }
-
-    #region 슬라이더 세팅
-    public void SetPlayerSlider()
-    {
-        SetHpSlider();
-        SetMpSlider();
-    }
-    private void SetHpSlider()
-    {
-        hpSld.value = currentHp / maxHp;
-    }
-    private void SetMpSlider()
-    {
-        mpSld.value = currentMp / maxMp;
-    }
-    #endregion
 }

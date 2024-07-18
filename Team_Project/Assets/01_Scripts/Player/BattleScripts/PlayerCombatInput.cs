@@ -41,57 +41,57 @@ public class PlayerCombatInput : MonoBehaviour
     {
         // A = 0, S = 1, D = 2, F = 3, C = 4, V = 5,
         // Q = 6, W = 7, E = 8, R = 9, T = 10, G = 11
-        switch (Input.inputString)
+        switch (Input.inputString.ToUpper())
         {
-            case "a":   case "A":
+            case "A":
                 int a = (int)ButtonNum.A;
                 btns[a].onClick.Invoke(); break;
 
-            case "s":   case "S":
+            case "S":
                 int s = (int)ButtonNum.S;
                 btns[s].onClick.Invoke(); break;
 
-            case "d":   case "D":
+            case "D":
                 int d = (int)ButtonNum.D;
                 btns[d].onClick.Invoke(); break;
 
-            case "f":   case "F":
+            case "F":
                 int f = (int)ButtonNum.F;
                 btns[f].onClick.Invoke(); break;
 
-            case "c":   case "C":
+            case "C":
                 int c = (int)ButtonNum.C;
                 btns[c].onClick.Invoke(); break;
 
-            case "v":   case "V":
+            case "V":
                 int v = (int)ButtonNum.V;
                 btns[v].onClick.Invoke(); break;
 
-            case "q":   case "Q":
+            case "Q":
                 int q = (int)ButtonNum.Q;
                 btns[q].onClick.Invoke(); break;
 
-            case "w":   case "W":
+            case "W":
                 int w = (int)ButtonNum.W;
                 btns[w].onClick.Invoke(); break;
 
-            case "e":   case "E":
+            case "E":
                 int e = (int)ButtonNum.E;
                 btns[e].onClick.Invoke(); break;
 
-            case "r":   case "R":
+            case "R":
                 int r = (int)ButtonNum.R;
                 btns[r].onClick.Invoke(); break;
 
-            case "t":   case "T":
+            case "T":
                 int t = (int)ButtonNum.T;
                 btns[t].onClick.Invoke(); break;
 
-            case "g":   case "G":
+            case "G":
                 int g = (int)ButtonNum.G;
                 btns[g].onClick.Invoke(); break;
 
-            case "z":   case "Z":
+            case "Z":
                 player.attack = defaultAttack;
                 player.Attack();
                 break;

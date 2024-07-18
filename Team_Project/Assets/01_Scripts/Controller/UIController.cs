@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
@@ -8,16 +9,26 @@ public class UIController : MonoBehaviour
     [SerializeField] GameObject escMenuUI;
     [SerializeField] Canvas gameUI;
 
-    [SerializeField]
-    GameObject gameOverUI;
+    #region 플레이어 슬라이더 바
+    [Space(10)]
+    [SerializeField] Slider hpSld;
+    [SerializeField] Slider mpSld;
+    [SerializeField] Slider expSld;
+    #endregion
+
+    [Space(10)]
+    [SerializeField] GameObject gameOverUI;
 
     PlayerState pState;
+    PlayerCombat player;
 
     [SerializeField, Space(10)] GameObject preferencePopup;
 
     private void Start()
     {
         pState = FindObjectOfType<PlayerState>().GetComponent<PlayerState>();
+        player = pState.GetComponent<PlayerCombat>();
+
     }
 
     private void Update()
@@ -43,6 +54,21 @@ public class UIController : MonoBehaviour
                 break;
         }
     }
+
+    #region 슬라이더 세팅
+    public void SetEXPSlider(float currentExp, int maxExp)
+    {
+        expSld.value = currentExp / maxExp;
+    }
+    public void SetHpSlider(float currentHp, int maxHp)
+    {
+        hpSld.value = currentHp / maxHp;
+    }
+    public void SetMpSlider(float currentMp, int maxMp)
+    {
+        mpSld.value = currentMp / maxMp;
+    }
+    #endregion
 
     // 스테이터스 UI 활성 / 비활성화
     public void StatusOnOff()
