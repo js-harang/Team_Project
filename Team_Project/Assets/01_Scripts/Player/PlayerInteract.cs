@@ -47,6 +47,8 @@ public class PlayerInteract : MonoBehaviour
         if (other.gameObject.CompareTag("InteractObj"))
         {
             WhoAreYou(other);
+            if (pComInput == null)
+                return;
             pComInput.enabled = false;
         }
     }
@@ -56,10 +58,12 @@ public class PlayerInteract : MonoBehaviour
     {
         if (other.gameObject.CompareTag("InteractObj"))
         {
-            //pBC.enabled = true;
             isMeetInteract = false;
             pComInput.enabled = true;
             InteractCheck();
+            if (pComInput == null)
+                return;
+            pComInput.enabled = true;
         }
     }
 

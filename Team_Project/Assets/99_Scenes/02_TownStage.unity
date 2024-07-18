@@ -1025,6 +1025,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 218149864, guid: 8775acec7efed374898815f3be4b85c0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2117706149, guid: 8775acec7efed374898815f3be4b85c0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4647744316651363859, guid: 8775acec7efed374898815f3be4b85c0, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1322,8 +1330,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ecf95e90795f834390486e456a8cd98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doneQuestId: 
-  finQuestId: 
+  myQuestsID: 
+  doneQuestID: 
+  finQuestID: 
 --- !u!4 &2033952633
 Transform:
   m_ObjectHideFlags: 0
