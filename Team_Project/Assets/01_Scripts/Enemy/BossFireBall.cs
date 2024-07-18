@@ -76,6 +76,7 @@ public class BossFireBall : MonoBehaviour
         {
             DamagedAction damageAct = player.GetComponent<DamagedAction>();
             damageAct.Damaged(fBoss.atkPower);
+            damageAct.KnockBack(transform.position, 7);
         }
     }
 

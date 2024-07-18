@@ -6,7 +6,17 @@ public class QuestGiver : IHaveQuest
 {
     QuestController questCon;
     InteractProperty interPP;
-    List<QuestData> myQuests;
+    List<QuestData> questList;
+    public List<QuestData> QuestList
+    {
+        get { return questList; }
+        set
+        {
+            questList = value;
+            PlayerDoneMyQuest();
+            PlayerFinMyQuest();
+        }
+    }
 
     bool playerQuestDone;
 
@@ -19,7 +29,7 @@ public class QuestGiver : IHaveQuest
 
     private void Update()
     {
-        if (myQuests.Count == 0)
+        if (questList.Count == 0)
         {
             questHave.SetActive(false);
             questDone.SetActive(false);
@@ -44,17 +54,20 @@ public class QuestGiver : IHaveQuest
         if (!questDic.ContainsKey(interPP.InteractId))
             return;
 
-        myQuests = questDic[interPP.InteractId];
+        QuestList = questDic[interPP.InteractId];
     }
 
     // 플레이어가 자신의 퀘스트 클리어 조건을 만족했는지 확인함
     public void PlayerDoneMyQuest()
     {
+        if (questList.Count == 0 || questCon.doneQuestID.Length == 0)
+            return;
+
         bool check = false;
 
-        for (int i = 0; i < myQuests.Count; i++)
+        for (int i = 0; i < questList.Count; i++)
         {
-            if (myQuests[i].questID == questCon.doneQuestID[i])
+            if (questList[i].questID == questCon.doneQuestID[i])
                 check = true;
         }
 
@@ -64,18 +77,21 @@ public class QuestGiver : IHaveQuest
     // 플레이어가 자신의 퀘스트를 완전히 클리어 했는지 확인
     public void PlayerFinMyQuest()
     {
+        if (questList.Count == 0 || questCon.finQuestID.Length == 0)
+            return;
+
         bool check = true;
 
         while (check)
         {
-            for (int i = 0; i < myQuests.Count; i++)
+            for (int i = 0; i < questList.Count; i++)
             {
-                if (myQuests[i].questID == questCon.finQuestID[i])
+                if (questList[i].questID == questCon.finQuestID[i])
                 {
-                    myQuests.RemoveAt(i);
+                    questList.RemoveAt(i);
                     break;
                 }
-                else if (i + 1 == myQuests.Count)
+                else if (i + 1 == questList.Count)
                     check = false;
             }
         }

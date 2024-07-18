@@ -59,7 +59,6 @@ public class PlayerInteract : MonoBehaviour
         if (other.gameObject.CompareTag("InteractObj"))
         {
             isMeetInteract = false;
-            pComInput.enabled = true;
             InteractCheck();
             if (pComInput == null)
                 return;

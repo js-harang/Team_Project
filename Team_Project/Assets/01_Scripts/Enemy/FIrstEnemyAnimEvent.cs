@@ -31,6 +31,7 @@ public class FIrstEnemyAnimEvent : MonoBehaviour
             {
                 DamagedAction damageAct = player.GetComponent<DamagedAction>();
                 damageAct.Damaged(atkPower);
+                damageAct.KnockBack(atkPosition.position, 7);
             }
         }
     }

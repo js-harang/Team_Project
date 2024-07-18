@@ -40,6 +40,7 @@ public class FirstBossAttactkPatterns : MonoBehaviour
             {
                 DamagedAction damageAct = player.GetComponent<DamagedAction>();
                 damageAct.Damaged(atkPower * 2);
+                damageAct.KnockBack(mouseTransform.position, 7);
             }
         }
     }
