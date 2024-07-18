@@ -19,6 +19,11 @@ public class QuestController : MonoBehaviour
     // 완전히 끝낸 퀘스트들
     public int[] finQuestID;
 
+    [SerializeField]
+    GameObject questWindow;
+    [SerializeField]
+    GameObject questInfo;
+
     private void Start()
     {
         
@@ -27,5 +32,15 @@ public class QuestController : MonoBehaviour
     private void Update()
     {
         
+    }
+
+    public void QuestWindowOpen()
+    { 
+        
+    }
+
+    public void QUestInforOpen()
+    {
+
     }
 }
