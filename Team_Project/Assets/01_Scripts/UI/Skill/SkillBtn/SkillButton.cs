@@ -149,9 +149,10 @@ public class SkillButton : MonoBehaviour
                 idx = 0;
             else
                 idx = btnSkill.skillIdx;
-            #endregion
+        #endregion
 
-        Debug.Log("저장할 인덱스 번호" + idx);
+        string i = string.Format("{0:00}",idx);
+        Debug.Log("저장할 인덱스 번호" + i);
 
         // 0000000013
         string cuid = PlayerPrefs.GetString("characteruid");
@@ -159,9 +160,9 @@ public class SkillButton : MonoBehaviour
         string url = GameManager.gm.path + "saveskill.php";
 
         WWWForm form = new WWWForm();
-        form.AddField("cuid", 0000000013);
+        form.AddField("cuid", "0000000013");
         form.AddField("skill", skill);
-        form.AddField("idx", idx);
+        form.AddField("idx", i);
         #endregion
 
         #region 데이터 베이스에 값 전달
