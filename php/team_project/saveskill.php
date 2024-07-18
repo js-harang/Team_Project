@@ -20,9 +20,9 @@ $sql = "UPDATE 	character_info
 		
 $result = mysqli_query($conn, $sql);
 
-$sql = "select	$skill
-		from	character_info
-		where	character_uid = '0000000013'";
+$sql = "SELECT	$skill
+		FROM	character_info
+		WHERE	character_uid = $cuid";
 		
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
