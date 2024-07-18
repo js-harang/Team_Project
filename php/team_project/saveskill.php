@@ -20,5 +20,13 @@ $sql = "UPDATE 	character_info
 		
 $result = mysqli_query($conn, $sql);
 
+$sql = "select	$skill
+		from	character_info
+		where	character_uid = '0000000013'";
+		
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
+echo $row[$skill];
+
 return;
 ?>
