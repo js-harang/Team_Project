@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class IHaveQuest : MonoBehaviour
 {
-    QuestData questData; 
     public List<QuestData> questDatas = new List<QuestData>();
     public Dictionary<int, List<QuestData>> questDic = new Dictionary<int, List<QuestData>>();
     string questName;
@@ -15,25 +14,28 @@ public class IHaveQuest : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log(0);
         giverId = 2000;
 
         questName = "첫 출동";
-        questData = new QuestData(questName, giverId, 0, 1000);
-        questDatas.Add(questData);
+        questDatas.Add(new QuestData(questName, giverId, 0, 1000));
 
         questName = "소재 수집";
-        questData = new QuestData(questName, giverId, 1, TargetType.Monster, 0, 5);
-        questDatas.Add(questData);
+        questDatas.Add(new QuestData(questName, giverId, 1, TargetType.Monster, 0, 5));
 
-        questDic.Add(giverId ,questDatas);
-        questDatas.Clear();
+        SaveAndClear(giverId, questDatas);
 
         giverId = 1000;
 
         questName = "자격 증명";
-        questData = new QuestData(questName, giverId, 2, TargetType.Monster, 1000, 1);
-        questDatas.Add(questData);
+        questDatas.Add(new QuestData(questName, giverId, 2, TargetType.Monster, 1000, 1));
 
+        SaveAndClear(giverId, questDatas);
+    }
+
+    void SaveAndClear(int giverId, List<QuestData> questDatas)
+    {
         questDic.Add(giverId, questDatas);
+        this.questDatas.Clear();
     }
 }

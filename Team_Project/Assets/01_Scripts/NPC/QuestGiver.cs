@@ -6,6 +6,7 @@ public class QuestGiver : IHaveQuest
 {
     QuestController questCon;
     InteractProperty interPP;
+    List<QuestData> myQuests;
 
     bool playerQuestDone;
 
@@ -13,6 +14,7 @@ public class QuestGiver : IHaveQuest
     {
         interPP = GetComponentInChildren<InteractProperty>();
         questCon = FindObjectOfType<QuestController>().GetComponent<QuestController>();
+        GetMyQuest();
     }
 
     private void Update()
@@ -38,7 +40,10 @@ public class QuestGiver : IHaveQuest
 
     void GetMyQuest()
     {
-        
+        if (!questDic.ContainsKey(interPP.InteractId))
+            return;
+
+        questDatas = questDic[2000];
     }
 
     public void PlayerDoneMyQuest()
