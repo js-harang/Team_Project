@@ -16,7 +16,7 @@ if ($conn->connect_error) {
 
 $sql = "UPDATE 	character_info
 		SET		'".$skill."' = '".$idx."'
-		WHERE 	character_uid = '".$cuid."'";
+		WHERE 	character_uid = '0000000013'";
 		
 $result = mysqli_query($conn, $sql);
 

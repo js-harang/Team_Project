@@ -151,6 +151,8 @@ public class SkillButton : MonoBehaviour
                 idx = btnSkill.skillIdx;
             #endregion
 
+        Debug.Log("저장할 인덱스 번호" + idx);
+
         // 0000000013
         string cuid = PlayerPrefs.GetString("characteruid");
         string skill = "skill_" + buttonIdx;
