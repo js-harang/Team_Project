@@ -15,10 +15,18 @@ if ($conn->connect_error) {
 }
 
 $sql = "UPDATE 	character_info
-		SET		'".$skill."' = '".$idx."'
-		WHERE 	character_uid = '".$cuid."'";
+		SET		$skill = $idx
+		WHERE 	character_uid = $cuid";
 		
 $result = mysqli_query($conn, $sql);
+
+$sql = "SELECT	$skill
+		FROM	character_info
+		WHERE	character_uid = $cuid";
+		
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
+echo $row[$skill];
 
 return;
 ?>

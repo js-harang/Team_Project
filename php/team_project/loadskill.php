@@ -13,9 +13,9 @@ if ($conn->connect_error) {
 	echo "Failed to connect to MySQL : " + $mysqli->connect_error;
 }
 
-$sql = "select	$skill
-		from	character_info
-		where	character_uid = '0000000013'";
+$sql = "SELECT	$skill
+		FROM	character_info
+		WHERE	character_uid = $cuid";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 echo $row[$skill];
