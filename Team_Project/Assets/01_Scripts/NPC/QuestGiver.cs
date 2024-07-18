@@ -13,6 +13,7 @@ public class QuestGiver : IHaveQuest
     private void Start()
     {
         interPP = GetComponentInChildren<InteractProperty>();
+        Debug.Log(interPP.InteractId);
         questCon = FindObjectOfType<QuestController>().GetComponent<QuestController>();
         GetMyQuest();
     }

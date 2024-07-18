@@ -14,7 +14,6 @@ public class IHaveQuest : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log(0);
         giverId = 2000;
 
         questName = "ù �⵿";
