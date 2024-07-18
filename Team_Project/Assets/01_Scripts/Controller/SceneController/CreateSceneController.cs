@@ -7,6 +7,13 @@ public class CreateSceneController : MonoBehaviour
 {
     [SerializeField] TMP_InputField characterName;
 
+    int characterIndex = 0;
+
+    public void SelectNum(int num)
+    {
+        characterIndex = num;
+    }
+
     public void CreateBtn()
     {
         if (characterName.text == "")
