@@ -20,6 +20,8 @@ public class QuestController : MonoBehaviour
     public int[] finQuestID;
 
     [SerializeField]
+    GameObject QuestListPref;
+    [SerializeField]
     GameObject questWindow;
     [SerializeField]
     GameObject questInfo;
@@ -35,8 +37,8 @@ public class QuestController : MonoBehaviour
     }
 
     public void QuestWindowOpen()
-    { 
-        
+    {
+        questWindow.SetActive(true);
     }
 
     public void QUestInforOpen()
