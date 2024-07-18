@@ -13,14 +13,13 @@ public class QuestGiver : IHaveQuest
     private void Start()
     {
         interPP = GetComponentInChildren<InteractProperty>();
-        Debug.Log(interPP.InteractId);
         questCon = FindObjectOfType<QuestController>().GetComponent<QuestController>();
         GetMyQuest();
     }
 
     private void Update()
     {
-        if (questDatas.Count == 0)
+        if (myQuests.Count == 0)
         {
             questHave.SetActive(false);
             questDone.SetActive(false);
@@ -44,16 +43,16 @@ public class QuestGiver : IHaveQuest
         if (!questDic.ContainsKey(interPP.InteractId))
             return;
 
-        questDatas = questDic[2000];
+        myQuests = questDic[interPP.InteractId];
     }
 
     public void PlayerDoneMyQuest()
     {
         bool check = false;
 
-        for (int i = 0; i < questDatas.Count; i++)
+        for (int i = 0; i < myQuests.Count; i++)
         {
-            if (questDatas[i].questId == questCon.doneQuestId[i])
+            if (myQuests[i].questId == questCon.doneQuestId[i])
                 check = true;
         }
 
@@ -66,14 +65,14 @@ public class QuestGiver : IHaveQuest
 
         while (check)
         {
-            for (int i = 0; i < questDatas.Count; i++)
+            for (int i = 0; i < myQuests.Count; i++)
             {
-                if (questDatas[i].questId == questCon.finQuestId[i])
+                if (myQuests[i].questId == questCon.finQuestId[i])
                 {
-                    questDatas.RemoveAt(i);
+                    myQuests.RemoveAt(i);
                     break;
                 }
-                else if (i + 1 == questDatas.Count)
+                else if (i + 1 == myQuests.Count)
                     check = false;
             }
         }
