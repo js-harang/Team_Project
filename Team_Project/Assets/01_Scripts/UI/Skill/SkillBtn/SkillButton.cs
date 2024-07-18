@@ -14,7 +14,7 @@ public class SkillButton : MonoBehaviour
 
     // 현재 버튼 이름
     public int buttonIdx;
-    
+
     [Space(10)]
     // 스킬 가져올 디렉토리
     [SerializeField] SkillDirectory skillDirectory;
@@ -29,7 +29,7 @@ public class SkillButton : MonoBehaviour
     // 자동으로 참조됨
     [SerializeField] Attack btnSkill;
     public Attack Skill { get { return btnSkill; } set { btnSkill = value; } }
-    
+
     [SerializeField] Image skillIcon;
     public Image SkillIcon { get { return skillIcon; } set { skillIcon = value; } }
     #endregion
@@ -79,7 +79,7 @@ public class SkillButton : MonoBehaviour
         }
     }
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     #region 공격 실행 및 쿨타임
     void AttackProcess()
@@ -129,18 +129,30 @@ public class SkillButton : MonoBehaviour
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    #region LoadSkillData 스킬을 데이터베이스 에서 불러오기
+    void LoadSkillData()
+    {
+        StartCoroutine(LoadSkill());
+    }
+
+    /// <summary>
+    /// 데이터베이스 에서 스킬 정보를 불러와 스킬 버튼에 할당
+    /// </summary>
+    /// <returns></returns>
     IEnumerator LoadSkill()
     {
+        #region 데이터베이스 에 보낼 데이터
         // 0000000013
         string cuid = PlayerPrefs.GetString("characteruid");
         string skill = "skill_" + buttonIdx;
         string url = GameManager.gm.path + "loadskill.php";
-        Debug.Log(skill);
 
         WWWForm form = new WWWForm();
         form.AddField("cuid", cuid);
         form.AddField("skill", skill);
+        #endregion
 
+        #region 데이터베이스 에 값 전달
         using (UnityWebRequest www = UnityWebRequest.Post(url, form))
         {
             yield return www.SendWebRequest();
@@ -156,45 +168,70 @@ public class SkillButton : MonoBehaviour
                     SkillIcon.sprite = Skill.sprite;
                     SetSkillData();
                 }
+            }
+            else
+                Debug.Log(www.error);
+        }
+        #endregion
+    }
+    #endregion
 
-                if (btnSkill != null)
-                {
-                    if (chkDup.CheckSkillDuplication(idx))
-                    {
-                        Debug.Log("중복 발견 " + this.name);
-                    }
-                    // 0 이면 기본적으로 null 값임
-                }
+    #region SaveSkillData 스킬을 데이터베이스에 저장
+    public void SaveSkillData()
+    {
+        StartCoroutine(SaveSkill());
+    }
+
+    IEnumerator SaveSkill()
+    {
+        #region 데이터 베이스에 보낼 정보
+
+            #region 저장할 스킬 인덱스 확인
+            int idx;
+            if (btnSkill == null)
+                idx = 0;
+            else
+                idx = btnSkill.skillIdx;
+            #endregion
+
+        // 0000000013
+        string cuid = PlayerPrefs.GetString("characteruid");
+        string skill = "skill_" + buttonIdx;
+        string url = GameManager.gm.path + "saveskill.php";
+
+        WWWForm form = new WWWForm();
+        form.AddField("cuid", cuid);
+        form.AddField("skill", skill);
+        form.AddField("idx", idx);
+        #endregion
+
+        #region 데이터 베이스에 값 전달
+        using (UnityWebRequest www = UnityWebRequest.Post(url, form))
+        {
+            yield return www.SendWebRequest();
+            if (www.error == null)
+            {
+                Debug.Log("스킬 데이터 저장 성공");
             }
             else
             {
                 Debug.Log(www.error);
             }
         }
+        #endregion
     }
+    #endregion
 
-    void LoadSkillData()
-    {
-        StartCoroutine(LoadSkill());
-    }
-
-    public void SaveSkillData()
-    {
-        int idx;
-        if (btnSkill == null)
-            idx = 0;
-        else
-           idx = btnSkill.skillIdx;
-
-        PlayerPrefs.SetInt("skill_" + buttonIdx, idx);
-        PlayerPrefs.Save();
-    }
-
+    #region SetSkillData 스킬 버튼에 할당된 스킬을 자식오브젝트인 스킬 데이터에 할당
+    /// <summary>
+    /// 스킬 버튼에 할당된 스킬을 자식오브젝트인 스킬 데이터에 할당
+    /// </summary>
     public void SetSkillData()
     {
         skillData.Skill = Skill;
         skillData.SkillIcon.sprite = SkillIcon.sprite;
     }
+    #endregion
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
