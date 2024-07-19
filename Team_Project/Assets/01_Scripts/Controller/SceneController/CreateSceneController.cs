@@ -6,12 +6,21 @@ using UnityEngine.Networking;
 public class CreateSceneController : MonoBehaviour
 {
     [SerializeField] TMP_InputField characterName;
+    [SerializeField] TextMeshProUGUI nameTxt;
+    [SerializeField] TextMeshProUGUI infoTxt;
+
+    [SerializeField, Space(10)] GameObject[] Illusts;
 
     int characterIndex = 0;
 
     public void SelectNum(int num)
     {
         characterIndex = num;
+
+        foreach (GameObject obj in Illusts)
+            obj.SetActive(false);
+
+        Illusts[num].SetActive(true);
     }
 
     public void CreateBtn()

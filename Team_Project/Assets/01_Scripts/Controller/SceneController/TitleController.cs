@@ -76,6 +76,9 @@ public class TitleController : MonoBehaviour
                 SaveDataPlayerPrefs();
                 break;
         }
+
+
+        Debug.Log(pw.text);
     }
 
     /// <summary>

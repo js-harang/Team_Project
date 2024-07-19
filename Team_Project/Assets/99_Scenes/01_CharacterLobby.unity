@@ -19687,6 +19687,10 @@ MonoBehaviour:
   boolIsFullScreen: 0
   isPreferencePopup: 0
   path: http://192.168.52.187/team_project/
+  currentExp: 0
+  maxExp: 0
+  requiredExp: 0
+  lv: 0
 --- !u!4 &1106321511
 Transform:
   m_ObjectHideFlags: 0
@@ -28361,10 +28365,10 @@ RectTransform:
   m_Father: {fileID: 1134826480}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -175, y: -155}
-  m_SizeDelta: {x: 1400, y: 500}
+  m_SizeDelta: {x: -520, y: -580}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1527338878
 MonoBehaviour:

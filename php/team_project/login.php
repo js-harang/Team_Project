@@ -32,7 +32,7 @@ return;
 
 function get_enc_str($conn, $str)
 {
-    $sql = "select password($str) as enc_str";
+    $sql = "select password('$str') as enc_str";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
 
