@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,7 @@ public class UIController : MonoBehaviour
     [SerializeField] GameObject statusUI;
     [SerializeField] GameObject escMenuUI;
     [SerializeField] Canvas gameUI;
+    [SerializeField] TextMeshProUGUI lvText;
 
     #region 플레이어 슬라이더 바
     [Space(10)]
@@ -20,15 +22,16 @@ public class UIController : MonoBehaviour
     [SerializeField] GameObject gameOverUI;
 
     PlayerState pState;
-    PlayerCombat player;
+    // PlayerCombat player;
 
     [SerializeField, Space(10)] GameObject preferencePopup;
 
     private void Start()
     {
         pState = FindObjectOfType<PlayerState>().GetComponent<PlayerState>();
-        player = pState.GetComponent<PlayerCombat>();
-
+        // player = pState.GetComponent<PlayerCombat>();
+        GameManager.gm.UI = this.GetComponent<UIController>();
+        lvText.text =  "Lv." + GameManager.gm.LV;
     }
 
     private void Update()
@@ -69,6 +72,11 @@ public class UIController : MonoBehaviour
         mpSld.value = currentMp / maxMp;
     }
     #endregion
+
+    public void SetLvText(int lv)
+    {
+        lvText.text = "Lv." + lv;
+    }
 
     // 스테이터스 UI 활성 / 비활성화
     public void StatusOnOff()

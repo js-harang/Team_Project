@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour
     public string path;
 
     UIController ui;
+    public UIController UI { get { return ui; } set { ui = value; } }
 
     #region 경험치 관련
     [SerializeField] float currentExp;
@@ -68,8 +69,10 @@ public class GameManager : MonoBehaviour
         ui = FindObjectOfType<UIController>().GetComponent<UIController>();
         PlayerPrefs.DeleteKey("uid");
         PlayerPrefs.DeleteKey("characteruid");
+        
         maxExp = 100;
         SetMaxExp();
+        UI.SetEXPSlider(currentExp, maxExp);
     }
 
     /// <summary>
@@ -84,24 +87,34 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("99_LoadingScene");
     }
 
+    public void SumEXP(int exp)
+    {
+        currentExp += exp;
+        ChkExp();
+
+        UI.SetEXPSlider(currentExp, maxExp);
+    }
+
     void ChkExp()
     {
-        if (currentExp >= maxExp)
+        while (currentExp >= maxExp)
         {
             currentExp -= maxExp;
             LV++;
+            Debug.Log("레벨업");
+            UI.SetLvText(LV);
+            Debug.Log("현재 레벨 : " + LV);
 
             SetMaxExp();
         }
-        ui.SetEXPSlider(currentExp, maxExp);
     }
+
     void SetMaxExp()
     {
         float tmp = 0f;
-        int i = LV - 1;
-        tmp = maxExp * (requiredExp * i);
+        tmp = maxExp * (requiredExp * (LV - 1));
         maxExp += (int)tmp;
 
-        Debug.Log("maxExp : " + maxExp);
+        Debug.Log("다음 필요 경험치 : " + maxExp);
     }
 }

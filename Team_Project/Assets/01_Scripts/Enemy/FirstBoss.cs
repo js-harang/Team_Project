@@ -13,6 +13,8 @@ public class FirstBoss : BossFSM
     [SerializeField]
     float limitAttackRange;
 
+    [SerializeField] int exp;
+
     public override void BossStart()
     {
         //필요한 참조들 가져옴
@@ -164,6 +166,8 @@ public class FirstBoss : BossFSM
         else
         {
             BossStateUpdate();
+
+            GameManager.gm.SumEXP(exp);
             BState = BossState.Die;
         }
     }

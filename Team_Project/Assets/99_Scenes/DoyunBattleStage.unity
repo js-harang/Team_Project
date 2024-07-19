@@ -54150,6 +54150,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3d620f36e52dff4b82a42acd5710b75, type: 3}
+--- !u!114 &1637219663 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6118801939409646161, guid: c6acf9d249963ec43aa429700016ee14, type: 3}
+  m_PrefabInstance: {fileID: 1104604745142129568}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1644625742
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54478,6 +54489,10 @@ PrefabInstance:
       propertyPath: mpSld
       value: 
       objectReference: {fileID: 6610723330423819280}
+    - target: {fileID: 1332281161109069133, guid: 023fac8557a35594bb6c6067611fa018, type: 3}
+      propertyPath: atkPower
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 5383289247254834283, guid: 023fac8557a35594bb6c6067611fa018, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -54990,7 +55005,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1595298861242976700, guid: 4f00990e68261f944a1451fe7f47a31c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7818754893700672037, guid: 4f00990e68261f944a1451fe7f47a31c, type: 3}
+      propertyPath: exp
+      value: 1000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f00990e68261f944a1451fe7f47a31c, type: 3}
@@ -55462,6 +55481,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1104604744942990609, guid: c6acf9d249963ec43aa429700016ee14, type: 3}
+      propertyPath: lvText
+      value: 
+      objectReference: {fileID: 1637219663}
     - target: {fileID: 1104604744942990609, guid: c6acf9d249963ec43aa429700016ee14, type: 3}
       propertyPath: gameOverUI
       value: 

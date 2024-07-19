@@ -7,6 +7,8 @@ public class FirstEnemy : EnemyFSM
     [SerializeField]
     float limitAttackRange;
 
+    [SerializeField] int exp;
+
     public override void EnemyStart()
     {
         //필요한 참조들 가져옴
@@ -150,6 +152,8 @@ public class FirstEnemy : EnemyFSM
         else
         {
             EnemyStateUpdate();
+
+            GameManager.gm.SumEXP(exp);
             EState = EnemyState.Die;
         }
     }

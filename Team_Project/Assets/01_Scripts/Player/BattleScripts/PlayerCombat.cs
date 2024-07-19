@@ -98,7 +98,7 @@ public class PlayerCombat : DamagedAction
             if (!attack.isComboing)
                 currentMp -= attack.useMana;
 
-            ui.SetMpSlider(CurrentMp, MaxMp);
+            GameManager.gm.UI.SetMpSlider(CurrentMp, MaxMp);
 
             anim.Play("Attack", 0, 0);
 
@@ -196,7 +196,7 @@ public class PlayerCombat : DamagedAction
 
         currentHp -= damage;
 
-        ui.SetHpSlider(CurrentHp, MaxHp);
+        GameManager.gm.UI.SetHpSlider(CurrentHp, MaxHp);
 
         if (currentHp > 0)
         {
