@@ -15,7 +15,7 @@ if ($conn->connect_error) {
 
 if (search($conn, $userid) === false) {
     $sql = "insert into user(userid, userpw)
-            values ('$userid', password($userpw))";
+            values ('$userid', password('$userpw'))";
     $result = mysqli_query($conn, $sql);
     
     if ($result)
