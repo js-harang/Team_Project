@@ -59,11 +59,13 @@ public class DropSkill : MonoBehaviour, IPointerEnterHandler, IDropHandler, IPoi
             {
                 skillButton.Skill = dragSkillData.Skill;
                 skillButton.SkillIcon.sprite = dragSkillData.SkillIcon.sprite;
+                skillButton.btnSkillIdx = dragSkillData.SkillButton.btnSkillIdx;
 
                 dragSkillData.Skill = null;
                 dragSkillData.SkillIcon.sprite = null;
                 dragSkillData.SkillButton.Skill = null;
                 dragSkillData.SkillButton.SkillIcon.sprite = null;
+                dragSkillData.SkillButton.btnSkillIdx = 0;
 
                 skillButton.SetSkillData();
                 sBM.SaveSkillData();
@@ -87,6 +89,7 @@ public class DropSkill : MonoBehaviour, IPointerEnterHandler, IDropHandler, IPoi
 
             skillButton.Skill = dragSkillData.Skill;
             skillButton.SkillIcon.sprite = dragSkillData.Skill.sprite;
+            skillButton.btnSkillIdx = dragSkillData.Skill.skillIdx;
 
             skillButton.SetSkillData();
             sBM.SaveSkillData();

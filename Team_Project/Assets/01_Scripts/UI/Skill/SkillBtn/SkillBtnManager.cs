@@ -49,35 +49,34 @@ public class SkillBtnManager : MonoBehaviour
     {
         // 스트링빌더 로 합친뒤 값 전달하기
         for (int i = 0; i < btns.Length; i++)
-        {
             sb.Append(string.Format("{0:00}", btns[i].btnSkillIdx));
-        }
-        Debug.Log(sb);
+
 
         // 데이터 베이스에 값 전달하기
         StartCoroutine(SaveSkill());
+        
+        sb.Clear();
     }
 
     IEnumerator SaveSkill()
     {
         string cuid = PlayerPrefs.GetString("characteruid");
         string url = GameManager.gm.path + "saveskill.php";
-
+        string num = sb.ToString();
+        Debug.Log(num);
+        
         WWWForm form = new WWWForm();
-        form.AddField("cuid", "0000000013");
-        form.AddField("num", sb.ToString());
+        form.AddField("cuid", "0000000018");
+        form.AddField("num", num);
 
         using (UnityWebRequest www = UnityWebRequest.Post(url, form))
         {
             yield return www.SendWebRequest();
+
             if (www.error == null)
-            {
-                Debug.Log(www.downloadHandler + "로 저장 완료");
-            }
+                Debug.Log(www.downloadHandler.text + "로 저장 완료");
             else
-            {
                 Debug.Log(www.error);
-            }
         }
     }
     #endregion
