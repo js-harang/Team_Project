@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 // npc와의 대화 단계 열거형 예)인사, 선택지 고르기 등
 public enum InteractStep
@@ -103,11 +104,12 @@ public class InteractController : MonoBehaviour
     [SerializeField, Space(10)] GameObject questListPref;
     [SerializeField] GameObject questWindowUI;
     [SerializeField] Transform questScrollContent;
-    [SerializeField] GameObject questInfoUI;
-    [SerializeField] TMP_Text questName_Txt;
-    [SerializeField] TMP_Text questDetail_Txt;
-    [SerializeField] TMP_Text goldReward_Txt;
-    [SerializeField] TMP_Text expReward_Txt;
+    public GameObject questInfoUI;
+    public TMP_Text questName_Txt;
+    public TMP_Text questDetail_Txt;
+    public TMP_Text goldReward_Txt;
+    public TMP_Text expReward_Txt;
+    public Button questAccept_Btn;
 
     // 현재 눌린 NPC 메뉴 버튼을 담는 변수
     GameObject npcMenu_Btn;
@@ -239,7 +241,7 @@ public class InteractController : MonoBehaviour
             {
                 dialog_Text.text += letter;
 
-                if (stopTalking)                        // 출력중 X 키를 누르면 스킵하고 전체 출력
+                if (stopTalking)                        // 출력중 Z 키를 누르면 스킵하고 전체 출력
                     continue;
 
                 yield return new WaitForSeconds(0.05f);
@@ -346,13 +348,8 @@ public class InteractController : MonoBehaviour
             ShowQuest showQuest = questList.gameObject.GetComponent<ShowQuest>();
             questList.transform.SetParent(questScrollContent);
             showQuest.myData = nowGiver.QuestList[i];
+            showQuest.interCon = this;
             showQuest.CreateList();
-            showQuest.questCon = questCon;
-            showQuest.questInfoUI = questInfoUI;
-            showQuest.questName_Txt = questName_Txt;
-            showQuest.questDetail_Txt = questDetail_Txt;
-            showQuest.goldReward_Txt = goldReward_Txt;
-            showQuest.expReward_Txt = expReward_Txt;
         }
     }
 

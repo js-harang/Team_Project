@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -9,18 +7,26 @@ public class ShowQuest : MonoBehaviour
 {
     public QuestData myData;
     public QuestController questCon;
+    public InteractController interCon;
     [SerializeField]
     TMP_Text showQuestName;
 
     // 퀘스트 정보창의 UI 변수들
-    public GameObject questInfoUI;
-    public TMP_Text questName_Txt;
-    public TMP_Text questDetail_Txt;
-    public TMP_Text goldReward_Txt;
-    public TMP_Text expReward_Txt;
+    GameObject questInfoUI;
+    TMP_Text questName_Txt;
+    TMP_Text questDetail_Txt;
+    TMP_Text goldReward_Txt;
+    TMP_Text expReward_Txt;
+    Button questAccept_Btn;
 
     public void CreateList()
     {
+        questInfoUI = interCon.questInfoUI;
+        questName_Txt = interCon.questName_Txt;
+        questDetail_Txt = interCon.questDetail_Txt;
+        goldReward_Txt = interCon.goldReward_Txt;
+        expReward_Txt = interCon.expReward_Txt;
+        questAccept_Btn = interCon.questAccept_Btn;
         showQuestName.text = myData.questName;
     }
 
@@ -33,8 +39,11 @@ public class ShowQuest : MonoBehaviour
         PrintQuestDetail(myData.questID);
         goldReward_Txt.text = "Gold : " + myData.goldReward;
         expReward_Txt.text = "Exp : " + myData.expReward;
+        QuestAccept questAccept = questAccept_Btn.GetComponent<QuestAccept>();
+        questAccept.showQ = this;
     }
 
+    // 퀘스트의 상세 텍스트를 텍스트 파일에서 읽어옴
     void PrintQuestDetail(int questID)
     {
         string filePath = $"C:\\Users\\YONSAI\\Desktop\\Team_Project\\Team_Project\\Assets\\21_Data\\Quest Detail\\{questID}.txt";

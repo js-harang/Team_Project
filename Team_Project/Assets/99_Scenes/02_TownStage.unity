@@ -1025,30 +1025,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2040632207011309829, guid: 8775acec7efed374898815f3be4b85c0, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2040632207011309829, guid: 8775acec7efed374898815f3be4b85c0, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2040632207011309829, guid: 8775acec7efed374898815f3be4b85c0, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: -17
-      objectReference: {fileID: 0}
-    - target: {fileID: 3456707237620078792, guid: 8775acec7efed374898815f3be4b85c0, type: 3}
-      propertyPath: m_Spacing
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4060682123948593536, guid: 8775acec7efed374898815f3be4b85c0, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4647744316651363859, guid: 8775acec7efed374898815f3be4b85c0, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4647744317304588226, guid: 8775acec7efed374898815f3be4b85c0, type: 3}
       propertyPath: m_Name
       value: InteractController
@@ -1105,32 +1081,23 @@ PrefabInstance:
       propertyPath: playerInventory
       value: 
       objectReference: {fileID: 6164712921395010880}
-    - target: {fileID: 6707032973957754362, guid: 8775acec7efed374898815f3be4b85c0, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7180115563357554652, guid: 8775acec7efed374898815f3be4b85c0, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7180115563357554652, guid: 8775acec7efed374898815f3be4b85c0, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7180115563357554652, guid: 8775acec7efed374898815f3be4b85c0, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9157524161128718023, guid: 8775acec7efed374898815f3be4b85c0, type: 3}
-      propertyPath: m_Horizontal
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9157524161128718023, guid: 8775acec7efed374898815f3be4b85c0, type: 3}
-      propertyPath: m_ScrollSensitivity
-      value: 100
-      objectReference: {fileID: 0}
+    - target: {fileID: 4647744317304588229, guid: 8775acec7efed374898815f3be4b85c0, type: 3}
+      propertyPath: questAccept_Btn
+      value: 
+      objectReference: {fileID: 1359416330}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8775acec7efed374898815f3be4b85c0, type: 3}
+--- !u!114 &1359416330 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4493130413517719196, guid: 8775acec7efed374898815f3be4b85c0, type: 3}
+  m_PrefabInstance: {fileID: 1359416329}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1845066045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1541355440
 GameObject:
   m_ObjectHideFlags: 0
@@ -1337,6 +1304,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1845066045 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 841487964968978195, guid: 8775acec7efed374898815f3be4b85c0, type: 3}
+  m_PrefabInstance: {fileID: 1359416329}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1845066049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1845066045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62893fb12b5ee214fa4f05d0d3a5ad7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showQ: {fileID: 0}
 --- !u!1 &2033952631
 GameObject:
   m_ObjectHideFlags: 0
