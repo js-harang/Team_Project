@@ -59,6 +59,28 @@ public class QuestGiver : IHaveQuest
         QuestList = questDic[interPP.InteractId];
     }
 
+    // 플레이어가 자신의 퀘스트를 얼마나 수주했는지 확인
+    public void PlayerAcceptsMyQuests()
+    {
+        int count = 0;
+
+        for (int i = 0; i < myQuestCount; i++)
+        {
+            for (int j = 0; j < questCon.MyQuests.Count; j++)
+            {
+                if (questList[i].questID == questCon.MyQuests[j].questID)
+                {
+                    count++;
+                    break;
+                }
+            }
+        }
+        if (count == myQuestCount)
+            questHave.SetActive(false);
+        else
+            questHave.SetActive(true);
+    }
+
     // 플레이어가 자신의 퀘스트 클리어 조건을 만족했는지 확인함
     public void PlayerDoneMyQuest()
     {
@@ -73,7 +95,7 @@ public class QuestGiver : IHaveQuest
 
         bool check = false;
 
-        for (int i = 0; i < questList.Count; i++)
+        for (int i = 0; i < myQuestCount; i++)
         {
             if (questList[i].questID == questCon.doneQuestID[i])
                 check = true;
@@ -95,7 +117,7 @@ public class QuestGiver : IHaveQuest
 
         while (check)
         {
-            for (int i = 0; i < questList.Count; i++)
+            for (int i = 0; i < myQuestCount; i++)
             {
                 if (questList[i].questID == questCon.finQuestID[i])
                 {

@@ -61,7 +61,7 @@ public class InteractController : MonoBehaviour
 
     // 플레이어로부터 전달받을 현재 대화중인 상대 오브젝트의 정보
     public InteractProperty interPP;
-    QuestGiver nowGiver;
+    public QuestGiver nowGiver;
 
     public QuestController questCon;
 
@@ -178,6 +178,7 @@ public class InteractController : MonoBehaviour
         gameUI.SetActive(true);
         NPCTypeMenuOnOff();
         ChoiceMenuOnOff();
+        CloseQuestWindow();
         interPP.ImTalking = false;
         pS.UnitState = UnitState.Idle;
     }

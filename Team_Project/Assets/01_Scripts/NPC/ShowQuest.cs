@@ -71,6 +71,7 @@ public class ShowQuest : MonoBehaviour
     public void AcceptBtnOnClicked()
     {
         questCon.MyQuests.Add(myData);
+        interCon.nowGiver.PlayerAcceptsMyQuests();
         isAccept_Txt.text = "¼ö¶ô Áß";
         questAccept_Btn.enabled = false;
     }
