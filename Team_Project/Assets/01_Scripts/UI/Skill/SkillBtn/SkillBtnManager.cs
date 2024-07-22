@@ -16,7 +16,6 @@ public class SkillBtnManager : MonoBehaviour
     {
         sb = new StringBuilder();
         LoadSkillData();
-        // SaveSkillData();
     }
     /// <summary>
     /// 모든 버튼에 등록할 스킬번호 가 있는지 조회
@@ -44,7 +43,9 @@ public class SkillBtnManager : MonoBehaviour
         }
         return isDuplication;
     }
-    void SaveSkillData()
+
+    #region 스킬 저장
+    public void SaveSkillData()
     {
         // 스트링빌더 로 합친뒤 값 전달하기
         for (int i = 0; i < btns.Length; i++)
@@ -54,8 +55,34 @@ public class SkillBtnManager : MonoBehaviour
         Debug.Log(sb);
 
         // 데이터 베이스에 값 전달하기
-
+        StartCoroutine(SaveSkill());
     }
+
+    IEnumerator SaveSkill()
+    {
+        string cuid = PlayerPrefs.GetString("characteruid");
+        string url = GameManager.gm.path + "saveskill.php";
+
+        WWWForm form = new WWWForm();
+        form.AddField("cuid", "0000000013");
+        form.AddField("num", sb.ToString());
+
+        using (UnityWebRequest www = UnityWebRequest.Post(url, form))
+        {
+            yield return www.SendWebRequest();
+            if (www.error == null)
+            {
+                Debug.Log(www.downloadHandler + "로 저장 완료");
+            }
+            else
+            {
+                Debug.Log(www.error);
+            }
+        }
+    }
+    #endregion
+
+    #region 스킬 불러오기
     void LoadSkillData()
     {
         // 데이터 베이스 에서 값 불러오기
@@ -106,4 +133,5 @@ public class SkillBtnManager : MonoBehaviour
         }
         #endregion
     }
+    #endregion
 }
