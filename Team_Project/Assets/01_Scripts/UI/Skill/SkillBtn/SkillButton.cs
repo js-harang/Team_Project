@@ -133,7 +133,7 @@ public class SkillButton : MonoBehaviour
 
     // 스킬 저장, 불러오기
 
-    #region SaveSkillData 스킬을 데이터베이스에 저장
+/*    #region SaveSkillData 스킬을 데이터베이스에 저장
     public void SaveSkillData()
     {
         StartCoroutine(SaveSkill());
@@ -177,45 +177,6 @@ public class SkillButton : MonoBehaviour
         }
         #endregion
     }
-    #endregion
-/*
-    #region LoadSkillData 스킬을 데이터베이스 에서 불러오기
-    void LoadSkillData()
-    {
-        StartCoroutine(LoadSkill());
-    }
-
-    /// <summary>
-    /// 데이터베이스 에서 스킬 정보를 불러와 스킬 버튼에 할당
-    /// </summary>
-    /// <returns></returns>
-    IEnumerator LoadSkill()
-    {
-        #region 데이터베이스 에 보낼 데이터
-        // 0000000013
-        string cuid = PlayerPrefs.GetString("characteruid");
-        string skill = "skill_" + buttonIdx;
-        string url = GameManager.gm.path + "loadskill.php";
-
-        WWWForm form = new WWWForm();
-        form.AddField("cuid", 0000000013);
-        form.AddField("skill", skill);
-        #endregion
-
-        #region 데이터베이스 에 값 전달
-        using (UnityWebRequest www = UnityWebRequest.Post(url, form))
-        {
-            yield return www.SendWebRequest();
-            if (www.error == null)
-            {
-                int idx = int.Parse(www.downloadHandler.text);
-                Debug.Log(idx);
-            }
-            else
-                Debug.Log(www.error);
-        }
-        #endregion
-    }
     #endregion*/
 
     public void BtnSkillSet()
@@ -253,8 +214,6 @@ public class SkillButton : MonoBehaviour
         coolTime = 0f;
 
         chkDup = GetComponentInParent<SkillBtnManager>();
-
-        // LoadSkillData();
     }
     #endregion
 }

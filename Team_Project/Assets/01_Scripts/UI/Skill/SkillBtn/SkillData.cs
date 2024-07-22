@@ -27,6 +27,7 @@ public class SkillData : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public SkillButton SkillButton { get { return skillButton; } set { skillButton = value; } }
     #endregion
 
+    [SerializeField] SkillBtnManager sBM;
     #region 캔바스 변수
     Transform canvas;
     CanvasGroup canvasGroup;
@@ -34,6 +35,7 @@ public class SkillData : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     private void Awake()
     {
+        sBM = GetComponentInParent<SkillBtnManager>();
         skillButton = GetComponentInParent<SkillButton>();
         skillIcon = GetComponent<Image>();
 
@@ -93,7 +95,7 @@ public class SkillData : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
             return;
 
         // 부모 오브젝트가 캔버스 와 같을때
-        SkillButton.SaveSkillData();
+        sBM.SaveSkillData();
     }
     #endregion
     public void SetParent()

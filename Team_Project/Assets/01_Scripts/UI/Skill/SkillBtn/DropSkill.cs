@@ -13,11 +13,11 @@ public class DropSkill : MonoBehaviour, IPointerEnterHandler, IDropHandler, IPoi
     [Space(10)]
     private SkillButton skillButton;
 
-    SkillBtnManager chkDup;
+    SkillBtnManager sBM;
     private void Awake()
     {
         skillButton = GetComponent<SkillButton>();
-        chkDup = GetComponentInParent<SkillBtnManager>();
+        sBM = GetComponentInParent<SkillBtnManager>();
     }
 
     // 무언가 드랍 될때
@@ -66,7 +66,7 @@ public class DropSkill : MonoBehaviour, IPointerEnterHandler, IDropHandler, IPoi
                 dragSkillData.SkillButton.SkillIcon.sprite = null;
 
                 skillButton.SetSkillData();
-                skillButton.SaveSkillData();
+                sBM.SaveSkillData();
             }
             else
                 return;
@@ -82,14 +82,14 @@ public class DropSkill : MonoBehaviour, IPointerEnterHandler, IDropHandler, IPoi
         {
             SkillSlot dragSkillData = eventData.pointerDrag.GetComponent<SkillSlot>();
 
-            if (chkDup.CheckSkillDuplication(dragSkillData.Skill.skillIdx))
+            if (sBM.CheckSkillDuplication(dragSkillData.Skill.skillIdx))
                 return;
 
             skillButton.Skill = dragSkillData.Skill;
             skillButton.SkillIcon.sprite = dragSkillData.Skill.sprite;
 
             skillButton.SetSkillData();
-            skillButton.SaveSkillData();
+            sBM.SaveSkillData();
         }
     }
     #endregion
@@ -137,7 +137,7 @@ public class DropSkill : MonoBehaviour, IPointerEnterHandler, IDropHandler, IPoi
 
             SkillSlot dragSkillData = eventData.pointerDrag.GetComponent<SkillSlot>();
 
-            if (chkDup.CheckSkillDuplication(dragSkillData.Skill.skillIdx))
+            if (sBM.CheckSkillDuplication(dragSkillData.Skill.skillIdx))
             {
                 Debug.Log("중복 발견 " + this.name);
                 return;
