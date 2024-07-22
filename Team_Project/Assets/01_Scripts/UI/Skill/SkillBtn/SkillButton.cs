@@ -8,13 +8,13 @@ public class SkillButton : MonoBehaviour
 {
     // 태그로 자동 참조
     PlayerCombat player;
-    CheckDuplication chkDup;
+    SkillBtnManager chkDup;
 
     #region 스킬 저장용 변수
 
     // 현재 버튼 이름
     public int buttonIdx;
-
+    public int btnSkillIdx;
     [Space(10)]
     // 스킬 가져올 디렉토리
     [SerializeField] SkillDirectory skillDirectory;
@@ -178,7 +178,7 @@ public class SkillButton : MonoBehaviour
         #endregion
     }
     #endregion
-
+/*
     #region LoadSkillData 스킬을 데이터베이스 에서 불러오기
     void LoadSkillData()
     {
@@ -210,21 +210,24 @@ public class SkillButton : MonoBehaviour
             {
                 int idx = int.Parse(www.downloadHandler.text);
                 Debug.Log(idx);
-
-                // 0 이상이면 불러오기
-                if (idx > 0)
-                {
-                    btnSkill = skillDirectory.skillAtks[idx];
-                    SkillIcon.sprite = Skill.sprite;
-                    SetSkillData();
-                }
             }
             else
                 Debug.Log(www.error);
         }
         #endregion
     }
-    #endregion
+    #endregion*/
+
+    public void BtnSkillSet()
+    {
+        // 0 이상이면 불러오기
+        if (btnSkillIdx > 0)
+        {
+            btnSkill = skillDirectory.skillAtks[btnSkillIdx];
+            SkillIcon.sprite = Skill.sprite;
+            SetSkillData();
+        }
+    }
 
     #region SetSkillData 스킬 버튼에 할당된 스킬을 자식오브젝트인 스킬 데이터에 할당
     /// <summary>
@@ -249,9 +252,9 @@ public class SkillButton : MonoBehaviour
         coolTimeIcon.fillAmount = 0;
         coolTime = 0f;
 
-        chkDup = GetComponentInParent<CheckDuplication>();
+        chkDup = GetComponentInParent<SkillBtnManager>();
 
-        LoadSkillData();
+        // LoadSkillData();
     }
     #endregion
 }

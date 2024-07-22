@@ -13,11 +13,11 @@ public class DropSkill : MonoBehaviour, IPointerEnterHandler, IDropHandler, IPoi
     [Space(10)]
     private SkillButton skillButton;
 
-    CheckDuplication chkDup;
+    SkillBtnManager chkDup;
     private void Awake()
     {
         skillButton = GetComponent<SkillButton>();
-        chkDup = GetComponentInParent<CheckDuplication>();
+        chkDup = GetComponentInParent<SkillBtnManager>();
     }
 
     // 무언가 드랍 될때
