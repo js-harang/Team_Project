@@ -17,7 +17,7 @@ $sql = "SELECT	skill
 		WHERE	character_uid = $cuid";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
-echo $row[$skill];
+echo $row['skill'];
 
 return;
 ?>
