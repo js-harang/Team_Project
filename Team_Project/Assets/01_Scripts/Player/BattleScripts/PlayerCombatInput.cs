@@ -20,7 +20,7 @@ public class PlayerCombatInput : MonoBehaviour
     {
         player = GetComponent<PlayerCombat>();
 
-        skillBtn = GameObject.FindWithTag("PlayerBtn").GetComponent<CheckDuplication>().btns;
+        skillBtn = GameObject.FindWithTag("PlayerBtn").GetComponent<SkillBtnManager>().btns;
         btns = new Button[skillBtn.Length];
 
         for (int i = 0; i < skillBtn.Length; i++)
@@ -103,7 +103,7 @@ public class PlayerCombatInput : MonoBehaviour
     void StartSetting()
     {
         player = GetComponent<PlayerCombat>();
-        skillBtn = FindObjectOfType<CheckDuplication>().btns;
+        skillBtn = FindObjectOfType<SkillBtnManager>().btns;
 
         for (int i = 0; i < skillBtn.Length; i++)
         {
