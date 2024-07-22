@@ -51,6 +51,7 @@ public class SkillBtnManager : MonoBehaviour
         for (int i = 0; i < btns.Length; i++)
             sb.Append(string.Format("{0:00}", btns[i].btnSkillIdx));
 
+        Debug.Log(sb.ToString());
 
         // 데이터 베이스에 값 전달하기
         StartCoroutine(SaveSkill());
