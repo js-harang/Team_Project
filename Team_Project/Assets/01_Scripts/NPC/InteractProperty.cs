@@ -12,6 +12,9 @@ public class InteractProperty : MonoBehaviour
 {
     [SerializeField] InteractType interactType;
 
+    // 현재 자신이 갖고 있는 퀘스트 데이터
+    public QuestGiver giverIsMe;
+
     public InteractType InteractType { get { return interactType; } }
 
     [SerializeField] int interactId;
@@ -46,6 +49,7 @@ public class InteractProperty : MonoBehaviour
     private void Start()
     {
         ShowMyRole();
+        giverIsMe = GetComponentInParent<QuestGiver>();
         myName_Text.text = interactName;
         npcAnim = GetComponentInParent<Animator>();
     }

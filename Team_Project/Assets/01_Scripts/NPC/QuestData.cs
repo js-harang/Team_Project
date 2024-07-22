@@ -25,21 +25,28 @@ public class QuestData
     public int requiredAmount;
     // 현재 수치
     public int currentAmount;
+    // 달성 보상
+    public int goldReward;
+    public int expReward;
+    // 기준 충족 확인
     public bool isDone;
 
     // 퀘스트의 종류가 다른 NPC와의 대화인 경우
-    public QuestData(string questName, int questID, int targetID)
+    public QuestData(string questName, int questID, int targetID, 
+        int goldReward, int expReward)
     {
         questType = QuestType.Conversation;
         this.questName = questName;
         this.questID = questID;
         this.targetID = targetID;
+        this.goldReward = goldReward;
+        this.expReward = expReward;
         isDone = false;
     }
 
     // 퀘스트의 중류가 매개변수로 받은 타겟타입에 따라 처치인지, 수집인지 분류
     public QuestData(string questName, int questID, TargetType targetType, 
-                    int targetID, int requiredAmount)
+        int targetID, int requiredAmount, int goldReward, int expReward)
     {
         switch (targetType)
         {
@@ -50,6 +57,8 @@ public class QuestData
                 this.targetID = targetID;
                 this.requiredAmount = requiredAmount;
                 this.currentAmount = 0;
+                this.goldReward = goldReward;
+                this.expReward = expReward;
                 isDone = false;
                 break;
             case TargetType.Item:
@@ -59,6 +68,8 @@ public class QuestData
                 this.targetID = targetID;
                 this.requiredAmount = requiredAmount;
                 this.currentAmount = 0;
+                this.goldReward = goldReward;
+                this.expReward = expReward;
                 isDone = false;
                 break;
             default:

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7188221467870004271}
   - component: {fileID: 1025406263561510076}
   - component: {fileID: 6595693824202543932}
+  - component: {fileID: 3484825188819472821}
   m_Layer: 5
   m_Name: QuestList_btn
   m_TagString: Untagged
@@ -122,10 +123,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: 8ecf95e90795f834390486e456a8cd98, type: 3}
-        m_TargetAssemblyTypeName: UnityEngine.Object, UnityEngine
-        m_MethodName: set_name
-        m_Mode: 5
+      - m_Target: {fileID: 3484825188819472821}
+        m_TargetAssemblyTypeName: ShowQuest, Assembly-CSharp
+        m_MethodName: OnClicked
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -134,6 +135,20 @@ MonoBehaviour:
           m_StringArgument: QuestWindowOpen
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &3484825188819472821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4598451886843256623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6abc2dc456f39044586c16880c642b55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questInfoUI: {fileID: 0}
+  showQuestName: {fileID: 0}
 --- !u!1 &6367412823822643769
 GameObject:
   m_ObjectHideFlags: 0
