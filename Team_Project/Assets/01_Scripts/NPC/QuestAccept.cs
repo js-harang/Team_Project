@@ -7,6 +7,5 @@ public class QuestAccept : MonoBehaviour
     public void OnClicked()
     {
         showQ.AcceptBtnOnClicked();
-        Debug.Log(1);
     }
 }

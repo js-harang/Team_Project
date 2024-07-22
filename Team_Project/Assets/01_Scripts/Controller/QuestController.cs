@@ -7,10 +7,10 @@ using UnityEngine.UI;
 public class QuestController : MonoBehaviour
 {
     // 현재 내가 갖고 있는 퀘스트들
-    List<QuestData> myQuests;
-    public List<QuestData> MyQuests 
-    { 
-        get { return myQuests; } 
+    List<QuestData> myQuests = new List<QuestData>();
+    public List<QuestData> MyQuests
+    {
+        get { return myQuests; }
         set
         {
             myQuests = value;

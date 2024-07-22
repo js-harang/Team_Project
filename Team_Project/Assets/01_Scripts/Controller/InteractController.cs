@@ -63,7 +63,7 @@ public class InteractController : MonoBehaviour
     public InteractProperty interPP;
     QuestGiver nowGiver;
 
-    QuestController questCon;
+    public QuestController questCon;
 
     PlayerState pS;
 
@@ -110,6 +110,7 @@ public class InteractController : MonoBehaviour
     public TMP_Text goldReward_Txt;
     public TMP_Text expReward_Txt;
     public Button questAccept_Btn;
+    public TMP_Text isAcept_Txt;
 
     // 현재 눌린 NPC 메뉴 버튼을 담는 변수
     GameObject npcMenu_Btn;
@@ -138,8 +139,8 @@ public class InteractController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if(InteractStep != InteractStep.End)
-            InteractStep = InteractStep.End;
+            if (InteractStep != InteractStep.End)
+                InteractStep = InteractStep.End;
         }
 
         if (Input.GetKeyDown(KeyCode.Z))
@@ -163,7 +164,7 @@ public class InteractController : MonoBehaviour
 
     // 상호작용 끝낼 시의 동작 관리
     void EndInteracting()
-    {   
+    {
         if (activatePrinting)                   //만약 텍스트 출력 코루틴이 실행중이었다면 중단
             StopCoroutine(sentencePrintLetter);
 
@@ -178,7 +179,7 @@ public class InteractController : MonoBehaviour
         NPCTypeMenuOnOff();
         ChoiceMenuOnOff();
         interPP.ImTalking = false;
-        pS.UnitState = UnitState.Idle; 
+        pS.UnitState = UnitState.Idle;
     }
 
     // 대화 종료 버튼을 따로 눌렀을 시의 동작
@@ -272,7 +273,7 @@ public class InteractController : MonoBehaviour
     // NPC 타입에 따른 선택지 UI 활성화, 비활성화
     void ChoiceMenuOnOff()
     {
-        switch (interPP.InteractType)                  
+        switch (interPP.InteractType)
         {
             case InteractType.Shop:
                 shopDialogChoiceUI.SetActive(NowInteracting);

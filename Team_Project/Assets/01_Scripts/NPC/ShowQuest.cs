@@ -6,8 +6,8 @@ using System.IO;
 public class ShowQuest : MonoBehaviour
 {
     public QuestData myData;
-    public QuestController questCon;
     public InteractController interCon;
+    QuestController questCon;
     [SerializeField]
     TMP_Text showQuestName;
 
@@ -18,15 +18,18 @@ public class ShowQuest : MonoBehaviour
     TMP_Text goldReward_Txt;
     TMP_Text expReward_Txt;
     Button questAccept_Btn;
+    public TMP_Text isAccept_Txt;
 
     public void CreateList()
     {
+        questCon = interCon.questCon;
         questInfoUI = interCon.questInfoUI;
         questName_Txt = interCon.questName_Txt;
         questDetail_Txt = interCon.questDetail_Txt;
         goldReward_Txt = interCon.goldReward_Txt;
         expReward_Txt = interCon.expReward_Txt;
         questAccept_Btn = interCon.questAccept_Btn;
+        isAccept_Txt = interCon.isAcept_Txt;
         showQuestName.text = myData.questName;
     }
 
@@ -39,6 +42,7 @@ public class ShowQuest : MonoBehaviour
         PrintQuestDetail(myData.questID);
         goldReward_Txt.text = "Gold : " + myData.goldReward;
         expReward_Txt.text = "Exp : " + myData.expReward;
+        AcceptBtnOnOff(PlayerQuestsCheck());
         QuestAccept questAccept = questAccept_Btn.GetComponent<QuestAccept>();
         questAccept.showQ = this;
     }
@@ -67,5 +71,33 @@ public class ShowQuest : MonoBehaviour
     public void AcceptBtnOnClicked()
     {
         questCon.MyQuests.Add(myData);
+        isAccept_Txt.text = "수락 중";
+        questAccept_Btn.enabled = false;
+    }
+
+    // 플레이어의 퀘스트 수주 여부에 따라 수락 버튼 활성화/ 비활성화
+    void AcceptBtnOnOff(bool onOff)
+    {
+        if (onOff)
+        {
+            isAccept_Txt.text = "수락 중";
+            questAccept_Btn.enabled = false;
+        }
+        else
+        {
+            isAccept_Txt.text = "수락";
+            questAccept_Btn.enabled = true;
+        }
+    }
+
+    // Questcontroller 에서 플레이어가 갖고 있는 퀘스트 목록을 확인하여 중복체크
+    bool PlayerQuestsCheck()
+    {
+        foreach (QuestData item in questCon.MyQuests)
+        {
+            if (item.questID == myData.questID)
+                return true;
+        }
+        return false;
     }
 }
