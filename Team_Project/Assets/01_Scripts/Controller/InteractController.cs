@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 // npc와의 대화 단계 열거형 예)인사, 선택지 고르기 등
 public enum InteractStep
@@ -60,18 +61,21 @@ public class InteractController : MonoBehaviour
 
     // 플레이어로부터 전달받을 현재 대화중인 상대 오브젝트의 정보
     public InteractProperty interPP;
+    QuestGiver nowGiver;
+
+    QuestController questCon;
 
     PlayerState pS;
 
     // UI 캔버스 변수
-    public GameObject gameUI;
+    [SerializeField] GameObject gameUI;
 
     // 대화창 캔버스 변수
-    public GameObject dialogWindow;
+    [SerializeField] GameObject dialogWindow;
 
     // 대화창 텍스트 변수들
-    public TMP_Text interactName_Text;
-    public TMP_Text dialog_Text;
+    [SerializeField] TMP_Text interactName_Text;
+    [SerializeField] TMP_Text dialog_Text;
 
     // 텍스트를 불러올 텍스트파일의 위치 변수
     string filePath;
@@ -87,14 +91,25 @@ public class InteractController : MonoBehaviour
     IEnumerator sentencePrintLetter;
 
     // NPC 타입별 대화 선택창 변수
-    public GameObject shopDialogChoiceUI;
-    public GameObject equipShopDialogChoiceUI;
-    public GameObject gateKeeperDialogChoiceUI;
+    [SerializeField, Space(10)] GameObject shopDialogChoiceUI;
+    [SerializeField] GameObject equipShopDialogChoiceUI;
+    [SerializeField] GameObject gateKeeperDialogChoiceUI;
 
     // 메뉴 활성화 시 NPC들의 타입에 따른 UI 변수
-    public GameObject shopUI;
-    public GameObject equipShopUI;
-    public GameObject selectStageUI;
+    [SerializeField, Space(10)] GameObject shopUI;
+    [SerializeField] GameObject equipShopUI;
+    [SerializeField] GameObject selectStageUI;
+
+    // 퀘스트 관련 UI 변수들
+    [SerializeField, Space(10)] GameObject questListPref;
+    [SerializeField] GameObject questWindowUI;
+    [SerializeField] Transform questScrollContent;
+    public GameObject questInfoUI;
+    public TMP_Text questName_Txt;
+    public TMP_Text questDetail_Txt;
+    public TMP_Text goldReward_Txt;
+    public TMP_Text expReward_Txt;
+    public Button questAccept_Btn;
 
     // 현재 눌린 NPC 메뉴 버튼을 담는 변수
     GameObject npcMenu_Btn;
@@ -107,6 +122,7 @@ public class InteractController : MonoBehaviour
         interactStep = InteractStep.End;
         // PlayerState 컴포넌트를 변수에 저장
         pS = GameObject.FindWithTag("Player").GetComponent<PlayerState>();
+        questCon = FindObjectOfType<QuestController>().GetComponent<QuestController>();
     }
 
     private void Update()
@@ -138,6 +154,7 @@ public class InteractController : MonoBehaviour
     private void StartInteracting()
     {
         interPP.ImTalking = true;
+        nowGiver = interPP.giverIsMe;
         gameUI.SetActive(false);
         dialogWindow.SetActive(true);
         interactName_Text.text = interPP.InteractName;
@@ -175,7 +192,7 @@ public class InteractController : MonoBehaviour
     /// </summary>
     /// <param name="id">대화중인 NPC의 ID</param>
     /// <param name="num">NPC와의 대화 단계</param>
-    private void ReadLineAndStore(int id, InteractStep interactStep)
+    void ReadLineAndStore(int id, InteractStep interactStep)
     {
         filePath = $"C:\\Users\\YONSAI\\Desktop\\Team_Project\\Team_Project\\Assets\\21_Data\\{id} Dialogue\\{interactStep}.txt";
 
@@ -224,7 +241,7 @@ public class InteractController : MonoBehaviour
             {
                 dialog_Text.text += letter;
 
-                if (stopTalking)                        // 출력중 X 키를 누르면 스킵하고 전체 출력
+                if (stopTalking)                        // 출력중 Z 키를 누르면 스킵하고 전체 출력
                     continue;
 
                 yield return new WaitForSeconds(0.05f);
@@ -312,6 +329,39 @@ public class InteractController : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    // 퀘스트 버튼을 눌러서 퀘스트 창이 오픈될때
+    public void QuestWindowOpen()
+    {
+        questWindowUI.SetActive(true);
+
+        CreateMyQuestList();
+    }
+
+    // 퀘스트 리스트 하나를 만들 때, 그 리스트에 각각 퀘스트 정보와 필요한 UI 정보를 넘김
+    void CreateMyQuestList()
+    {
+        for (int i = 0; i < nowGiver.QuestList.Count; i++)
+        {
+            Transform questList = Instantiate(questListPref).transform;
+            ShowQuest showQuest = questList.gameObject.GetComponent<ShowQuest>();
+            questList.transform.SetParent(questScrollContent);
+            showQuest.myData = nowGiver.QuestList[i];
+            showQuest.interCon = this;
+            showQuest.CreateList();
+        }
+    }
+
+    // 퀘스트 창을 닫는 버튼을 눌렀을 시의 동작
+    public void CloseQuestWindow()
+    {
+        foreach (Transform child in questScrollContent)
+        {
+            Destroy(child.gameObject);
+        }
+        questWindowUI.SetActive(false);
+        questInfoUI.SetActive(false);
     }
 
     public void NPCMenuButtonActiveOrFalse(GameObject button)

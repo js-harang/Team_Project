@@ -99,7 +99,7 @@ public class QuestGiver : IHaveQuest
             {
                 if (questList[i].questID == questCon.finQuestID[i])
                 {
-                    QuestList.RemoveAt(i);
+                    questList.RemoveAt(i);
                     break;
                 }
                 else if (i + 1 == questList.Count)
