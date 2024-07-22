@@ -20,7 +20,9 @@ public class QuestController : MonoBehaviour
 
     // 현재 플레이어가 갖고 있는 퀘스트들의 리스트 UI
     [SerializeField]
-    GameObject MyQuestListUI;
+    GameObject MyQuestListPref;
+    [SerializeField]
+    Transform questUIContent;
 
     // 조건을 충족한 퀘스트들
     public int[] doneQuestID;
@@ -29,6 +31,11 @@ public class QuestController : MonoBehaviour
 
     void MyQuestWindowUpdate()
     {
-
+        for (int i = 0; i < myQuests.Count; i++)
+        {
+            Transform questList = Instantiate(MyQuestListPref).transform;
+            QuestGoalList questGoal = questList.gameObject.GetComponent<QuestGoalList>();
+            questList.transform.SetParent(questUIContent);
+        }
     }
 }
