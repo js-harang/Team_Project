@@ -841,10 +841,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7235b6c027292740b1296b8fab280fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  images:
-  - {fileID: 21300000, guid: 5acd940d082eb1a42914df94e54706dd, type: 3}
-  - {fileID: 21300000, guid: 0dae0f0708cf9e64d911b7610d457232, type: 3}
-  - {fileID: 21300000, guid: 7175bd6e6fe1eed4f99872c4d704b7c8, type: 3}
   spriteAtlas: {fileID: 4343727234628468602, guid: 4b827861b164f544381751affa1616bc, type: 2}
 --- !u!114 &568076349
 MonoBehaviour:

@@ -23,6 +23,8 @@ public class LobbyController : MonoBehaviour
 
     public void SelectedSlot(int num)
     {
+        GameManager.gm.slotNum = num;
+
         Image image = selectImg[num].GetComponent<Image>();
 
         if (image.sprite == createSprite)

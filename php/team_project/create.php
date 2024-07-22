@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 }
 
 if (search($conn, $userid) === false) {
-    $sql = "insert into user(userid, userpw)
+    $sql = "INSERT into user(userid, userpw)
             values ('$userid', password('$userpw'))";
     $result = mysqli_query($conn, $sql);
     
@@ -27,7 +27,7 @@ return;
 
 function search($conn, $userid)
 {
-    $sql = "select  userid
+    $sql = "SELECT  userid
             from    user
             where   userid = '$userid'";
     $result = mysqli_query($conn, $sql);

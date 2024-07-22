@@ -23,7 +23,7 @@ public class TitleController : MonoBehaviour
 
     [SerializeField, Space(10)] GameObject preferencePopup;
     [SerializeField] GameObject exitPopup;
-    bool isExitPopup = false;
+    bool isExitActive = false;
 
     private void Start()
     {
@@ -207,8 +207,8 @@ public class TitleController : MonoBehaviour
 
     public void ExitGamePopup()
     {
-        isExitPopup = !isExitPopup;
-        exitPopup.SetActive(isExitPopup);
+        isExitActive = !isExitActive;
+        exitPopup.SetActive(isExitActive);
     }
 
     public void ExitGame()

@@ -11,7 +11,7 @@ if ($conn->connect_error) {
     echo "Failed to connect to MySQL : " + $mysqli->connect_error;
 }
 
-$sql = "select  uid
+$sql = "SELECT  uid
         from    user
         where   userid = '$userid'";
 $result = mysqli_query($conn, $sql);

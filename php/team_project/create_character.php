@@ -5,6 +5,7 @@ $password = "1234";
 $dbname = "team_project";
 
 $uid = $_POST["uid"];
+$slot = $_POST["slot"];
 $name = $_POST["name"];
 $class = $_POST["class"];
 
@@ -15,10 +16,10 @@ if ($conn->connect_error) {
 }
 
 if (search($conn, $name) === false) {
-    $sql = "insert into character_list(uid, name, lv, class)
-        values ('$uid', '$name', '1', '$class')";
+    $sql = "INSERT into character_list(uid, slot, name, class)
+            values ('$uid', '$slot', '$name', '$class')";
     $result = mysqli_query($conn, $sql);
-    
+
     if ($result)
         echo "success";
 } else
@@ -28,7 +29,7 @@ return;
 
 function search($conn, $name)
 {
-    $sql = "select  name
+    $sql = "SELECT  name
             from    character_list
             where   name = '$name'";
     $result = mysqli_query($conn, $sql);
