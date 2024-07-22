@@ -13,22 +13,22 @@ public class QuestController : MonoBehaviour
         get { return myQuests; } 
         set
         {
-
+            myQuests = value;
+            MyQuestWindowUpdate();
         }
     }
+
+    // 현재 플레이어가 갖고 있는 퀘스트들의 리스트 UI
+    [SerializeField]
+    GameObject MyQuestListUI;
 
     // 조건을 충족한 퀘스트들
     public int[] doneQuestID;
     // 완전히 끝낸 퀘스트들
     public int[] finQuestID;
 
-    private void Start()
+    void MyQuestWindowUpdate()
     {
 
     }
-
-    private void Update()
-    {
-        
-    }   
 }

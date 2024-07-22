@@ -24,13 +24,15 @@ public class ShowQuest : MonoBehaviour
         showQuestName.text = myData.questName;
     }
 
+    // 클릭되었을 때의 동작
     public void OnClicked()
     {
         questInfoUI.SetActive(true);
         questName_Txt.text = myData.questName;
+        questDetail_Txt.text = string.Empty;
         PrintQuestDetail(myData.questID);
-        goldReward_Txt.text = "" + myData.goldReward;
-        expReward_Txt.text = "" + myData.expReward;
+        goldReward_Txt.text = "Gold : " + myData.goldReward;
+        expReward_Txt.text = "Exp : " + myData.expReward;
     }
 
     void PrintQuestDetail(int questID)
@@ -48,7 +50,7 @@ public class ShowQuest : MonoBehaviour
 
         for (int i = 0; i < questDetail.Length; i++)
         {
-            questDetail_Txt.text = questDetail[i];
+            questDetail_Txt.text += questDetail[i] + "\n";
         }
     }
 

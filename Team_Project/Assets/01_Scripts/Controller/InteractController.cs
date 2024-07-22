@@ -342,9 +342,11 @@ public class InteractController : MonoBehaviour
     {
         for (int i = 0; i < nowGiver.QuestList.Count; i++)
         {
-            GameObject questList = Instantiate(questListPref, questScrollContent);
-            ShowQuest showQuest = questList.GetComponent<ShowQuest>();
+            Transform questList = Instantiate(questListPref).transform;
+            ShowQuest showQuest = questList.gameObject.GetComponent<ShowQuest>();
+            questList.transform.SetParent(questScrollContent);
             showQuest.myData = nowGiver.QuestList[i];
+            showQuest.CreateList();
             showQuest.questCon = questCon;
             showQuest.questInfoUI = questInfoUI;
             showQuest.questName_Txt = questName_Txt;
@@ -352,6 +354,17 @@ public class InteractController : MonoBehaviour
             showQuest.goldReward_Txt = goldReward_Txt;
             showQuest.expReward_Txt = expReward_Txt;
         }
+    }
+
+    // 퀘스트 창을 닫는 버튼을 눌렀을 시의 동작
+    public void CloseQuestWindow()
+    {
+        foreach (Transform child in questScrollContent)
+        {
+            Destroy(child.gameObject);
+        }
+        questWindowUI.SetActive(false);
+        questInfoUI.SetActive(false);
     }
 
     public void NPCMenuButtonActiveOrFalse(GameObject button)
