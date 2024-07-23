@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Networking;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -71,7 +73,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        ui = FindObjectOfType<UIController>().GetComponent<UIController>();
+        // UI 컨트롤러가 생성될때 자동으로 참조됨
+        // ui = FindObjectOfType<UIController>().GetComponent<UIController>();
         PlayerPrefs.DeleteKey("uid");
         PlayerPrefs.DeleteKey("characteruid");
 
@@ -93,6 +96,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("99_LoadingScene");
     }
 
+    #region 유저 정보 세팅
     public void SumEXP(int exp)
     {
         NowExp += exp;
@@ -116,7 +120,6 @@ public class GameManager : MonoBehaviour
             SetMaxExp();
         }
     }
-
     private void SetMaxExp()
     {
         maxExp = requiredExp * LV;
@@ -124,10 +127,66 @@ public class GameManager : MonoBehaviour
         Debug.Log("다음 필요 경험치 : " + maxExp);
     }
 
+    IEnumerator SaveUserData()
+    {
+        string url = gm.path + "saveuserdata";
+        string cuid = PlayerPrefs.GetString("characteruid");
+
+        WWWForm form = new WWWForm();
+        form.AddField("cuid", 0000000018);
+        form.AddField("lv", LV);
+        form.AddField("exp", NowExp);
+
+        using (UnityWebRequest www = UnityWebRequest.Post(url, form))
+        {
+            yield return www.SendWebRequest();
+            if (www.error == null)
+            {
+                Debug.Log("유저 정보 저장 완료");
+            }
+            else
+            {
+                Debug.Log(www.error);
+            }
+        }
+    }
+    #endregion
+
+    #region 유저 정보 관련
     private void LaodUserData()
     {
+/*
         LV = PlayerPrefs.GetInt("LV");
         NowExp = PlayerPrefs.GetInt("NowExp");
+*/
+        StartCoroutine(LoadeUserDatas());
+    }
+
+    IEnumerator LoadeUserDatas()
+    {
+        string url = gm.path + "loaduserdata";
+        string cuid = PlayerPrefs.GetString("characteruid");
+
+        WWWForm form = new WWWForm();
+        form.AddField("cuid", 0000000018);
+
+        using (UnityWebRequest www = UnityWebRequest.Post(url, form))
+        {
+            yield return www.SendWebRequest();
+            if (www.error == null)
+            {
+                string jsonStr = "{\"Datas\":" + www.downloadHandler.text + "}";
+
+                // json 문법을 객체로 바꿔줌
+                Users users = JsonUtility.FromJson<Users>(jsonStr);
+
+                foreach (UserData user in users.Datas)
+                {
+                    LV = System.Convert.ToInt32(user.lv);
+                    NowExp = System.Convert.ToInt32(user.exp);
+                }
+            }
+        }
     }
     private void SetLevel()
     {
@@ -137,4 +196,5 @@ public class GameManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("NowExp", NowExp);
     }
+    #endregion
 }
