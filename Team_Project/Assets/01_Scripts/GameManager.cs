@@ -53,17 +53,20 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public int slotNum = 0;
 
     #region 경험치 관련
-    [SerializeField] float currentExp;
-    public float CurrentExp { get { return currentExp; } set { currentExp = value; } }
+    [SerializeField] int nowExp;
+    public int NowExp
+    { get { return nowExp; } set { nowExp = value; SetNowExp(); } }
 
     [SerializeField] int maxExp;
-    public int MaxExp { get { return maxExp; } set { maxExp = value; } }
+    public int MaxExp
+    { get { return maxExp; } set { maxExp = value; } }
 
     // 필요 경험치
-    [SerializeField] float requiredExp;
+    [SerializeField] int requiredExp;
 
     [SerializeField] int lv;
-    public int LV { get { return lv; } set { lv = value; } }
+    public int LV 
+    { get { return lv; } set { lv = value; SetLevel(); } }
     #endregion
 
     private void Start()
@@ -72,9 +75,10 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.DeleteKey("uid");
         PlayerPrefs.DeleteKey("characteruid");
 
-        maxExp = 100;
+        LaodUserData();
         SetMaxExp();
-        UI.SetEXPSlider(currentExp, maxExp);
+        UI.SetLvText(LV);
+        UI.SetEXPSlider(NowExp, maxExp);
     }
 
     /// <summary>
@@ -91,20 +95,22 @@ public class GameManager : MonoBehaviour
 
     public void SumEXP(int exp)
     {
-        currentExp += exp;
+        NowExp += exp;
         ChkExp();
 
-        UI.SetEXPSlider(currentExp, maxExp);
+        PlayerPrefs.Save();
+        UI.SetEXPSlider(NowExp, maxExp);
     }
 
     private void ChkExp()
     {
-        while (currentExp >= maxExp)
+        while (NowExp >= maxExp)
         {
-            currentExp -= maxExp;
+            NowExp -= maxExp;
             LV++;
-            Debug.Log("레벨업");
             UI.SetLvText(LV);
+
+            Debug.Log("레벨업");
             Debug.Log("현재 레벨 : " + LV);
 
             SetMaxExp();
@@ -113,10 +119,22 @@ public class GameManager : MonoBehaviour
 
     private void SetMaxExp()
     {
-        float tmp = 0f;
-        tmp = maxExp * (requiredExp * (LV - 1));
-        maxExp += (int)tmp;
+        maxExp = requiredExp * LV;
 
         Debug.Log("다음 필요 경험치 : " + maxExp);
+    }
+
+    private void LaodUserData()
+    {
+        LV = PlayerPrefs.GetInt("LV");
+        NowExp = PlayerPrefs.GetInt("NowExp");
+    }
+    private void SetLevel()
+    {
+        PlayerPrefs.SetInt("LV", LV);
+    }
+    private void SetNowExp()
+    {
+        PlayerPrefs.SetInt("NowExp", NowExp);
     }
 }
