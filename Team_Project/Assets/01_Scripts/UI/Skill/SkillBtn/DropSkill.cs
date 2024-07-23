@@ -63,6 +63,7 @@ public class DropSkill : MonoBehaviour, IPointerEnterHandler, IDropHandler, IPoi
 
                 dragSkillData.Skill = null;
                 dragSkillData.SkillIcon.sprite = null;
+
                 dragSkillData.SkillButton.Skill = null;
                 dragSkillData.SkillButton.SkillIcon.sprite = null;
                 dragSkillData.SkillButton.btnSkillIdx = 0;
@@ -103,55 +104,5 @@ public class DropSkill : MonoBehaviour, IPointerEnterHandler, IDropHandler, IPoi
 
     // Æ÷ÀÎÅÍ°¡ ³ª°¥¶§
     public void OnPointerExit(PointerEventData eventData) { }
-
-    void SetSkillButtonData(PointerEventData eventData) 
-    {
-        #region Äü½½·Ô ¿¡¼­ Äü½½·Ô À¸·Î ¿Å±æ¶§
-        if (eventData.pointerDrag.GetComponent<SkillData>())
-        {
-            SkillData dragSkillData = eventData.pointerDrag.GetComponent<SkillData>();
-
-            if (dragSkillData.Skill == null)
-                return;
-
-            if (dragSkillData.SkillButton.CoolTime <= 0)
-            {
-                Debug.Log("Äü to Äü");
-                skillButton.Skill = dragSkillData.Skill;
-                skillButton.SkillIcon.sprite = dragSkillData.SkillIcon.sprite;
-
-                dragSkillData.Skill = null;
-                dragSkillData.SkillIcon.sprite = null;
-                dragSkillData.SkillButton.Skill = null;
-                dragSkillData.SkillButton.SkillIcon.sprite = null;
-
-            }
-            else
-            {
-                Debug.Log("´Ô ¾ÆÁ÷ ÄðÀÓ ¤·¤·");
-            }
-        }
-        #endregion
-
-        #region ½ºÅ³Ã¢ ¿¡¼­ Äü½½·ÔÀ¸·Î ¿Å±æ¶§
-        else if (eventData.pointerDrag.GetComponent<SkillSlot>())
-        {
-            Debug.Log("SkillSlot µå·Ó");
-
-            SkillSlot dragSkillData = eventData.pointerDrag.GetComponent<SkillSlot>();
-
-            if (sBM.CheckSkillDuplication(dragSkillData.Skill.skillIdx))
-            {
-                Debug.Log("Áßº¹ ¹ß°ß " + this.name);
-                return;
-            }
-
-            Debug.Log("Áßº¹ ¾øÀ½");
-
-            skillButton.Skill = dragSkillData.Skill;
-            skillButton.SkillIcon.sprite = dragSkillData.Skill.sprite;
-        }
-        #endregion
-    }
     #endregion
 }

@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 }
 
 $sql = "UPDATE 	character_list
-		SET		skill = $num
+		SET		skill = '$num'
 		WHERE 	character_uid = $cuid";
 		
 $result = mysqli_query($conn, $sql);

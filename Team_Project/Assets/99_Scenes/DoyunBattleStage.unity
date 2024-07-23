@@ -53922,6 +53922,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9211070371428783550, guid: c6acf9d249963ec43aa429700016ee14, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9211070371428783551, guid: c6acf9d249963ec43aa429700016ee14, type: 3}
       propertyPath: m_Name
       value: UIController
