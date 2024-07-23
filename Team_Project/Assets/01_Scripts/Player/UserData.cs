@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class UserData
+public struct UserData
 {
     public int lv;
-    public string exp;
+    public int exp;
 }
 public class Users
 {

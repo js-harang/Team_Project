@@ -79,9 +79,6 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.DeleteKey("characteruid");
 
         LaodUserData();
-        SetMaxExp();
-        UI.SetLvText(LV);
-        UI.SetEXPSlider(NowExp, maxExp);
     }
 
     /// <summary>
@@ -179,12 +176,13 @@ public class GameManager : MonoBehaviour
 
                 // json πÆπ˝¿ª ∞¥√º∑Œ πŸ≤„¡‹
                 Users users = JsonUtility.FromJson<Users>(jsonStr);
+               
+                LV = System.Convert.ToInt32(users.Datas[0].lv);
+                NowExp = System.Convert.ToInt32(users.Datas[0].exp);
 
-                foreach (UserData user in users.Datas)
-                {
-                    LV = System.Convert.ToInt32(user.lv);
-                    NowExp = System.Convert.ToInt32(user.exp);
-                }
+                SetMaxExp();
+                UI.SetLvText(LV);
+                UI.SetEXPSlider(NowExp, maxExp);
             }
             else
             {

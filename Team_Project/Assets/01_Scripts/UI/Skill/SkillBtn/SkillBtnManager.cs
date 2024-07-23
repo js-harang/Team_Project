@@ -111,10 +111,10 @@ public class SkillBtnManager : MonoBehaviour
             if (www.error == null)
             {
                 skillSet = www.downloadHandler.text;
-                Debug.Log(skillSet);
+                // Debug.Log(skillSet);
 
                 skillBtnData = new string[skillSet.Length / 2];
-                Debug.Log(skillBtnData.Length);
+                // Debug.Log(skillBtnData.Length);
 
                 int idx = 0;
                 for (int i = 0; i < skillSet.Length - 1; i += 2)
@@ -122,7 +122,7 @@ public class SkillBtnManager : MonoBehaviour
                     skillBtnData[idx] = skillSet.Substring(i, 2);
                     btns[idx].btnSkillIdx = System.Convert.ToInt32(skillBtnData[idx]);
 
-                    Debug.Log(btns[idx].btnSkillIdx);
+                    // Debug.Log(btns[idx].btnSkillIdx);
                     btns[idx].BtnSkillSet();
 
                     idx++;
