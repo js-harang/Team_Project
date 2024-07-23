@@ -15,20 +15,22 @@ public class InteractProperty : MonoBehaviour
     // 현재 자신이 갖고 있는 퀘스트 데이터
     public QuestGiver giverIsMe;
 
+    public NPCID myID;
+
     public InteractType InteractType { get { return interactType; } }
 
     [SerializeField] int interactId;
     public int InteractId { get { return interactId; } }
 
-    [SerializeField] string interactName;
+    string interactName;
     public string InteractName { get { return interactName; } }
 
-    bool imtalking;
+    bool imTalking;
     public bool ImTalking 
     { 
         set 
         { 
-            imtalking = value;
+            imTalking = value;
             if (value)
                 PlayerTalkToMe();
             else
@@ -50,6 +52,7 @@ public class InteractProperty : MonoBehaviour
     {
         ShowMyRole();
         giverIsMe = GetComponentInParent<QuestGiver>();
+        interactName = myID.ToString();
         myName_Text.text = interactName;
         npcAnim = GetComponentInParent<Animator>();
     }

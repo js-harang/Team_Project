@@ -18,7 +18,7 @@ public class IHaveQuest : MonoBehaviour
         giverID = 2000;
 
         questName = "첫 출동";
-        questDatas.Add(new QuestData(questName, 0, 1000, 5000, 300));
+        questDatas.Add(new QuestData(questName, 0, 1, 5000, 300));
 
         questName = "소재 수집";
         questDatas.Add(new QuestData(questName, 1, TargetType.Monster, 0, 5, 30000, 600));

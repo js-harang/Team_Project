@@ -61,8 +61,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactType: 2
   giverIsMe: {fileID: 0}
+  myID: 1
   interactId: 1000
-  interactName: "\uC778\uD2B8\uB79C\uC2A4\uBD07"
   npcProperty_Canvas: {fileID: 7332113727162941792}
   myRole_Text: {fileID: 7332113725295813401}
   myName_Text: {fileID: 7332113725887769236}

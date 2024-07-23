@@ -70,7 +70,7 @@ public class ShowQuest : MonoBehaviour
     // 퀘스트 정보창에서 수락 버튼을 눌렀을 시
     public void AcceptBtnOnClicked()
     {
-        questCon.MyQuests.Add(myData);
+        questCon.MyQuestWindowUpdate(myData);
         interCon.nowGiver.PlayerAcceptsMyQuests();
         isAccept_Txt.text = "수락 중";
         questAccept_Btn.enabled = false;
