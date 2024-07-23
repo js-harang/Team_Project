@@ -12,13 +12,19 @@ if ($conn->connect_error) {
 	echo "Failed to connect to MySQL : " + $mysqli->connect_error;
 }
 
-$sql = "SELECT	lv, exp
+$sql = "SELECT	lv
         FROM 	character_list
 		WHERE	character_uid = $cuid";
-		
 $result = mysqli_query($conn, $sql);
-
 $row = mysqli_fetch_assoc($result);
-echo $row['lv'],$row['exp'];
+echo $row['lv'];
+
+$sql = "SELECT	exp
+        FROM 	character_list
+		WHERE	character_uid = $cuid";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
+echo $row['exp'];
+
 return;
 ?>
