@@ -16,6 +16,8 @@ public class FirstEnemy : EnemyFSM
         player = GameObject.FindWithTag("Player");
         rb = GetComponent<Rigidbody>();
         myColl = GetComponent<Collider>();
+        enemyID = EnemyID.ΩΩ∂Û¿”;
+        Debug.Log(enemyID);
 
         Appear();
     }

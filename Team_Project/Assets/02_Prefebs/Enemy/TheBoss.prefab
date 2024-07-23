@@ -838,6 +838,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
+  enemyID: 1
   bCon: {fileID: 0}
   bossAnim: {fileID: 0}
   bossStateUI: {fileID: 0}
@@ -859,6 +860,7 @@ MonoBehaviour:
   meleeAttackDistance: 5
   rangeAttackDistance: 10
   limitAttackRange: 15
+  exp: 0
 --- !u!114 &3620795736800397633
 MonoBehaviour:
   m_ObjectHideFlags: 0

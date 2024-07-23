@@ -55,6 +55,9 @@ public abstract class BossFSM : DamagedAction
     // 보스의 렌더러 변수
     public SkinnedMeshRenderer bossSkin;
 
+    // 자신의 ID
+    public EnemyID enemyID;
+
     [Space(10)]
     // 보스의 이름
     public string bossName;

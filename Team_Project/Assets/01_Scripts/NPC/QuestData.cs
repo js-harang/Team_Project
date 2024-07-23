@@ -56,7 +56,7 @@ public class QuestData
                 this.questID = questID;
                 this.targetID = targetID;
                 this.requiredAmount = requiredAmount;
-                this.currentAmount = 0;
+                currentAmount = 0;
                 this.goldReward = goldReward;
                 this.expReward = expReward;
                 isDone = false;
@@ -67,7 +67,7 @@ public class QuestData
                 this.questID = questID;
                 this.targetID = targetID;
                 this.requiredAmount = requiredAmount;
-                this.currentAmount = 0;
+                currentAmount = 0;
                 this.goldReward = goldReward;
                 this.expReward = expReward;
                 isDone = false;

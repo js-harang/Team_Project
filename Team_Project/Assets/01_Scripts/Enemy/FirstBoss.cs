@@ -22,6 +22,8 @@ public class FirstBoss : BossFSM
         player = GameObject.FindWithTag("Player");
         rb = GetComponent<Rigidbody>();
         myColl = GetComponent<Collider>();
+        enemyID = EnemyID.´õº¸½º;
+        Debug.Log(enemyID);
 
         Appear();
     }

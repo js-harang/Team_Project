@@ -31,11 +31,10 @@ public class QuestController : MonoBehaviour
 
     void MyQuestWindowUpdate()
     {
-        for (int i = 0; i < myQuests.Count; i++)
-        {
-            Transform questList = Instantiate(MyQuestListPref).transform;
-            QuestGoalList questGoal = questList.gameObject.GetComponent<QuestGoalList>();
-            questList.transform.SetParent(questUIContent);
-        }
+        Transform questList = Instantiate(MyQuestListPref).transform;
+        QuestGoalList questGoal = questList.gameObject.GetComponent<QuestGoalList>();
+        questList.transform.SetParent(questUIContent);
+        questGoal.myData = myQuests[myQuests.Count - 1];
+        questList.gameObject.SetActive(true);
     }
 }

@@ -53,6 +53,9 @@ public abstract class EnemyFSM : DamagedAction
     // 에너미의 렌더러
     public SkinnedMeshRenderer enemySkin;
 
+    // 에너미의 ID
+    public EnemyID enemyID;
+
     [Space(10)]
     // 현재 체력
     public float currentHp;
