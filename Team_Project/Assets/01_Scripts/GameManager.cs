@@ -99,7 +99,7 @@ public class GameManager : MonoBehaviour
         NowExp += exp;
         ChkExp();
 
-        PlayerPrefs.Save();
+        SaveUserData();
         UI.SetEXPSlider(NowExp, maxExp);
     }
 
@@ -123,10 +123,13 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("다음 필요 경험치 : " + maxExp);
     }
-
-    IEnumerator SaveUserData()
+    private void SaveUserData()
     {
-        string url = gm.path + "saveuserdata";
+        StartCoroutine(SaveUserDatas());
+    }
+    IEnumerator SaveUserDatas()
+    {
+        string url = gm.path + "saveuserdata.php";
         string cuid = PlayerPrefs.GetString("characteruid");
 
         WWWForm form = new WWWForm();
@@ -176,6 +179,9 @@ public class GameManager : MonoBehaviour
                 string[] data = tmp.Split(",");
                 LV = System.Convert.ToInt32(data[0]);
                 NowExp = System.Convert.ToInt32(data[1]);
+
+                Debug.Log("현재 레벨" + LV);
+                Debug.Log("현재 경험치" + NowExp);
 
                 SetMaxExp();
                 UI.SetLvText(LV);
