@@ -4,7 +4,7 @@ $username = "root";
 $password = "1234";
 $dbname = "team_project";
 
-$cuid = $_GET["cuid"];
+$cuid = $_POST["cuid"];
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
