@@ -72,7 +72,7 @@ public class ShowQuest : MonoBehaviour
     {
         questCon.MyQuestWindowUpdate(myData);
         interCon.nowGiver.PlayerAcceptsMyQuests();
-        isAccept_Txt.text = "수락 중";
+        isAccept_Txt.text = "진행 중";
         questAccept_Btn.enabled = false;
     }
 
@@ -81,7 +81,7 @@ public class ShowQuest : MonoBehaviour
     {
         if (onOff)
         {
-            isAccept_Txt.text = "수락 중";
+            isAccept_Txt.text = "진행 중";
             questAccept_Btn.enabled = false;
         }
         else
