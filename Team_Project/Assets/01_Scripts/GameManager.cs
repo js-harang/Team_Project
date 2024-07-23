@@ -99,7 +99,7 @@ public class GameManager : MonoBehaviour
         NowExp += exp;
         ChkExp();
 
-        PlayerPrefs.Save();
+        SaveUserData();
         UI.SetEXPSlider(NowExp, maxExp);
     }
 
@@ -123,10 +123,13 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("다음 필요 경험치 : " + maxExp);
     }
-
-    IEnumerator SaveUserData()
+    private void SaveUserData()
     {
-        string url = gm.path + "saveuserdata";
+        StartCoroutine(SaveUserDatas());
+    }
+    IEnumerator SaveUserDatas()
+    {
+        string url = gm.path + "saveuserdata.php";
         string cuid = PlayerPrefs.GetString("characteruid");
 
         WWWForm form = new WWWForm();
@@ -172,13 +175,13 @@ public class GameManager : MonoBehaviour
             yield return www.SendWebRequest();
             if (www.error == null)
             {
-                string jsonStr = "{\"Datas\":" + www.downloadHandler.text + "}";
+                string tmp = www.downloadHandler.text;
+                string[] data = tmp.Split(",");
+                LV = System.Convert.ToInt32(data[0]);
+                NowExp = System.Convert.ToInt32(data[1]);
 
-                // json 문법을 객체로 바꿔줌
-                Users users = JsonUtility.FromJson<Users>(jsonStr);
-               
-                LV = System.Convert.ToInt32(users.Datas[0].lv);
-                NowExp = System.Convert.ToInt32(users.Datas[0].exp);
+                Debug.Log("현재 레벨" + LV);
+                Debug.Log("현재 경험치" + NowExp);
 
                 SetMaxExp();
                 UI.SetLvText(LV);
