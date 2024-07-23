@@ -164,7 +164,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator LoadeUserDatas()
     {
-        string url = gm.path + "loaduserdata";
+        string url = gm.path + "loaduserdata.php";
         string cuid = PlayerPrefs.GetString("characteruid");
 
         WWWForm form = new WWWForm();
