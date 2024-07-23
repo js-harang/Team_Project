@@ -37,12 +37,12 @@ public class QuestGoalList : MonoBehaviour
             case QuestType.Kill:
                 enemyID = (EnemyID)myData.targetID;
                 questGoal_Txt.text = $"{enemyID} Ã³Ä¡";
-                goalCount_Txt.text = $"{myData.currentAmount} / {myData.requiredAmount}";
+                goalCount_Txt.text = $"{myData.CurrentAmount} / {myData.requiredAmount}";
                 break;
             case QuestType.Gathering:
                 itemID = (ItemID)myData.targetID;
                 questGoal_Txt.text = $"{itemID} È¹µæ";
-                goalCount_Txt.text = $"{myData.currentAmount} / {myData.requiredAmount}";
+                goalCount_Txt.text = $"{myData.CurrentAmount} / {myData.requiredAmount}";
                 break;
             case QuestType.Conversation:
                 npcID = (NPCID)myData.targetID;

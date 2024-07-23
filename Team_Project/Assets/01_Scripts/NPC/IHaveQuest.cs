@@ -18,10 +18,10 @@ public class IHaveQuest : MonoBehaviour
         giverID = 2000;
 
         questName = "첫 출동";
-        questDatas.Add(new QuestData(questName, 0, 1, 5000, 300));
+        questDatas.Add(new QuestData(questName, 0, 2000, 1, 5000, 300));
 
         questName = "소재 수집";
-        questDatas.Add(new QuestData(questName, 1, TargetType.Monster, 0, 5, 30000, 600));
+        questDatas.Add(new QuestData(questName, 1, 2000, TargetType.Monster, 0, 5, 30000, 600));
 
         questDic.Add(giverID, questDatas);
 
@@ -29,7 +29,7 @@ public class IHaveQuest : MonoBehaviour
         giverID = 1000;
 
         questName = "자격 증명";
-        questDatas1.Add(new QuestData(questName, 2, TargetType.Monster, 1000, 1, 50000, 1000));
+        questDatas1.Add(new QuestData(questName, 2, 1000, TargetType.Monster, 1000, 1, 50000, 1000));
 
         questDic.Add(giverID, questDatas1);
     }

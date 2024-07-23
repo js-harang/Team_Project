@@ -702,6 +702,14 @@ PrefabInstance:
       propertyPath: m_VerticalFit
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1447720030, guid: c6acf9d249963ec43aa429700016ee14, type: 3}
+      propertyPath: m_Padding.m_Left
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1447720030, guid: c6acf9d249963ec43aa429700016ee14, type: 3}
+      propertyPath: m_Padding.m_Right
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1624440231, guid: c6acf9d249963ec43aa429700016ee14, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -982,6 +990,10 @@ PrefabInstance:
     - target: {fileID: 2399139949127561585, guid: 8775acec7efed374898815f3be4b85c0, type: 3}
       propertyPath: m_fontSizeBase
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4647744316651363859, guid: 8775acec7efed374898815f3be4b85c0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4647744317304588226, guid: 8775acec7efed374898815f3be4b85c0, type: 3}
       propertyPath: m_Name
