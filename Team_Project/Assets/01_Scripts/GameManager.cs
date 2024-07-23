@@ -186,6 +186,10 @@ public class GameManager : MonoBehaviour
                     NowExp = System.Convert.ToInt32(user.exp);
                 }
             }
+            else
+            {
+                Debug.Log(www.error);
+            }
         }
     }
     private void SetLevel()

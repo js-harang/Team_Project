@@ -29,8 +29,8 @@ if(mysqli_num_rows($result) > 0)
 	
 	// $users_json_string 라는 변수 선언 
 	// $users 배열을 json_encode() 함수로 json 파일로 만들고 변수에 저장
-	$data_json_string = json_encode($data);
-	echo $data_json_string;
+	$data_json = json_encode($data);
+	echo $data_json;
 }
 else
 {
