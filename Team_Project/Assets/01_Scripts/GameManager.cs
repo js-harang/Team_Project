@@ -172,13 +172,10 @@ public class GameManager : MonoBehaviour
             yield return www.SendWebRequest();
             if (www.error == null)
             {
-                string jsonStr = "{\"Datas\":" + www.downloadHandler.text + "}";
-
-                // json πÆπ˝¿ª ∞¥√º∑Œ πŸ≤„¡‹
-                Users users = JsonUtility.FromJson<Users>(jsonStr);
-               
-                LV = System.Convert.ToInt32(users.Datas[0].lv);
-                NowExp = System.Convert.ToInt32(users.Datas[0].exp);
+                string tmp = www.downloadHandler.text;
+                string[] data = tmp.Split(",");
+                LV = System.Convert.ToInt32(data[0]);
+                NowExp = System.Convert.ToInt32(data[1]);
 
                 SetMaxExp();
                 UI.SetLvText(LV);
