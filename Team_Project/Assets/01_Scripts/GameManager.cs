@@ -92,7 +92,7 @@ public class GameManager : MonoBehaviour
     #endregion
 
     // 필요 경험치
-    [SerializeField] int requiredExp;
+    int requiredExp = 100;
 
     #endregion
 /*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -188,7 +188,7 @@ public class GameManager : MonoBehaviour
         player.AtkPower = lv * lvPerPower;
     }
 
-    // 최대 경험치 슬라이더바 세팅
+    // 최대 경험치 재설정
     private void SetMaxExp()
     {
         maxExp = requiredExp * LV;
@@ -224,9 +224,6 @@ public class GameManager : MonoBehaviour
 
                 LV = System.Convert.ToInt32(data[0]);
                 NowExp = System.Convert.ToInt32(data[1]);
-
-                Debug.Log("현재 레벨" + LV);
-                Debug.Log("현재 경험치" + NowExp);
 
                 // 레벨에 맞춰 플레이어 공격력 설정
                 SetPlayerAtkPower();
