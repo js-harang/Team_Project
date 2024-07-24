@@ -251,8 +251,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 5
-    m_Right: 5
+    m_Left: 0
+    m_Right: 0
     m_Top: 5
     m_Bottom: 5
   m_ChildAlignment: 0
@@ -277,7 +277,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
-  m_VerticalFit: 1
+  m_VerticalFit: 2
 --- !u!1 &1624440230
 GameObject:
   m_ObjectHideFlags: 0
@@ -1475,10 +1475,10 @@ MonoBehaviour:
   statusUI: {fileID: 9211070371178581321}
   escMenuUI: {fileID: 9211070370184498246}
   gameUI: {fileID: 1325019279012324643}
-  lvText: {fileID: 1325019278675114592}
   hpSld: {fileID: 1325019279947320490}
   mpSld: {fileID: 1325019279474956161}
   expSld: {fileID: 1325019279184811641}
+  lvText: {fileID: 1325019278675114592}
   gameOverUI: {fileID: 0}
   preferencePopup: {fileID: 0}
 --- !u!114 &9211070371428783550
@@ -1874,6 +1874,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9211070371428783520}
     m_Modifications:
+    - target: {fileID: 3772673508688204759, guid: f89cdbdda37ba5d40b6a3b1255f05ee1, type: 3}
+      propertyPath: m_fontSize
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 3772673508688204759, guid: f89cdbdda37ba5d40b6a3b1255f05ee1, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 35
+      objectReference: {fileID: 0}
     - target: {fileID: 6610723330525078860, guid: f89cdbdda37ba5d40b6a3b1255f05ee1, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

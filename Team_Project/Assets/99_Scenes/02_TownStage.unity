@@ -682,32 +682,8 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 553819386, guid: c6acf9d249963ec43aa429700016ee14, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 553819386, guid: c6acf9d249963ec43aa429700016ee14, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 553819386, guid: c6acf9d249963ec43aa429700016ee14, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1447720028, guid: c6acf9d249963ec43aa429700016ee14, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1447720029, guid: c6acf9d249963ec43aa429700016ee14, type: 3}
-      propertyPath: m_VerticalFit
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1447720030, guid: c6acf9d249963ec43aa429700016ee14, type: 3}
-      propertyPath: m_Padding.m_Left
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1447720030, guid: c6acf9d249963ec43aa429700016ee14, type: 3}
-      propertyPath: m_Padding.m_Right
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1624440231, guid: c6acf9d249963ec43aa429700016ee14, type: 3}
@@ -1899,10 +1875,10 @@ MonoBehaviour:
   isPreferencePopup: 0
   path: 
   slotNum: 0
-  currentExp: 0
+  lv: 0
+  nowExp: 0
   maxExp: 0
   requiredExp: 0
-  lv: 0
 --- !u!1 &613375120855033482
 GameObject:
   m_ObjectHideFlags: 0
@@ -2302,9 +2278,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 316223621650006371}
+  atkPower: 0
   currentHp: 100
   maxHp: 100
-  atkPower: 0
   currentMp: 10000
   maxMp: 10000
   attack: {fileID: 0}

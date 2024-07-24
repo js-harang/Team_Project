@@ -13,13 +13,13 @@ if ($conn->connect_error)
 	echo "Failed to connect to MySQL : " + $mysqli->connect_error;
 }
 
-$sql = "select 	quest_id, current, isdone 
-		from 	player_questdata
-		where 	character_uid = $cuid and iscleared = 'N'";
+$sql = "SELECT 	quest_id, current, isdone 
+		FROM 	player_questdata
+		WHERE 	character_uid = $cuid and iscleared = 'N'";
 		
 $result = mysqli_query($conn, $sql);
 
-if ($result)
+if (mysqli_num_rows($result) > 0)
 {
 	$row = mysqli_fetch_assoc($result);
 	echo $row['quest_id'].",".$row['current'].",".$row['isdone'];
