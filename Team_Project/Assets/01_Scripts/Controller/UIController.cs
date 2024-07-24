@@ -4,12 +4,13 @@ using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
-    // 키보드 입력시 동작할 UI들
+    #region 키보드 입력시 동작할 UI들
     [SerializeField] GameObject inventoryUI;
     [SerializeField] GameObject statusUI;
     [SerializeField] GameObject escMenuUI;
     [SerializeField] Canvas gameUI;
-    [SerializeField] TextMeshProUGUI lvText;
+    #endregion
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
     #region 플레이어 슬라이더 바
     [Space(10)]
@@ -17,21 +18,28 @@ public class UIController : MonoBehaviour
     [SerializeField] Slider mpSld;
     [SerializeField] Slider expSld;
     #endregion
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+    [SerializeField] TextMeshProUGUI lvText;
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
     [Space(10)]
     [SerializeField] GameObject gameOverUI;
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
     PlayerState pState;
-    // PlayerCombat player;
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
     [SerializeField, Space(10)] GameObject preferencePopup;
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
     private void Start()
     {
         pState = FindObjectOfType<PlayerState>().GetComponent<PlayerState>();
-        // player = pState.GetComponent<PlayerCombat>();
+
         GameManager.gm.UI = this.GetComponent<UIController>();
-        lvText.text =  "Lv." + GameManager.gm.LV;
+        GameManager.gm.LaodUserData();
+        GameManager.gm.LoadUserCredit();
     }
 
     private void Update()
@@ -57,12 +65,10 @@ public class UIController : MonoBehaviour
                 break;
         }
     }
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
-    #region 슬라이더 세팅
-    public void SetEXPSlider(float currentExp, int maxExp)
-    {
-        expSld.value = currentExp / maxExp;
-    }
+    // 슬라이더 세팅
+    #region HP, MP, EXP 변경시 세팅
     public void SetHpSlider(float currentHp, int maxHp)
     {
         hpSld.value = currentHp / maxHp;
@@ -71,13 +77,28 @@ public class UIController : MonoBehaviour
     {
         mpSld.value = currentMp / maxMp;
     }
+    public void SetEXPSlider(float currentExp, int maxExp)
+    {
+        expSld.value = currentExp / maxExp;
+    }
     #endregion
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
+    // 텍스트 세팅
+    #region LV, Credit 변경시 세팅
     public void SetLvText(int lv)
     {
         lvText.text = "Lv." + lv;
     }
+    public void SetCreditText(int credit)
+    {
 
+    }
+    #endregion
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+    // UI 관련
+    #region UI 활성, 비활성 관련
     // 스테이터스 UI 활성 / 비활성화
     public void StatusOnOff()
     {
@@ -112,7 +133,11 @@ public class UIController : MonoBehaviour
         escMenuUI.SetActive(true);
         pState.UnitState = UnitState.Wait;
     }
+    #endregion
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
+    // 씬이동
+    #region 캐릭터 선택, 마을 이동
     // 캐릭터 선택화면으로 이동
     public void ToCharacterLobby(int sceneNumber)
     {
@@ -124,20 +149,15 @@ public class UIController : MonoBehaviour
     {
         GameManager.gm.MoveScene(sceneNumber);
     }
+    #endregion
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
     // 게임오버시 호출되는 메소드(게임오버 매뉴 활성화)
     public void GameOverUI()
     {
         gameOverUI.SetActive(true);
     }
-
-    public void PreferencesBtn()
-    {
-        EscMenuOnOff();
-
-        GameManager.gm.isPreferencePopup = true;
-        preferencePopup.SetActive(GameManager.gm.isPreferencePopup);
-    }
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
     // 게임 종료
     public void QuitGame()
@@ -147,5 +167,13 @@ public class UIController : MonoBehaviour
 #else
         Application.Quit();
 #endif
+    }
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+    public void PreferencesBtn()
+    {
+        EscMenuOnOff();
+
+        GameManager.gm.isPreferencePopup = true;
+        preferencePopup.SetActive(GameManager.gm.isPreferencePopup);
     }
 }
