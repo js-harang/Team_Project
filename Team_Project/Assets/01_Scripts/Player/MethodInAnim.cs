@@ -17,4 +17,9 @@ public class MethodInAnim : MonoBehaviour
     {
         player.AttackStateFalse();
     }
+
+    private void EndHurt()
+    {
+        player.EndHurt();
+    }
 }
