@@ -6,18 +6,11 @@ public enum QuestType
     Conversation,
 }
 
-// 퀘스트가 목표로 하는 타겟의 종류
-public enum TargetType
-{
-    Monster,
-    Item,
-}
-
 public class QuestData
 {
     // 퀘스트를 분류하고 진행을 확인하기 위해 필요한 변수들
     public QuestType questType;
-    public TargetType targetType;
+    public string targetType;
     public string questName;
     public int questID;
     public int giverID;
@@ -58,12 +51,12 @@ public class QuestData
     }
 
     // 퀘스트의 중류가 매개변수로 받은 타겟타입에 따라 처치인지, 수집인지 분류
-    public QuestData(string questName, int questID, int giverID, TargetType targetType, 
+    public QuestData(string questName, int questID, int giverID, string targetType, 
         int targetID, int requiredAmount, int goldReward, int expReward)
     {
         switch (targetType)
         {
-            case TargetType.Monster:
+            case "Monster":
                 questType = QuestType.Kill;
                 this.questName = questName;
                 this.questID = questID;
@@ -75,7 +68,7 @@ public class QuestData
                 this.expReward = expReward;
                 isDone = false;
                 break;
-            case TargetType.Item:
+            case "Item":
                 questType = QuestType.Gathering;
                 this.questName = questName;
                 this.questID = questID;
