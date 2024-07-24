@@ -3,7 +3,7 @@ public class QuestJson
     public string questName;
     public int questID;
     public int giverID;
-    public string targetType;
+    public char targetType;
     public int targetID;
     public int requiredAmount;
     public int goldReward;

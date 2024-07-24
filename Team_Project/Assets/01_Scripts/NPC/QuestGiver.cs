@@ -51,11 +51,6 @@ public class QuestGiver : IHaveQuest
         questDic.Add(interPP.InteractId, QuestList);
     }
 
-    private void Start()
-    {
-        
-    }
-
     // 플레이어가 자신의 퀘스트를 얼마나 수주했는지 확인
     public void PlayerAcceptsMyQuests()
     {

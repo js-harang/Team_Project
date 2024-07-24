@@ -17,14 +17,15 @@ public class IHaveQuest : MonoBehaviour
     // 딕셔너리에 각각의 리스트를 NPC 아이디를 키로 저장함.
     private void Start()
     {
-        StartCoroutine(LoadQuestDatas(PlayerPrefs.GetInt("characteruid")));
+        StartCoroutine(LoadQuestDatas());
     }
 
-    IEnumerator LoadPlayerQuestsHave(int characterID)
+    IEnumerator LoadPlayerQuestsHave()
     {
         string url = GameManager.gm.path + "load_playerquestdata.php";
+        string cuid = PlayerPrefs.GetString("characteruid");
         WWWForm form = new WWWForm();
-        form.AddField("cuid", characterID);
+        form.AddField("cuid", cuid);
 
         using (UnityWebRequest www = UnityWebRequest.Post(url, form))
         {
@@ -37,11 +38,12 @@ public class IHaveQuest : MonoBehaviour
         }
     }
 
-    IEnumerator LoadQuestDatas(int characterID)
+    IEnumerator LoadQuestDatas()
     {
         string url = GameManager.gm.path + "load_questdata.php";
+        string cuid = PlayerPrefs.GetString("characteruid");
         WWWForm form = new WWWForm();
-        form.AddField("cuid", characterID);
+        form.AddField("cuid", 0000000018);
 
         using (UnityWebRequest www = UnityWebRequest.Post(url, form))
         {
@@ -55,6 +57,7 @@ public class IHaveQuest : MonoBehaviour
                 foreach (QuestJson quest in quests.Items)
                 {
                     questDic[quest.giverID].Add(new QuestData(quest));
+                    Debug.Log(questDic[quest.giverID].Count);
                 }
             }
         }

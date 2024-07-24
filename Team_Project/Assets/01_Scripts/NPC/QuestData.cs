@@ -13,7 +13,7 @@ public class QuestData
     public string questName;
     public int questID;
     public int giverID;
-    public string targetType;
+    public char targetType;
     public int targetID;
     // ‘òÇ¥¼öÄ¡
     public int requiredAmount;
@@ -41,7 +41,7 @@ public class QuestData
     {
         switch (targetType)
         {
-            case "M":
+            case 'M':
                 questType = QuestType.Kill;
                 this.questName = qj.questName;
                 this.questID = qj.questID;
@@ -53,7 +53,7 @@ public class QuestData
                 this.expReward = qj.expReward;
                 isDone = false;
                 break;
-            case "I":
+            case 'I':
                 questType = QuestType.Gathering;
                 this.questName = qj.questName;
                 this.questID = qj.questID;
@@ -65,7 +65,7 @@ public class QuestData
                 this.expReward = qj.expReward;
                 isDone = false;
                 break;
-            case "0":
+            case '0':
                 questType = QuestType.Conversation;
                 this.questName = qj.questName;
                 this.questID = qj.questID;
