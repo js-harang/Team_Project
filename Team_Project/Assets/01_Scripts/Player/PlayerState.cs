@@ -7,8 +7,6 @@ public enum UnitState
     Interact,
     Run,
     Jump,
-    Attack,
-    Hurt,
 }
 
 public enum UnitBattleState

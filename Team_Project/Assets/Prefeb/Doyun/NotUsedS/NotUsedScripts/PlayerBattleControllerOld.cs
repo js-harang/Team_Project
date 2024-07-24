@@ -155,8 +155,7 @@ public class PlayerBattleControllerOld : MonoBehaviour
         if (pState.UnitBS == UnitBattleState.Die)
             return;
 
-        pState.UnitState = UnitState.Hurt;
-        // Debug.Log("Player Damaged :" + damage);
+        pState.UnitBS = UnitBattleState.Hurt;
 
         currentHp -= damage;
 

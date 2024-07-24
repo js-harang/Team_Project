@@ -5,16 +5,13 @@ using UnityEngine.UI;
 
 public class PlayerCombat : DamagedAction
 {
-/*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
     #region 플레이어 수치 관련
-//////////////////////////////////
 
     #region 공격력
     [SerializeField] int atkPower;
     public int AtkPower { get { return atkPower; } set { atkPower = value; } }
     #endregion
-//////////////////////////////////
 
     #region 현재 체력
     [SerializeField] float currentHp;
@@ -25,7 +22,6 @@ public class PlayerCombat : DamagedAction
     [SerializeField] int maxHp;
     public int MaxHp { get { return maxHp; } set { maxHp = value; } }
     #endregion
-//////////////////////////////////
 
     #region 플레이어 현재 마나
     [SerializeField]
@@ -37,7 +33,6 @@ public class PlayerCombat : DamagedAction
     [SerializeField] int maxMp;
     public int MaxMp { get { return maxMp; } set { maxMp = value; } }
     #endregion
-//////////////////////////////////
 
     #endregion
 /*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -48,34 +43,40 @@ public class PlayerCombat : DamagedAction
     [Space(10)]
     public Attack attack;
     public Attack previousAttack;
-    #endregion
-
 
     [Space(10)]
+    private float atkDamage;
     public float delayComboTime;
-    int comboCounter;
-    float atkDamage;
-
-    [Space(10)]
-    Collider[] enemys;
-    public LayerMask enemyLayer;
-
-    [Space(10)]
-    public Transform atkPos;
-    public Transform[] atkPositions;
+    [SerializeField] int comboCounter;
 
     [Space(10)]
     public bool canMoveAtk;
+    #endregion
 
+    #region 적 오브젝트 판정
+    [Space(10)]
+    public LayerMask enemyLayer;
+    private Collider[] enemys;
+    #endregion
+
+    #region 공격 위치
+    [Space(10)]
+    public Transform atkPos;
+    public Transform[] atkPositions;
+    #endregion
+
+    #region 공격 이펙트
     [Space(10)]
     public GameObject effectPrefebs;
+    #endregion
     #endregion
 /*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
     public Animator anim;
     public PlayerState pbs;
-/*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    // 메소드
     private void Start()
     {
         GameManager.gm.Player = this.GetComponent<PlayerCombat>();
@@ -86,8 +87,9 @@ public class PlayerCombat : DamagedAction
     {
         ExitAttack();
     }
-/*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    // 공격 에니메이션 실행
     public void Attack()
     {
         // 공격이 없으면 리턴
@@ -96,11 +98,7 @@ public class PlayerCombat : DamagedAction
 
         #region 이전 공격과 지금 공격이 다르면 이전공격 콤보 초기화
         if (previousAttack != null && previousAttack != attack)
-        {
             ResetCombo();
-            Debug.Log("이전 공격 : " + previousAttack);
-            Debug.Log("이전 공격 콤보 : " + previousAttack.isComboing);
-        }
         #endregion
 
         // 공격 상태 가 아니며 콤보 회수가 공격 배열들 보다 작거나 같을때 실행
@@ -109,6 +107,7 @@ public class PlayerCombat : DamagedAction
             // 공격중지 매소드 실행 취소
             CancelInvoke("ResetCombo");
 
+            #region 공격 설정
             anim.runtimeAnimatorController = attack.animOCs[comboCounter];
 
             atkDamage = attack.damage[comboCounter];
@@ -119,6 +118,7 @@ public class PlayerCombat : DamagedAction
                 currentMp -= attack.useMana;
 
             GameManager.gm.UI.SetMpSlider(CurrentMp, MaxMp);
+            #endregion
 
             anim.Play("Attack", 0, 0);
 
@@ -127,17 +127,19 @@ public class PlayerCombat : DamagedAction
 
             comboCounter++;
 
+            #region 최대 콤보 도달시 초기화
             if (comboCounter + 1 > attack.animOCs.Length)
             {
                 Debug.Log("콤보초기화");
                 ResetCombo();
             }
+            #endregion
         }
     }
 
 /*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
-    #region 공격 중지(인보크 시간내에 공격 없으면 실행됨)
+    #region ExitAttack() 공격 중지(인보크 시간내에 공격 없으면 실행됨)
     void ExitAttack()
     {
         // GetCurrentAnimatorStateInfo(0) : 현재 애니메이션의 정보
@@ -151,7 +153,7 @@ public class PlayerCombat : DamagedAction
     }
     #endregion
 
-    #region 콤보 리셋
+    #region ResetCombo() 콤보 리셋
     void ResetCombo()
     {
         comboCounter = 0;
@@ -163,7 +165,7 @@ public class PlayerCombat : DamagedAction
     }
     #endregion
 
-    #region 공격중인지 확인
+    #region AttackState True, False 공격중인지 확인
     public void AttackStateTrue()
     {
         pbs.UnitBS = UnitBattleState.Attack;
@@ -176,7 +178,7 @@ public class PlayerCombat : DamagedAction
     #endregion
 /*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
-    #region 공격 판정(플레이어 공격력 * 스킬계수)
+    #region AttackEnemy() 공격 판정(플레이어 공격력 * 스킬계수)
     public void AttackEnemy()
     {
         atkPos = atkPositions[attack.atkPosIdx];
@@ -195,6 +197,7 @@ public class PlayerCombat : DamagedAction
                 damageAct.Damaged(sumDamage);
                 damageAct.KnockBack(transform.position, attack.knockBackForce);
                 #endregion
+
                 #region 이펙트
                 Vector3 epos = enemy.transform.position;
                 Ray ray = new(transform.position, epos - transform.position);
@@ -212,14 +215,14 @@ public class PlayerCombat : DamagedAction
     #endregion
 /*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
-    #region 플레이어 데미지 입을때
+    // 플레이어 피격
+    #region Damaged(float damage) 플레이어 데미지 입을때
     public override void Damaged(float damage)
     {
         if (pbs.UnitBS == UnitBattleState.Die)
             return;
 
-        pbs.UnitState = UnitState.Hurt;
-        // Debug.Log("Player Damaged :" + damage);
+        pbs.UnitBS = UnitBattleState.Hurt;
 
         currentHp -= damage;
 
@@ -227,10 +230,14 @@ public class PlayerCombat : DamagedAction
 
         if (currentHp > 0)
         {
+            #region 플레이어 피격
             // 피격
+            anim.SetTrigger("IsHurt");
+            #endregion
         }
         else
         {
+            #region 플레이어 사망
             Debug.Log("플레이어 사망");
 
             pbs.UnitBS = UnitBattleState.Die;
@@ -238,10 +245,18 @@ public class PlayerCombat : DamagedAction
 
             UIController uiCon = GameObject.FindAnyObjectByType<UIController>();
             uiCon.GameOverUI();
+            #endregion
         }
     }
     #endregion
 
+    // 피격 판정 종료
+    public void EndHurt()
+    {
+        pbs.UnitBS = UnitBattleState.Idle;
+    }
+
+    // 넉백
     public override void KnockBack(Vector3 atkPos, float knockBackForce)
     {
         rb.velocity = Vector3.zero;
