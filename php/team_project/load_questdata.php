@@ -36,7 +36,7 @@ if (mysqli_num_rows($result) > 0)
 			'gold_reward' => $row['gold_reward'],
 			'exp_reward' => $row['exp_reward']);
 	}
-	$quests_json_string = json_encode($quests);
+	$quests_json_string = json_encode($quests, JSON_UNESCAPED_UNICODE);
 	echo $quests_json_string;
 }	
 else
