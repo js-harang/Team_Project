@@ -5,6 +5,9 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+    #region GM 싱글톤 (Awake 메소드 여기 들어있음)
     public static GameManager gm;
     private void Awake()
     {
@@ -17,11 +20,17 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gm);
         }
     }
-
+    #endregion
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+    
     [HideInInspector] public int sceneNumber;
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
     // 환경설정 선택되어 있는 옵션
     [HideInInspector] public GameObject selectObject;
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+    #region 스크린 모드 설정
 
     private int isFullScreen;
     // 전체화면 / 창모드 선택
@@ -45,31 +54,67 @@ public class GameManager : MonoBehaviour
     }
     [HideInInspector] public bool boolIsFullScreen = true;
 
+    #endregion
+
     [HideInInspector] public bool isPreferencePopup = false;
 
     public string path;
 
+    [HideInInspector] public int slotNum = 0;
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+    // UIController 속성
+    #region UIController 속성
     UIController ui;
     public UIController UI { get { return ui; } set { ui = value; } }
+    #endregion
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
-    [HideInInspector] public int slotNum = 0;
-
+    // 유저 레벨, 경험치 속성
     #region 경험치 관련
-    [SerializeField] int nowExp;
-    public int NowExp
-    { get { return nowExp; } set { nowExp = value; SetNowExp(); } }
 
-    [SerializeField] int maxExp;
-    public int MaxExp
-    { get { return maxExp; } set { maxExp = value; } }
+    #region LV 레벨 속성
+    [SerializeField] int lv;
+    public int LV 
+    {
+        get { return lv; } 
+        set { lv = value; SetLevel(); }
+    }
+    #endregion
 
     // 필요 경험치
     [SerializeField] int requiredExp;
 
-    [SerializeField] int lv;
-    public int LV 
-    { get { return lv; } set { lv = value; SetLevel(); } }
+    #region NowExp; 현재 경험치
+    [SerializeField] int nowExp;
+    public int NowExp
+    { 
+        get { return nowExp; } 
+        set { nowExp = value; SetNowExp(); }
+    }
     #endregion
+
+    #region MaxExp; 최대 경험치
+    [SerializeField] int maxExp;
+    public int MaxExp
+    { get { return maxExp; } set { maxExp = value; } }
+    #endregion
+
+    #endregion
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+    // 유저 크레딧 속성
+    #region Credit 유저 크레딧 관련
+    int credit;
+    public int Credit
+    {
+        get { return credit; }
+        set { credit = value; SaveUserCredit(); }
+    }
+    #endregion
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
     private void Start()
     {
@@ -78,9 +123,14 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.DeleteKey("uid");
         PlayerPrefs.DeleteKey("characteruid");
 
-        LaodUserData();
+        // 나중에 UI 컨트롤러 로 옮길것
+        GameManager.gm.LaodUserData();
+        GameManager.gm.LoadUserCredit();
     }
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
+    // 씬이동
+    #region MoveScene() 씬이동 메소드
     /// <summary>
     /// 0 = TitleScene
     /// 1 = LobbyScene
@@ -92,7 +142,10 @@ public class GameManager : MonoBehaviour
         sceneNumber = number;
         SceneManager.LoadScene("99_LoadingScene");
     }
+    #endregion
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
+    // 유저 레벨, 경험치 관련
     #region 유저 정보 세팅
     public void SumEXP(int exp)
     {
@@ -103,6 +156,10 @@ public class GameManager : MonoBehaviour
         UI.SetEXPSlider(NowExp, maxExp);
     }
 
+    private void SetLevel()
+    {
+        PlayerPrefs.SetInt("LV", LV);
+    }
     private void ChkExp()
     {
         while (NowExp >= maxExp)
@@ -117,12 +174,20 @@ public class GameManager : MonoBehaviour
             SetMaxExp();
         }
     }
+    private void SetNowExp()
+    {
+        PlayerPrefs.SetInt("NowExp", NowExp);
+    }
     private void SetMaxExp()
     {
         maxExp = requiredExp * LV;
 
         Debug.Log("다음 필요 경험치 : " + maxExp);
     }
+
+    #endregion
+
+    #region SaveUserData() 유저 정보 저장
     private void SaveUserData()
     {
         StartCoroutine(SaveUserDatas());
@@ -152,8 +217,8 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    #region 유저 정보 관련
-    private void LaodUserData()
+    #region LoadUserData() 유저 정보 불러오기
+    public void LaodUserData()
     {
 /*
         LV = PlayerPrefs.GetInt("LV");
@@ -193,13 +258,69 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-    private void SetLevel()
+    #endregion
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+    // 크레딧 저장 관련
+    #region LoadUserCredit() 유저 크레딧 불러오기
+    public void LoadUserCredit()
     {
-        PlayerPrefs.SetInt("LV", LV);
+        StartCoroutine(LoadCredit());
     }
-    private void SetNowExp()
+    IEnumerator LoadCredit()
     {
-        PlayerPrefs.SetInt("NowExp", NowExp);
+        string url = gm.path + "loadusercredit.php";
+        string cuid = PlayerPrefs.GetString("characteruid");
+
+        WWWForm form = new WWWForm();
+        form.AddField("cuid", 0000000018);
+
+        using (UnityWebRequest www = UnityWebRequest.Post(url, form))
+        {
+            yield return www.SendWebRequest();
+            if (www.error == null)
+            {
+                Credit = System.Convert.ToInt32(www.downloadHandler.text);
+
+                Debug.Log("현재 보유 골드" + Credit);
+
+                //UI 컨트롤러에 골드 보유 수량 보이게 설정할것
+            }
+            else
+            {
+                Debug.Log(www.error);
+            }
+        }
     }
     #endregion
+
+    #region SaveUserCredit() 유저 크레딧 저장
+    private void SaveUserCredit()
+    {
+        StartCoroutine(SaveCredit());
+    }
+    IEnumerator SaveCredit()
+    {
+        string url = gm.path + "saveusercredit.php";
+        string cuid = PlayerPrefs.GetString("characteruid");
+
+        WWWForm form = new WWWForm();
+        form.AddField("cuid", 0000000018);
+        form.AddField("credit", Credit);
+
+        using (UnityWebRequest www = UnityWebRequest.Post(url, form))
+        {
+            yield return www.SendWebRequest();
+            if (www.error == null)
+            {
+                Debug.Log("유저 크레딧 저장 완료");
+            }
+            else
+            {
+                Debug.Log(www.error);
+            }
+        }
+    }
+    #endregion
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 }
