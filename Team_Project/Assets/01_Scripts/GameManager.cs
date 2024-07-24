@@ -76,22 +76,13 @@ public class GameManager : MonoBehaviour
     #region LV 레벨 속성
     [SerializeField] int lv;
     public int LV 
-    {
-        get { return lv; } 
-        set { lv = value; }
-    }
+    { get { return lv; } set { lv = value; } }
     #endregion
-
-    // 필요 경험치
-    [SerializeField] int requiredExp;
 
     #region NowExp; 현재 경험치
     [SerializeField] int nowExp;
     public int NowExp
-    { 
-        get { return nowExp; } 
-        set { nowExp = value; }
-    }
+    { get { return nowExp; } set { nowExp = value; } }
     #endregion
 
     #region MaxExp; 최대 경험치
@@ -100,32 +91,41 @@ public class GameManager : MonoBehaviour
     { get { return maxExp; } set { maxExp = value; } }
     #endregion
 
+    // 필요 경험치
+    [SerializeField] int requiredExp;
+
     #endregion
 /*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
     // 유저 크레딧 속성
     #region Credit 유저 크레딧 관련
+
     int credit;
     public int Credit
     {
         get { return credit; }
         set { credit = value; SaveUserCredit(); }
     }
+
     #endregion
 /*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
+    // 플레이어
+    #region 플레이어 설정
+    PlayerCombat player;
+    public PlayerCombat Player
+    { get { return player; } set { player = value; } }
+
+    // 레벨당 공격력 배수
+    int lvPerPower = 1;
+    #endregion
 /*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
     private void Start()
     {
         // UI 컨트롤러가 생성될때 자동으로 참조됨
-        // ui = FindObjectOfType<UIController>().GetComponent<UIController>();
         PlayerPrefs.DeleteKey("uid");
         PlayerPrefs.DeleteKey("characteruid");
-
-        // 나중에 UI 컨트롤러 로 옮길것
-        GameManager.gm.LaodUserData();
-        GameManager.gm.LoadUserCredit();
     }
 /*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
@@ -147,31 +147,48 @@ public class GameManager : MonoBehaviour
 
     // 유저 레벨, 경험치 관련
     #region 유저 정보 세팅
+
+    // 경험치 추가
     public void SumEXP(int exp)
     {
-        NowExp += exp;
+        nowExp += exp;
         ChkExp();
 
         SaveUserData();
-        UI.SetEXPSlider(NowExp, maxExp);
+        UI.SetEXPSlider(NowExp, MaxExp);
     }
 
-
+    // 레벨업 가능한 경험치 인지 확인
     private void ChkExp()
     {
-        while (NowExp >= maxExp)
+        while (nowExp >= maxExp)
         {
-            NowExp -= maxExp;
-            LV++;
-            UI.SetLvText(LV);
-
-            Debug.Log("레벨업");
-            Debug.Log("현재 레벨 : " + LV);
-
-            SetMaxExp();
+            nowExp -= maxExp;
+            LevelUp();
         }
     }
 
+    // 레벨업
+    void LevelUp()
+    {
+        lv++;
+        UI.SetLvText(lv);
+
+        SetPlayerAtkPower();
+
+        Debug.Log("레벨업");
+        Debug.Log("현재 레벨 : " + LV);
+
+        SetMaxExp();
+    }
+
+    // 플레이어 레벨별 공격력 세팅
+    void SetPlayerAtkPower()
+    {
+        player.AtkPower = lv * lvPerPower;
+    }
+
+    // 최대 경험치 슬라이더바 세팅
     private void SetMaxExp()
     {
         maxExp = requiredExp * LV;
@@ -181,37 +198,7 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
-    #region SaveUserData() 유저 정보 저장
-    private void SaveUserData()
-    {
-        StartCoroutine(SaveUserDatas());
-    }
-    IEnumerator SaveUserDatas()
-    {
-        string url = gm.path + "saveuserdata.php";
-        string cuid = PlayerPrefs.GetString("characteruid");
-
-        WWWForm form = new WWWForm();
-        form.AddField("cuid", 0000000018);
-        form.AddField("lv", LV);
-        form.AddField("exp", NowExp);
-
-        using (UnityWebRequest www = UnityWebRequest.Post(url, form))
-        {
-            yield return www.SendWebRequest();
-            if (www.error == null)
-            {
-                Debug.Log("유저 정보 저장 완료");
-            }
-            else
-            {
-                Debug.Log(www.error);
-            }
-        }
-    }
-    #endregion
-
-    #region LoadUserData() 유저 정보 불러오기
+    #region LoadUserData()   유저 정보 불러오기
     public void LaodUserData()
     {
 /*
@@ -234,17 +221,53 @@ public class GameManager : MonoBehaviour
             yield return www.SendWebRequest();
             if (www.error == null)
             {
+                #region 불러온 데이터 변수 저장
                 string tmp = www.downloadHandler.text;
                 string[] data = tmp.Split(",");
+                #endregion
+
                 LV = System.Convert.ToInt32(data[0]);
                 NowExp = System.Convert.ToInt32(data[1]);
 
                 Debug.Log("현재 레벨" + LV);
                 Debug.Log("현재 경험치" + NowExp);
 
+                // 레벨에 맞춰 플레이어 공격력 설정
+                SetPlayerAtkPower();
+
                 SetMaxExp();
                 UI.SetLvText(LV);
                 UI.SetEXPSlider(NowExp, maxExp);
+            }
+            else
+            {
+                Debug.Log(www.error);
+            }
+        }
+    }
+    #endregion
+
+    #region SaveUserData()   유저 정보 저장
+    private void SaveUserData()
+    {
+        StartCoroutine(SaveUserDatas());
+    }
+    IEnumerator SaveUserDatas()
+    {
+        string url = gm.path + "saveuserdata.php";
+        string cuid = PlayerPrefs.GetString("characteruid");
+
+        WWWForm form = new WWWForm();
+        form.AddField("cuid", 0000000018);
+        form.AddField("lv", LV);
+        form.AddField("exp", NowExp);
+
+        using (UnityWebRequest www = UnityWebRequest.Post(url, form))
+        {
+            yield return www.SendWebRequest();
+            if (www.error == null)
+            {
+                Debug.Log("유저 정보 저장 완료");
             }
             else
             {

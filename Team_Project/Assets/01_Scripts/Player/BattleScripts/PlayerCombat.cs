@@ -5,33 +5,51 @@ using UnityEngine.UI;
 
 public class PlayerCombat : DamagedAction
 {
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
     #region 플레이어 수치 관련
-    // 현재 체력
-    [SerializeField] float currentHp;
-    public float CurrentHp { get { return currentHp; } set { currentHp = value; } }
-    // 최대체력
-    [SerializeField] int maxHp;
-    public int MaxHp { get { return maxHp; } set { maxHp = value; } }
-    // 공격력
+//////////////////////////////////
+
+    #region 공격력
     [SerializeField] int atkPower;
     public int AtkPower { get { return atkPower; } set { atkPower = value; } }
+    #endregion
+//////////////////////////////////
 
-    // 플레이어 현재 마나
+    #region 현재 체력
+    [SerializeField] float currentHp;
+    public float CurrentHp { get { return currentHp; } set { currentHp = value; } }
+    #endregion
+
+    #region 최대체력
+    [SerializeField] int maxHp;
+    public int MaxHp { get { return maxHp; } set { maxHp = value; } }
+    #endregion
+//////////////////////////////////
+
+    #region 플레이어 현재 마나
     [SerializeField]
     float currentMp;
     public float CurrentMp { get { return currentMp; } set { currentMp = value; } }
+    #endregion
 
-    // 플레이어 최대 마나
+    #region 플레이어 최대 마나 
     [SerializeField] int maxMp;
     public int MaxMp { get { return maxMp; } set { maxMp = value; } }
     #endregion
+//////////////////////////////////
+
+    #endregion
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
     #region 공격 관련
+
+    #region 공격 스킬 정보
     [Space(10)]
-    // public AttackSO attack;
     public Attack attack;
-    // public AttackSO previousAttack;
     public Attack previousAttack;
+    #endregion
+
 
     [Space(10)]
     public float delayComboTime;
@@ -52,14 +70,15 @@ public class PlayerCombat : DamagedAction
     [Space(10)]
     public GameObject effectPrefebs;
     #endregion
-
-    UIController ui;
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
     public Animator anim;
     public PlayerState pbs;
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
     private void Start()
     {
+        GameManager.gm.Player = this.GetComponent<PlayerCombat>();
         rb = GetComponent<Rigidbody>();
     }
 
@@ -67,6 +86,7 @@ public class PlayerCombat : DamagedAction
     {
         ExitAttack();
     }
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
     public void Attack()
     {
@@ -115,6 +135,8 @@ public class PlayerCombat : DamagedAction
         }
     }
 
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
     #region 공격 중지(인보크 시간내에 공격 없으면 실행됨)
     void ExitAttack()
     {
@@ -141,6 +163,19 @@ public class PlayerCombat : DamagedAction
     }
     #endregion
 
+    #region 공격중인지 확인
+    public void AttackStateTrue()
+    {
+        pbs.UnitBS = UnitBattleState.Attack;
+    }
+
+    public void AttackStateFalse()
+    {
+        pbs.UnitBS = UnitBattleState.Idle;
+    }
+    #endregion
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
     #region 공격 판정(플레이어 공격력 * 스킬계수)
     public void AttackEnemy()
     {
@@ -153,12 +188,14 @@ public class PlayerCombat : DamagedAction
         {
             if (enemy.gameObject.CompareTag("Enemy"))
             {
+                #region 데미지 주기
                 float sumDamage = atkPower * atkDamage;
                 DamagedAction damageAct = enemy.GetComponent<DamagedAction>();
 
                 damageAct.Damaged(sumDamage);
                 damageAct.KnockBack(transform.position, attack.knockBackForce);
-
+                #endregion
+                #region 이펙트
                 Vector3 epos = enemy.transform.position;
                 Ray ray = new(transform.position, epos - transform.position);
 
@@ -168,22 +205,12 @@ public class PlayerCombat : DamagedAction
                     audio.clip = attack.hitSound;
                     Instantiate(effectPrefebs, hit.point, Quaternion.identity);
                 }
+                #endregion
             }
         }
     }
     #endregion
-
-    #region 공격중인지 확인
-    public void AttackStateTrue()
-    {
-        pbs.UnitBS = UnitBattleState.Attack;
-    }
-
-    public void AttackStateFalse()
-    {
-        pbs.UnitBS = UnitBattleState.Idle;
-    }
-    #endregion
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
     #region 플레이어 데미지 입을때
     public override void Damaged(float damage)
