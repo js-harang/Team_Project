@@ -9,7 +9,7 @@ $cuid = $_POST["cuid"];
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($conn->connect_error)
-}	
+{	
 	echo "Failed to connect to MySQL : " + $mysqli->connect_error;
 }
 
