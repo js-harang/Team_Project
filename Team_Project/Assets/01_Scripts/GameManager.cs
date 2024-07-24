@@ -78,7 +78,7 @@ public class GameManager : MonoBehaviour
     public int LV 
     {
         get { return lv; } 
-        set { lv = value; SetLevel(); }
+        set { lv = value; }
     }
     #endregion
 
@@ -90,7 +90,7 @@ public class GameManager : MonoBehaviour
     public int NowExp
     { 
         get { return nowExp; } 
-        set { nowExp = value; SetNowExp(); }
+        set { nowExp = value; }
     }
     #endregion
 
@@ -156,10 +156,7 @@ public class GameManager : MonoBehaviour
         UI.SetEXPSlider(NowExp, maxExp);
     }
 
-    private void SetLevel()
-    {
-        PlayerPrefs.SetInt("LV", LV);
-    }
+
     private void ChkExp()
     {
         while (NowExp >= maxExp)
@@ -174,10 +171,7 @@ public class GameManager : MonoBehaviour
             SetMaxExp();
         }
     }
-    private void SetNowExp()
-    {
-        PlayerPrefs.SetInt("NowExp", NowExp);
-    }
+
     private void SetMaxExp()
     {
         maxExp = requiredExp * LV;
