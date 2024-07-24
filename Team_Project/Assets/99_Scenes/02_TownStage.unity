@@ -1873,7 +1873,7 @@ MonoBehaviour:
   selectObject: {fileID: 0}
   boolIsFullScreen: 1
   isPreferencePopup: 0
-  path: 
+  path: 192.168.52.187/team_project/
   slotNum: 0
   lv: 0
   nowExp: 0
@@ -2286,6 +2286,8 @@ MonoBehaviour:
   attack: {fileID: 0}
   previousAttack: {fileID: 0}
   delayComboTime: 1
+  comboCounter: 0
+  canMoveAtk: 0
   enemyLayer:
     serializedVersion: 2
     m_Bits: 2097152
@@ -2293,7 +2295,6 @@ MonoBehaviour:
   atkPositions:
   - {fileID: 3686836957146469072}
   - {fileID: 7370891829267549573}
-  canMoveAtk: 0
   effectPrefebs: {fileID: 2304518887513060441, guid: 2ec5815959735cb4a9a8cc1492f2cbd9, type: 3}
   anim: {fileID: 3962989371337469626}
   pbs: {fileID: 6633205992739503383}

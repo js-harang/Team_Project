@@ -7,6 +7,7 @@ public class QuestGiver : IHaveQuest
     QuestController questCon;
     InteractProperty interPP;
     List<QuestData> questList = new List<QuestData>();
+    IHaveQuest iHQ;
 
     public List<QuestData> QuestList
     {

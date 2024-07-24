@@ -1,3 +1,5 @@
+[System.Serializable]
+
 public class QuestJson
 {
     public string questName;

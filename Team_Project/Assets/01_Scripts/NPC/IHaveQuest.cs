@@ -57,7 +57,6 @@ public class IHaveQuest : MonoBehaviour
                 foreach (QuestJson quest in quests.Items)
                 {
                     questDic[quest.giverID].Add(new QuestData(quest));
-                    Debug.Log(questDic[quest.giverID].Count);
                 }
             }
         }
