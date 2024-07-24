@@ -6,7 +6,8 @@ public class QuestGiver : IHaveQuest
 {
     QuestController questCon;
     InteractProperty interPP;
-    List<QuestData> questList;
+    List<QuestData> questList = new List<QuestData>();
+
     public List<QuestData> QuestList
     {
         get { return questList; }
@@ -43,20 +44,16 @@ public class QuestGiver : IHaveQuest
         }
     }
 
-    private void Start()
+    private void Awake()
     {
         interPP = GetComponentInChildren<InteractProperty>();
         questCon = FindObjectOfType<QuestController>().GetComponent<QuestController>();
-        GetMyQuest();
+        questDic.Add(interPP.InteractId, QuestList);
     }
 
-    // IHaveQuest 에서 자신에게 할당될 퀘스트 리스트를 받아옴
-    void GetMyQuest()
+    private void Start()
     {
-        if (!questDic.ContainsKey(interPP.InteractId))
-            return;
-
-        QuestList = questDic[interPP.InteractId];
+        
     }
 
     // 플레이어가 자신의 퀘스트를 얼마나 수주했는지 확인

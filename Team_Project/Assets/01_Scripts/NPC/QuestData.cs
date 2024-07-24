@@ -10,10 +10,10 @@ public class QuestData
 {
     // 퀘스트를 분류하고 진행을 확인하기 위해 필요한 변수들
     public QuestType questType;
-    public string targetType;
     public string questName;
     public int questID;
     public int giverID;
+    public string targetType;
     public int targetID;
     // 묙표수치
     public int requiredAmount;
@@ -36,48 +36,43 @@ public class QuestData
     // 기준 충족 확인
     public bool isDone;
 
-    // 퀘스트의 종류가 다른 NPC와의 대화인 경우
-    public QuestData(string questName, int questID, int giverID,
-        int targetID, int goldReward, int expReward)
-    {
-        questType = QuestType.Conversation;
-        this.questName = questName;
-        this.questID = questID;
-        this.giverID = giverID;
-        this.targetID = targetID;
-        this.goldReward = goldReward;
-        this.expReward = expReward;
-        isDone = false;
-    }
-
     // 퀘스트의 중류가 매개변수로 받은 타겟타입에 따라 처치인지, 수집인지 분류
-    public QuestData(string questName, int questID, int giverID, string targetType, 
-        int targetID, int requiredAmount, int goldReward, int expReward)
+    public QuestData(QuestJson qj)
     {
         switch (targetType)
         {
-            case "Monster":
+            case "M":
                 questType = QuestType.Kill;
-                this.questName = questName;
-                this.questID = questID;
-                this.giverID = giverID;
-                this.targetID = targetID;
-                this.requiredAmount = requiredAmount;
+                this.questName = qj.questName;
+                this.questID = qj.questID;
+                this.giverID = qj.giverID;
+                this.targetID = qj.targetID;
+                this.requiredAmount = qj.requiredAmount;
                 currentAmount = 0;
-                this.goldReward = goldReward;
-                this.expReward = expReward;
+                this.goldReward = qj.goldReward;
+                this.expReward = qj.expReward;
                 isDone = false;
                 break;
-            case "Item":
+            case "I":
                 questType = QuestType.Gathering;
-                this.questName = questName;
-                this.questID = questID;
-                this.giverID = giverID;
-                this.targetID = targetID;
-                this.requiredAmount = requiredAmount;
+                this.questName = qj.questName;
+                this.questID = qj.questID;
+                this.giverID = qj.giverID;
+                this.targetID = qj.targetID;
+                this.requiredAmount = qj.requiredAmount;
                 currentAmount = 0;
-                this.goldReward = goldReward;
-                this.expReward = expReward;
+                this.goldReward = qj.goldReward;
+                this.expReward = qj.expReward;
+                isDone = false;
+                break;
+            case "0":
+                questType = QuestType.Conversation;
+                this.questName = qj.questName;
+                this.questID = qj.questID;
+                this.giverID = qj.giverID;
+                this.targetID = qj.targetID;
+                this.goldReward = qj.goldReward;
+                this.expReward = qj.expReward;
                 isDone = false;
                 break;
             default:

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
 using TMPro;
 using UnityEngine.UI;
 
@@ -22,11 +21,6 @@ public class QuestController : MonoBehaviour
     // 완전히 끝낸 퀘스트들
     public int[] finQuestID;
 
-    private void Awake()
-    {
-        StartCoroutine(LoadPlayerQuestsHave(PlayerPrefs.GetInt("characteruid")));
-    }
-
     public void MyQuestWindowUpdate(QuestData newQuest)
     {
         myQuests.Add(newQuest);
@@ -35,22 +29,5 @@ public class QuestController : MonoBehaviour
         questList.transform.SetParent(questUIContent);
         questGoal.myData = myQuests[myQuests.Count - 1];
         questGoal.CreateQuestList();
-    }
-
-    IEnumerator LoadPlayerQuestsHave(int characterID)
-    {
-        string url = GameManager.gm.path + "load_playerquestdata.php";
-        WWWForm form = new WWWForm();
-        form.AddField("cuid", characterID);
-
-        using (UnityWebRequest www = UnityWebRequest.Post(url, form))
-        {
-            yield return www.SendWebRequest();
-
-            if (www.error == null)
-            {
-
-            }
-        }
     }
 }
