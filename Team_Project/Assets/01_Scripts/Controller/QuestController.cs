@@ -54,7 +54,7 @@ public class QuestController : MonoBehaviour
     // 플레이어가 퀘스트를 완료한 것을 서버에 저장 
     IEnumerator FinQuestUpdate(int questID)
     {
-        string url = GameManager.gm.path + "update_playerquestdata.php";
+        string url = GameManager.gm.path + "update_playerquestclear.php";
         string cuid = PlayerPrefs.GetString("characteruid");
         WWWForm form = new WWWForm();
         form.AddField("cuid", 0000000018);

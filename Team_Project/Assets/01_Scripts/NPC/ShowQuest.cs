@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.IO;
+using System.Collections;
+using UnityEngine.Networking;
 
 public class ShowQuest : MonoBehaviour
 {
@@ -76,10 +78,35 @@ public class ShowQuest : MonoBehaviour
             return;
         }
 
+        StartCoroutine(UpdatePlayerAcceptQuest());
         questCon.MyQuestWindowUpdate(myData);
         interCon.nowGiver.PlayerAcceptsMyQuests();
         isAccept_Txt.text = "진행 중";
         questAccept_Btn.enabled = false;
+    }
+
+    IEnumerator UpdatePlayerAcceptQuest()
+    {
+        string url = GameManager.gm.path + "update_playerquestaccept.php";
+        string cuid = PlayerPrefs.GetString("characteruid");
+        WWWForm form = new WWWForm();
+
+        string isdone = myData.isDone ? "Y" : "N";
+
+        form.AddField("cuid", 0000000018);
+        form.AddField("questid", myData.questID);
+        form.AddField("current", myData.CurrentAmount);
+        form.AddField("isdone", isdone);
+
+        using (UnityWebRequest www = UnityWebRequest.Post(url, form))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.error == null)
+            {
+                Debug.Log(www.downloadHandler.text);
+            }
+        }
     }
 
     // 플레이어의 퀘스트 수주나 진행 여부에 따라 수락 버튼의 텍스트 변경 및 활성화/ 비활성화
