@@ -50,7 +50,7 @@ MonoBehaviour:
   damage:
   - 1.4
   - 2
-  useMana: 4
+  useMana: 30
   knockBackForce: 8
   coolTime: 10
   delayComboTime: 2
