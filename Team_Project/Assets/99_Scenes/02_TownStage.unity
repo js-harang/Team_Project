@@ -1484,6 +1484,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &1978984799 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5322528926564920713, guid: c6acf9d249963ec43aa429700016ee14, type: 3}
+  m_PrefabInstance: {fileID: 595593524}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2660423645343278
 GameObject:
   m_ObjectHideFlags: 0
@@ -3571,7 +3576,7 @@ PrefabInstance:
     - target: {fileID: 2537794503112059391, guid: cdbe42e5675c37248a170818758fec2f, type: 3}
       propertyPath: questUIContent
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1978984799}
     - target: {fileID: 2537794503112059391, guid: cdbe42e5675c37248a170818758fec2f, type: 3}
       propertyPath: MyQuestListPref
       value: 
