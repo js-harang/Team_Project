@@ -16,7 +16,7 @@ if ($conn->connect_error) {
 }
 
 $sql = "INSERT INTO player_questdata (character_uid, quest_id, CURRENT, isdone)
-		VALUES ($cuid, $questid, $current, $isdone)";
+		VALUES ($cuid, $questid, $current, '$isdone')";
 
 $result = mysqli_query($conn, $sql);
 

@@ -12,6 +12,8 @@ public class ShowQuest : MonoBehaviour
     QuestController questCon;
     [SerializeField]
     TMP_Text showQuestName;
+    [SerializeField]
+    TMP_Text showComplete_Txt;
 
     // 퀘스트 정보창의 UI 변수들
     GameObject questInfoUI;
@@ -33,6 +35,10 @@ public class ShowQuest : MonoBehaviour
         questAccept_Btn = interCon.questAccept_Btn;
         isAccept_Txt = interCon.isAcept_Txt;
         showQuestName.text = myData.questName;
+        showComplete_Txt.text = "";
+
+        if (myData.isDone)
+            showComplete_Txt.text = "Clear";
     }
 
     // 클릭되었을 때의 동작
@@ -91,7 +97,7 @@ public class ShowQuest : MonoBehaviour
         string cuid = PlayerPrefs.GetString("characteruid");
         WWWForm form = new WWWForm();
 
-        string isdone = myData.isDone ? "Y" : "N";
+        char isdone = myData.isDone ? 'Y' : 'N';
 
         form.AddField("cuid", 0000000018);
         form.AddField("questid", myData.questID);
