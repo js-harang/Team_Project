@@ -16,7 +16,7 @@ public class QuestGiver : MonoBehaviour
     public int MyQuestCount
     {
         get { return myQuestCount; }
-        set { myQuestCount = value; PlayerDoneMyQuest(); PlayerFinMyQuest(); }
+        set { myQuestCount = value; PlayerDoneMyQuest(); }
     }
 
     bool playerQuestDone;
@@ -80,10 +80,10 @@ public class QuestGiver : MonoBehaviour
     }
 
     // 플레이어가 자신의 퀘스트 클리어 조건을 만족했는지 확인함
-    public void PlayerDoneMyQuest()
+    void PlayerDoneMyQuest()
     {
-        int num = myQuestCount > questCon.doneQuestID.Length ?
-                    questCon.doneQuestID.Length : myQuestCount;
+        int num = myQuestCount > questCon.doneQuestIDs.Count ?
+                    questCon.doneQuestIDs.Count : myQuestCount;
 
         if (num == 0)
         {
@@ -95,36 +95,10 @@ public class QuestGiver : MonoBehaviour
 
         for (int i = 0; i < myQuestCount; i++)
         {
-            if (questList[i].questID == questCon.doneQuestID[i])
+            if (questList[i].questID == questCon.doneQuestIDs[i])
                 check = true;
         }
 
         PlayerQuestDone = check ? true : false;
-    }
-
-    // 플레이어가 자신의 퀘스트를 완전히 클리어 했는지 확인
-    public void PlayerFinMyQuest()
-    {
-        int num = myQuestCount > questCon.doneQuestID.Length ?
-                    questCon.doneQuestID.Length : myQuestCount;
-
-        if (num == 0)
-            return;
-
-        bool check = true;
-
-        while (check)
-        {
-            for (int i = 0; i < myQuestCount; i++)
-            {
-                if (questList[i].questID == questCon.finQuestID[i])
-                {
-                    questList.RemoveAt(i);
-                    break;
-                }
-                else if (i + 1 == questList.Count)
-                    check = false;
-            }
-        }
     }
 }

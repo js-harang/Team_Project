@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
 public class QuestController : MonoBehaviour
 {
@@ -18,9 +19,7 @@ public class QuestController : MonoBehaviour
     Transform questUIContent;
 
     // 조건을 충족한 퀘스트들
-    public int[] doneQuestID;
-    // 완전히 끝낸 퀘스트들
-    public int[] finQuestID;
+    public List<int> doneQuestIDs = new List<int>();
 
     public void MyQuestWindowUpdate(QuestData newQuest)
     {
@@ -31,4 +30,43 @@ public class QuestController : MonoBehaviour
         questGoal.myData = myQuests[myQuests.Count - 1];
         questGoal.CreateQuestList();
     }
+
+    public void DoneQuestCheck(int index)
+    {
+        doneQuestIDs.Add(index);
+    }
+
+    // 플레이어가 게임 내의 퀘스트를 하나 완료 했을때 그에 관한 데이터를 정리하는 동작
+    public void FinQuestCheck(QuestData qData)
+    {
+        StartCoroutine(FinQuestUpdate(qData.questID));
+        for (int i = 0; i < qLoad.questDic[qData.giverID].Count; i++)
+        {
+            if (qData.questID == qLoad.questDic[qData.giverID][i].questID)
+            {
+                qLoad.questDic[qData.giverID].RemoveAt(i);
+                break;
+            }
+        }
+    }
+
+    // 플레이어가 퀘스트를 완료한 것을 서버에 저장 
+    IEnumerator FinQuestUpdate(int questID)
+    {
+        string url = GameManager.gm.path + "update_playerquestdata.php";
+        string cuid = PlayerPrefs.GetString("characteruid");
+        WWWForm form = new WWWForm();
+        form.AddField("cuid", 0000000018);
+        form.AddField("questid", questID);
+
+        using (UnityWebRequest www = UnityWebRequest.Post(url, form))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.error == null)
+            {
+                Debug.Log(www.downloadHandler.text);
+            }
+        }
+    }    
 }

@@ -13,7 +13,7 @@ public class QuestData
     public string questName;
     public int questID;
     public int giverID;
-    public char targetType;
+    public string targetType;
     public int targetID;
     // 묙표수치
     public int requiredAmount;
@@ -39,9 +39,9 @@ public class QuestData
     // 퀘스트의 중류가 매개변수로 받은 타겟타입에 따라 처치인지, 수집인지 분류
     public QuestData(QuestJson qj)
     {
-        switch (targetType)
+        switch (qj.target_type)
         {
-            case 'M':
+            case "M":
                 questType = QuestType.Kill;
                 this.questName = qj.quest_name;
                 this.questID = qj.quest_id;
@@ -53,7 +53,7 @@ public class QuestData
                 this.expReward = qj.exp_reward;
                 isDone = false;
                 break;
-            case 'I':
+            case "I":
                 questType = QuestType.Gathering;
                 this.questName = qj.quest_name;
                 this.questID = qj.quest_id;
@@ -65,7 +65,7 @@ public class QuestData
                 this.expReward = qj.exp_reward;
                 isDone = false;
                 break;
-            case '0':
+            case "0":
                 questType = QuestType.Conversation;
                 this.questName = qj.quest_name;
                 this.questID = qj.quest_id;

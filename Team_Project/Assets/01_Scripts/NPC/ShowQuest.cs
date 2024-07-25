@@ -20,6 +20,14 @@ public class ShowQuest : MonoBehaviour
     Button questAccept_Btn;
     public TMP_Text isAccept_Txt;
 
+    private void Update()
+    {
+        if (!myData.isDone)
+            return;
+
+        isAccept_Txt.text = "달성";
+    }
+
     public void CreateList()
     {
         questCon = interCon.questCon;
@@ -70,6 +78,12 @@ public class ShowQuest : MonoBehaviour
     // 퀘스트 정보창에서 수락 버튼을 눌렀을 시
     public void AcceptBtnOnClicked()
     {
+        if (myData.isDone)
+        {
+            QuestComplete();
+            return;
+        }
+
         questCon.MyQuestWindowUpdate(myData);
         interCon.nowGiver.PlayerAcceptsMyQuests();
         isAccept_Txt.text = "진행 중";
@@ -100,5 +114,15 @@ public class ShowQuest : MonoBehaviour
                 return true;
         }
         return false;
+    }
+
+    // 플레이어가 이 오브젝트가 담고 있는 퀘스트를 완료했을 떄의 동작
+    void QuestComplete()
+    {
+        GameManager.gm.Credit += myData.goldReward;
+        GameManager.gm.NowExp += myData.expReward;
+        questCon.FinQuestCheck(myData);
+        questInfoUI.SetActive(false);
+        Destroy(gameObject);
     }
 }
