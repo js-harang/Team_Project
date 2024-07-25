@@ -13,24 +13,6 @@ public class QuestsLoad : MonoBehaviour
         StartCoroutine(LoadQuestDatas());
     }
 
-    IEnumerator LoadPlayerQuestsHave()
-    {
-        string url = GameManager.gm.path + "load_playerquestdata.php";
-        string cuid = PlayerPrefs.GetString("characteruid");
-        WWWForm form = new WWWForm();
-        form.AddField("cuid", cuid);
-
-        using (UnityWebRequest www = UnityWebRequest.Post(url, form))
-        {
-            yield return www.SendWebRequest();
-
-            if (www.error == null)
-            {
-
-            }
-        }
-    }
-
     // 딕셔너리에 각각의 리스트를 NPC 아이디를 키로 저장하고
     // 각각의 리스트에 각 NPC 별로 할당받을 퀘스트 정보를 리스트에 담음
     IEnumerator LoadQuestDatas()
@@ -38,7 +20,7 @@ public class QuestsLoad : MonoBehaviour
         string url = GameManager.gm.path + "load_questdata.php";
         string cuid = PlayerPrefs.GetString("characteruid");
         WWWForm form = new WWWForm();
-        form.AddField("cuid", 0000000018);
+        form.AddField("cuid", 0000000004);
 
         using (UnityWebRequest www = UnityWebRequest.Post(url, form))
         {

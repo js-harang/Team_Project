@@ -19,11 +19,18 @@ $sql = "SELECT 	quest_id, current, isdone
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
-	$row = mysqli_fetch_assoc($result);
-	echo $row['quest_id'] . "," . $row['current'] . "," . $row['isdone'];
-} else {
-	echo 0;
-}
+	
+	$quests = array();
+	while ($row = mysqli_fetch_assoc($result)) {
+		$quests[] = array(
+			'quest_id' => $row['quest_id'],
+			'current' => $row['current'],
+			'isdone' => $row['isdone']
+		);
+	}
+	$quests_json_string = json_encode($quests);
+	echo $quests_json_string;
+} 
 
 mysqli_close($conn);
 ?>

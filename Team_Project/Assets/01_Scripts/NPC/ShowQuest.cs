@@ -91,6 +91,7 @@ public class ShowQuest : MonoBehaviour
         questAccept_Btn.enabled = false;
     }
 
+    // 퀘스트 수락시 데이터베이스에 정보 업로드
     IEnumerator UpdatePlayerAcceptQuest()
     {
         string url = GameManager.gm.path + "update_playerquestaccept.php";
@@ -99,7 +100,7 @@ public class ShowQuest : MonoBehaviour
 
         string isdone = myData.isDone ? "Y" : "N";
 
-        form.AddField("cuid", 0000000018);
+        form.AddField("cuid", 0000000004);
         form.AddField("questid", myData.questID);
         form.AddField("current", myData.CurrentAmount);
         form.AddField("isdone", isdone);
@@ -111,6 +112,27 @@ public class ShowQuest : MonoBehaviour
             if (www.error == null)
             {
                 Debug.Log(www.downloadHandler.text);
+            }
+        }
+    }
+
+    // 플레이어가 자신의 퀘스트를 받은 적 있는지 체크
+    IEnumerator PlayerQuestOverlapCheck()
+    {
+        string url = GameManager.gm.path + "load_playerquestdata.php";
+        string cuid = PlayerPrefs.GetString("characteruid");
+        WWWForm form = new WWWForm();
+
+        form.AddField("cuid", 0000000004);
+        form.AddField("questid", myData.questID);
+
+        using (UnityWebRequest www = UnityWebRequest.Post(url, form))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.error == null)
+            {
+
             }
         }
     }
