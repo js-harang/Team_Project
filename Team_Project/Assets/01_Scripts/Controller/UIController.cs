@@ -20,7 +20,22 @@ public class UIController : MonoBehaviour
     #endregion
 /*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
-    [SerializeField] TextMeshProUGUI lvText;
+    #region 텍스트 모음
+    [Space(10)]
+    [SerializeField] TextMeshProUGUI lv_Text;
+
+    [Space (10)]
+    [SerializeField] TextMeshProUGUI currentHp_Text;
+    [SerializeField] TextMeshProUGUI maxHp_Text;
+
+    [Space (10)]
+    [SerializeField] TextMeshProUGUI currentMp_Text;
+    [SerializeField] TextMeshProUGUI maxMp_Text;
+
+    [Space (10)]
+    [SerializeField] TextMeshProUGUI currentExp_Text;
+    [SerializeField] TextMeshProUGUI maxExp_Text;
+    #endregion
 /*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
     [Space(10)]
@@ -71,14 +86,20 @@ public class UIController : MonoBehaviour
     #region HP, MP, EXP 변경시 세팅
     public void SetHpSlider(float currentHp, int maxHp)
     {
+        currentHp_Text.text = "" + currentHp;
+        maxHp_Text.text = " / " + maxHp;
         hpSld.value = currentHp / maxHp;
     }
     public void SetMpSlider(float currentMp, int maxMp)
     {
+        currentMp_Text.text = "" + currentMp;
+        maxMp_Text.text = " / " + maxMp;
         mpSld.value = currentMp / maxMp;
     }
     public void SetEXPSlider(float currentExp, int maxExp)
     {
+        currentExp_Text.text = "" + currentExp;
+        maxExp_Text.text = " / " + maxExp;
         expSld.value = currentExp / maxExp;
     }
     #endregion
@@ -88,7 +109,7 @@ public class UIController : MonoBehaviour
     #region LV, Credit 변경시 세팅
     public void SetLvText(int lv)
     {
-        lvText.text = "Lv." + lv;
+        lv_Text.text = "Lv." + lv;
     }
     public void SetCreditText(int credit)
     {

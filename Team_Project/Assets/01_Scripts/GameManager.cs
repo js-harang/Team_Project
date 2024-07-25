@@ -174,7 +174,7 @@ public class GameManager : MonoBehaviour
         lv++;
         UI.SetLvText(lv);
 
-        SetPlayerAtkPower();
+        SetPlayerState();
 
         Debug.Log("레벨업");
         Debug.Log("현재 레벨 : " + LV);
@@ -183,9 +183,17 @@ public class GameManager : MonoBehaviour
     }
 
     // 플레이어 레벨별 공격력 세팅
-    void SetPlayerAtkPower()
+    void SetPlayerState()
     {
         player.AtkPower = lv * lvPerPower;
+        player.MaxHp = 50 + (50 * LV);
+        Player.MaxMp = 100 + (100 * LV);
+
+        player.CurrentHp = player.MaxHp;
+        player.CurrentMp = player.MaxMp;
+
+        UI.SetHpSlider(player.MaxHp, player.MaxHp);
+        UI.SetMpSlider(player.MaxMp, player.MaxMp);
     }
 
     // 최대 경험치 재설정
@@ -226,7 +234,7 @@ public class GameManager : MonoBehaviour
                 NowExp = System.Convert.ToInt32(data[1]);
 
                 // 레벨에 맞춰 플레이어 공격력 설정
-                SetPlayerAtkPower();
+                SetPlayerState();
 
                 SetMaxExp();
                 UI.SetLvText(LV);
