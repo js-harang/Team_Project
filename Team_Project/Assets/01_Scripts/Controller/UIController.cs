@@ -10,44 +10,32 @@ public class UIController : MonoBehaviour
     [SerializeField] GameObject escMenuUI;
     [SerializeField] Canvas gameUI;
     #endregion
-    /*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
     #region 플레이어 슬라이더 바
-    [Space(10)]
-    [SerializeField] Slider hpSld;
+    [SerializeField, Space(10)] Slider hpSld;
     [SerializeField] Slider mpSld;
     [SerializeField] Slider expSld;
     #endregion
-    /*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
     #region 텍스트 모음
-    [Space(10)]
-    [SerializeField] TextMeshProUGUI lv_Text;
+    [SerializeField ,Space(10)] TextMeshProUGUI lv_Text;
     [SerializeField] TextMeshProUGUI userName_Text;
 
-    [Space(10)]
-    [SerializeField] TextMeshProUGUI currentHp_Text;
+    [SerializeField, Space(10)] TextMeshProUGUI currentHp_Text;
     [SerializeField] TextMeshProUGUI maxHp_Text;
 
-    [Space(10)]
-    [SerializeField] TextMeshProUGUI currentMp_Text;
+    [SerializeField, Space(10)] TextMeshProUGUI currentMp_Text;
     [SerializeField] TextMeshProUGUI maxMp_Text;
 
-    [Space(10)]
-    [SerializeField] TextMeshProUGUI currentExp_Text;
+    [SerializeField, Space(10)] TextMeshProUGUI currentExp_Text;
     [SerializeField] TextMeshProUGUI maxExp_Text;
     #endregion
-    /*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
-    [Space(10)]
-    [SerializeField] GameObject gameOverUI;
-    /*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+    [SerializeField, Space(10)] GameObject gameOverUI;
 
     PlayerState pState;
-    /*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
     [SerializeField, Space(10)] GameObject preferencePopup;
-    /*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
     private void Start()
     {
@@ -81,7 +69,6 @@ public class UIController : MonoBehaviour
                 break;
         }
     }
-    /*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
     // 슬라이더 세팅
     #region HP, MP, EXP 변경시 세팅
@@ -104,7 +91,6 @@ public class UIController : MonoBehaviour
         expSld.value = currentExp / maxExp;
     }
     #endregion
-    /*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
     // 텍스트 세팅
     #region Name, LV, Credit 세팅
@@ -121,7 +107,6 @@ public class UIController : MonoBehaviour
 
     }
     #endregion
-/*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
     // UI 관련
     #region UI 활성, 비활성 관련
@@ -160,7 +145,6 @@ public class UIController : MonoBehaviour
         pState.UnitState = UnitState.Wait;
     }
     #endregion
-/*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
     // 씬이동
     #region 캐릭터 선택, 마을 이동
@@ -176,14 +160,12 @@ public class UIController : MonoBehaviour
         GameManager.gm.MoveScene(sceneNumber);
     }
     #endregion
-/*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
     // 게임오버시 호출되는 메소드(게임오버 매뉴 활성화)
     public void GameOverUI()
     {
         gameOverUI.SetActive(true);
     }
-/*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
     // 게임 종료
     public void QuitGame()
@@ -194,7 +176,7 @@ public class UIController : MonoBehaviour
         Application.Quit();
 #endif
     }
-/*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
     public void PreferencesBtn()
     {
         EscMenuOnOff();
