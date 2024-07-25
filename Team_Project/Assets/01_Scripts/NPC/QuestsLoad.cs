@@ -50,11 +50,9 @@ public class QuestsLoad : MonoBehaviour
             {
                 string jsonStr = "{\"Items\":" + www.downloadHandler.text + "}";
                 QuestJsons quests = JsonUtility.FromJson<QuestJsons>(jsonStr);
-                Debug.Log(www.downloadHandler.text);
 
                 foreach (QuestJson quest in quests.Items)
                 {
-                    Debug.Log(quest.giver_id);
                     questDic[quest.giver_id].Add(new QuestData(quest));
                 }
             }
