@@ -1,18 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using UnityEngine.Rendering;
 
-public class CharacterDataJson : MonoBehaviour
+public class CharacterDataJson
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public int slot;
+    public string name;
+    public int lv;
+    public int character_class;
+}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+public class CharacterDataJsons
+{
+    public CharacterDataJson[] items;
 }

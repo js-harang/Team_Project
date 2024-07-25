@@ -97,7 +97,7 @@ public class ShowQuest : MonoBehaviour
         string cuid = PlayerPrefs.GetString("characteruid");
         WWWForm form = new WWWForm();
 
-        char isdone = myData.isDone ? 'Y' : 'N';
+        string isdone = myData.isDone ? "Y" : "N";
 
         form.AddField("cuid", 0000000018);
         form.AddField("questid", myData.questID);

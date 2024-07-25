@@ -25,7 +25,7 @@ if (mysqli_num_rows($result) > 0) {
             'slot' => $row['slot'],
             'name' => $row['name'],
             'lv' => $row['lv'],
-            'class' => $row['class']
+            'character_class' => $row['class']
         );
     }
 
