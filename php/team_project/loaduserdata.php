@@ -18,7 +18,7 @@ $sql = "SELECT	lv, exp
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 
-echo $row['lv'].",".$row['exp'];
+echo $row['lv'] . "," . $row['exp'];
 
-return;
+mysqli_close($conn);
 ?>

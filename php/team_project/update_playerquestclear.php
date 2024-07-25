@@ -25,5 +25,5 @@ if ($result) {
 	echo 0;
 }
 
-return;
+mysqli_close($conn);
 ?>

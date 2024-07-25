@@ -20,5 +20,5 @@ $row = mysqli_fetch_assoc($result);
 
 echo $row['credit'];
 
-return;
+mysqli_close($conn);
 ?>

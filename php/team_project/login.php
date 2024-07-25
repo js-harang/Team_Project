@@ -28,7 +28,7 @@ if (mysqli_num_rows($result) > 0) {
 } else
     echo "incorrect";
 
-return;
+mysqli_close($conn);
 
 function get_enc_str($conn, $str)
 {

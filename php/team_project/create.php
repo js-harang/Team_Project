@@ -17,13 +17,13 @@ if (search($conn, $userid) === false) {
     $sql = "INSERT into user(userid, userpw)
             values ('$userid', password('$userpw'))";
     $result = mysqli_query($conn, $sql);
-    
+
     if ($result)
         echo "success";
 } else
     echo "id exists";
 
-return;
+mysqli_close($conn);
 
 function search($conn, $userid)
 {

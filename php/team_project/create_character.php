@@ -25,7 +25,7 @@ if (search($conn, $name) === false) {
 } else
     echo "name exists";
 
-return;
+mysqli_close($conn);
 
 function search($conn, $name)
 {

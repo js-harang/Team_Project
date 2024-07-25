@@ -17,8 +17,8 @@ if ($conn->connect_error) {
 $sql = "UPDATE 	character_list
 		SET		lv = $lv, exp = $exp
 		WHERE 	character_uid = $cuid";
-		
+
 $result = mysqli_query($conn, $sql);
 
-return;
+mysqli_close($conn);
 ?>

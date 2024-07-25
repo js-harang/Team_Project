@@ -16,16 +16,16 @@ if ($conn->connect_error) {
 $sql = "UPDATE 	character_list
 		SET		skill = '$num'
 		WHERE 	character_uid = $cuid";
-		
+
 $result = mysqli_query($conn, $sql);
 
 $sql = "SELECT	skill
 		FROM	character_list
 		WHERE	character_uid = $cuid";
-		
+
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 echo $row['skill'];
 
-return;
+mysqli_close($conn);
 ?>
