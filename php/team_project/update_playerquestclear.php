@@ -9,23 +9,19 @@ $questid = $_POST["questid"];
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-if ($conn->connect_error)
-{	
+if ($conn->connect_error) {
 	echo "Failed to connect to MySQL : " + $mysqli->connect_error;
 }
 
 $sql = "UPDATE 	player_questdata
 		SET 	iscleared = 'Y'
 		WHERE  	character_uid = $cuid AND quest_id = $questid";
-		
+
 $result = mysqli_query($conn, $sql);
 
-if ($result)
-{
-	echo 1
-}
-else
-{
+if ($result) {
+	echo 1;
+} else {
 	echo 0;
 }
 

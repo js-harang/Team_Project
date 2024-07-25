@@ -11,22 +11,18 @@ $isdone = $_POST["isdone"];
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-if ($conn->connect_error)
-{	
+if ($conn->connect_error) {
 	echo "Failed to connect to MySQL : " + $mysqli->connect_error;
 }
 
 $sql = "INSERT INTO player_questdata (character_uid, quest_id, CURRENT, isdone)
 		VALUES ($cuid, $questid, $current, $isdone)";
-		
+
 $result = mysqli_query($conn, $sql);
 
-if ($result)
-{
-	echo 1
-}
-else
-{
+if ($result) {
+	echo 1;
+} else {
 	echo 0;
 }
 

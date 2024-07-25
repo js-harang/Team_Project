@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
@@ -10,7 +11,9 @@ public class LobbyController : MonoBehaviour
 
     [SerializeField, Space(10)] GameObject[] selectImg;
     [SerializeField] GameObject[] selectCharater;
+    [SerializeField] TextMeshProUGUI[] infoTxt;
     string[] data;
+    string[] slot;
 
     private void OnEnable()
     {
