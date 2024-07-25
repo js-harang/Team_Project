@@ -15,9 +15,9 @@ if ($conn -> connect_error)
 
 $sql = "SELECT 	* 
 		FROM 	questdata 
-		WHERE 	quest_id IN (SELECT quest_id
-							 FROM player_questdata
-							 WHERE character_uid = $cuid and iscleared = 'N')";
+		WHERE 	quest_id NOT IN (SELECT quest_id
+								 FROM player_questdata
+								 WHERE character_uid = $cuid and iscleared = 'Y')";
 							   
 $result = mysqli_query($conn, $sql);
 
