@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class QuestGiver : IHaveQuest
+public class QuestGiver : MonoBehaviour
 {
     QuestController questCon;
     InteractProperty interPP;
+    QuestsLoad qLoad;
     List<QuestData> questList = new List<QuestData>();
-    IHaveQuest iHQ;
+
+    public GameObject questHave;
+    public GameObject questDone;
 
     public List<QuestData> QuestList
     {
@@ -49,7 +52,8 @@ public class QuestGiver : IHaveQuest
     {
         interPP = GetComponentInChildren<InteractProperty>();
         questCon = FindObjectOfType<QuestController>().GetComponent<QuestController>();
-        questDic.Add(interPP.InteractId, QuestList);
+        qLoad = questCon.qLoad;
+        qLoad.questDic.Add(interPP.InteractId, QuestList);
     }
 
     // 플레이어가 자신의 퀘스트를 얼마나 수주했는지 확인

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2537794503112059390}
   - component: {fileID: 2537794503112059391}
+  - component: {fileID: 8606744869265769831}
   m_Layer: 0
   m_Name: QuestController
   m_TagString: Untagged
@@ -44,7 +45,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ecf95e90795f834390486e456a8cd98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  qLoad: {fileID: 8606744869265769831}
   MyQuestListPref: {fileID: 0}
   questUIContent: {fileID: 0}
   doneQuestID: 
   finQuestID: 
+--- !u!114 &8606744869265769831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2537794503112059376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5c5eaa8875f2424e81accf7afd399da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questHave: {fileID: 0}
+  questDone: {fileID: 0}

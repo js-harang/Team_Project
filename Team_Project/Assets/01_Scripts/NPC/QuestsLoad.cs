@@ -3,15 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class IHaveQuest : MonoBehaviour
+public class QuestsLoad : MonoBehaviour
 {
     public Dictionary<int, List<QuestData>> questDic = new Dictionary<int, List<QuestData>>();
 
     string questName;
     int giverID;
-
-    public GameObject questHave;
-    public GameObject questDone;
 
     // 각각의 리스트에 각 NPC 별로 할당받을 퀘스트 정보를 리스트에 담고, 
     // 딕셔너리에 각각의 리스트를 NPC 아이디를 키로 저장함.
