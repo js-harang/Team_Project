@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -77,6 +76,19 @@ public class QuestGiver : MonoBehaviour
             questHave.SetActive(false);
         else
             questHave.SetActive(true);
+    }
+
+    // 플레이어의 현재 퀘스트 목표가 자신인지 확인하는 메서드
+    public void HereForTalkToMe()
+    {
+        for (int i = 0; i < questCon.MyQuests.Count; i++)
+        {
+            if (questCon.MyQuests[i].targetID == (int)interPP.myID)
+            {
+                questCon.MyQuests[i].isDone = true;
+                questList.Add(questCon.MyQuests[i]);
+            }
+        }
     }
 
     // 플레이어가 자신의 퀘스트 클리어 조건을 만족했는지 확인함

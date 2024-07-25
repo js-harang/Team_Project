@@ -20,14 +20,6 @@ public class ShowQuest : MonoBehaviour
     Button questAccept_Btn;
     public TMP_Text isAccept_Txt;
 
-    private void Update()
-    {
-        if (!myData.isDone)
-            return;
-
-        isAccept_Txt.text = "달성";
-    }
-
     public void CreateList()
     {
         questCon = interCon.questCon;
@@ -90,10 +82,15 @@ public class ShowQuest : MonoBehaviour
         questAccept_Btn.enabled = false;
     }
 
-    // 플레이어의 퀘스트 수주 여부에 따라 수락 버튼 활성화/ 비활성화
-    void AcceptBtnOnOff(bool onOff)
+    // 플레이어의 퀘스트 수주나 진행 여부에 따라 수락 버튼의 텍스트 변경 및 활성화/ 비활성화
+    void AcceptBtnOnOff(bool playerHave)
     {
-        if (onOff)
+        if (playerHave && myData.isDone)
+        {
+            isAccept_Txt.text = "달성";
+            questAccept_Btn.enabled = true;
+        }
+        else if (playerHave)
         {
             isAccept_Txt.text = "진행 중";
             questAccept_Btn.enabled = false;

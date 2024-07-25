@@ -85,6 +85,7 @@ public class InteractProperty : MonoBehaviour
         Camera.main.cullingMask = ~(1 << LayerMask.NameToLayer("Player"));
         npcAnim.SetBool("end", false);
         npcAnim.SetBool("start", true);
+        giverIsMe.HereForTalkToMe();
     }
 
     void EndTalkWithPlayer()

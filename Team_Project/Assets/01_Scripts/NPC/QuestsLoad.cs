@@ -5,13 +5,9 @@ using UnityEngine.Networking;
 
 public class QuestsLoad : MonoBehaviour
 {
+    // 각 NPC 의 아이디를 키로 퀘스트 리스트를 담을 딕셔너리
     public Dictionary<int, List<QuestData>> questDic = new Dictionary<int, List<QuestData>>();
 
-    string questName;
-    int giverID;
-
-    // 각각의 리스트에 각 NPC 별로 할당받을 퀘스트 정보를 리스트에 담고, 
-    // 딕셔너리에 각각의 리스트를 NPC 아이디를 키로 저장함.
     private void Start()
     {
         StartCoroutine(LoadQuestDatas());
@@ -35,6 +31,8 @@ public class QuestsLoad : MonoBehaviour
         }
     }
 
+    // 딕셔너리에 각각의 리스트를 NPC 아이디를 키로 저장하고
+    // 각각의 리스트에 각 NPC 별로 할당받을 퀘스트 정보를 리스트에 담음
     IEnumerator LoadQuestDatas()
     {
         string url = GameManager.gm.path + "load_questdata.php";

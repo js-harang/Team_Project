@@ -1,16 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
-using UnityEngine.UI;
 using UnityEngine.Networking;
 
 public class QuestController : MonoBehaviour
 {
+    // 서버에서 퀘스트들을 일괄 불러오기한 클래스의 변수
     public QuestsLoad qLoad;
+
     // 현재 내가 갖고 있는 퀘스트들
     List<QuestData> myQuests = new List<QuestData>();
     public List<QuestData> MyQuests { get { return myQuests; } }
+
+    // 조건을 충족한 퀘스트들
+    public List<int> doneQuestIDs = new List<int>();
 
     // 현재 플레이어가 갖고 있는 퀘스트들의 리스트 UI
     [SerializeField]
@@ -18,9 +21,7 @@ public class QuestController : MonoBehaviour
     [SerializeField]
     Transform questUIContent;
 
-    // 조건을 충족한 퀘스트들
-    public List<int> doneQuestIDs = new List<int>();
-
+    // 퀘스트창 UI 활성화하면서 퀘스트 정보를 담은 목록들을 생성
     public void MyQuestWindowUpdate(QuestData newQuest)
     {
         myQuests.Add(newQuest);
