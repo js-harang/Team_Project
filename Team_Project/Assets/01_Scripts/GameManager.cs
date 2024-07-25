@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
 /*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
     
     [HideInInspector] public int sceneNumber;
+
+    public string useCuid;
 /*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
     // 환경설정 선택되어 있는 옵션
@@ -218,7 +220,7 @@ public class GameManager : MonoBehaviour
         string cuid = PlayerPrefs.GetString("characteruid");
 
         WWWForm form = new WWWForm();
-        form.AddField("cuid", 0000000018);
+        form.AddField("cuid", useCuid);
 
         using (UnityWebRequest www = UnityWebRequest.Post(url, form))
         {
@@ -259,7 +261,7 @@ public class GameManager : MonoBehaviour
         string cuid = PlayerPrefs.GetString("characteruid");
 
         WWWForm form = new WWWForm();
-        form.AddField("cuid", 0000000018);
+        form.AddField("cuid", useCuid);
         form.AddField("lv", LV);
         form.AddField("exp", NowExp);
 
@@ -291,7 +293,7 @@ public class GameManager : MonoBehaviour
         string cuid = PlayerPrefs.GetString("characteruid");
 
         WWWForm form = new WWWForm();
-        form.AddField("cuid", 0000000018);
+        form.AddField("cuid", useCuid);
 
         using (UnityWebRequest www = UnityWebRequest.Post(url, form))
         {
@@ -323,7 +325,7 @@ public class GameManager : MonoBehaviour
         string cuid = PlayerPrefs.GetString("characteruid");
 
         WWWForm form = new WWWForm();
-        form.AddField("cuid", 0000000018);
+        form.AddField("cuid", useCuid);
         form.AddField("credit", Credit);
 
         using (UnityWebRequest www = UnityWebRequest.Post(url, form))

@@ -25,7 +25,6 @@ public class SkillBtnManager : MonoBehaviour
     /// <returns></returns>
     public bool CheckSkillDuplication(int idx)
     {
-        Debug.Log("검사중");
         bool isDuplication = false;
 
         for (int i = 0; i < btns.Length; i++)
@@ -35,7 +34,6 @@ public class SkillBtnManager : MonoBehaviour
                 // 스킬의 번호와 현재 버튼의 스킬번호와 같으면
                 if (btns[i].Skill.skillIdx == idx)
                 {
-                    Debug.Log("중복 발견");
                     isDuplication = true;
                     return isDuplication;
                 }
@@ -67,7 +65,7 @@ public class SkillBtnManager : MonoBehaviour
         Debug.Log(num);
         
         WWWForm form = new WWWForm();
-        form.AddField("cuid", "0000000018");
+        form.AddField("cuid", GameManager.gm.useCuid);
         form.AddField("num", num);
 
         using (UnityWebRequest www = UnityWebRequest.Post(url, form))
@@ -101,7 +99,7 @@ public class SkillBtnManager : MonoBehaviour
         string url = GameManager.gm.path + "loadskill.php";
 
         WWWForm form = new WWWForm();
-        form.AddField("cuid", 0000000018);
+        form.AddField("cuid", GameManager.gm.useCuid);
         #endregion
 
         #region 데이터베이스 에 값 전달
@@ -111,18 +109,14 @@ public class SkillBtnManager : MonoBehaviour
             if (www.error == null)
             {
                 skillSet = www.downloadHandler.text;
-                // Debug.Log(skillSet);
 
                 skillBtnData = new string[skillSet.Length / 2];
-                // Debug.Log(skillBtnData.Length);
 
                 int idx = 0;
                 for (int i = 0; i < skillSet.Length - 1; i += 2)
                 {
                     skillBtnData[idx] = skillSet.Substring(i, 2);
                     btns[idx].btnSkillIdx = System.Convert.ToInt32(skillBtnData[idx]);
-
-                    // Debug.Log(btns[idx].btnSkillIdx);
                     btns[idx].BtnSkillSet();
 
                     idx++;

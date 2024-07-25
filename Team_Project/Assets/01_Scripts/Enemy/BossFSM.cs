@@ -45,6 +45,8 @@ public abstract class BossFSM : DamagedAction
 
     public BattleController bCon;
 
+    public int gold;
+
     // 보스에게 필요한 변수들
     public Animator bossAnim;
     public GameObject bossStateUI;

@@ -44,6 +44,8 @@ public abstract class EnemyFSM : DamagedAction
 
     public BattleController bCon;
 
+    public int gold;
+
     // 에너미에게 필요한 변수들
     public Animator enemyAnim;
     public GameObject enemyStateUI;

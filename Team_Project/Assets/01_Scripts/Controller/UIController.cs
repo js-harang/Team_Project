@@ -23,6 +23,7 @@ public class UIController : MonoBehaviour
     #region 텍스트 모음
     [Space(10)]
     [SerializeField] TextMeshProUGUI lv_Text;
+    [SerializeField] TextMeshProUGUI userName_Text;
 
     [Space (10)]
     [SerializeField] TextMeshProUGUI currentHp_Text;
