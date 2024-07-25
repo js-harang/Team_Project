@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
     #endregion
 /*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
-    // 유저 레벨, 경험치 속성
+    // 유저 정보
     #region 경험치 관련
 
     #region LV 레벨 속성
@@ -95,7 +95,13 @@ public class GameManager : MonoBehaviour
 
     // 필요 경험치
     int requiredExp = 100;
+    #endregion
 
+    #region 유저 이름
+    
+    string userName;
+    public string UserName
+    { get { return userName; } set { userName = value; } }
     #endregion
 /*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
@@ -232,13 +238,15 @@ public class GameManager : MonoBehaviour
                 string[] data = tmp.Split(",");
                 #endregion
 
-                LV = System.Convert.ToInt32(data[0]);
-                NowExp = System.Convert.ToInt32(data[1]);
+                UserName = data[0];
+                LV = System.Convert.ToInt32(data[1]);
+                NowExp = System.Convert.ToInt32(data[2]);
 
                 // 레벨에 맞춰 플레이어 공격력 설정
                 SetPlayerState();
 
                 SetMaxExp();
+                UI.SetCharacterName(UserName);
                 UI.SetLvText(LV);
                 UI.SetEXPSlider(NowExp, maxExp);
             }
