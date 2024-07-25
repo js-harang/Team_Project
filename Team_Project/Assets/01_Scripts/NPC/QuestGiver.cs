@@ -7,24 +7,17 @@ public class QuestGiver : MonoBehaviour
     QuestController questCon;
     InteractProperty interPP;
     QuestsLoad qLoad;
-    List<QuestData> questList = new List<QuestData>();
+    public List<QuestData> questList = new List<QuestData>();
 
     public GameObject questHave;
     public GameObject questDone;
 
-    public List<QuestData> QuestList
-    {
-        get { return questList; }
-        set
-        {
-            questList = value;
-            myQuestCount = questList.Count;
-            PlayerDoneMyQuest();
-            PlayerFinMyQuest();
-        }
-    }
-
     int myQuestCount;
+    public int MyQuestCount
+    { 
+        get { return myQuestCount; } 
+        set { myQuestCount = value; PlayerDoneMyQuest(); PlayerFinMyQuest(); } 
+    }
 
     bool playerQuestDone;
     public bool PlayerQuestDone
@@ -53,7 +46,13 @@ public class QuestGiver : MonoBehaviour
         interPP = GetComponentInChildren<InteractProperty>();
         questCon = FindObjectOfType<QuestController>().GetComponent<QuestController>();
         qLoad = questCon.qLoad;
-        qLoad.questDic.Add(interPP.InteractId, QuestList);
+        qLoad.questDic.Add(interPP.InteractId, questList);
+    }
+
+    private void Update()
+    {
+        if (myQuestCount != questList.Count)
+            MyQuestCount = questList.Count;
     }
 
     // 플레이어가 자신의 퀘스트를 얼마나 수주했는지 확인
