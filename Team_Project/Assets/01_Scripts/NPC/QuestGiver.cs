@@ -47,6 +47,7 @@ public class QuestGiver : MonoBehaviour
         questCon = FindObjectOfType<QuestController>().GetComponent<QuestController>();
         qLoad = questCon.qLoad;
         qLoad.questDic.Add(interPP.InteractId, questList);
+        Debug.Log(qLoad.questDic[interPP.InteractId]);
     }
 
     private void Update()
