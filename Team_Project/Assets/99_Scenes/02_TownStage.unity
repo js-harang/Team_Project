@@ -682,6 +682,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 553819386, guid: c6acf9d249963ec43aa429700016ee14, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 553819386, guid: c6acf9d249963ec43aa429700016ee14, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 553819386, guid: c6acf9d249963ec43aa429700016ee14, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1447720028, guid: c6acf9d249963ec43aa429700016ee14, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
@@ -959,18 +971,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2399139949127561585, guid: 8775acec7efed374898815f3be4b85c0, type: 3}
-      propertyPath: m_fontSize
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 2399139949127561585, guid: 8775acec7efed374898815f3be4b85c0, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 4647744316651363859, guid: 8775acec7efed374898815f3be4b85c0, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4647744317304588226, guid: 8775acec7efed374898815f3be4b85c0, type: 3}
       propertyPath: m_Name
       value: InteractController
@@ -1027,14 +1027,6 @@ PrefabInstance:
       propertyPath: playerInventory
       value: 
       objectReference: {fileID: 1605700600}
-    - target: {fileID: 5421405376221564286, guid: 8775acec7efed374898815f3be4b85c0, type: 3}
-      propertyPath: m_fontSize
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 5421405376221564286, guid: 8775acec7efed374898815f3be4b85c0, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 30
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8775acec7efed374898815f3be4b85c0, type: 3}
 --- !u!224 &1524094396 stripped
@@ -1878,7 +1870,6 @@ MonoBehaviour:
   lv: 0
   nowExp: 0
   maxExp: 0
-  requiredExp: 0
 --- !u!1 &613375120855033482
 GameObject:
   m_ObjectHideFlags: 0
