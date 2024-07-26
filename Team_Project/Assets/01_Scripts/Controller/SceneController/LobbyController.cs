@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -7,13 +8,28 @@ using UnityEngine.UI;
 
 public class LobbyController : MonoBehaviour
 {
-    [SerializeField] Sprite createSprite;
+    [Serializable]
+    public struct SelectSlots
+    {
+        public Image[] selectImg;
+        public Sprite[] characterImg;
+        public TextMeshProUGUI[] infoTxt;
+    }
+    [Header("Select Slots")]
+    public SelectSlots selectSlots;
 
-    [SerializeField, Space(10)] GameObject[] selectImg;
-    [SerializeField] GameObject[] selectCharater;
-    [SerializeField] TextMeshProUGUI[] infoTxt;
-    string[] data;
-    string[] slot;
+    [Serializable]
+    public struct CharacterSlots
+    {
+        public GameObject[] slots;
+        public GameObject[] character;
+    }
+    [Header("Character Slots")]
+    public CharacterSlots characterSlots;
+
+    [SerializeField, Space(10)] Sprite createSprite;
+
+    string[] datas;
 
     private void OnEnable()
     {
@@ -25,27 +41,34 @@ public class LobbyController : MonoBehaviour
         string url = GameManager.gm.path + "load_character.php";
         WWWForm form = new();
         form.AddField("uid", 0000000001/*PlayerPrefs.GetString("uid")*/);
+
         using (UnityWebRequest www = UnityWebRequest.Post(url, form))
         {
             yield return www.SendWebRequest();
 
             if (www.error == null)
             {
-                data = www.downloadHandler.text.Split("<br>");
-                Test();
+                datas = www.downloadHandler.text.Split("<br>");
             }
         }
+
+        RoadDatas();
     }
 
-    private void Test()
+    private void RoadDatas()
     {
-        foreach (string s in data)
-            Debug.Log(s);
-    }
+        Array.Resize(ref datas, datas.Length - 1);
 
-    private void Start()
-    {
-        
+        foreach (string data in datas)
+        {
+            string[] info = data.Split(" ");
+
+            int slot = int.Parse(info[0]);
+            int characterClass = int.Parse(info[3]);
+
+            selectSlots.selectImg[slot].sprite = selectSlots.characterImg[characterClass];
+            selectSlots.infoTxt[slot].text = "Lv." + info[2] + "\n\n" + info[1];
+        }
     }
 
     public void GameStartBtn()
@@ -64,13 +87,11 @@ public class LobbyController : MonoBehaviour
     {
         GameManager.gm.slotNum = num;
 
-        Image image = selectImg[num].GetComponent<Image>();
-
-        if (image.sprite == createSprite)
+        if (selectSlots.selectImg[num].sprite == createSprite)
             SceneManager.LoadScene("11_CreateScene");
         else
         {
-            foreach (var charater in selectCharater)
+            foreach (var charater in characterSlots.slots)
             {
                 if (charater == null)
                     return;
@@ -79,7 +100,7 @@ public class LobbyController : MonoBehaviour
                 anim.SetBool("select", false);
             }
 
-            Animator animator = selectCharater[num].GetComponent<Animator>();
+            Animator animator = characterSlots.slots[num].GetComponent<Animator>();
             animator.SetBool("select", true);
         }
     }

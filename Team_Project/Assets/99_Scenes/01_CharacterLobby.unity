@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 50319529}
   - component: {fileID: 50319528}
   m_Layer: 5
-  m_Name: Character_Select_4_Img
+  m_Name: Character_Select_3_Img
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1202,7 +1202,7 @@ GameObject:
   - component: {fileID: 573395574}
   - component: {fileID: 573395575}
   m_Layer: 5
-  m_Name: Info_4_Txt
+  m_Name: Info_3_Txt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1225,7 +1225,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -10, y: 6.3999825}
+  m_AnchoredPosition: {x: -10, y: 0}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &573395574
@@ -1256,7 +1256,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\n\uCE90\uB9AD\uD130 \uC0DD\uC131"
+  m_text: "\uCE90\uB9AD\uD130 \uC0DD\uC131"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7d24d44cf0324544a8a94109328d8a10, type: 2}
   m_sharedMaterial: {fileID: 1732768169387940429, guid: 7d24d44cf0324544a8a94109328d8a10, type: 2}
@@ -1291,7 +1291,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -1336,7 +1336,7 @@ GameObject:
   - component: {fileID: 605146671}
   - component: {fileID: 605146673}
   m_Layer: 5
-  m_Name: Slot_4
+  m_Name: Slot_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1382,7 +1382,7 @@ GameObject:
   - component: {fileID: 641715627}
   - component: {fileID: 641715626}
   m_Layer: 5
-  m_Name: Character_Select_3_Img
+  m_Name: Character_Select_2_Img
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1428,7 +1428,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c507bc806d8cdcf4b8e005470d1ee879, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8b3a0d81872dcea45aa615760eda82f6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1969,7 +1969,7 @@ GameObject:
   - component: {fileID: 855456037}
   - component: {fileID: 855456038}
   m_Layer: 5
-  m_Name: Info_3_Txt
+  m_Name: Info_2_Txt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1992,7 +1992,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -10, y: 6.3999825}
+  m_AnchoredPosition: {x: -10, y: 0}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &855456037
@@ -2023,7 +2023,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\n\uCE90\uB9AD\uD130 \uC0DD\uC131"
+  m_text: "\uCE90\uB9AD\uD130 \uC0DD\uC131"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7d24d44cf0324544a8a94109328d8a10, type: 2}
   m_sharedMaterial: {fileID: 1732768169387940429, guid: 7d24d44cf0324544a8a94109328d8a10, type: 2}
@@ -2058,7 +2058,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -2349,15 +2349,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d4edde9a8f8bb94ca9dd9c22a192a31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  path: 192.168.52.187/team_project/
+  useCuid: 
+  isPreferencePopup: 0
+  boolIsFullScreen: 0
   sceneNumber: 0
   selectObject: {fileID: 0}
-  boolIsFullScreen: 0
-  isPreferencePopup: 0
-  path: 192.168.52.187/team_project/
   slotNum: 0
-  lv: 0
-  nowExp: 0
-  maxExp: 0
+  requiredExp: 100
 --- !u!4 &1106321511
 Transform:
   m_ObjectHideFlags: 0
@@ -2763,7 +2762,7 @@ GameObject:
   - component: {fileID: 1169890199}
   - component: {fileID: 1169890198}
   m_Layer: 5
-  m_Name: Slot_4
+  m_Name: Slot_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2979,7 +2978,7 @@ GameObject:
   - component: {fileID: 1240323139}
   - component: {fileID: 1240323138}
   m_Layer: 5
-  m_Name: Info_5_Txt
+  m_Name: Info_4_Txt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3005,7 +3004,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\n\uCE90\uB9AD\uD130 \uC0DD\uC131"
+  m_text: "\uCE90\uB9AD\uD130 \uC0DD\uC131"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7d24d44cf0324544a8a94109328d8a10, type: 2}
   m_sharedMaterial: {fileID: 1732768169387940429, guid: 7d24d44cf0324544a8a94109328d8a10, type: 2}
@@ -3040,7 +3039,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -3099,7 +3098,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -10, y: 6.3999825}
+  m_AnchoredPosition: {x: -10, y: 0}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!1 &1243729449
@@ -3269,7 +3268,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c507bc806d8cdcf4b8e005470d1ee879, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8b3a0d81872dcea45aa615760eda82f6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3399,7 +3398,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -10, y: 6.3999825}
+  m_AnchoredPosition: {x: -10, y: 0}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &1367318735
@@ -3430,7 +3429,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\n\uCE90\uB9AD\uD130 \uC0DD\uC131"
+  m_text: "\uCE90\uB9AD\uD130 \uC0DD\uC131"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7d24d44cf0324544a8a94109328d8a10, type: 2}
   m_sharedMaterial: {fileID: 1732768169387940429, guid: 7d24d44cf0324544a8a94109328d8a10, type: 2}
@@ -3465,7 +3464,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -3511,7 +3510,7 @@ GameObject:
   - component: {fileID: 1417830440}
   - component: {fileID: 1417830439}
   m_Layer: 5
-  m_Name: Character_Select_5_Img
+  m_Name: Character_Select_4_Img
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3860,7 +3859,7 @@ GameObject:
   - component: {fileID: 1506474405}
   - component: {fileID: 1506474407}
   m_Layer: 5
-  m_Name: Slot_3
+  m_Name: Slot_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3907,7 +3906,7 @@ GameObject:
   - component: {fileID: 1522094892}
   - component: {fileID: 1522094891}
   m_Layer: 5
-  m_Name: Slot_3
+  m_Name: Slot_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4164,7 +4163,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c507bc806d8cdcf4b8e005470d1ee879, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8b3a0d81872dcea45aa615760eda82f6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4193,7 +4192,7 @@ GameObject:
   - component: {fileID: 1614606194}
   - component: {fileID: 1614606196}
   m_Layer: 5
-  m_Name: Slot_5
+  m_Name: Slot_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4488,7 +4487,7 @@ GameObject:
   - component: {fileID: 1900251077}
   - component: {fileID: 1900251079}
   m_Layer: 5
-  m_Name: Slot_1
+  m_Name: Slot_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4631,7 +4630,7 @@ GameObject:
   - component: {fileID: 1988344067}
   - component: {fileID: 1988344069}
   m_Layer: 5
-  m_Name: Slot_2
+  m_Name: Slot_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4700,7 +4699,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -10, y: 6.4}
+  m_AnchoredPosition: {x: -10, y: 0}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &1989623172
@@ -4731,7 +4730,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\n\uCE90\uB9AD\uD130 \uC0DD\uC131"
+  m_text: "\uCE90\uB9AD\uD130 \uC0DD\uC131"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7d24d44cf0324544a8a94109328d8a10, type: 2}
   m_sharedMaterial: {fileID: 1732768169387940429, guid: 7d24d44cf0324544a8a94109328d8a10, type: 2}
@@ -4766,7 +4765,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -4850,7 +4849,7 @@ GameObject:
   - component: {fileID: 2005034837}
   - component: {fileID: 2005034836}
   m_Layer: 5
-  m_Name: Slot_5
+  m_Name: Slot_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5017,25 +5016,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8e27f91062affb4190aa0814e6012bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectSlots:
+    selectImg:
+    - {fileID: 1294168562}
+    - {fileID: 1549497173}
+    - {fileID: 641715626}
+    - {fileID: 50319528}
+    - {fileID: 1417830439}
+    characterImg:
+    - {fileID: 21300000, guid: 03eb54e1d3676e8448a883a024645034, type: 3}
+    infoTxt:
+    - {fileID: 1367318736}
+    - {fileID: 1989623173}
+    - {fileID: 855456038}
+    - {fileID: 573395575}
+    - {fileID: 1240323138}
+  characterSlots:
+    slots:
+    - {fileID: 1900251076}
+    - {fileID: 1988344066}
+    - {fileID: 1506474404}
+    - {fileID: 605146670}
+    - {fileID: 1614606193}
+    character:
+    - {fileID: 6913728721277616884, guid: b09d77ceae01b33458f6f04a707b7934, type: 3}
   createSprite: {fileID: 21300000, guid: 8b3a0d81872dcea45aa615760eda82f6, type: 3}
-  selectImg:
-  - {fileID: 1294168560}
-  - {fileID: 1549497171}
-  - {fileID: 641715624}
-  - {fileID: 50319526}
-  - {fileID: 1417830437}
-  selectCharater:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  infoTxt:
-  - {fileID: 1367318736}
-  - {fileID: 1989623173}
-  - {fileID: 855456038}
-  - {fileID: 573395575}
-  - {fileID: 1240323138}
 --- !u!114 &2033036362
 MonoBehaviour:
   m_ObjectHideFlags: 0
