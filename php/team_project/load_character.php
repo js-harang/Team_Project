@@ -19,18 +19,8 @@ $sql = "SELECT	slot, name, lv, class
 
 $result = mysqli_query($conn, $sql);
 
-if (mysqli_num_rows($result) > 0) {
-    while ($row = mysqli_fetch_assoc($result)) {
-        $datas[] = array(
-            'slot' => $row['slot'],
-            'name' => $row['name'],
-            'lv' => $row['lv'],
-            'character_class' => $row['class']
-        );
-    }
-
-    $datas_json_string = json_encode($datas, JSON_UNESCAPED_UNICODE);
-    echo $datas_json_string;
+while ($row = mysqli_fetch_array($result)) {
+    echo $row['slot'] . " " . $row['name'] . " " . $row['lv'] . " " . $row['class'] . "<br>";
 }
 
 mysqli_close($conn);
