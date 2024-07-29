@@ -43,7 +43,6 @@ public class UIController : MonoBehaviour
 
         GameManager.gm.UI = this.GetComponent<UIController>();
         GameManager.gm.LaodUserData();
-        GameManager.gm.LoadUserCredit();
     }
 
     private void Update()
