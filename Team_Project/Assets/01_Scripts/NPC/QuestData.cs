@@ -25,9 +25,12 @@ public class QuestData
         { return currentAmount; }
         set 
         {
-            if (currentAmount == requiredAmount)
-                isDone = true;
             currentAmount = value;
+            if (currentAmount >= requiredAmount)
+            {
+                currentAmount = requiredAmount;
+                isDone = true;
+            }
         }
     }
     // 달성 보상

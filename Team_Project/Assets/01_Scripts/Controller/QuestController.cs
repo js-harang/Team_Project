@@ -7,11 +7,9 @@ public class QuestController : MonoBehaviour
 {
     // 서버에서 퀘스트들을 일괄 불러오기한 클래스의 변수
     public QuestsLoad qLoad;
-    QuestsChecks qChecks;
 
     // 현재 내가 갖고 있는 퀘스트들
-    List<QuestData> myQuests = new List<QuestData>();
-    public List<QuestData> MyQuests { get { return myQuests; } }
+    public List<QuestData> myQuests = new List<QuestData>();
 
     // 조건을 충족한 퀘스트들
     public List<int> doneQuestIDs = new List<int>();
@@ -68,29 +66,6 @@ public class QuestController : MonoBehaviour
             if (www.error == null)
             {
                 Debug.Log(www.downloadHandler.text);
-            }
-        }
-    }
-
-    // 데이터베이스에 저장된 자신이 수주된 적 있는 퀘스트 받아옴
-    IEnumerator LoadPlayerQuestsHave()
-    {
-        string url = GameManager.gm.path + "load_playerquestdata.php";
-        string cuid = PlayerPrefs.GetString("characteruid");
-        WWWForm form = new WWWForm();
-        form.AddField("cuid", 0000000004);
-
-        using (UnityWebRequest www = UnityWebRequest.Post(url, form))
-        {
-            yield return www.SendWebRequest();
-
-            if (www.error == null)
-            {
-                string jsonStr = "{\"Items\":" + www.downloadHandler.text + "}";
-                if (jsonStr == "")
-                    yield break;
-
-                qChecks = JsonUtility.FromJson<QuestsChecks>(jsonStr);
             }
         }
     }

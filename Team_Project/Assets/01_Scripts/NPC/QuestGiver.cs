@@ -63,9 +63,9 @@ public class QuestGiver : MonoBehaviour
 
         for (int i = 0; i < myQuestCount; i++)
         {
-            for (int j = 0; j < questCon.MyQuests.Count; j++)
+            for (int j = 0; j < questCon.myQuests.Count; j++)
             {
-                if (questList[i].questID == questCon.MyQuests[j].questID)
+                if (questList[i].questID == questCon.myQuests[j].questID)
                 {
                     count++;
                     break;
@@ -81,12 +81,12 @@ public class QuestGiver : MonoBehaviour
     // 플레이어의 현재 퀘스트 목표가 자신인지 확인하는 메서드
     public void HereForTalkToMe()
     {
-        for (int i = 0; i < questCon.MyQuests.Count; i++)
+        for (int i = 0; i < questCon.myQuests.Count; i++)
         {
-            if (questCon.MyQuests[i].targetID == (int)interPP.myID)
+            if (questCon.myQuests[i].targetID == (int)interPP.myID)
             {
-                questCon.MyQuests[i].isDone = true;
-                questList.Add(questCon.MyQuests[i]);
+                questCon.myQuests[i].isDone = true;
+                questList.Add(questCon.myQuests[i]);
             }
         }
     }

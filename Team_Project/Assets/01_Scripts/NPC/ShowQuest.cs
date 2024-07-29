@@ -160,7 +160,7 @@ public class ShowQuest : MonoBehaviour
     // Questcontroller 에서 플레이어가 갖고 있는 퀘스트 목록을 확인하여 중복체크
     bool PlayerQuestsCheck()
     {
-        foreach (QuestData item in questCon.MyQuests)
+        foreach (QuestData item in questCon.myQuests)
         {
             if (item.questID == myData.questID)
                 return true;

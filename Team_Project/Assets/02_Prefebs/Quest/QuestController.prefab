@@ -46,10 +46,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   qLoad: {fileID: 8606744869265769831}
-  MyQuestListPref: {fileID: 0}
+  doneQuestIDs: 
+  MyQuestListPref: {fileID: 2982277580032573686, guid: 9aaab861f48803048bf9e6929dfd2c6d, type: 3}
   questUIContent: {fileID: 0}
-  doneQuestID: 
-  finQuestID: 
 --- !u!114 &8606744869265769831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,5 +61,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5c5eaa8875f2424e81accf7afd399da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questHave: {fileID: 0}
-  questDone: {fileID: 0}
+  questCon: {fileID: 2537794503112059391}
