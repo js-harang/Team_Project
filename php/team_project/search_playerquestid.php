@@ -5,7 +5,7 @@ $password = "1234";
 $dbname = "team_project";
 
 $cuid = $_POST["cuid"];
-$questID = $POST["questID"];
+$questID = $_POST["questID"];
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -20,7 +20,7 @@ $sql = "SELECT 	*
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 
-echo $row['qust_id'];
+echo $row['quest_id'];
 
 mysqli_close($conn);
 ?>
