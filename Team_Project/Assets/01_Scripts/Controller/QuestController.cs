@@ -31,9 +31,10 @@ public class QuestController : MonoBehaviour
         questGoal.CreateQuestList();
     }
 
-    public void DoneQuestCheck(int index)
+    public void QuestDoneCheck(QuestData questData)
     {
-        doneQuestIDs.Add(index);
+        if (questData.isDone)
+            doneQuestIDs.Add(questData.questID);
     }
 
     // 플레이어가 게임 내의 퀘스트를 하나 완료 했을때 그에 관한 데이터를 정리하는 동작

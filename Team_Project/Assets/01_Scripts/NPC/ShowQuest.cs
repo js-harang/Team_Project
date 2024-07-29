@@ -116,27 +116,6 @@ public class ShowQuest : MonoBehaviour
         }
     }
 
-    // 플레이어가 자신의 퀘스트를 받은 적 있는지 체크
-    IEnumerator PlayerQuestOverlapCheck()
-    {
-        string url = GameManager.gm.path + "load_playerquestdata.php";
-        string cuid = PlayerPrefs.GetString("characteruid");
-        WWWForm form = new WWWForm();
-
-        form.AddField("cuid", 0000000004);
-        form.AddField("questid", myData.questID);
-
-        using (UnityWebRequest www = UnityWebRequest.Post(url, form))
-        {
-            yield return www.SendWebRequest();
-
-            if (www.error == null)
-            {
-
-            }
-        }
-    }
-
     // 플레이어의 퀘스트 수주나 진행 여부에 따라 수락 버튼의 텍스트 변경 및 활성화/ 비활성화
     void AcceptBtnOnOff(bool playerHave)
     {

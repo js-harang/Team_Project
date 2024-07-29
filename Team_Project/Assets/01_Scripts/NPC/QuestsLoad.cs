@@ -55,10 +55,10 @@ public class QuestsLoad : MonoBehaviour
 
             if (www.error == null)
             {
-                string jsonStr = "{\"Items\":" + www.downloadHandler.text + "}";
-                if (jsonStr == "")
+                if (www.downloadHandler.text == "")
                     yield break;
 
+                string jsonStr = "{\"Items\":" + www.downloadHandler.text + "}";
                 QuestsChecks qChecks = JsonUtility.FromJson<QuestsChecks>(jsonStr);
                 StartCoroutine(PlayerQuestDataSet(qChecks));
             }
@@ -85,7 +85,8 @@ public class QuestsLoad : MonoBehaviour
                     QuestJson quest = JsonUtility.FromJson<QuestJson>(jsonStr);
                     QuestData questData = new QuestData(quest);
                     questData.CurrentAmount = qCheck.current;
-                    questCon.myQuests.Add(questData);
+                    questCon.MyQuestWindowUpdate(questData);
+                    questCon.QuestDoneCheck(questData);
                 }
             }
         }
