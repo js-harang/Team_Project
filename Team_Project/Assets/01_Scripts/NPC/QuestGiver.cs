@@ -58,7 +58,8 @@ public class QuestGiver : MonoBehaviour
 
                 if (www.error == null)
                 {
-                    if (www.downloadHandler.text != "")
+                    Debug.Log(www.downloadHandler.text);
+                    if (www.downloadHandler.text == "")
                         continue;
 
                     count++;
