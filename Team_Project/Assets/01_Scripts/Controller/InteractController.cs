@@ -344,7 +344,7 @@ public class InteractController : MonoBehaviour
     // 퀘스트 리스트 하나를 만들 때, 그 리스트에 각각 퀘스트 정보와 필요한 UI 정보를 넘김
     void CreateMyQuestList()
     {
-        for (int i = 0; i < nowGiver.MyQuestCount; i++)
+        for (int i = 0; i < nowGiver.myQuestCount; i++)
         {
             Transform questList = Instantiate(questListPref).transform;
             ShowQuest showQuest = questList.gameObject.GetComponent<ShowQuest>();

@@ -11,9 +11,6 @@ public class QuestController : MonoBehaviour
     // 현재 내가 갖고 있는 퀘스트들
     public List<QuestData> myQuests = new List<QuestData>();
 
-    // 조건을 충족한 퀘스트들
-    public List<int> doneQuestIDs = new List<int>();
-
     // 현재 플레이어가 갖고 있는 퀘스트들의 리스트 UI
     [SerializeField]
     GameObject MyQuestListPref;
@@ -29,12 +26,6 @@ public class QuestController : MonoBehaviour
         questList.transform.SetParent(questUIContent);
         questGoal.myData = myQuests[myQuests.Count - 1];
         questGoal.CreateQuestList();
-    }
-
-    public void QuestDoneCheck(QuestData questData)
-    {
-        if (questData.isDone)
-            doneQuestIDs.Add(questData.questID);
     }
 
     // 플레이어가 게임 내의 퀘스트를 하나 완료 했을때 그에 관한 데이터를 정리하는 동작

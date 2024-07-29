@@ -15,6 +15,7 @@ public class InteractProperty : MonoBehaviour
     // 현재 자신이 갖고 있는 퀘스트 데이터
     public QuestGiver giverIsMe;
 
+    // 퀘스트용 자신의 ID
     public NPCID myID;
 
     public InteractType InteractType { get { return interactType; } }
@@ -85,7 +86,11 @@ public class InteractProperty : MonoBehaviour
         Camera.main.cullingMask = ~(1 << LayerMask.NameToLayer("Player"));
         npcAnim.SetBool("end", false);
         npcAnim.SetBool("start", true);
+        if (giverIsMe == null)
+            return;
+
         giverIsMe.HereForTalkToMe();
+        giverIsMe.GetPlayerDoingQuest();
     }
 
     void EndTalkWithPlayer()
