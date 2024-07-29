@@ -189,6 +189,15 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
+    /// 테스트용 버튼에 할당할 함수
+    /// </summary>
+    /// <param name="gold"></param>
+    public void SumCredit(int gold)
+    {
+        Credit += gold;
+    }
+
+    /// <summary>
     /// 레벨업
     /// </summary>
     private void LevelUp()
@@ -356,10 +365,10 @@ public class GameManager : MonoBehaviour
     #region SaveUserCredit() 유저 크레딧 저장
     private void SaveUserCredit()
     {
-        StartCoroutine(SaveCredit());
+        StartCoroutine(SaveCreditCoroutine());
     }
 
-    IEnumerator SaveCredit()
+    IEnumerator SaveCreditCoroutine()
     {
         string url = gm.path + "saveusercredit.php";
         string cuid = PlayerPrefs.GetString("characteruid");
