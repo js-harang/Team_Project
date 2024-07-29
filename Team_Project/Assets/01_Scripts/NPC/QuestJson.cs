@@ -18,6 +18,7 @@ public class QuestJsons
     public QuestJson[] Items;
 }
 
+[System.Serializable]
 // 플레이어 캐릭터가 갖고 있는 퀘스트를 가져오는 클래스
 public class QuestsCheck
 {

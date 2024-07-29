@@ -82,7 +82,8 @@ public class QuestsLoad : MonoBehaviour
                 if (www.error == null)
                 {
                     string jsonStr = "{\"Items\":" + www.downloadHandler.text + "}";
-                    QuestJson quest = JsonUtility.FromJson<QuestJson>(jsonStr);
+                    QuestJsons quests = JsonUtility.FromJson<QuestJsons>(jsonStr);
+                    QuestJson quest = quests.Items[0];
                     QuestData questData = new QuestData(quest);
                     questData.CurrentAmount = qCheck.current;
                     questCon.MyQuestWindowUpdate(questData);
