@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class QuestGiver : MonoBehaviour
 {
@@ -11,7 +13,9 @@ public class QuestGiver : MonoBehaviour
     public GameObject questHave;
     public GameObject questDone;
 
-    public int myQuestCount;
+    int myQuestCount;
+    public int MyQuestCount
+    { get { return myQuestCount; } set {myQuestCount = value; QuestMarkCheck(); } }
 
     private void Awake()
     {
@@ -26,26 +30,43 @@ public class QuestGiver : MonoBehaviour
         if (myQuestCount == questList.Count)
             return;
 
-        myQuestCount = questList.Count;
+        MyQuestCount = questList.Count;
     }
 
     // 플레이어가 자신의 퀘스트를 얼마나 수주했는지 확인
-    public void PlayerAcceptsMyQuests()
+    public void QuestMarkCheck()
+    {
+        StartCoroutine(HowManyHave());
+    }
+
+    IEnumerator HowManyHave()
     {
         int count = 0;
 
-        for (int i = 0; i < myQuestCount; i++)
+        string url = GameManager.gm.path + "search_playerquestid.php";
+        string cuid = PlayerPrefs.GetString("characteruid");
+        WWWForm form = new WWWForm();
+        form.AddField("cuid", 0000000004);
+
+        for (int i = 0; i < questList.Count; i++)
         {
-            for (int j = 0; j < questCon.myQuests.Count; j++)
+            form.AddField("questID", questList[i].questID);
+
+            using (UnityWebRequest www = UnityWebRequest.Post(url, form))
             {
-                if (questList[i].questID == questCon.myQuests[j].questID)
+                yield return www.SendWebRequest();
+
+                if (www.error == null)
                 {
+                    if (www.downloadHandler.text != "")
+                        continue;
+
                     count++;
-                    break;
                 }
             }
         }
-        if (count == myQuestCount)
+
+        if (count >= questList.Count)
             questHave.SetActive(false);
         else
             questHave.SetActive(true);
@@ -59,7 +80,8 @@ public class QuestGiver : MonoBehaviour
 
         for (int i = 0; i < questCon.myQuests.Count; i++)
         {
-            if (questCon.myQuests[i].targetID != (int)interPP.myID)
+            if (questCon.myQuests[i].targetID != (int)interPP.myID 
+                || questCon.myQuests[i].questType != QuestType.Conversation)
                 return;
 
             questCon.myQuests[i].isDone = true;

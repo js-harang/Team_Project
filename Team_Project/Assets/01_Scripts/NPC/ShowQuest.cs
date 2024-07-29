@@ -86,9 +86,12 @@ public class ShowQuest : MonoBehaviour
 
         StartCoroutine(UpdatePlayerAcceptQuest());
         questCon.MyQuestWindowUpdate(myData);
-        interCon.nowGiver.PlayerAcceptsMyQuests();
+        interCon.nowGiver.QuestMarkCheck();
         isAccept_Txt.text = "진행 중";
         questAccept_Btn.enabled = false;
+
+        if (myData.questType == QuestType.Conversation)
+            ConversationQuestDelete();
     }
 
     // 퀘스트 수락시 데이터베이스에 정보 업로드
@@ -134,6 +137,17 @@ public class ShowQuest : MonoBehaviour
             isAccept_Txt.text = "수락";
             questAccept_Btn.enabled = true;
         }
+    }
+
+    // 자신이 대화 퀘스트라면 플레이어가 수락했을 때 자신의 목록에서 삭제
+    void ConversationQuestDelete()
+    {
+        for (int i = 0; i < interCon.nowGiver.questList.Count; i++)
+        {
+            if (myData.questID == questCon.qLoad.questDic[myData.giverID][i].questID)
+                questCon.qLoad.questDic[myData.giverID].RemoveAt(i);
+        }
+        Destroy(gameObject);
     }
 
     // Questcontroller 에서 플레이어가 갖고 있는 퀘스트 목록을 확인하여 중복체크
