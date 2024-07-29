@@ -5,7 +5,7 @@ $password = "1234";
 $dbname = "team_project";
 
 $cuid = $_POST["cuid"];
-$questID = $POST["questID"];
+$questID = $_POST["questID"];
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
