@@ -1,7 +1,3 @@
-using System.Collections;
-using UnityEngine;
-using UnityEngine.Networking;
-
 // 퀘스트의 종류
 public enum QuestType
 {
@@ -10,7 +6,7 @@ public enum QuestType
     Conversation,
 }
 
-public class QuestData : MonoBehaviour
+public class QuestData
 {
     // 퀘스트를 분류하고 진행을 확인하기 위해 필요한 변수들
     public QuestType questType;
@@ -33,28 +29,16 @@ public class QuestData : MonoBehaviour
             if (currentAmount >= requiredAmount)
             {
                 currentAmount = requiredAmount;
-                IsDone = true;
+                isDone = true;
                 return;
             }
-            StartCoroutine(UpdateQuestCurrent());
         }
     }
     // 달성 보상
     public int goldReward;
     public int expReward;
     // 기준 충족 확인
-    bool isDone;
-    public bool IsDone
-    { 
-        get 
-        { return isDone; } 
-        set 
-        { 
-            isDone = value;
-            if (isDone)
-               StartCoroutine(UpdateQuestDone());
-        } 
-    }
+    public bool isDone;
 
     // 퀘스트의 중류가 매개변수로 받은 타겟타입에 따라 처치인지, 수집인지 분류
     public QuestData(QuestJson qj)
@@ -71,7 +55,7 @@ public class QuestData : MonoBehaviour
                 currentAmount = 0;
                 this.goldReward = qj.gold_reward;
                 this.expReward = qj.exp_reward;
-                IsDone = false;
+                isDone = false;
                 break;
             case "I":
                 questType = QuestType.Gathering;
@@ -83,7 +67,7 @@ public class QuestData : MonoBehaviour
                 currentAmount = 0;
                 this.goldReward = qj.gold_reward;
                 this.expReward = qj.exp_reward;
-                IsDone = false;
+                isDone = false;
                 break;
             case "0":
                 questType = QuestType.Conversation;
@@ -93,14 +77,14 @@ public class QuestData : MonoBehaviour
                 this.targetID = qj.target_id;
                 this.goldReward = qj.gold_reward;
                 this.expReward = qj.exp_reward;
-                IsDone = false;
+                isDone = false;
                 break;
             default:
                 break;
         }
     }
 
-    IEnumerator UpdateQuestCurrent()
+    /*IEnumerator UpdateQuestCurrent()
     {
         string url = GameManager.gm.path + "update_playerquestcurrent.php";
         string cuid = PlayerPrefs.GetString("characteruid");
@@ -137,5 +121,5 @@ public class QuestData : MonoBehaviour
                 Debug.Log(www.downloadHandler.text);
             }
         }
-    }
+    }*/
 }

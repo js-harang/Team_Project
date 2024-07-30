@@ -349,10 +349,6 @@ public class InteractController : MonoBehaviour
 
         for (int i = 0; i < nowGiver.MyQuestCount; i++)
         {
-            if (nowGiver.questList[i].questType == QuestType.Conversation
-                && nowGiver.questList[i].IsDone && nowGiver.questList[i].giverID == interPP.InteractId)
-                continue;
-
             Transform questList = Instantiate(questListPref).transform;
             ShowQuest showQuest = questList.gameObject.GetComponent<ShowQuest>();
             questList.transform.SetParent(questScrollContent);

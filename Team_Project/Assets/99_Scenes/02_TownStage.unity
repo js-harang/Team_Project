@@ -3579,6 +3579,10 @@ PrefabInstance:
       propertyPath: questUIContent
       value: 
       objectReference: {fileID: 1978984799}
+    - target: {fileID: 2537794503112059391, guid: cdbe42e5675c37248a170818758fec2f, type: 3}
+      propertyPath: myQuestListPref
+      value: 
+      objectReference: {fileID: 2982277580032573686, guid: 9aaab861f48803048bf9e6929dfd2c6d, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cdbe42e5675c37248a170818758fec2f, type: 3}
 --- !u!4 &2556739881699168367

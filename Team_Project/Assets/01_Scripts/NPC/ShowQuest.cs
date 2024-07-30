@@ -42,16 +42,16 @@ public class ShowQuest : MonoBehaviour
         showComplete_Txt.text = "";
         if (myData.questType == QuestType.Conversation)
             imConversation = true;
-        if (myData.targetID == interCon.interPP.InteractId)
+        if (myData.targetID == (int)interCon.interPP.myID)
             targetIsMe = true;
 
-        if (!imConversation && myData.IsDone)
+        if (!imConversation && myData.isDone)
         {
             showComplete_Txt.text = "완료";
             return;
         }
 
-        if (targetIsMe && myData.IsDone)
+        if (targetIsMe && myData.isDone)
             showComplete_Txt.text = "완료";
     }
 
@@ -92,12 +92,12 @@ public class ShowQuest : MonoBehaviour
     // 퀘스트 정보창에서 수락 버튼을 눌렀을 시
     public void AcceptBtnOnClicked()
     {
-        if (imConversation && myData.IsDone && targetIsMe)
+        if (!imConversation && myData.isDone)
         {
             QuestComplete();
             return;
         }
-        else if (myData.IsDone)
+        else if (targetIsMe && myData.isDone)
         {
             QuestComplete();
             return;
@@ -117,7 +117,7 @@ public class ShowQuest : MonoBehaviour
         string cuid = PlayerPrefs.GetString("characteruid");
         WWWForm form = new WWWForm();
 
-        string isdone = myData.IsDone ? "Y" : "N";
+        string isdone = myData.isDone ? "Y" : "N";
 
         form.AddField("cuid", 0000000004);
         form.AddField("questid", myData.questID);
@@ -138,12 +138,12 @@ public class ShowQuest : MonoBehaviour
     // 플레이어의 퀘스트 수주나 진행 여부에 따라 수락 버튼의 텍스트 변경 및 활성화/ 비활성화
     void AcceptBtnProcess(bool playerHave)
     {
-        if (imConversation && targetIsMe && playerHave && myData.IsDone)
+        if (!imConversation && playerHave && myData.isDone)
         {
             isAccept_Txt.text = "달성";
             questAccept_Btn.enabled = true;
         }
-        else if (playerHave && myData.IsDone)
+        else if (targetIsMe && playerHave && myData.isDone)
         {
             isAccept_Txt.text = "달성";
             questAccept_Btn.enabled = true;
