@@ -14,6 +14,10 @@ public class ShowQuest : MonoBehaviour
     TMP_Text showQuestName;
     [SerializeField]
     TMP_Text showComplete_Txt;
+    // 자신이 대화 타입 퀘스트인지 확인하는 변수
+    bool imConversation;
+    // 플레이어의 현재 대화 목표가 자신인지 확인하는 변수
+    bool targetIsMe;
 
     // 퀘스트 정보창의 UI 변수들
     GameObject questInfoUI;
@@ -36,14 +40,18 @@ public class ShowQuest : MonoBehaviour
         isAccept_Txt = interCon.isAcept_Txt;
         showQuestName.text = myData.questName;
         showComplete_Txt.text = "";
+        if (myData.questType == QuestType.Conversation)
+            imConversation = true;
+        if (myData.targetID == interCon.interPP.InteractId)
+            targetIsMe = true;
 
-        if (myData.questType != QuestType.Conversation && myData.IsDone)
+        if (!imConversation && myData.IsDone)
         {
             showComplete_Txt.text = "완료";
             return;
         }
 
-        if (myData.IsDone && interCon.interPP.InteractId == myData.targetID)
+        if (targetIsMe && myData.IsDone)
             showComplete_Txt.text = "완료";
     }
 
@@ -84,7 +92,12 @@ public class ShowQuest : MonoBehaviour
     // 퀘스트 정보창에서 수락 버튼을 눌렀을 시
     public void AcceptBtnOnClicked()
     {
-        if (myData.IsDone)
+        if (imConversation && myData.IsDone && targetIsMe)
+        {
+            QuestComplete();
+            return;
+        }
+        else if (myData.IsDone)
         {
             QuestComplete();
             return;
@@ -125,7 +138,12 @@ public class ShowQuest : MonoBehaviour
     // 플레이어의 퀘스트 수주나 진행 여부에 따라 수락 버튼의 텍스트 변경 및 활성화/ 비활성화
     void AcceptBtnProcess(bool playerHave)
     {
-        if (playerHave && myData.IsDone)
+        if (imConversation && targetIsMe && playerHave && myData.IsDone)
+        {
+            isAccept_Txt.text = "달성";
+            questAccept_Btn.enabled = true;
+        }
+        else if (playerHave && myData.IsDone)
         {
             isAccept_Txt.text = "달성";
             questAccept_Btn.enabled = true;
@@ -140,17 +158,6 @@ public class ShowQuest : MonoBehaviour
             isAccept_Txt.text = "수락";
             questAccept_Btn.enabled = true;
         }
-    }
-
-    // 자신이 대화 퀘스트라면 플레이어가 수락했을 때 자신의 목록에서 삭제
-    void ConversationQuestDelete()
-    {
-        for (int i = 0; i < interCon.nowGiver.questList.Count; i++)
-        {
-            if (myData.questID == questCon.qLoad.questDic[myData.giverID][i].questID)
-                questCon.qLoad.questDic[myData.giverID].RemoveAt(i);
-        }
-        Destroy(gameObject);
     }
 
     // Questcontroller 에서 플레이어가 갖고 있는 퀘스트 목록을 확인하여 중복체크

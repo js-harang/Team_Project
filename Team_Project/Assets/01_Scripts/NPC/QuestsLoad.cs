@@ -19,6 +19,9 @@ public class QuestsLoad : MonoBehaviour
     // 각각의 리스트에 각 NPC 별로 할당받을 퀘스트 정보를 리스트에 담음
     IEnumerator LoadQuestDatas()
     {
+        if (questDic.Count == 0)
+            yield break;
+
         string url = GameManager.gm.path + "load_NPCquestsdata.php";
         string cuid = PlayerPrefs.GetString("characteruid");
         WWWForm form = new WWWForm();

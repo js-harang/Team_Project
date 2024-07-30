@@ -63,6 +63,7 @@ public class QuestGiver : MonoBehaviour
                         continue;
 
                     count++;
+                    Debug.Log(count);
                 }
             }
         }
