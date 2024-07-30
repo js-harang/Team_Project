@@ -18,9 +18,8 @@ $sql = "SELECT 	quest_id
 		WHERE 	character_uid = $cuid and quest_id = $questID";
 
 $result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
 
-echo $row['quest_id'];
+echo $result;
 
 mysqli_close($conn);
 ?>
