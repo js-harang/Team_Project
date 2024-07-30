@@ -37,8 +37,14 @@ public class ShowQuest : MonoBehaviour
         showQuestName.text = myData.questName;
         showComplete_Txt.text = "";
 
-        if (myData.isDone)
-            showComplete_Txt.text = "Clear";
+        if (myData.questType != QuestType.Conversation && myData.IsDone)
+        {
+            showComplete_Txt.text = "완료";
+            return;
+        }
+
+        if (myData.IsDone && interCon.interPP.InteractId == myData.targetID)
+            showComplete_Txt.text = "완료";
     }
 
     // 클릭되었을 때의 동작
@@ -50,7 +56,7 @@ public class ShowQuest : MonoBehaviour
         PrintQuestDetail(myData.questID);
         goldReward_Txt.text = "Gold : " + myData.goldReward;
         expReward_Txt.text = "Exp : " + myData.expReward;
-        AcceptBtnOnOff(PlayerQuestsCheck());
+        AcceptBtnProcess(PlayerQuestsCheck());
         QuestAccept questAccept = questAccept_Btn.GetComponent<QuestAccept>();
         questAccept.showQ = this;
     }
@@ -78,7 +84,7 @@ public class ShowQuest : MonoBehaviour
     // 퀘스트 정보창에서 수락 버튼을 눌렀을 시
     public void AcceptBtnOnClicked()
     {
-        if (myData.isDone)
+        if (myData.IsDone)
         {
             QuestComplete();
             return;
@@ -89,9 +95,6 @@ public class ShowQuest : MonoBehaviour
         interCon.nowGiver.QuestMarkCheck();
         isAccept_Txt.text = "진행 중";
         questAccept_Btn.enabled = false;
-
-        if (myData.questType == QuestType.Conversation)
-            ConversationQuestDelete();
     }
 
     // 퀘스트 수락시 데이터베이스에 정보 업로드
@@ -101,7 +104,7 @@ public class ShowQuest : MonoBehaviour
         string cuid = PlayerPrefs.GetString("characteruid");
         WWWForm form = new WWWForm();
 
-        string isdone = myData.isDone ? "Y" : "N";
+        string isdone = myData.IsDone ? "Y" : "N";
 
         form.AddField("cuid", 0000000004);
         form.AddField("questid", myData.questID);
@@ -120,9 +123,9 @@ public class ShowQuest : MonoBehaviour
     }
 
     // 플레이어의 퀘스트 수주나 진행 여부에 따라 수락 버튼의 텍스트 변경 및 활성화/ 비활성화
-    void AcceptBtnOnOff(bool playerHave)
+    void AcceptBtnProcess(bool playerHave)
     {
-        if (playerHave && myData.isDone)
+        if (playerHave && myData.IsDone)
         {
             isAccept_Txt.text = "달성";
             questAccept_Btn.enabled = true;

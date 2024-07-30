@@ -13,7 +13,7 @@ public class QuestController : MonoBehaviour
 
     // 현재 플레이어가 갖고 있는 퀘스트들의 리스트 UI
     [SerializeField]
-    GameObject MyQuestListPref;
+    GameObject myQuestListPref;
     [SerializeField]
     Transform questUIContent;
 
@@ -21,7 +21,7 @@ public class QuestController : MonoBehaviour
     public void MyQuestWindowUpdate(QuestData newQuest)
     {
         myQuests.Add(newQuest);
-        Transform questList = Instantiate(MyQuestListPref).transform;
+        Transform questList = Instantiate(myQuestListPref).transform;
         QuestGoalList questGoal = questList.gameObject.GetComponent<QuestGoalList>();
         questList.transform.SetParent(questUIContent);
         questGoal.myData = myQuests[myQuests.Count - 1];

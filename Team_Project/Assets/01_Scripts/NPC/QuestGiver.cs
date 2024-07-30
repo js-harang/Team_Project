@@ -85,7 +85,7 @@ public class QuestGiver : MonoBehaviour
                 || questCon.myQuests[i].questType != QuestType.Conversation)
                 return;
 
-            questCon.myQuests[i].isDone = true;
+            questCon.myQuests[i].IsDone = true;
             if (!AlreadyHaveCheck(questCon.myQuests[i]))
                 questList.Add(questCon.myQuests[i]);
         }
