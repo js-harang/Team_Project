@@ -13,7 +13,7 @@ if ($conn->connect_error) {
 	echo "Failed to connect to MySQL : " + $mysqli->connect_error;
 }
 
-$sql = "SELECT 	*
+$sql = "SELECT 	quest_id
 		FROM 	player_questdata
 		WHERE 	character_uid = $cuid and quest_id = $questID";
 
