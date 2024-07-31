@@ -6428,14 +6428,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 316223621016006617}
+  atkPower: 100
   currentHp: 100
   maxHp: 100
-  atkPower: 0
-  currentMp: 10000
+  currentMp: 0
   maxMp: 10000
   attack: {fileID: 0}
   previousAttack: {fileID: 0}
   delayComboTime: 1
+  comboCounter: 0
+  canMoveAtk: 0
   enemyLayer:
     serializedVersion: 2
     m_Bits: 2097152
@@ -6443,10 +6445,7 @@ MonoBehaviour:
   atkPositions:
   - {fileID: 3686836956505390186}
   - {fileID: 7370891827758768959}
-  canMoveAtk: 0
   effectPrefebs: {fileID: 2304518887513060441, guid: 2ec5815959735cb4a9a8cc1492f2cbd9, type: 3}
-  hpSld: {fileID: 0}
-  mpSld: {fileID: 0}
   anim: {fileID: 3962989372843851776}
   pbs: {fileID: 6633205992098927533}
 --- !u!114 &8334660830435624812
@@ -6471,7 +6470,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8103070676740507455}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 821c8f04509224b4dbcc9304a6bb3603, type: 3}
   m_Name: 

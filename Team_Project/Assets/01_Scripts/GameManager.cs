@@ -68,32 +68,40 @@ public class GameManager : MonoBehaviour
         set { uid = value; }
     }
 
-    private string cUid;
-    public string Cuid
+    private string unitUid;
+    public string UnitUid
     {
-        get { return cUid; }
-        set { cUid = value; }
+        get { return unitUid; }
+        set { unitUid = value; }
     }
 
-    private string userName;
-    public string UserName
+    private string unitName;
+    public string UnitName
     {
-        get { return userName; }
-        set { userName = value; }
+        get { return unitName; }
+        set { unitName = value; }
     }
 
     private int lv;
     public int Lv
     {
         get { return lv; }
-        set { lv = value; }
+        set
+        {
+            lv = value;
+            LevelUp();
+        }
     }
 
     private int exp;
     public int Exp
     {
         get { return exp; }
-        set { exp = value; }
+        set
+        {
+            exp = value;
+            SumEXP();
+        }
     }
 
     private int credit;
@@ -107,8 +115,34 @@ public class GameManager : MonoBehaviour
     public string Skill
     {
         get { return skill; }
-        set { skill = value; }
+        set
+        {
+            skill = value;
+            StartCoroutine(SaveSkill());
+        }
     }
+
+    #region 스킬 저장
+    IEnumerator SaveSkill()
+    {
+        string url = path + "saveskill.php";
+
+        WWWForm form = new WWWForm();
+        form.AddField("cuid", unitUid);
+        form.AddField("num", skill);
+
+        using (UnityWebRequest www = UnityWebRequest.Post(url, form))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.error == null)
+                Debug.Log(www.downloadHandler.text + "로 저장 완료");
+            else
+                Debug.Log(www.error);
+        }
+    }
+    #endregion
+
     #endregion
 
     #region player stats
@@ -175,21 +209,7 @@ public class GameManager : MonoBehaviour
     {
         hp = maxHp;
         mp = maxMp;
-        /*      싱글톤의 awake 함수 안에있음 추후 수정 바람
-                PlayerPrefs.DeleteKey("uid");
-                PlayerPrefs.DeleteKey("characteruid");
 
-                PlayerPrefs.DeleteKey("UserName");
-                PlayerPrefs.DeleteKey("Lv");
-                PlayerPrefs.DeleteKey("Exp");
-                PlayerPrefs.DeleteKey("Credit");
-
-                // 테스트용
-                PlayerPrefs.SetString("UserName", "나나나나");
-                PlayerPrefs.SetInt("Lv", 230);
-                PlayerPrefs.SetInt("Exp", 230);
-                PlayerPrefs.SetInt("Credit", 232323);
-                PlayerPrefs.Save();*/
         StartCoroutine(RecoverStats()); // 코루틴 시작
     }
 
@@ -226,15 +246,13 @@ public class GameManager : MonoBehaviour
     /// 경험치 추가
     /// </summary>
     /// <param name="exp"></param>
-    public void SumEXP(int exp)
+    public void SumEXP()
     {
-        nowExp += exp;
-
         // 레벨업 가능한 경험치 인지 확인
         while (nowExp >= maxExp)
         {
             nowExp -= maxExp;
-            LevelUp();
+            Lv++;
         }
 
         // 데이터 베이스 및 플레이어 프리팹에 변경된 값 저장
@@ -256,7 +274,6 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void LevelUp()
     {
-        lv++;
         UI.SetLvText(Lv);
 
         SetPlayerState();
@@ -292,57 +309,12 @@ public class GameManager : MonoBehaviour
     #region LoadUserData()   유저 정보 불러오기
     public void LaodUserData()
     {
-        userName = PlayerPrefs.GetString("UserName");
-        lv = PlayerPrefs.GetInt("Lv");
-        nowExp = PlayerPrefs.GetInt("Exp");
-        credit = PlayerPrefs.GetInt("Credit");
-        Debug.Log(PlayerPrefs.GetInt("Credit"));
         SetPlayerState();
 
         SetMaxExp();
-        UI.SetCharacterName(UserName);
+        UI.SetCharacterName(UnitName);
         //UI.SetLvText(Lv);
         UI.SetEXPSlider(NowExp, MaxExp);
-
-        // StartCoroutine(LoadeUserDatas());
-    }
-
-    IEnumerator LoadeUserDatas()
-    {
-        string url = path + "loaduserdata.php";
-        string cuid = PlayerPrefs.GetString("characteruid");
-
-        WWWForm form = new();
-        form.AddField("cuid", useCuid);
-
-        using (UnityWebRequest www = UnityWebRequest.Post(url, form))
-        {
-            yield return www.SendWebRequest();
-            if (www.error == null)
-            {
-                #region 불러온 데이터 변수 저장
-                string tmp = www.downloadHandler.text;
-                string[] data = tmp.Split(",");
-                #endregion
-
-                UserName = data[0];
-                Lv = System.Convert.ToInt32(data[1]);
-                NowExp = System.Convert.ToInt32(data[2]);
-                Credit = System.Convert.ToInt32(data[3]);
-
-                // 레벨에 맞춰 플레이어 공격력 설정
-                SetPlayerState();
-
-                SetMaxExp();
-                UI.SetCharacterName(UserName);
-                UI.SetLvText(Lv);
-                UI.SetEXPSlider(NowExp, maxExp);
-            }
-            else
-            {
-                Debug.Log(www.error);
-            }
-        }
     }
     #endregion
 
@@ -447,4 +419,5 @@ public class GameManager : MonoBehaviour
         }
     }
     #endregion
+
 }

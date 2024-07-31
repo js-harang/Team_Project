@@ -95,7 +95,7 @@ public class UIController : MonoBehaviour
     #region Name, LV, Credit ¼¼ÆÃ
     public void SetCharacterName(string name)
     {
-        userName_Text.text = name;
+        userName_Text.text = GameManager.gm.UnitName;
     }
     public void SetLvText(int lv)
     {

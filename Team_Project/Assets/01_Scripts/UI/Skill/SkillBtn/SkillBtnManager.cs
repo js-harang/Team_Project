@@ -53,83 +53,33 @@ public class SkillBtnManager : MonoBehaviour
         for (int i = 0; i < btns.Length; i++)
             sb.Append(string.Format("{0:00}", btns[i].btnSkillIdx));
 
-        Debug.Log(sb.ToString());
+        GameManager.gm.Skill = sb.ToString();
 
-        // 데이터 베이스에 값 전달하기
-        StartCoroutine(SaveSkill());
-        
         sb.Clear();
     }
 
-    IEnumerator SaveSkill()
-    {
-        string cuid = PlayerPrefs.GetString("characteruid");
-        string url = GameManager.gm.path + "saveskill.php";
-        string num = sb.ToString();
-        Debug.Log(num);
-        
-        WWWForm form = new WWWForm();
-        form.AddField("cuid", GameManager.gm.useCuid);
-        form.AddField("num", num);
-
-        using (UnityWebRequest www = UnityWebRequest.Post(url, form))
-        {
-            yield return www.SendWebRequest();
-
-            if (www.error == null)
-                Debug.Log(www.downloadHandler.text + "로 저장 완료");
-            else
-                Debug.Log(www.error);
-        }
-    }
     #endregion
 
     #region 스킬 불러오기
     void LoadSkillData()
     {
-        // 데이터 베이스 에서 값 불러오기
-        StartCoroutine(LoadSkill());
-    }
+        skillBtnData = new string[skillSet.Length / 2];
 
-    /// <summary>
-    /// 데이터베이스 에서 스킬 정보 불러오기
-    /// </summary>
-    /// <returns></returns>
-    IEnumerator LoadSkill()
-    {
-        #region 데이터베이스 에 보낼 데이터
-        // 0000000018
-        string cuid = PlayerPrefs.GetString("characteruid");
-        string url = GameManager.gm.path + "loadskill.php";
-
-        WWWForm form = new WWWForm();
-        form.AddField("cuid", GameManager.gm.useCuid);
-        #endregion
-
-        #region 데이터베이스 에 값 전달
-        using (UnityWebRequest www = UnityWebRequest.Post(url, form))
+        int idx = 0;
+        for (int i = 0; i < GameManager.gm.Skill.Length; i += 2)
         {
-            yield return www.SendWebRequest();
-            if (www.error == null)
-            {
-                skillSet = www.downloadHandler.text;
+            skillBtnData[idx] = GameManager.gm.Skill.Substring(i, 2);
+            btns[idx].btnSkillIdx = System.Convert.ToInt32(skillBtnData[idx]);
+            btns[idx].BtnSkillSet();
 
-                skillBtnData = new string[skillSet.Length / 2];
-
-                int idx = 0;
-                for (int i = 0; i < skillSet.Length - 1; i += 2)
-                {
-                    skillBtnData[idx] = skillSet.Substring(i, 2);
-                    btns[idx].btnSkillIdx = System.Convert.ToInt32(skillBtnData[idx]);
-                    btns[idx].BtnSkillSet();
-
-                    idx++;
-                }
-            }
-            else
-                Debug.Log(www.error);
+            idx++;
         }
-        #endregion
+
+        for (int i = 0; i < skillBtnData.Length; i++)
+        {
+            btns[i].btnSkillIdx = System.Convert.ToInt32(skillBtnData[i]);
+            btns[i].BtnSkillSet();
+        }
     }
     #endregion
 }

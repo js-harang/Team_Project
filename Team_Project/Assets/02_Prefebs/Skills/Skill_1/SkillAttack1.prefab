@@ -56,7 +56,7 @@ MonoBehaviour:
   delayComboTime: 2
   atkPosIdx: 0
   atkLength: {x: 2, y: 2.5, z: 2}
-  hitSound: {fileID: 8300000, guid: 5c55a31473e47c9478a6c08cc29d4a55, type: 3}
+  hitSound: {fileID: 8300000, guid: b35d11004cc04134098d42da7679aefb, type: 3}
   isComboing: 0
   canMoveAtk: 0
   skillIdx: 1

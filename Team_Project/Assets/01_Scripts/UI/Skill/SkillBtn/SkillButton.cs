@@ -9,6 +9,7 @@ public class SkillButton : MonoBehaviour
     // 태그로 자동 참조
     PlayerCombat player;
     SkillBtnManager chkDup;
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
     #region 스킬 저장용 변수
 
@@ -20,6 +21,7 @@ public class SkillButton : MonoBehaviour
     [SerializeField] SkillDirectory skillDirectory;
 
     #endregion
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
     #region 스킬 데이터 관련
     [Space(10)]
@@ -33,6 +35,7 @@ public class SkillButton : MonoBehaviour
     [SerializeField] Image skillIcon;
     public Image SkillIcon { get { return skillIcon; } set { skillIcon = value; } }
     #endregion
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
     #region 스킬 쿨타임 관련
     // 쿨타임 코루틴 실행 확인용 변수
@@ -44,11 +47,10 @@ public class SkillButton : MonoBehaviour
     // 자식오브젝트 의 쿨타임 아이콘 넣기
     [SerializeField] public Image coolTimeIcon;
     #endregion
-
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
     private void Start()
     {
-        // PlayerPrefs.DeleteAll();
         StartSetting();
     }
 
@@ -79,7 +81,7 @@ public class SkillButton : MonoBehaviour
         }
     }
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
     // 공격
 
@@ -129,55 +131,55 @@ public class SkillButton : MonoBehaviour
     }
     #endregion
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
     // 스킬 저장, 불러오기
 
-/*    #region SaveSkillData 스킬을 데이터베이스에 저장
-    public void SaveSkillData()
-    {
-        StartCoroutine(SaveSkill());
-    }
-
-    IEnumerator SaveSkill()
-    {
-        #region 데이터 베이스에 보낼 정보
-
-            #region 저장할 스킬 인덱스 확인
-            int idx;
-            if (btnSkill == null)
-                idx = 0;
-            else
-                idx = btnSkill.skillIdx;
-        #endregion
-
-        // 0000000013
-        string cuid = PlayerPrefs.GetString("characteruid");
-        string skill = "skill_" + buttonIdx;
-        string url = GameManager.gm.path + "saveskill.php";
-
-        WWWForm form = new WWWForm();
-        form.AddField("cuid", "0000000013");
-        form.AddField("skill", skill);
-        form.AddField("idx", idx);
-        #endregion
-
-        #region 데이터 베이스에 값 전달
-        using (UnityWebRequest www = UnityWebRequest.Post(url, form))
+    /*    #region SaveSkillData 스킬을 데이터베이스에 저장
+        public void SaveSkillData()
         {
-            yield return www.SendWebRequest();
-            if (www.error == null)
-            {
-                Debug.Log(skill + " : " + www.downloadHandler.text + "저장 성공");
-            }
-            else
-            {
-                Debug.Log(www.error);
-            }
+            StartCoroutine(SaveSkill());
         }
-        #endregion
-    }
-    #endregion*/
+
+        IEnumerator SaveSkill()
+        {
+            #region 데이터 베이스에 보낼 정보
+
+                #region 저장할 스킬 인덱스 확인
+                int idx;
+                if (btnSkill == null)
+                    idx = 0;
+                else
+                    idx = btnSkill.skillIdx;
+            #endregion
+
+            // 0000000013
+            string cuid = PlayerPrefs.GetString("characteruid");
+            string skill = "skill_" + buttonIdx;
+            string url = GameManager.gm.path + "saveskill.php";
+
+            WWWForm form = new WWWForm();
+            form.AddField("cuid", "0000000013");
+            form.AddField("skill", skill);
+            form.AddField("idx", idx);
+            #endregion
+
+            #region 데이터 베이스에 값 전달
+            using (UnityWebRequest www = UnityWebRequest.Post(url, form))
+            {
+                yield return www.SendWebRequest();
+                if (www.error == null)
+                {
+                    Debug.Log(skill + " : " + www.downloadHandler.text + "저장 성공");
+                }
+                else
+                {
+                    Debug.Log(www.error);
+                }
+            }
+            #endregion
+        }
+        #endregion*/
 
     public void BtnSkillSet()
     {
