@@ -93,13 +93,13 @@ public class UIController : MonoBehaviour
 
     // 텍스트 세팅
     #region Name, LV, Credit 세팅
-    public void SetCharacterName(string name)
+    public void SetCharacterName()
     {
         userName_Text.text = GameManager.gm.UnitName;
     }
-    public void SetLvText(int lv)
+    public void SetLvText()
     {
-        lv_Text.text = "Lv." + lv;
+        lv_Text.text = "Lv." + GameManager.gm.Lv;
     }
     public void SetCreditText(int credit)
     {

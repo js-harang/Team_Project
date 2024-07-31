@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region UIController 속성
-    UIController ui;
+    private UIController ui;
     public UIController UI { get { return ui; } set { ui = value; } }
     #endregion
 
@@ -150,15 +150,15 @@ public class GameManager : MonoBehaviour
     public int maxMp = 100;
     public float recoveryRate = 1f;
 
-    public int hp;
-    private int Hp
+    private int hp;
+    public int Hp
     {
         get { return hp; }
         set { hp = Mathf.Clamp(value, 0, maxHp); }
     }
 
-    public int mp;
-    private int Mp
+    private int mp;
+    public int Mp
     {
         get { return mp; }
         set { mp = Mathf.Clamp(value, 0, maxMp); }
@@ -168,7 +168,7 @@ public class GameManager : MonoBehaviour
     #region 경험치 관련
 
     #region NowExp; 현재 경험치
-    [SerializeField] int nowExp;
+    [SerializeField] private int nowExp;
     public int NowExp
     {
         get { return nowExp; }
@@ -181,7 +181,7 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region MaxExp 최대 경험치
-    [SerializeField] int maxExp;
+    [SerializeField] private int maxExp;
     public int MaxExp
     {
         get { return maxExp; }
@@ -190,11 +190,11 @@ public class GameManager : MonoBehaviour
     #endregion
 
     // 필요 경험치
-    [SerializeField, Space(10)] int requiredExp = 100;
+    [SerializeField, Space(10)] private int requiredExp = 100;
     #endregion
 
     #region 플레이어 설정
-    PlayerCombat player;
+    private PlayerCombat player;
     public PlayerCombat Player
     {
         get { return player; }
@@ -202,7 +202,7 @@ public class GameManager : MonoBehaviour
     }
 
     // 레벨당 공격력 배수
-    int lvPerPower = 1;
+    private int lvPerPower = 1;
     #endregion
 
     private void Start()
@@ -274,7 +274,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void LevelUp()
     {
-        UI.SetLvText(Lv);
+        UI.SetLvText();
 
         SetPlayerState();
 
@@ -312,7 +312,7 @@ public class GameManager : MonoBehaviour
         SetPlayerState();
 
         SetMaxExp();
-        UI.SetCharacterName(UnitName);
+        UI.SetCharacterName();
         //UI.SetLvText(Lv);
         UI.SetEXPSlider(NowExp, MaxExp);
     }
