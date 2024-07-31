@@ -58,6 +58,7 @@ public class CreateSceneController : MonoBehaviour
     {
         string url = GameManager.gm.path + "create_character.php";
         WWWForm form = new();
+        Debug.Log(GameManager.gm.Uid);
         form.AddField("uid", GameManager.gm.Uid);
         form.AddField("slot", GameManager.gm.slotNum);
         form.AddField("name", unitName.text);

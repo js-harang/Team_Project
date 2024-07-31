@@ -271,6 +271,9 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void LevelUp()
     {
+        if (UI == null)
+            return;
+
         UI.SetLvText();
 
         SetPlayerState();
@@ -283,17 +286,9 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void SetPlayerState()
     {
-        // player.AtkPower = lv * lvPerPower;
         AtkPower = lv * lvPerPower;
-
-        // player.MaxHp = 50 + (50 * Lv);
         MaxHp = 50 + (50 * Lv);
-
-        // Player.MaxMp = 100 + (100 * Lv);
         MaxMp = 100 + (100 * Lv);
-
-    /*  player.CurrentHp = player.MaxHp;
-        player.CurrentMp = player.MaxMp;  */
     }
 
     /// <summary>
