@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class SlotInfo : MonoBehaviour
 {
-    public string characterUid;
-    public string characterName;
+    public string unitUid;
+    public string unitName;
     public int lv;
     public int exp;
     public int credit;

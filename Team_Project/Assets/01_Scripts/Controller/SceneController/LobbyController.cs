@@ -13,20 +13,20 @@ public class LobbyController : MonoBehaviour
     {
         public GameObject[] slots;
         public Image[] selectImg;
-        public Sprite[] characterImg;
+        public Sprite[] unitImg;
         public TextMeshProUGUI[] infoTxt;
     }
     [Header("Select Slots")]
     public SelectSlots selectSlots;
 
     [Serializable]
-    public struct CharacterSlots
+    public struct UnitSlots
     {
         public GameObject[] slots;
-        public GameObject[] character;
+        public GameObject[] units;
     }
-    [Header("Character Slots")]
-    public CharacterSlots characterSlots;
+    [Header("Unit Slots")]
+    public UnitSlots unitSlots;
 
     [SerializeField, Space(10)] Sprite createSprite;
 
@@ -67,24 +67,39 @@ public class LobbyController : MonoBehaviour
             int slot = int.Parse(info[0]);
             SlotInfo slotinfo = selectSlots.slots[slot].GetComponent<SlotInfo>();
 
-            int characterClass = int.Parse(info[1]);
-            slotinfo.characterUid = info[2];
-            slotinfo.characterName = info[3];
+            int unitClass = int.Parse(info[1]);
+            slotinfo.unitUid = info[2];
+            slotinfo.unitName = info[3];
             slotinfo.lv = int.Parse(info[4]);
             slotinfo.exp = int.Parse(info[5]);
             slotinfo.credit = int.Parse(info[6]);
             slotinfo.skill = info[7];
 
-            selectSlots.selectImg[slot].sprite = selectSlots.characterImg[characterClass];
+            selectSlots.selectImg[slot].sprite = selectSlots.unitImg[unitClass];
             selectSlots.infoTxt[slot].text = "Lv." + info[4] + "\n\n" + info[3];
 
+            GameObject unit = Instantiate(unitSlots.units[unitClass]);
+            unit.transform.SetParent(unitSlots.slots[slot].transform, false);
         }
     }
 
     public void GameStartBtn()
     {
-        GameManager.gm.sceneNumber = 2;
-        SceneManager.LoadScene("99_LoadingScene");
+        if (GameManager.gm.slotNum != -1)
+        {
+            SlotInfo info = selectSlots.slots[GameManager.gm.slotNum].GetComponent<SlotInfo>();
+            GameManager.gm.UnitUid = info.unitUid;
+            GameManager.gm.UnitName = info.unitName;
+            GameManager.gm.Lv = info.lv;
+            GameManager.gm.Exp = info.exp;
+            GameManager.gm.Credit = info.credit;
+            GameManager.gm.Skill = info.skill;
+
+            GameManager.gm.sceneNumber = 2;
+            SceneManager.LoadScene("99_LoadingScene");
+        }
+        else
+            Debug.Log("캐릭터를 선택해주세요");
     }
 
     public void BackBtn()
@@ -96,22 +111,23 @@ public class LobbyController : MonoBehaviour
     public void SelectedSlot(int num)
     {
         GameManager.gm.slotNum = num;
+        Animator anim;
 
         if (selectSlots.selectImg[num].sprite == createSprite)
             SceneManager.LoadScene("11_CreateScene");
         else
         {
-            foreach (var charater in characterSlots.slots)
+            foreach (var slot in unitSlots.slots)
             {
-                if (charater == null)
-                    return;
+                if (slot.transform.childCount == 0)
+                    continue;
 
-                Animator anim = charater.GetComponent<Animator>();
+                anim = slot.transform.GetChild(0).GetComponent<Animator>();
                 anim.SetBool("select", false);
             }
 
-            Animator animator = characterSlots.slots[num].GetComponent<Animator>();
-            animator.SetBool("select", true);
+            anim = unitSlots.slots[num].transform.GetChild(0).GetComponent<Animator>();
+            anim.SetBool("select", true);
         }
     }
 }

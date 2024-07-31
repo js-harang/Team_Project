@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
 
     #region character/slot
     [HideInInspector] public GameObject selectObject;
-    [HideInInspector] public int slotNum = 0;
+    [HideInInspector] public int slotNum = -1;
     #endregion
 
     #region UIController ¼Ó¼º

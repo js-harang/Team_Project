@@ -9,13 +9,13 @@ public class CreateSceneController : MonoBehaviour
     [SerializeField] GameObject createPopup;
     bool isCreateActive = false;
 
-    [SerializeField, Space(10)] TMP_InputField characterName;
+    [SerializeField, Space(10)] TMP_InputField unitName;
     [SerializeField] TextMeshProUGUI nameTxt;
     [SerializeField] TextMeshProUGUI infoTxt;
 
     [SerializeField, Space(10)] GameObject[] Illusts;
 
-    int characterIndex = 0;
+    int unitIndex = 0;
 
     private void Update()
     {
@@ -28,7 +28,7 @@ public class CreateSceneController : MonoBehaviour
 
     public void SelectNum(int num)
     {
-        characterIndex = num;
+        unitIndex = num;
 
         foreach (GameObject obj in Illusts)
             obj.SetActive(false);
@@ -45,7 +45,7 @@ public class CreateSceneController : MonoBehaviour
     public void CreateBtn()
     {
         createPopup.SetActive(true);
-        if (characterName.text == "")
+        if (unitName.text == "")
         {
             Debug.Log("이름 입력하세요");
             return;
@@ -58,10 +58,10 @@ public class CreateSceneController : MonoBehaviour
     {
         string url = GameManager.gm.path + "create_character.php";
         WWWForm form = new();
-        form.AddField("uid", PlayerPrefs.GetString("uid"));
+        form.AddField("uid", GameManager.gm.Uid);
         form.AddField("slot", GameManager.gm.slotNum);
-        form.AddField("name", characterName.text);
-        form.AddField("class", characterIndex);
+        form.AddField("name", unitName.text);
+        form.AddField("class", unitIndex);
 
         using (UnityWebRequest www = UnityWebRequest.Post(url, form))
         {
@@ -73,6 +73,7 @@ public class CreateSceneController : MonoBehaviour
                 {
                     case "success":
                         Debug.Log("캐릭터 생성 성공");
+                        GameManager.gm.slotNum = -1;
                         SceneManager.LoadScene("01_CharacterLobby");
                         break;
                     case "name exists":
@@ -94,6 +95,7 @@ public class CreateSceneController : MonoBehaviour
 
     public void BackBtn()
     {
+        GameManager.gm.slotNum = -1;
         SceneManager.LoadScene("01_CharacterLobby");
     }
 }
