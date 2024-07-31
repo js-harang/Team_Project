@@ -61,43 +61,43 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region player info
-    public string uid;
-    private string Uid
+    private string uid;
+    public string Uid
     {
         get { return uid; }
         set { uid = value; }
     }
 
-    public string cUid;
-    private string Cuid
+    private string cUid;
+    public string Cuid
     {
         get { return cUid; }
         set { cUid = value; }
     }
 
-    public string userName;
-    private string UserName
+    private string userName;
+    public string UserName
     {
         get { return userName; }
         set { userName = value; }
     }
 
-    public int lv;
-    private int Lv
+    private int lv;
+    public int Lv
     {
         get { return lv; }
         set { lv = value; }
     }
 
-    public int exp;
-    private int Exp
+    private int exp;
+    public int Exp
     {
         get { return exp; }
         set { exp = value; }
     }
 
-    public int credit;
-    private int Credit
+    private int credit;
+    public int Credit
     {
         get { return credit; }
         set { credit = value; }

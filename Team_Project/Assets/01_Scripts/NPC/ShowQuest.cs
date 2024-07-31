@@ -174,7 +174,7 @@ public class ShowQuest : MonoBehaviour
     // 플레이어가 이 오브젝트가 담고 있는 퀘스트를 완료했을 떄의 동작
     void QuestComplete()
     {
-        GameManager.gm.credit += myData.goldReward;
+        GameManager.gm.Credit += myData.goldReward;
         GameManager.gm.NowExp += myData.expReward;
         questCon.FinQuestCheck(myData);
         questInfoUI.SetActive(false);

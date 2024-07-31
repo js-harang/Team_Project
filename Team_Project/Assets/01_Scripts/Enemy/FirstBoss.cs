@@ -170,7 +170,7 @@ public class FirstBoss : BossFSM
             BossStateUpdate();
 
             GameManager.gm.SumEXP(exp);
-            GameManager.gm.credit += gold;
+            GameManager.gm.Credit += gold;
             BState = BossState.Die;
         }
     }

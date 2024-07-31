@@ -156,7 +156,7 @@ public class FirstEnemy : EnemyFSM
             EnemyStateUpdate();
 
             GameManager.gm.SumEXP(exp);
-            GameManager.gm.credit += gold;
+            GameManager.gm.Credit += gold;
             EState = EnemyState.Die;
         }
     }

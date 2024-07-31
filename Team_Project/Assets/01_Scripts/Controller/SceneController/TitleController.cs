@@ -120,7 +120,7 @@ public class TitleController : MonoBehaviour
             yield return www.SendWebRequest();
 
             if (www.error == null)
-                GameManager.gm.uid = www.downloadHandler.text;
+                GameManager.gm.Uid = www.downloadHandler.text;
         }
     }
 
