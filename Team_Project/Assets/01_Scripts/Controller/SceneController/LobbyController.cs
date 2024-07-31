@@ -11,8 +11,8 @@ public class LobbyController : MonoBehaviour
     [Serializable]
     public struct SelectSlots
     {
+        public GameObject[] slots;
         public Image[] selectImg;
-        public Sprite noImg;
         public Sprite[] characterImg;
         public TextMeshProUGUI[] infoTxt;
     }
@@ -65,10 +65,18 @@ public class LobbyController : MonoBehaviour
             string[] info = data.Split(" ");
 
             int slot = int.Parse(info[0]);
-            int characterClass = int.Parse(info[3]);
+            SlotInfo slotinfo = selectSlots.slots[slot].GetComponent<SlotInfo>();
+
+            int characterClass = int.Parse(info[1]);
+            slotinfo.characterUid = info[2];
+            slotinfo.characterName = info[3];
+            slotinfo.lv = int.Parse(info[4]);
+            slotinfo.exp = int.Parse(info[5]);
+            slotinfo.credit = int.Parse(info[6]);
+            slotinfo.skill = info[7];
 
             selectSlots.selectImg[slot].sprite = selectSlots.characterImg[characterClass];
-            selectSlots.infoTxt[slot].text = "Lv." + info[2] + "\n\n" + info[1];
+            selectSlots.infoTxt[slot].text = "Lv." + info[4] + "\n\n" + info[3];
 
         }
     }

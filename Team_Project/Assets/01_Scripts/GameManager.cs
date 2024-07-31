@@ -16,20 +16,6 @@ public class GameManager : MonoBehaviour
 
             DontDestroyOnLoad(gm);
         }
-        PlayerPrefs.DeleteKey("uid");
-        PlayerPrefs.DeleteKey("characteruid");
-
-        PlayerPrefs.DeleteKey("UserName");
-        PlayerPrefs.DeleteKey("Lv");
-        PlayerPrefs.DeleteKey("Exp");
-        PlayerPrefs.DeleteKey("Credit");
-
-        // 테스트용
-        PlayerPrefs.SetString("UserName", "테스트");
-        PlayerPrefs.SetInt("Lv", 1);
-        PlayerPrefs.SetInt("Exp", 0);
-        PlayerPrefs.SetInt("Credit", 0);
-        PlayerPrefs.Save();
     }
 
     public string path;
@@ -64,7 +50,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public bool boolIsFullScreen = true;
     #endregion
 
-    #region 캐릭터/슬롯 연동
+    #region character/slot
     [HideInInspector] public GameObject selectObject;
     [HideInInspector] public int slotNum = 0;
     #endregion
@@ -101,6 +87,20 @@ public class GameManager : MonoBehaviour
     {
         get { return lv; }
         set { lv = value; }
+    }
+
+    public int exp;
+    private int Exp
+    {
+        get { return exp; }
+        set { exp = value; }
+    }
+
+    public int credit;
+    private int Credit
+    {
+        get { return credit; }
+        set { credit = value; }
     }
     #endregion
 
@@ -150,17 +150,6 @@ public class GameManager : MonoBehaviour
 
     // 필요 경험치
     [SerializeField, Space(10)] int requiredExp = 100;
-    #endregion
-
-    #region Credit 유저 크레딧 관련
-
-    [SerializeField] int credit;
-    public int Credit
-    {
-        get { return credit; }
-        set { credit = value; SaveUserCredit(); }
-    }
-
     #endregion
 
     #region 플레이어 설정

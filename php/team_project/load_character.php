@@ -12,7 +12,7 @@ if ($conn->connect_error) {
     echo "Failed to connect to MySQL : " + $mysqli->connect_error;
 }
 
-$sql = "SELECT	slot, name, lv, class
+$sql = "SELECT	*
 		from	character_list
 		where	uid = $uid
         order by slot";
@@ -20,7 +20,7 @@ $sql = "SELECT	slot, name, lv, class
 $result = mysqli_query($conn, $sql);
 
 while ($row = mysqli_fetch_array($result)) {
-    echo $row['slot'] . " " . $row['name'] . " " . $row['lv'] . " " . $row['class'] . "<br>";
+    echo $row['slot'] . " " . $row['class'] . " " . $row['character_uid'] . " " . $row['name'] . " " . $row['lv'] . " " . $row['exp'] . " " . $row['credit'] . " " . $row['skill'] . "<br>";
 }
 
 mysqli_close($conn);
