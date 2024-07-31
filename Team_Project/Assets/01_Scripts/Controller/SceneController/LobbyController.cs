@@ -89,7 +89,6 @@ public class LobbyController : MonoBehaviour
 
     public void GameStartBtn()
     {
-            Debug.Log("asdasdasdasdasdasd");
         if (GameManager.gm.slotNum != -1)
         {
             SlotInfo info = selectSlots.slots[GameManager.gm.slotNum].GetComponent<SlotInfo>();

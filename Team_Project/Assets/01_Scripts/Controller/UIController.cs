@@ -4,6 +4,15 @@ using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
+    public static UIController ui;
+    private void Awake()
+    {
+        if (ui != null)
+            Destroy(gameObject);
+        else
+            ui = this;
+    }
+
     #region 키보드 입력시 동작할 UI들
     [SerializeField] GameObject inventoryUI;
     [SerializeField] GameObject statusUI;
@@ -18,7 +27,7 @@ public class UIController : MonoBehaviour
     #endregion
 
     #region 텍스트 모음
-    [SerializeField ,Space(10)] TextMeshProUGUI lv_Text;
+    [SerializeField, Space(10)] TextMeshProUGUI lv_Text;
     [SerializeField] TextMeshProUGUI userName_Text;
 
     [SerializeField, Space(10)] TextMeshProUGUI currentHp_Text;
@@ -58,15 +67,12 @@ public class UIController : MonoBehaviour
             EscMenuOnOff();
         }
 
-        switch (Input.inputString)
+        switch (Input.inputString.ToLower())
         {
             case "u":
-            case "U":
                 StatusOnOff();
                 break;
-
             case "i":
-            case "I":
                 InventoryOnOff();
                 break;
         }

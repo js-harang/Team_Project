@@ -34,6 +34,8 @@ public class PlayerCombat : DamagedAction
     public int MaxMp { get { return maxMp; } set { maxMp = value; } }
     #endregion
 
+    UIController ui;
+
     #endregion
 /*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
@@ -79,7 +81,8 @@ public class PlayerCombat : DamagedAction
     // ¸Þ¼Òµå
     private void Start()
     {
-        GameManager.gm.Player = this.GetComponent<PlayerCombat>();
+        GameManager.gm.Player = GetComponent<PlayerCombat>();
+        ui = GameManager.gm.UI;
         SetPlayerState();
 
         rb = GetComponent<Rigidbody>();
@@ -238,7 +241,7 @@ public class PlayerCombat : DamagedAction
 
         currentHp -= damage;
 
-        GameManager.gm.UI.SetHpSlider(CurrentHp, MaxHp);
+        ui.SetHpSlider(CurrentHp, MaxHp);
 
         if (currentHp > 0)
         {

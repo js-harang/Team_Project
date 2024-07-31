@@ -5,8 +5,8 @@ $password = "1234";
 $dbname = "team_project";
 
 $cuid = $_POST["cuid"];
-$lv = $_POST["lv"];
-$exp = $_POST["exp"];
+$type = $_POST["type"];
+$value = $_POST["value"];
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -14,11 +14,22 @@ if ($conn->connect_error) {
 	echo "Failed to connect to MySQL : " + $mysqli->connect_error;
 }
 
-$sql = "UPDATE 	character_list
-		SET		lv = $lv, exp = $exp
-		WHERE 	character_uid = $cuid";
+if ($type == 0) {
+	$type = "lv";
+} else if ($type == 1) {
+	$type = "exp";
+}
 
-$result = mysqli_query($conn, $sql);
+lv_or_exp($conn, $cuid, $type, $value);
 
 mysqli_close($conn);
+
+function lv_or_exp($conn, $cuid, $type, $value)
+{
+	$sql = "UPDATE 	character_list
+			SET		$type = $value
+			WHERE 	character_uid = $cuid";
+
+	mysqli_query($conn, $sql);
+}
 ?>

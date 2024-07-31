@@ -89,7 +89,12 @@ public class GameManager : MonoBehaviour
         set
         {
             lv = value;
-            LevelUp();
+            AtkPower = lv * lvPerPower;
+            MaxHp = 50 + (50 * lv);
+            MaxMp = 100 + (100 * lv);
+            MaxExp = requiredExp * lv;
+
+            StartCoroutine(SaveUserData(0, lv));
         }
     }
 
@@ -100,7 +105,7 @@ public class GameManager : MonoBehaviour
         set
         {
             exp = value;
-            SumEXP();
+            StartCoroutine(SaveUserData(1, exp));
         }
     }
 
@@ -184,54 +189,16 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region 경험치 관련
-
-    #region NowExp; 현재 경험치
-    [SerializeField] private int nowExp;
-    public int NowExp
-    {
-        get { return nowExp; }
-        set
-        {
-            nowExp = value;
-            // asdf
-        }
-    }
-    #endregion
-
-    #region MaxExp 최대 경험치
     [SerializeField] private int maxExp;
     public int MaxExp
     {
         get { return maxExp; }
         set { maxExp = value; }
     }
-    #endregion
 
     // 필요 경험치
     [SerializeField, Space(10)] private int requiredExp = 100;
     #endregion
-
-    private void Start()
-    {
-        hp = maxHp;
-        mp = maxMp;
-
-        StartCoroutine(RecoverStats()); // 코루틴 시작
-    }
-
-    private IEnumerator RecoverStats()
-    {
-        while (true)
-        {
-            if (hp < maxHp)
-                hp += Mathf.RoundToInt(recoveryRate);
-
-            if (mp < maxMp)
-                mp += Mathf.RoundToInt(recoveryRate);
-
-            yield return new WaitForSeconds(1f);
-        }
-    }
 
     #region 씬이동 메소드
     /// <summary>
@@ -247,105 +214,38 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    #region 유저 정보 세팅
-    /// <summary>
-    /// 경험치 추가
-    /// </summary>
-    /// <param name="exp"></param>
-    public void SumEXP()
-    {
-        // 레벨업 가능한 경험치 인지 확인
-        while (nowExp >= maxExp)
-        {
-            nowExp -= maxExp;
-            Lv++;
-        }
-
-        // 데이터 베이스 및 플레이어 프리팹에 변경된 값 저장
-        SaveUserData();
-        UI.SetExpSlider(NowExp, MaxExp);
-    }
-
-    /// <summary>
-    /// 레벨업
-    /// </summary>
-    private void LevelUp()
-    {
-        if (UI == null)
-            return;
-
-        UI.SetLvText();
-
-        SetPlayerState();
-
-        SetMaxExp();
-    }
-
-    /// <summary>
-    /// 플레이어 레벨별 스텟 설정 및 UI 슬라이더 설정
-    /// </summary>
-    public void SetPlayerState()
-    {
-        AtkPower = lv * lvPerPower;
-        MaxHp = 50 + (50 * Lv);
-        MaxMp = 100 + (100 * Lv);
-    }
-
-    /// <summary>
-    /// 최대 경험치 재설정
-    /// </summary>
-    private void SetMaxExp()
-    {
-        maxExp = requiredExp * Lv;
-    }
-    #endregion
-
     #region LoadUserData()   유저 정보 불러오기
     public void LaodUserData()
     {
-/*        SetPlayerState();
-        SetMaxExp();*/
+        /*        SetPlayerState();
+                SetMaxExp();*/
 
-/*        UI.SetUnitName();
-        UI.SetLvText();*/
+        /*        UI.SetUnitName();
+                UI.SetLvText();*/
 
         UI.SetHpSlider(player.MaxHp, player.MaxHp);
         UI.SetMpSlider(player.MaxMp, player.MaxMp);
-        UI.SetExpSlider(NowExp, MaxExp);
+        UI.SetExpSlider(Exp, MaxExp);
     }
     #endregion
 
-    #region SaveUserData()   유저 정보 저장
-    private void SaveUserData()
-    {
-        StartCoroutine(SaveUserDatas());
-    }
+    #region 유저 정보 저장
 
-    IEnumerator SaveUserDatas()
+    IEnumerator SaveUserData(int type, int value)
     {
-        string url = gm.path + "saveuserdata.php";
+        string url = path + "saveuserdata.php";
         string cuid = PlayerPrefs.GetString("characteruid");
 
         WWWForm form = new();
-        form.AddField("cuid", useCuid);
-        form.AddField("lv", Lv);
-        form.AddField("exp", NowExp);
+        form.AddField("cuid", UnitUid);
+        form.AddField("type", type);
+        form.AddField("value", value);
 
         using (UnityWebRequest www = UnityWebRequest.Post(url, form))
         {
             yield return www.SendWebRequest();
             if (www.error == null)
-            {
-                PlayerPrefs.SetInt("Lv", Lv);
-                PlayerPrefs.SetInt("Exp", NowExp);
-                PlayerPrefs.Save();
-
                 Debug.Log("유저 정보 저장 완료");
-            }
-            else
-            {
-                Debug.Log(www.error);
-            }
         }
     }
     #endregion
@@ -416,5 +316,4 @@ public class GameManager : MonoBehaviour
         }
     }
     #endregion
-
 }
