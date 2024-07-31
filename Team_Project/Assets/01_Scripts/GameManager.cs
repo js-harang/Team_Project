@@ -102,6 +102,13 @@ public class GameManager : MonoBehaviour
         get { return credit; }
         set { credit = value; }
     }
+
+    private string skill;
+    public string Skill
+    {
+        get { return skill; }
+        set { skill = value; }
+    }
     #endregion
 
     #region player stats
