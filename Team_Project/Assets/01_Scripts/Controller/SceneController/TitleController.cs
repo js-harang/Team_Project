@@ -93,34 +93,24 @@ public class TitleController : MonoBehaviour
             yield return www.SendWebRequest();
 
             if (www.error == null)
-                switch (www.downloadHandler.text)
+            {
+                string[] result = www.downloadHandler.text.Split(" ");
+
+                switch (result[0])
                 {
-                    case "success":
-                        StartCoroutine(UserData(id));
+                    case "y":
+                        GameManager.gm.Uid = result[1];
                         GameManager.gm.sceneNumber = 1;
                         SceneManager.LoadScene("99_LoadingScene");
                         break;
-                    case "incorrect":
+                    case "n":
                         loginResultTxt.text = "가입하지 않은 아이디이거나 잘못된 비밀번호입니다.";
                         break;
                     default:
                         loginResultTxt.text = "알 수 없는 오류가 발생했습니다.";
                         break;
                 }
-        }
-    }
-
-    IEnumerator UserData(string id)
-    {
-        string url = GameManager.gm.path + "user_data.php";
-        WWWForm form = new();
-        form.AddField("userid", id);
-        using (UnityWebRequest www = UnityWebRequest.Post(url, form))
-        {
-            yield return www.SendWebRequest();
-
-            if (www.error == null)
-                GameManager.gm.Uid = www.downloadHandler.text;
+            }
         }
     }
 
@@ -136,12 +126,14 @@ public class TitleController : MonoBehaviour
             yield return www.SendWebRequest();
 
             if (www.error == null)
+            {
                 loginResultTxt.text = www.downloadHandler.text switch
                 {
                     "success" => "아이디 생성이 완료됐습니다.",
                     "id exists" => "이미 존재하는 아이디입니다.",
                     _ => "알 수 없는 오류가 발생했습니다.",
                 };
+            }
         }
     }
     #endregion

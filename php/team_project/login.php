@@ -13,7 +13,7 @@ if ($conn->connect_error) {
     echo "Failed to connect to MySQL : " + $mysqli->connect_error;
 }
 
-$sql = "SELECT  userpw
+$sql = "SELECT  userpw, uid
         from    user
         where   userid = '$userid'";
 $result = mysqli_query($conn, $sql);
@@ -21,12 +21,12 @@ $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result) > 0) {
     if ($row = mysqli_fetch_assoc($result)) {
         if ($row['userpw'] == get_enc_str($conn, $userpw))
-            echo "success";
+            echo "y " . $row['uid'];
         else
-            echo "incorrect";
+            echo "n";
     }
 } else
-    echo "incorrect";
+    echo "n";
 
 mysqli_close($conn);
 
