@@ -49,7 +49,8 @@ public class LobbyController : MonoBehaviour
 
             if (www.error == null)
             {
-                datas = www.downloadHandler.text.Split("<br>");
+                if (www.downloadHandler != null)
+                    datas = www.downloadHandler.text.Split("<br>");
             }
         }
 
@@ -58,6 +59,9 @@ public class LobbyController : MonoBehaviour
 
     private void RoadDatas()
     {
+        if (datas.Length <= 0)
+            return;
+
         Array.Resize(ref datas, datas.Length - 1);
 
         foreach (string data in datas)

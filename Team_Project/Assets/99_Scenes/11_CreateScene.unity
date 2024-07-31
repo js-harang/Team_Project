@@ -716,15 +716,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d4edde9a8f8bb94ca9dd9c22a192a31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneNumber: 0
-  selectObject: {fileID: 0}
-  boolIsFullScreen: 1
-  isPreferencePopup: 0
   path: 192.168.52.187/team_project/
-  currentExp: 0
+  useCuid: 
+  isPreferencePopup: 0
+  sceneNumber: 0
+  boolIsFullScreen: 1
+  selectObject: {fileID: 0}
+  slotNum: -1
+  recoveryRate: 1
+  nowExp: 0
   maxExp: 0
   requiredExp: 0
-  lv: 0
 --- !u!1 &232282621
 GameObject:
   m_ObjectHideFlags: 0
@@ -7368,7 +7370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   createPopup: {fileID: 1582854351}
-  characterName: {fileID: 495890092}
+  unitName: {fileID: 495890092}
   nameTxt: {fileID: 1271023367}
   infoTxt: {fileID: 1971397051}
   Illusts:
