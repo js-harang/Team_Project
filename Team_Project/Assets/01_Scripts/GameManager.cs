@@ -261,15 +261,6 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 테스트용 버튼에 할당할 함수
-    /// </summary>
-    /// <param name="gold"></param>
-    public void SumCredit(int gold)
-    {
-        Credit += gold;
-    }
-
-    /// <summary>
     /// 레벨업
     /// </summary>
     private void LevelUp()
@@ -310,10 +301,10 @@ public class GameManager : MonoBehaviour
     public void LaodUserData()
     {
         SetPlayerState();
-
         SetMaxExp();
-        UI.SetCharacterName();
-        //UI.SetLvText(Lv);
+
+        UI.SetUnitName();
+        UI.SetLvText();
         UI.SetEXPSlider(NowExp, MaxExp);
     }
     #endregion
