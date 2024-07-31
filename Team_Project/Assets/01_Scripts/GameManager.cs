@@ -146,8 +146,23 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region player stats
-    public int maxHp = 100;
-    public int maxMp = 100;
+
+    private PlayerCombat player;
+    public PlayerCombat Player
+    {
+        get { return player; }
+        set { player = value; }
+    }
+
+    private int atkPower;
+    public int AtkPower { get { return atkPower; } set { atkPower = value; } }
+
+    private int maxHp;
+    public int MaxHp { get { return maxHp; } set { maxHp = value; } }
+
+    private int maxMp;
+    public int MaxMp { get { return maxMp; } set { maxMp = value; } }
+
     public float recoveryRate = 1f;
 
     private int hp;
@@ -163,6 +178,9 @@ public class GameManager : MonoBehaviour
         get { return mp; }
         set { mp = Mathf.Clamp(value, 0, maxMp); }
     }
+
+    // 레벨당 공격력 배수
+    private int lvPerPower = 1;
     #endregion
 
     #region 경험치 관련
@@ -191,18 +209,6 @@ public class GameManager : MonoBehaviour
 
     // 필요 경험치
     [SerializeField, Space(10)] private int requiredExp = 100;
-    #endregion
-
-    #region 플레이어 설정
-    private PlayerCombat player;
-    public PlayerCombat Player
-    {
-        get { return player; }
-        set { player = value; }
-    }
-
-    // 레벨당 공격력 배수
-    private int lvPerPower = 1;
     #endregion
 
     private void Start()
@@ -257,16 +263,7 @@ public class GameManager : MonoBehaviour
 
         // 데이터 베이스 및 플레이어 프리팹에 변경된 값 저장
         SaveUserData();
-        UI.SetEXPSlider(NowExp, MaxExp);
-    }
-
-    /// <summary>
-    /// 테스트용 버튼에 할당할 함수
-    /// </summary>
-    /// <param name="gold"></param>
-    public void SumCredit(int gold)
-    {
-        Credit += gold;
+        UI.SetExpSlider(NowExp, MaxExp);
     }
 
     /// <summary>
@@ -284,17 +281,19 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// 플레이어 레벨별 스텟 설정 및 UI 슬라이더 설정
     /// </summary>
-    private void SetPlayerState()
+    public void SetPlayerState()
     {
-        player.AtkPower = lv * lvPerPower;
-        player.MaxHp = 50 + (50 * Lv);
-        Player.MaxMp = 100 + (100 * Lv);
+        // player.AtkPower = lv * lvPerPower;
+        AtkPower = lv * lvPerPower;
 
-        player.CurrentHp = player.MaxHp;
-        player.CurrentMp = player.MaxMp;
+        // player.MaxHp = 50 + (50 * Lv);
+        MaxHp = 50 + (50 * Lv);
 
-        UI.SetHpSlider(player.MaxHp, player.MaxHp);
-        UI.SetMpSlider(player.MaxMp, player.MaxMp);
+        // Player.MaxMp = 100 + (100 * Lv);
+        MaxMp = 100 + (100 * Lv);
+
+    /*  player.CurrentHp = player.MaxHp;
+        player.CurrentMp = player.MaxMp;  */
     }
 
     /// <summary>
@@ -309,12 +308,15 @@ public class GameManager : MonoBehaviour
     #region LoadUserData()   유저 정보 불러오기
     public void LaodUserData()
     {
-        SetPlayerState();
+/*        SetPlayerState();
+        SetMaxExp();*/
 
-        SetMaxExp();
-        UI.SetCharacterName();
-        //UI.SetLvText(Lv);
-        UI.SetEXPSlider(NowExp, MaxExp);
+/*        UI.SetUnitName();
+        UI.SetLvText();*/
+
+        UI.SetHpSlider(player.MaxHp, player.MaxHp);
+        UI.SetMpSlider(player.MaxMp, player.MaxMp);
+        UI.SetExpSlider(NowExp, MaxExp);
     }
     #endregion
 

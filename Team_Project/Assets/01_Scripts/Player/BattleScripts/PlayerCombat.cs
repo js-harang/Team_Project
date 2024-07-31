@@ -80,6 +80,8 @@ public class PlayerCombat : DamagedAction
     private void Start()
     {
         GameManager.gm.Player = this.GetComponent<PlayerCombat>();
+        SetPlayerState();
+
         rb = GetComponent<Rigidbody>();
     }
 
@@ -89,6 +91,16 @@ public class PlayerCombat : DamagedAction
     }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    private void SetPlayerState()
+    {
+        atkPower = GameManager.gm.AtkPower;
+        maxHp = GameManager.gm.MaxHp;
+        maxMp = GameManager.gm.MaxMp;
+
+        currentHp = maxHp;
+        currentMp = maxMp;
+    }
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
     // 공격 에니메이션 실행
     public void Attack()
     {
@@ -117,6 +129,7 @@ public class PlayerCombat : DamagedAction
             if (!attack.isComboing)
                 currentMp -= attack.useMana;
 
+            // mp슬라이더 설정
             GameManager.gm.UI.SetMpSlider(CurrentMp, MaxMp);
             #endregion
 

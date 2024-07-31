@@ -43,6 +43,9 @@ public class UIController : MonoBehaviour
 
         GameManager.gm.UI = this.GetComponent<UIController>();
         GameManager.gm.LaodUserData();
+
+        SetUnitName();
+        SetLvText();
     }
 
     private void Update()
@@ -83,7 +86,7 @@ public class UIController : MonoBehaviour
         maxMp_Text.text = " / " + maxMp;
         mpSld.value = currentMp / maxMp;
     }
-    public void SetEXPSlider(float currentExp, int maxExp)
+    public void SetExpSlider(float currentExp, int maxExp)
     {
         currentExp_Text.text = "" + currentExp;
         maxExp_Text.text = " / " + maxExp;
@@ -93,7 +96,7 @@ public class UIController : MonoBehaviour
 
     // 텍스트 세팅
     #region Name, LV, Credit 세팅
-    public void SetCharacterName()
+    public void SetUnitName()
     {
         userName_Text.text = GameManager.gm.UnitName;
     }
