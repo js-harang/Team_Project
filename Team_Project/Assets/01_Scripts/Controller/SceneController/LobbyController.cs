@@ -41,7 +41,7 @@ public class LobbyController : MonoBehaviour
     {
         string url = GameManager.gm.path + "load_character.php";
         WWWForm form = new();
-        form.AddField("uid", 0000000001/*GameManager.gm.uid*/);
+        form.AddField("uid", GameManager.gm.Uid);
 
         using (UnityWebRequest www = UnityWebRequest.Post(url, form))
         {
