@@ -2096,6 +2096,8 @@ MonoBehaviour:
   sceneNumber: 0
   selectObject: {fileID: 0}
   slotNum: 0
+  uid: 
+  userName: 
   lv: 0
   nowExp: 0
   maxExp: 0

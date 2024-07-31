@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    #region 싱글톤 (Awake 함수 있음)
     public static GameManager gm;
     private void Awake()
     {
@@ -32,7 +31,6 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("Credit", 0);
         PlayerPrefs.Save();
     }
-    #endregion
 
     public string path;
 
@@ -40,9 +38,10 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector] public bool isPreferencePopup = false;
 
-    #region
+    [HideInInspector] public int sceneNumber;
+
+    #region screen setting
     private int isFullScreen;
-    // 전체화면 / 창모드 선택
     public int IsFullScreen
     {
         get { return isFullScreen; }
@@ -65,8 +64,6 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public bool boolIsFullScreen = true;
     #endregion
 
-    [HideInInspector] public int sceneNumber;
-
     #region 캐릭터/슬롯 연동
     [HideInInspector] public GameObject selectObject;
     [HideInInspector] public int slotNum = 0;
@@ -77,19 +74,57 @@ public class GameManager : MonoBehaviour
     public UIController UI { get { return ui; } set { ui = value; } }
     #endregion
 
-    #region 경험치 관련
-    #region Lv 레벨 속성
-    [SerializeField] int lv;
-    public int Lv
+    #region player info
+    public string uid;
+    private string Uid
+    {
+        get { return uid; }
+        set { uid = value; }
+    }
+
+    public string cUid;
+    private string Cuid
+    {
+        get { return cUid; }
+        set { cUid = value; }
+    }
+
+    public string userName;
+    private string UserName
+    {
+        get { return userName; }
+        set { userName = value; }
+    }
+
+    public int lv;
+    private int Lv
     {
         get { return lv; }
-        set
-        {
-            lv = value;
-            // ㅁㅇㄻㄴㅇㄻㄴㅇㄹ
-        }
+        set { lv = value; }
     }
     #endregion
+
+    #region player stats
+    public int maxHp = 100;
+    public int maxMp = 100;
+    public float recoveryRate = 1f;
+
+    public int hp;
+    private int Hp
+    {
+        get { return hp; }
+        set { hp = Mathf.Clamp(value, 0, maxHp); }
+    }
+
+    public int mp;
+    private int Mp
+    {
+        get { return mp; }
+        set { mp = Mathf.Clamp(value, 0, maxMp); }
+    }
+    #endregion
+
+    #region 경험치 관련
 
     #region NowExp; 현재 경험치
     [SerializeField] int nowExp;
@@ -107,28 +142,34 @@ public class GameManager : MonoBehaviour
     #region MaxExp 최대 경험치
     [SerializeField] int maxExp;
     public int MaxExp
-    { get { return maxExp; } set { maxExp = value; } }
+    {
+        get { return maxExp; }
+        set { maxExp = value; }
+    }
     #endregion
 
     // 필요 경험치
     [SerializeField, Space(10)] int requiredExp = 100;
     #endregion
 
-    #region 유저 이름
-    string userName;
-    public string UserName { get { return userName; } set { userName = value; } }
-    #endregion
-
     #region Credit 유저 크레딧 관련
 
     [SerializeField] int credit;
-    public int Credit { get { return credit; } set { credit = value; SaveUserCredit(); } }
+    public int Credit
+    {
+        get { return credit; }
+        set { credit = value; SaveUserCredit(); }
+    }
 
     #endregion
 
     #region 플레이어 설정
     PlayerCombat player;
-    public PlayerCombat Player { get { return player; } set { player = value; } }
+    public PlayerCombat Player
+    {
+        get { return player; }
+        set { player = value; }
+    }
 
     // 레벨당 공격력 배수
     int lvPerPower = 1;
@@ -136,24 +177,41 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-/*      싱글톤의 awake 함수 안에있음 추후 수정 바람
-        PlayerPrefs.DeleteKey("uid");
-        PlayerPrefs.DeleteKey("characteruid");
+        hp = maxHp;
+        mp = maxMp;
+        /*      싱글톤의 awake 함수 안에있음 추후 수정 바람
+                PlayerPrefs.DeleteKey("uid");
+                PlayerPrefs.DeleteKey("characteruid");
 
-        PlayerPrefs.DeleteKey("UserName");
-        PlayerPrefs.DeleteKey("Lv");
-        PlayerPrefs.DeleteKey("Exp");
-        PlayerPrefs.DeleteKey("Credit");
+                PlayerPrefs.DeleteKey("UserName");
+                PlayerPrefs.DeleteKey("Lv");
+                PlayerPrefs.DeleteKey("Exp");
+                PlayerPrefs.DeleteKey("Credit");
 
-        // 테스트용
-        PlayerPrefs.SetString("UserName", "나나나나");
-        PlayerPrefs.SetInt("Lv", 230);
-        PlayerPrefs.SetInt("Exp", 230);
-        PlayerPrefs.SetInt("Credit", 232323);
-        PlayerPrefs.Save();*/
+                // 테스트용
+                PlayerPrefs.SetString("UserName", "나나나나");
+                PlayerPrefs.SetInt("Lv", 230);
+                PlayerPrefs.SetInt("Exp", 230);
+                PlayerPrefs.SetInt("Credit", 232323);
+                PlayerPrefs.Save();*/
+        StartCoroutine(RecoverStats()); // 코루틴 시작
     }
 
-    #region MoveScene() 씬이동 메소드
+    private IEnumerator RecoverStats()
+    {
+        while (true)
+        {
+            if (hp < maxHp)
+                hp += Mathf.RoundToInt(recoveryRate);
+
+            if (mp < maxMp)
+                mp += Mathf.RoundToInt(recoveryRate);
+
+            yield return new WaitForSeconds(1f);
+        }
+    }
+
+    #region 씬이동 메소드
     /// <summary>
     /// 0 = TitleScene
     /// 1 = LobbyScene
@@ -247,7 +305,7 @@ public class GameManager : MonoBehaviour
 
         SetMaxExp();
         UI.SetCharacterName(UserName);
-        UI.SetLvText(Lv);
+        //UI.SetLvText(Lv);
         UI.SetEXPSlider(NowExp, MaxExp);
 
         // StartCoroutine(LoadeUserDatas());
@@ -303,7 +361,7 @@ public class GameManager : MonoBehaviour
         string url = gm.path + "saveuserdata.php";
         string cuid = PlayerPrefs.GetString("characteruid");
 
-        WWWForm form = new WWWForm();
+        WWWForm form = new();
         form.AddField("cuid", useCuid);
         form.AddField("lv", Lv);
         form.AddField("exp", NowExp);
@@ -373,7 +431,7 @@ public class GameManager : MonoBehaviour
         string url = gm.path + "saveusercredit.php";
         string cuid = PlayerPrefs.GetString("characteruid");
 
-        WWWForm form = new WWWForm();
+        WWWForm form = new();
         form.AddField("cuid", useCuid);
         form.AddField("credit", Credit);
 

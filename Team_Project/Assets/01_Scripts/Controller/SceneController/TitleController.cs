@@ -81,10 +81,7 @@ public class TitleController : MonoBehaviour
         Debug.Log(pw.text);
     }
 
-    /// <summary>
-    /// 데이터베이스 온라인용
-    /// </summary>
-    #region
+    #region 데이터베이스 온라인용
     IEnumerator LoginDataPost(string id, string pw)
     {
         string url = GameManager.gm.path + "login.php";
@@ -123,7 +120,7 @@ public class TitleController : MonoBehaviour
             yield return www.SendWebRequest();
 
             if (www.error == null)
-                PlayerPrefs.SetString("uid", www.downloadHandler.text);
+                GameManager.gm.uid = www.downloadHandler.text;
         }
     }
 
@@ -139,26 +136,17 @@ public class TitleController : MonoBehaviour
             yield return www.SendWebRequest();
 
             if (www.error == null)
-                switch (www.downloadHandler.text)
+                loginResultTxt.text = www.downloadHandler.text switch
                 {
-                    case "success":
-                        loginResultTxt.text = "아이디 생성이 완료됐습니다.";
-                        break;
-                    case "id exists":
-                        loginResultTxt.text = "이미 존재하는 아이디입니다.";
-                        break;
-                    default:
-                        loginResultTxt.text = "알 수 없는 오류가 발생했습니다.";
-                        break;
-                }
+                    "success" => "아이디 생성이 완료됐습니다.",
+                    "id exists" => "이미 존재하는 아이디입니다.",
+                    _ => "알 수 없는 오류가 발생했습니다.",
+                };
         }
     }
     #endregion
 
-    /// <summary>
-    /// 데이터베이스 오프라인용
-    /// </summary>
-    #region
+    #region 데이터베이스 오프라인용
     private void LoginDataPlayerPrefs()
     {
         if (!PlayerPrefs.HasKey(id.text))

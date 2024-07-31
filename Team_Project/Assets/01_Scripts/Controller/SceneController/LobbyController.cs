@@ -12,6 +12,7 @@ public class LobbyController : MonoBehaviour
     public struct SelectSlots
     {
         public Image[] selectImg;
+        public Sprite noImg;
         public Sprite[] characterImg;
         public TextMeshProUGUI[] infoTxt;
     }
@@ -40,7 +41,7 @@ public class LobbyController : MonoBehaviour
     {
         string url = GameManager.gm.path + "load_character.php";
         WWWForm form = new();
-        form.AddField("uid", 0000000001/*PlayerPrefs.GetString("uid")*/);
+        form.AddField("uid", 0000000001/*GameManager.gm.uid*/);
 
         using (UnityWebRequest www = UnityWebRequest.Post(url, form))
         {
@@ -68,6 +69,7 @@ public class LobbyController : MonoBehaviour
 
             selectSlots.selectImg[slot].sprite = selectSlots.characterImg[characterClass];
             selectSlots.infoTxt[slot].text = "Lv." + info[2] + "\n\n" + info[1];
+
         }
     }
 

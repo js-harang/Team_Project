@@ -2356,7 +2356,14 @@ MonoBehaviour:
   sceneNumber: 0
   selectObject: {fileID: 0}
   slotNum: 0
+  uid: 
+  cUid: 
+  userName: 
+  lv: 0
+  nowExp: 0
+  maxExp: 0
   requiredExp: 100
+  credit: 0
 --- !u!4 &1106321511
 Transform:
   m_ObjectHideFlags: 0
@@ -5023,6 +5030,7 @@ MonoBehaviour:
     - {fileID: 641715626}
     - {fileID: 50319528}
     - {fileID: 1417830439}
+    noImg: {fileID: 21300000, guid: 8b3a0d81872dcea45aa615760eda82f6, type: 3}
     characterImg:
     - {fileID: 21300000, guid: 03eb54e1d3676e8448a883a024645034, type: 3}
     infoTxt:
