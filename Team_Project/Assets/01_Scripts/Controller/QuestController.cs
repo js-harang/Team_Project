@@ -32,15 +32,18 @@ public class QuestController : MonoBehaviour
     public void FinQuestCheck(QuestData qData)
     {
         StartCoroutine(FinQuestUpdate(qData.questID));
+
+        // qLoad의 퀘스트 딕셔너리에서 해당 퀘스트를 삭제함
         for (int i = 0; i < qLoad.questDic[qData.giverID].Count; i++)
         {
             if (qData.questID == qLoad.questDic[qData.giverID][i].questID)
             {
                 qLoad.questDic[qData.giverID].RemoveAt(i);
-                return;
+                break;
             }
         }
 
+        // 현재 자신의 플레이어 리스트에서 해당 퀘스트를 삭제
         for (int i = 0; i < myQuests.Count; i++)
         {
             if (qData.questID == myQuests[i].questID)
@@ -48,6 +51,20 @@ public class QuestController : MonoBehaviour
                 myQuests.RemoveAt(i);
                 break;
             }
+        }
+
+        DestroyQuestList(qData.questID);
+    }
+
+    // 퀘스트 리스트 UI에 있는 리스트를 삭제하는 메소드
+    void DestroyQuestList(int questID)
+    {
+        QuestGoalList[] questGoals = questUIContent.GetComponentsInChildren<QuestGoalList>();
+
+        foreach (QuestGoalList goal in questGoals)
+        {
+            if (goal.myData.questID == questID)
+                goal.ImFinSoDelete();
         }
     }
 

@@ -228,7 +228,7 @@ public class BattleController : MonoBehaviour
 
         pS.UnitState = UnitState.Wait;
         battleClearUI.SetActive(true);
-        timeCount_Txt.text = totalBattleTime.ToString() + " 초";
+        timeCount_Txt.text = ((int)totalBattleTime).ToString() + " 초";
         hitCount_Txt.text = playerHitCount.ToString() + " 회";
         TotalPointCal();
         Animator clearAnim = battleClearUI.GetComponent<Animator>();
@@ -246,7 +246,7 @@ public class BattleController : MonoBehaviour
     {
         int time = (int)totalBattleTime;
         int hitPanelty = playerHitCount * 10;
-        totalPointCount_Txt.text = (totalBattleTime - hitPanelty).ToString();
+        totalPointCount_Txt.text = (time - hitPanelty).ToString();
     }
 
     // 버튼 누르면 마을로
