@@ -98,11 +98,17 @@ public class BattleController : MonoBehaviour
     // 현재 클리어한 웨이브의 수
     public int waveNum;
 
+    // 배틀이 진행중이란 것을 알려주는 변수
+    bool battleOn;
+
     // 플레이어가 조작을 멈춘 시간 변수
     float playerDive;
 
     // 배틀에 걸린 시간 변수
     float totalBattleTime;
+
+    // 플레이어가 피격한 횟수
+    public int playerHitCount;
 
     // 배틀 중 나타나는 UI들 변수
     [SerializeField] GameObject battleStartImg;
@@ -152,15 +158,6 @@ public class BattleController : MonoBehaviour
         pS.UnitState = UnitState.Idle;
     }
 
-    // 배틀에 걸린 시간을 측정하는 메소드
-    void BattleTimeCount()
-    {
-        if (battleState == BattleState.Intro || battleState == BattleState.Clear)
-            return;
-
-        totalBattleTime += Time.deltaTime;
-    }
-
     // 진행 가능 상태일 때, 플레이어가 대기상화이라면 UI 표시
     private void GoSignOnOff()
     {
@@ -180,12 +177,22 @@ public class BattleController : MonoBehaviour
     // 스테이지 시작시 Start 이미지 애니메이션 재생
     IEnumerator StageStart()
     {
+        battleOn = true;
         battleStartImg.SetActive(true);
         BattleState = BattleState.Running;
 
         yield return new WaitForSeconds(2f);
 
         battleStartImg.SetActive(false);
+    }
+
+    // 배틀에 걸린 시간을 측정하는 메소드
+    void BattleTimeCount()
+    {
+        if (!battleOn)
+            return;
+
+        totalBattleTime += Time.deltaTime;
     }
 
     // 배틀 시작 시 구역을 나누는 벽을 관리하는 메소드
@@ -216,10 +223,14 @@ public class BattleController : MonoBehaviour
     // 배틀 클리어시 작동하는 과정
     IEnumerator ClearProcess()
     {
+        battleOn = false;
         yield return new WaitForSeconds(1f);
 
         pS.UnitState = UnitState.Wait;
         battleClearUI.SetActive(true);
+        timeCount_Txt.text = totalBattleTime.ToString() + " 초";
+        hitCount_Txt.text = playerHitCount.ToString() + " 회";
+        TotalPointCal();
         Animator clearAnim = battleClearUI.GetComponent<Animator>();
         clearAnim.SetTrigger("stageClear");
 
@@ -228,6 +239,14 @@ public class BattleController : MonoBehaviour
         battleClearUI.SetActive(false);
         BattleState = BattleState.BattleEnd;
         pS.UnitState = UnitState.Idle;
+    }
+
+    // 플레이어의 최종 점수 정산
+    void TotalPointCal()
+    {
+        int time = (int)totalBattleTime;
+        int hitPanelty = playerHitCount * 10;
+        totalPointCount_Txt.text = (totalBattleTime - hitPanelty).ToString();
     }
 
     // 버튼 누르면 마을로
@@ -239,6 +258,7 @@ public class BattleController : MonoBehaviour
     // 게임오버시 호출되는 메소드(게임오버 매뉴 활성화)
     private void GameOver()
     {
+        battleOn = false;
         gameOverUI.SetActive(true);
     }
 
