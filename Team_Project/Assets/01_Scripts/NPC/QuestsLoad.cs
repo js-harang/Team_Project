@@ -87,7 +87,7 @@ public class QuestsLoad : MonoBehaviour
                     QuestJson quest = quests.Items[0];
                     QuestData questData = new QuestData(quest);
                     questData.CurrentAmount = qCheck.current;
-                    questCon.MyQuestWindowUpdate(questData);
+                    questCon.AddMyQuestWindow(questData);
                 }
             }
         }

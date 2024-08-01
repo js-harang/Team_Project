@@ -104,7 +104,7 @@ public class ShowQuest : MonoBehaviour
         }
 
         StartCoroutine(UpdatePlayerAcceptQuest());
-        questCon.MyQuestWindowUpdate(myData);
+        questCon.AddMyQuestWindow(myData);
         interCon.nowGiver.QuestMarkCheck();
         isAccept_Txt.text = "ม๘วเ ม฿";
         questAccept_Btn.enabled = false;

@@ -18,7 +18,7 @@ public class QuestController : MonoBehaviour
     Transform questUIContent;
 
     // 퀘스트창 UI 활성화하면서 퀘스트 정보를 담은 목록들을 생성
-    public void MyQuestWindowUpdate(QuestData newQuest)
+    public void AddMyQuestWindow(QuestData newQuest)
     {
         myQuests.Add(newQuest);
         Transform questList = Instantiate(myQuestListPref).transform;
