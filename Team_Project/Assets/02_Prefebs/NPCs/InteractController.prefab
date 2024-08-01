@@ -353,8 +353,8 @@ MonoBehaviour:
         m_MethodName: NPCMenuButtonActiveOrFalse
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 298446442}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 298446444}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -499,8 +499,8 @@ MonoBehaviour:
         m_MethodName: NPCMenuButtonActiveOrFalse
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 417314582}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 417314584}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1801,8 +1801,8 @@ MonoBehaviour:
         m_MethodName: NPCMenuButtonActiveOrFalse
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1960957400}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 1960957402}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2026,8 +2026,8 @@ MonoBehaviour:
         m_MethodName: NPCMenuButtonActiveOrFalse
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 42517651778454900}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 1938007346479310924}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -3078,8 +3078,8 @@ MonoBehaviour:
         m_MethodName: NPCMenuButtonActiveOrFalse
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1593866742217860221}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 5274364203897243652}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -4306,8 +4306,8 @@ MonoBehaviour:
         m_MethodName: NPCMenuButtonActiveOrFalse
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 4337013636475797775}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 1088494239950383714}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
