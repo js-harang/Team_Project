@@ -46,9 +46,8 @@ public class QuestController : MonoBehaviour
     IEnumerator FinQuestUpdate(int questID)
     {
         string url = GameManager.gm.path + "update_playerquestclear.php";
-        string cuid = PlayerPrefs.GetString("characteruid");
         WWWForm form = new WWWForm();
-        form.AddField("cuid", 0000000004);
+        form.AddField("cuid", GameManager.gm.UnitUid);
         form.AddField("questid", questID);
 
         using (UnityWebRequest www = UnityWebRequest.Post(url, form))
@@ -86,9 +85,8 @@ public class QuestController : MonoBehaviour
     IEnumerator UpdateQuestCurrent(int questID, int currentAmount)
     {
         string url = GameManager.gm.path + "update_playerquestcurrent.php";
-        string cuid = PlayerPrefs.GetString("characteruid");
         WWWForm form = new WWWForm();
-        form.AddField("cuid", 0000000004);
+        form.AddField("cuid", GameManager.gm.UnitUid);
         form.AddField("questid", questID);
         form.AddField("current", currentAmount);
 
@@ -107,9 +105,8 @@ public class QuestController : MonoBehaviour
     IEnumerator UpdateQuestDone(int questID)
     {
         string url = GameManager.gm.path + "update_playerquestdone.php";
-        string cuid = PlayerPrefs.GetString("characteruid");
         WWWForm form = new WWWForm();
-        form.AddField("cuid", 0000000004);
+        form.AddField("cuid", GameManager.gm.UnitUid);
         form.AddField("questid", questID);
 
         using (UnityWebRequest www = UnityWebRequest.Post(url, form))

@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public enum BattleState
 {
@@ -100,11 +101,19 @@ public class BattleController : MonoBehaviour
     // 플레이어가 조작을 멈춘 시간 변수
     float playerDive;
 
+    // 배틀에 걸린 시간 변수
+    float totalBattleTime;
+
     // 배틀 중 나타나는 UI들 변수
     [SerializeField] GameObject battleStartImg;
     [SerializeField] GameObject goArrowImg;
     [SerializeField] GameObject bossAlertImg;
     [SerializeField] GameObject battleClearUI;
+    #region battleClearUI와 연관된 변수들
+    [SerializeField] TMP_Text timeCount_Txt;
+    [SerializeField] TMP_Text hitCount_Txt;
+    [SerializeField] TMP_Text totalPointCount_Txt;
+    #endregion
     [SerializeField] GameObject gameOverUI;
     [SerializeField] GameObject battleEndUI;
 
@@ -128,10 +137,11 @@ public class BattleController : MonoBehaviour
             return;
         }
 
+        BattleTimeCount();
         GoSignOnOff();
     }
 
-    // 스테이지 개시 전 잠시 대기하는 시간(여기에 시네머신 연출 재생한다거나)
+    // 스테이지 개시 전 잠시 대기하는 시간
     IEnumerator StartIntro()
     {
         pS.UnitState = UnitState.Wait;
@@ -140,6 +150,15 @@ public class BattleController : MonoBehaviour
 
         BattleState = BattleState.Start;
         pS.UnitState = UnitState.Idle;
+    }
+
+    // 배틀에 걸린 시간을 측정하는 메소드
+    void BattleTimeCount()
+    {
+        if (battleState == BattleState.Intro || battleState == BattleState.Clear)
+            return;
+
+        totalBattleTime += Time.deltaTime;
     }
 
     // 진행 가능 상태일 때, 플레이어가 대기상화이라면 UI 표시
@@ -162,10 +181,10 @@ public class BattleController : MonoBehaviour
     IEnumerator StageStart()
     {
         battleStartImg.SetActive(true);
+        BattleState = BattleState.Running;
 
         yield return new WaitForSeconds(2f);
 
-        BattleState = BattleState.Running;
         battleStartImg.SetActive(false);
     }
 

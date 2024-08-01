@@ -16,8 +16,6 @@ public class PlayerInteract : MonoBehaviour
     // InteractController 클래스 변수
     InteractController interCon;
 
-    QuestController questCon;
-
     // player가 접촉한 상호작용 가능 오브젝트의 정보를 저장하는 변수
     InteractProperty interPP;
 
@@ -26,7 +24,6 @@ public class PlayerInteract : MonoBehaviour
         pState = GetComponent<PlayerState>();
         pComInput = GetComponent<PlayerCombatInput>();
         interCon = FindObjectOfType<InteractController>().GetComponent<InteractController>();
-        questCon = FindObjectOfType<QuestController>().GetComponent<QuestController>();
     }
 
     // 오브젝트 근처에 있는 상태라면 C를 눌러 상호작용 상태가 된다.
@@ -72,7 +69,6 @@ public class PlayerInteract : MonoBehaviour
     // 플레이어가 근처에 인식한 NPC의 정보를 가져옴
     private void WhoAreYou(Collider other)
     {
-        //pBC.enabled = false;
         isMeetInteract = true;
         interPP = other.GetComponent<InteractProperty>();
         InteractCheck();

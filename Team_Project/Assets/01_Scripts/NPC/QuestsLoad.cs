@@ -23,9 +23,8 @@ public class QuestsLoad : MonoBehaviour
             yield break;
 
         string url = GameManager.gm.path + "load_NPCquestsdata.php";
-        string cuid = PlayerPrefs.GetString("characteruid");
         WWWForm form = new WWWForm();
-        form.AddField("cuid", 0000000004);
+        form.AddField("cuid", GameManager.gm.UnitUid);
 
         using (UnityWebRequest www = UnityWebRequest.Post(url, form))
         {
@@ -48,9 +47,8 @@ public class QuestsLoad : MonoBehaviour
     IEnumerator LoadPlayerQuestsHave()
     {
         string url = GameManager.gm.path + "load_playerquestshave.php";
-        string cuid = PlayerPrefs.GetString("characteruid");
         WWWForm form = new WWWForm();
-        form.AddField("cuid", 0000000004);
+        form.AddField("cuid", GameManager.gm.UnitUid);
 
         using (UnityWebRequest www = UnityWebRequest.Post(url, form))
         {

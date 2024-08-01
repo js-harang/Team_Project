@@ -44,9 +44,8 @@ public class QuestGiver : MonoBehaviour
         int count = 0;
 
         string url = GameManager.gm.path + "search_playerquestid.php";
-        string cuid = PlayerPrefs.GetString("characteruid");
         WWWForm form = new WWWForm();
-        form.AddField("cuid", 0000000004);
+        form.AddField("cuid", GameManager.gm.UnitUid);
 
         for (int i = 0; i < questList.Count; i++)
         {

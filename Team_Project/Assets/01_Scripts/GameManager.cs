@@ -224,7 +224,6 @@ public class GameManager : MonoBehaviour
     IEnumerator SaveUserData(int type, int value)
     {
         string url = path + "saveuserdata.php";
-        string cuid = PlayerPrefs.GetString("characteruid");
 
         WWWForm form = new();
         form.AddField("cuid", UnitUid);
