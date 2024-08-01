@@ -83,43 +83,4 @@ public class QuestData
                 break;
         }
     }
-
-    /*IEnumerator UpdateQuestCurrent()
-    {
-        string url = GameManager.gm.path + "update_playerquestcurrent.php";
-        string cuid = PlayerPrefs.GetString("characteruid");
-        WWWForm form = new WWWForm();
-        form.AddField("cuid", 0000000004);
-        form.AddField("questid", questID);
-        form.AddField("current", currentAmount);
-
-        using (UnityWebRequest www = UnityWebRequest.Post(url, form))
-        {
-            yield return www.SendWebRequest();
-
-            if (www.error == null)
-            {
-                Debug.Log(www.downloadHandler.text);
-            }
-        }
-    }
-
-    IEnumerator UpdateQuestDone()
-    {
-        string url = GameManager.gm.path + "update_playerquestdone.php";
-        string cuid = PlayerPrefs.GetString("characteruid");
-        WWWForm form = new WWWForm();
-        form.AddField("cuid", 0000000004);
-        form.AddField("questid", questID);
-
-        using (UnityWebRequest www = UnityWebRequest.Post(url, form))
-        {
-            yield return www.SendWebRequest();
-
-            if (www.error == null)
-            {
-                Debug.Log(www.downloadHandler.text);
-            }
-        }
-    }*/
 }

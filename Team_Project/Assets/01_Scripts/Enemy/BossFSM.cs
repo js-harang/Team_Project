@@ -44,6 +44,7 @@ public abstract class BossFSM : DamagedAction
     }
 
     public BattleController bCon;
+    public QuestController questCon;
 
     public int gold;
 
@@ -88,6 +89,7 @@ public abstract class BossFSM : DamagedAction
     {
         // 등장 시 배틀 컨트롤러의 보스 개체수 증가시킴
         bCon = FindObjectOfType<BattleController>().GetComponent<BattleController>();
+        questCon = FindObjectOfType<QuestController>().GetComponent<QuestController>();
         bCon.BattleState = BattleState.BossAppear;
         bCon.BossCount++;
         

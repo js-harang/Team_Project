@@ -23,7 +23,6 @@ public class FirstBoss : BossFSM
         rb = GetComponent<Rigidbody>();
         myColl = GetComponent<Collider>();
         enemyID = EnemyID.´õº¸½º;
-        Debug.Log(enemyID);
 
         Appear();
     }
@@ -194,6 +193,7 @@ public class FirstBoss : BossFSM
         rb.useGravity = false;
         myColl.enabled = false;
         bossAnim.SetTrigger("die");
+        questCon.QuestCurrentUpdate((int)enemyID);
         StartCoroutine(DieProcess());
     }
 

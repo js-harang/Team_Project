@@ -17,7 +17,6 @@ public class FirstEnemy : EnemyFSM
         rb = GetComponent<Rigidbody>();
         myColl = GetComponent<Collider>();
         enemyID = EnemyID.ΩΩ∂Û¿”;
-        Debug.Log(enemyID);
 
         Appear();
     }
@@ -195,6 +194,7 @@ public class FirstEnemy : EnemyFSM
         rb.useGravity = false;
         myColl.enabled = false;
         enemyAnim.SetTrigger("die");
+        questCon.QuestCurrentUpdate((int)enemyID);
         StartCoroutine(DieProcess());
     }
 

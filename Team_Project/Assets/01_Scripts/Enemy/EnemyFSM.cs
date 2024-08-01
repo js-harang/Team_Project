@@ -43,6 +43,7 @@ public abstract class EnemyFSM : DamagedAction
     }
 
     public BattleController bCon;
+    public QuestController questCon;
 
     public int gold;
 
@@ -84,6 +85,7 @@ public abstract class EnemyFSM : DamagedAction
     {
         // 등장 시 배틀 컨트롤러의 에너미 개체수 증가시킴
         bCon = FindObjectOfType<BattleController>().GetComponent<BattleController>();
+        questCon = FindObjectOfType<QuestController>().GetComponent<QuestController>();
         bCon.EnemyCount++;
 
         EnemyStart();

@@ -61,4 +61,65 @@ public class QuestController : MonoBehaviour
             }
         }
     }
+
+    // 퀘스트의 타겟쪽에서 자신의 타겟 아이디를 매개로 하여 퀘스트 목록에 자신을 목표로 하는
+    // 퀘스트가 있는지 찾고 있다면 진행도를 하나 올린 다음에 데이터베이스에 업데이트 한다.
+    public void QuestCurrentUpdate(int targetID)
+    {
+        for (int i = 0; i < myQuests.Count; i++)
+        {
+            if (myQuests[i].isDone)
+                return;
+
+            if (myQuests[i].targetID == targetID)
+            {
+                myQuests[i].CurrentAmount += 1;
+                StartCoroutine(UpdateQuestCurrent(myQuests[i].questID, myQuests[i].CurrentAmount));
+
+                if (myQuests[i].isDone)
+                    StartCoroutine(UpdateQuestDone(myQuests[i].questID));
+            }
+        }
+    }
+
+    // 퀘스트의 현재 진행도를 데이터베이스에 저장하는 코루틴
+    IEnumerator UpdateQuestCurrent(int questID, int currentAmount)
+    {
+        string url = GameManager.gm.path + "update_playerquestcurrent.php";
+        string cuid = PlayerPrefs.GetString("characteruid");
+        WWWForm form = new WWWForm();
+        form.AddField("cuid", 0000000004);
+        form.AddField("questid", questID);
+        form.AddField("current", currentAmount);
+
+        using (UnityWebRequest www = UnityWebRequest.Post(url, form))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.error == null)
+            {
+                Debug.Log(www.downloadHandler.text);
+            }
+        }
+    }
+
+    // 퀘스트가 완료 조건을 달성하였을 때 데이터베이스에 업로드하는 코루틴
+    IEnumerator UpdateQuestDone(int questID)
+    {
+        string url = GameManager.gm.path + "update_playerquestdone.php";
+        string cuid = PlayerPrefs.GetString("characteruid");
+        WWWForm form = new WWWForm();
+        form.AddField("cuid", 0000000004);
+        form.AddField("questid", questID);
+
+        using (UnityWebRequest www = UnityWebRequest.Post(url, form))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.error == null)
+            {
+                Debug.Log(www.downloadHandler.text);
+            }
+        }
+    }
 }
