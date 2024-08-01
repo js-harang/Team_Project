@@ -76,12 +76,15 @@ public class PlayerCombat : DamagedAction
 
     public Animator anim;
     public PlayerState pbs;
+    BattleController bCon;
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     // ¸Þ¼Òµå
     private void Start()
     {
         GameManager.gm.Player = GetComponent<PlayerCombat>();
+        bCon = FindObjectOfType<BattleController>().GetComponent<BattleController>();
         ui = GameManager.gm.UI;
         SetPlayerState();
 
@@ -240,6 +243,8 @@ public class PlayerCombat : DamagedAction
         pbs.UnitBS = UnitBattleState.Hurt;
 
         currentHp -= damage;
+
+        bCon.playerHitCount++;
 
         ui.SetHpSlider(CurrentHp, MaxHp);
 
