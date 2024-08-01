@@ -20,8 +20,6 @@ public class GameManager : MonoBehaviour
 
     public string path;
 
-    public string useCuid;
-
     [HideInInspector] public bool isPreferencePopup = false;
 
     [HideInInspector] public int sceneNumber;
@@ -113,7 +111,11 @@ public class GameManager : MonoBehaviour
     public int Credit
     {
         get { return credit; }
-        set { credit = value; }
+        set
+        {
+            credit = value;
+            StartCoroutine(SaveUserData(2, credit));
+        }
     }
 
     private string skill;
@@ -139,11 +141,6 @@ public class GameManager : MonoBehaviour
         using (UnityWebRequest www = UnityWebRequest.Post(url, form))
         {
             yield return www.SendWebRequest();
-
-            if (www.error == null)
-                Debug.Log(www.downloadHandler.text + "로 저장 완료");
-            else
-                Debug.Log(www.error);
         }
     }
     #endregion
@@ -185,7 +182,7 @@ public class GameManager : MonoBehaviour
     }
 
     // 레벨당 공격력 배수
-    private int lvPerPower = 1;
+    public int lvPerPower = 1;
     #endregion
 
     #region 경험치 관련
@@ -217,12 +214,6 @@ public class GameManager : MonoBehaviour
     #region LoadUserData()   유저 정보 불러오기
     public void LaodUserData()
     {
-        /*        SetPlayerState();
-                SetMaxExp();*/
-
-        /*        UI.SetUnitName();
-                UI.SetLvText();*/
-
         UI.SetHpSlider(player.MaxHp, player.MaxHp);
         UI.SetMpSlider(player.MaxMp, player.MaxMp);
         UI.SetExpSlider(Exp, MaxExp);
@@ -230,7 +221,6 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region 유저 정보 저장
-
     IEnumerator SaveUserData(int type, int value)
     {
         string url = path + "saveuserdata.php";
@@ -244,75 +234,6 @@ public class GameManager : MonoBehaviour
         using (UnityWebRequest www = UnityWebRequest.Post(url, form))
         {
             yield return www.SendWebRequest();
-            if (www.error == null)
-                Debug.Log("유저 정보 저장 완료");
-        }
-    }
-    #endregion
-
-    // 크레딧 저장 관련
-    #region LoadUserCredit() 유저 크레딧 불러오기 (LoadUserData() 와 통합)
-    /*
-    public void LoadUserCredit()
-    {
-        // StartCoroutine(LoadCredit());
-    }*/
-
-    /*IEnumerator LoadCredit()
-    {
-        string url = gm.path + "loadusercredit.php";
-        string cuid = PlayerPrefs.GetString("characteruid");
-
-        WWWForm form = new WWWForm();
-        form.AddField("cuid", useCuid);
-
-        using (UnityWebRequest www = UnityWebRequest.Post(url, form))
-        {
-            yield return www.SendWebRequest();
-            if (www.error == null)
-            {
-                Credit = System.Convert.ToInt32(www.downloadHandler.text);
-
-                Debug.Log("현재 보유 골드" + Credit);
-
-                //UI 컨트롤러에 골드 보유 수량 보이게 설정할것
-            }
-            else
-            {
-                Debug.Log(www.error);
-            }
-        }
-    }*/
-    #endregion
-
-    #region SaveUserCredit() 유저 크레딧 저장
-    private void SaveUserCredit()
-    {
-        StartCoroutine(SaveCreditCoroutine());
-    }
-
-    IEnumerator SaveCreditCoroutine()
-    {
-        string url = gm.path + "saveusercredit.php";
-        string cuid = PlayerPrefs.GetString("characteruid");
-
-        WWWForm form = new();
-        form.AddField("cuid", useCuid);
-        form.AddField("credit", Credit);
-
-        using (UnityWebRequest www = UnityWebRequest.Post(url, form))
-        {
-            yield return www.SendWebRequest();
-            if (www.error == null)
-            {
-                PlayerPrefs.SetInt("Credit", Credit);
-                PlayerPrefs.Save();
-                Debug.Log("유저 크레딧 저장 완료");
-            }
-            else
-            {
-                Debug.Log(www.error);
-            }
         }
     }
     #endregion

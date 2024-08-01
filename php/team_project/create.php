@@ -19,9 +19,9 @@ if (search($conn, $userid) === false) {
     $result = mysqli_query($conn, $sql);
 
     if ($result)
-        echo "success";
+        echo "y";
 } else
-    echo "id exists";
+    echo "n";
 
 mysqli_close($conn);
 
