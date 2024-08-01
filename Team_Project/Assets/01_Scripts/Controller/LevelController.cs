@@ -12,6 +12,7 @@ public class LevelController : MonoBehaviour
     }
 
     GameManager gm;
+    public PlayerCombat player;
 
     int exp;
 
@@ -47,6 +48,8 @@ public class LevelController : MonoBehaviour
     private void LevelUp()
     {
         gm.Lv++;
+        player.CurrentHp = gm.MaxHp;
+        player.CurrentMp = gm.MaxMp;
         UIController.ui.SetLvText();
     }
     #endregion
