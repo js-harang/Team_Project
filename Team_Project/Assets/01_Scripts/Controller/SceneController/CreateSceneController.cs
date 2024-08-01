@@ -77,7 +77,6 @@ public class CreateSceneController : MonoBehaviour
                 switch (www.downloadHandler.text)
                 {
                     case "success":
-                        Debug.Log("캐릭터 생성 성공");
                         GameManager.gm.slotNum = -1;
                         SceneManager.LoadScene("01_CharacterLobby");
                         break;
