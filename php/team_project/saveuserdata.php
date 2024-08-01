@@ -18,6 +18,8 @@ if ($type == 0) {
 	$type = "lv";
 } else if ($type == 1) {
 	$type = "exp";
+} else if ($type == 2) {
+	$type = "credit";
 }
 
 lv_or_exp($conn, $cuid, $type, $value);

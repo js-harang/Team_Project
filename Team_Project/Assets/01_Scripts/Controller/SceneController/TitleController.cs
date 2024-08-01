@@ -76,9 +76,6 @@ public class TitleController : MonoBehaviour
                 SaveDataPlayerPrefs();
                 break;
         }
-
-
-        Debug.Log(pw.text);
     }
 
     #region 데이터베이스 온라인용
@@ -129,8 +126,8 @@ public class TitleController : MonoBehaviour
             {
                 loginResultTxt.text = www.downloadHandler.text switch
                 {
-                    "success" => "아이디 생성이 완료됐습니다.",
-                    "id exists" => "이미 존재하는 아이디입니다.",
+                    "y" => "아이디 생성이 완료됐습니다.",
+                    "n" => "이미 존재하는 아이디입니다.",
                     _ => "알 수 없는 오류가 발생했습니다.",
                 };
             }
