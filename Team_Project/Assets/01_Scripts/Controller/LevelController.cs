@@ -50,6 +50,7 @@ public class LevelController : MonoBehaviour
         gm.Lv++;
         player.CurrentHp = gm.MaxHp;
         player.CurrentMp = gm.MaxMp;
+        player.AtkPower= gm.AtkPower;
         UIController.ui.SetLvText();
     }
     #endregion
