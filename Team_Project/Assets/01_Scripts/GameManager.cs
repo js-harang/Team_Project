@@ -90,7 +90,7 @@ public class GameManager : MonoBehaviour
             AtkPower = lv * lvPerPower;
             MaxHp = 50 + (50 * lv);
             MaxMp = 100 + (100 * lv);
-            MaxExp = requiredExp * lv;
+            MaxExp = 100 * lv;
 
             StartCoroutine(SaveUserData(0, lv));
         }
@@ -204,9 +204,6 @@ public class GameManager : MonoBehaviour
         get { return maxExp; }
         set { maxExp = value; }
     }
-
-    // 필요 경험치
-    [SerializeField, Space(10)] private int requiredExp = 100;
     #endregion
 
     #region 씬이동 메소드
@@ -220,15 +217,6 @@ public class GameManager : MonoBehaviour
     {
         sceneNumber = number;
         SceneManager.LoadScene("99_LoadingScene");
-    }
-    #endregion
-
-    #region LoadUserData()   유저 정보 불러오기
-    public void LaodUserData()
-    {
-        UI.SetHpSlider(player.MaxHp, player.MaxHp);
-        UI.SetMpSlider(player.MaxMp, player.MaxMp);
-        UI.SetExpSlider(Exp, MaxExp);
     }
     #endregion
 

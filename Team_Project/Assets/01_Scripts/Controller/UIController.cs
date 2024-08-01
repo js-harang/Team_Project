@@ -51,10 +51,12 @@ public class UIController : MonoBehaviour
         pState = FindObjectOfType<PlayerState>().GetComponent<PlayerState>();
 
         GameManager.gm.UI = this.GetComponent<UIController>();
-        GameManager.gm.LaodUserData();
 
         SetUnitName();
         SetLvText();
+        SetHpSlider(GameManager.gm.MaxHp, GameManager.gm.MaxHp);
+        SetMpSlider(GameManager.gm.MaxMp, GameManager.gm.MaxMp);
+        SetExpSlider(GameManager.gm.Exp, GameManager.gm.MaxExp);
     }
 
     private void Update()
