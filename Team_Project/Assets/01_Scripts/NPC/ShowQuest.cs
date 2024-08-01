@@ -72,7 +72,7 @@ public class ShowQuest : MonoBehaviour
     // 퀘스트의 상세 텍스트를 텍스트 파일에서 읽어옴
     void PrintQuestDetail(int questID)
     {
-        string filePath = $"C:\\Users\\YONSAI\\Desktop\\Team_Project\\Team_Project\\Assets\\21_Data\\Quest Detail\\{questID}.txt";
+        string filePath = Application.dataPath + $"\\21_Data\\Quest Detail\\{questID}.txt";
 
         // 파일 존재 여부 확인
         if (!File.Exists(filePath))

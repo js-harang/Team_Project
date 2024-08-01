@@ -38,6 +38,7 @@ public class LevelController : MonoBehaviour
         }
 
         gm.Exp = this.exp;
+        UIController.ui.SetExpSlider(gm.Exp, gm.MaxExp);
     }
 
     /// <summary>
