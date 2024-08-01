@@ -74,7 +74,7 @@ public class QuestGiver : MonoBehaviour
     // 플레이어가 말을 걸었을 때 현재 퀘스트 목표가 자신인지 확인하는 메서드
     public void HereForTalkToMe()
     {
-        if (questCon.myQuests.Count == 0)
+        if (questCon.myQuests.Count == 0 || questList.Count == 0)
             return;
 
         for (int i = 0; i < questCon.myQuests.Count; i++)
@@ -116,5 +116,17 @@ public class QuestGiver : MonoBehaviour
             }
         }
         return false;
+    }
+
+    public void PlayerFinMyQuest(int questID)
+    {
+        for (int i = 0; i < questList.Count; i++)
+        {
+            if (questID == questList[i].questID)
+            {
+                questList.RemoveAt(i);
+                break;
+            }
+        }
     }
 }

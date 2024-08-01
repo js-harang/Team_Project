@@ -50,4 +50,9 @@ public class QuestGoalList : MonoBehaviour
                 break;
         }
     }
+
+    public void ImFinSoDelete()
+    {
+        Destroy(gameObject);
+    }
 }

@@ -176,6 +176,7 @@ public class ShowQuest : MonoBehaviour
         GameManager.gm.Credit += myData.goldReward;
         GameManager.gm.Exp += myData.expReward;
         questCon.FinQuestCheck(myData);
+        interCon.nowGiver.PlayerFinMyQuest(myData.questID);
         questInfoUI.SetActive(false);
         Destroy(gameObject);
     }
