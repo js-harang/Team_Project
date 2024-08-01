@@ -838,8 +838,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
-  enemyID: 1
   bCon: {fileID: 0}
+  questCon: {fileID: 0}
+  gold: 500
   bossAnim: {fileID: 0}
   bossStateUI: {fileID: 0}
   bossName_text: {fileID: 0}
@@ -847,6 +848,7 @@ MonoBehaviour:
   player: {fileID: 0}
   myColl: {fileID: 0}
   bossSkin: {fileID: 3518640929411250216}
+  enemyID: 1
   bossName: "\uB354\uBCF4\uC2A4"
   currentHp: 15
   maxHp: 15
@@ -860,7 +862,7 @@ MonoBehaviour:
   meleeAttackDistance: 5
   rangeAttackDistance: 10
   limitAttackRange: 15
-  exp: 0
+  exp: 600
 --- !u!114 &3620795736800397633
 MonoBehaviour:
   m_ObjectHideFlags: 0

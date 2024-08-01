@@ -95,7 +95,6 @@ public class LobbyController : MonoBehaviour
             GameManager.gm.UnitUid = info.unitUid;
             GameManager.gm.UnitName = info.unitName;
             GameManager.gm.Lv = info.lv;
-            Debug.Log("GameStart" + GameManager.gm.MaxExp);
             GameManager.gm.Exp = info.exp;
             GameManager.gm.Credit = info.credit;
             GameManager.gm.Skill = info.skill;

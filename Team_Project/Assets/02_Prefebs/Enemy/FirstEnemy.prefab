@@ -116,12 +116,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 5184518403567114813}
   bCon: {fileID: 0}
+  questCon: {fileID: 0}
+  gold: 100
   enemyAnim: {fileID: 0}
   enemyStateUI: {fileID: 1595298861299187695}
   enemyHpBar: {fileID: 1595298861622383920}
   player: {fileID: 0}
   myColl: {fileID: 7217570464688278150}
   enemySkin: {fileID: 7958633587514313321}
+  enemyID: 0
   currentHp: 10
   maxHp: 10
   atkPower: 5
@@ -132,6 +135,7 @@ MonoBehaviour:
   delayDone: 0
   nowAttack: 0
   limitAttackRange: 2.5
+  exp: 100
 --- !u!1 &1595298861299187695
 GameObject:
   m_ObjectHideFlags: 0
