@@ -33,13 +33,9 @@ public class PlayerMove : MonoBehaviour
 
     public GameObject playerPointer;
 
-    CapsuleCollider playerCollider;
-
     private void Start()
     {
         StartSetting();
-
-        playerCollider = GetComponent<CapsuleCollider>();
     }
 
     private void Update()

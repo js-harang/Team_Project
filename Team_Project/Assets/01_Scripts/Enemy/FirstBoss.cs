@@ -6,6 +6,8 @@ public class FirstBoss : BossFSM
     // 근거리 공격 범위
     [SerializeField, Space(10)]
     float meleeAttackDistance;
+    [SerializeField]
+    Transform introCamPos;
     // 원거리 공격 범위
     [SerializeField]
     float rangeAttackDistance;
@@ -36,7 +38,10 @@ public class FirstBoss : BossFSM
 
     IEnumerator AppearAction()
     {
+        CameraFollow cF = Camera.main.GetComponent<CameraFollow>();
+        cF.target = introCamPos;
         yield return new WaitForSeconds(2.6f);
+        cF.target = GameObject.FindWithTag("Player").transform;
         bossAnim.SetTrigger("idle");
         yield return new WaitForSeconds(1f);
         BState = BossState.Move;
