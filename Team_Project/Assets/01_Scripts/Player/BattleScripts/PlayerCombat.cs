@@ -18,20 +18,10 @@ public class PlayerCombat : DamagedAction
     public float CurrentHp { get { return currentHp; } set { currentHp = value; } }
     #endregion
 
-    #region 최대체력
-    [SerializeField] int maxHp;
-    public int MaxHp { get { return maxHp; } set { maxHp = value; } }
-    #endregion
-
     #region 플레이어 현재 마나
     [SerializeField]
     float currentMp;
     public float CurrentMp { get { return currentMp; } set { currentMp = value; } }
-    #endregion
-
-    #region 플레이어 최대 마나 
-    [SerializeField] int maxMp;
-    public int MaxMp { get { return maxMp; } set { maxMp = value; } }
     #endregion
 
     UIController ui;
@@ -87,7 +77,10 @@ public class PlayerCombat : DamagedAction
         bCon = FindObjectOfType<BattleController>().GetComponent<BattleController>();
         ui = GameManager.gm.UI;
         LevelController.lc.player = this;
-        SetPlayerState();
+
+        atkPower = GameManager.gm.AtkPower;
+        currentHp = GameManager.gm.MaxHp;
+        currentMp = GameManager.gm.MaxMp;
 
         rb = GetComponent<Rigidbody>();
     }
@@ -98,16 +91,6 @@ public class PlayerCombat : DamagedAction
     }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    private void SetPlayerState()
-    {
-        atkPower = GameManager.gm.AtkPower;
-        maxHp = GameManager.gm.MaxHp;
-        maxMp = GameManager.gm.MaxMp;
-
-        currentHp = maxHp;
-        currentMp = maxMp;
-    }
-/*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
     // 공격 에니메이션 실행
     public void Attack()
     {
@@ -137,7 +120,7 @@ public class PlayerCombat : DamagedAction
                 currentMp -= attack.useMana;
 
             // mp슬라이더 설정
-            GameManager.gm.UI.SetMpSlider(CurrentMp, MaxMp);
+            GameManager.gm.UI.SetMpSlider(CurrentMp, GameManager.gm.MaxMp);
             #endregion
 
             anim.Play("Attack", 0, 0);
@@ -247,7 +230,7 @@ public class PlayerCombat : DamagedAction
 
         bCon.playerHitCount++;
 
-        ui.SetHpSlider(CurrentHp, MaxHp);
+        ui.SetHpSlider(CurrentHp, GameManager.gm.MaxHp);
 
         if (currentHp > 0)
         {
