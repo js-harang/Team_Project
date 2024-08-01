@@ -196,7 +196,7 @@ public class InteractController : MonoBehaviour
     /// <param name="num">NPC와의 대화 단계</param>
     void ReadLineAndStore(int id, InteractStep interactStep)
     {
-        filePath = $"C:\\Users\\YONSAI\\Desktop\\Team_Project\\Team_Project\\Assets\\21_Data\\{id} Dialogue\\{interactStep}.txt";
+        filePath = Application.dataPath + $"\\21_Data\\{id} Dialogue\\{interactStep}.txt";
 
         // 파일 존재 여부 확인
         if (!File.Exists(filePath))

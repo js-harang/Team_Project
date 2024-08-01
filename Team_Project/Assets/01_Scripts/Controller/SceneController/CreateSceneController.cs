@@ -38,6 +38,9 @@ public class CreateSceneController : MonoBehaviour
 
     public void SelectBtn()
     {
+        if (unitIndex != 0)
+            return;
+
         isCreateActive = true;
         createPopup.SetActive(isCreateActive);
     }
@@ -45,6 +48,7 @@ public class CreateSceneController : MonoBehaviour
     public void CreateBtn()
     {
         createPopup.SetActive(true);
+
         if (unitName.text == "")
         {
             Debug.Log("이름 입력하세요");
