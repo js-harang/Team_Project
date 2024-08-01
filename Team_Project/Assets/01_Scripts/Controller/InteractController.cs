@@ -64,6 +64,7 @@ public class InteractController : MonoBehaviour
     public QuestGiver nowGiver;
 
     public QuestController questCon;
+    UIController uiCon;
 
     PlayerState pS;
 
@@ -113,7 +114,7 @@ public class InteractController : MonoBehaviour
     public TMP_Text isAcept_Txt;
 
     // 현재 눌린 NPC 메뉴 버튼을 담는 변수
-    GameObject npcMenu_Btn;
+    Button npcMenu_Btn;
 
     // 상점 UI 활성화 시 같이 필요한 플레이어의 인벤토리
     public GameObject playerInventory;
@@ -124,6 +125,7 @@ public class InteractController : MonoBehaviour
         // PlayerState 컴포넌트를 변수에 저장
         pS = GameObject.FindWithTag("Player").GetComponent<PlayerState>();
         questCon = FindObjectOfType<QuestController>().GetComponent<QuestController>();
+        uiCon = FindObjectOfType<UIController>().GetComponent<UIController>();
     }
 
     private void Update()
@@ -158,6 +160,7 @@ public class InteractController : MonoBehaviour
         nowGiver = interPP.giverIsMe;
         gameUI.SetActive(false);
         dialogWindow.SetActive(true);
+        uiCon.escMenuUI.SetActive(false);
         interactName_Text.text = interPP.InteractName;
         InteractStep = InteractStep.Meeting;
     }
@@ -176,7 +179,7 @@ public class InteractController : MonoBehaviour
 
         dialogWindow.SetActive(false);
         gameUI.SetActive(true);
-        NPCTypeMenuOnOff();
+        NPCTypeMenuOff();
         ChoiceMenuOnOff();
         CloseQuestWindow();
         interPP.ImTalking = false;
@@ -310,7 +313,7 @@ public class InteractController : MonoBehaviour
     }
 
     // 각 NPC 역할에 따른 메뉴 선택 시의 동작
-    public void NPCTypeMenuOnOff()
+    public void NPCTypeMenuOn()
     {
         if (NowInteracting)
             InteractStep = InteractStep.Action;
@@ -318,15 +321,37 @@ public class InteractController : MonoBehaviour
         switch (interPP.InteractType)
         {
             case InteractType.Shop:
-                shopUI.SetActive(NowInteracting);
-                playerInventory.SetActive(NowInteracting);
+                shopUI.SetActive(true);
+                playerInventory.SetActive(true);
                 break;
             case InteractType.EquipmentShop:
-                equipShopUI.SetActive(NowInteracting);
-                playerInventory.SetActive(NowInteracting);
+                equipShopUI.SetActive(true);
+                playerInventory.SetActive(true);
                 break;
             case InteractType.GateKeeper:
-                selectStageUI.SetActive(NowInteracting);
+                selectStageUI.SetActive(true);
+                break;
+            default:
+                break;
+        }
+
+        CloseQuestWindow();
+    }
+
+    void NPCTypeMenuOff()
+    {
+        switch (interPP.InteractType)
+        {
+            case InteractType.Shop:
+                shopUI.SetActive(false);
+                playerInventory.SetActive(false);
+                break;
+            case InteractType.EquipmentShop:
+                equipShopUI.SetActive(false);
+                playerInventory.SetActive(false);
+                break;
+            case InteractType.GateKeeper:
+                selectStageUI.SetActive(false);
                 break;
             default:
                 break;
@@ -338,6 +363,7 @@ public class InteractController : MonoBehaviour
     {
         questWindowUI.SetActive(true);
 
+        NPCTypeMenuOff();
         CreateMyQuestList();
     }
 
@@ -369,16 +395,19 @@ public class InteractController : MonoBehaviour
         questInfoUI.SetActive(false);
     }
 
-    public void NPCMenuButtonActiveOrFalse(GameObject button)
+    public void NPCMenuButtonActiveOrFalse(Button button)
     {
-        if (button.activeSelf)              // NPC 메뉴 버튼이 눌렸다면 버튼을 비활성화하고 변수에 저장
+        if (button != npcMenu_Btn && npcMenu_Btn != null)
+            npcMenu_Btn.enabled = true;
+
+        if (button.enabled)              // NPC 메뉴 버튼이 눌렸다면 버튼을 비활성화하고 변수에 저장
         {
-            button.SetActive(false);
+            button.enabled = false;
             npcMenu_Btn = button;
             return;
         }
 
-        button.SetActive(true);             // 위의 이유로 비활성화 상태라면 활성화 하고 변수 초기화
+        button.enabled = true;             // 위의 이유로 비활성화 상태라면 활성화 하고 변수 초기화
         npcMenu_Btn = null;
     }
 

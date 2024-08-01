@@ -73,7 +73,6 @@ public class PlayerCombat : DamagedAction
     {
         GameManager.gm.Player = GetComponent<PlayerCombat>();
         bCon = FindObjectOfType<BattleController>().GetComponent<BattleController>();
-        LevelController.lc.player = this;
 
         atkPower = GameManager.gm.AtkPower;
         currentHp = GameManager.gm.MaxHp;

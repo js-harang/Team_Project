@@ -16,7 +16,7 @@ public class UIController : MonoBehaviour
     #region 키보드 입력시 동작할 UI들
     [SerializeField] GameObject inventoryUI;
     [SerializeField] GameObject statusUI;
-    [SerializeField] GameObject escMenuUI;
+    public GameObject escMenuUI;
     [SerializeField] Canvas gameUI;
     #endregion
 

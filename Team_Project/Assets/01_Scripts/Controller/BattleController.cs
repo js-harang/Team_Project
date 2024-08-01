@@ -272,7 +272,6 @@ public class BattleController : MonoBehaviour
     // 배틀 정산 후 화면에서 재도전 버튼을 누르면 다시 배틀씬을 실행
     public void OnemoreTry()
     {
-        GameManager.gm.sceneNumber = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene("99_LoadingScene");
+        GameManager.gm.MoveScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
