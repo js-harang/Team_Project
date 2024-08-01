@@ -37,6 +37,15 @@ public class QuestController : MonoBehaviour
             if (qData.questID == qLoad.questDic[qData.giverID][i].questID)
             {
                 qLoad.questDic[qData.giverID].RemoveAt(i);
+                return;
+            }
+        }
+
+        for (int i = 0; i < myQuests.Count; i++)
+        {
+            if (qData.questID == myQuests[i].questID)
+            {
+                myQuests.RemoveAt(i);
                 break;
             }
         }
