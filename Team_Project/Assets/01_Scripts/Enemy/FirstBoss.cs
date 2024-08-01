@@ -168,7 +168,7 @@ public class FirstBoss : BossFSM
         {
             BossStateUpdate();
 
-            GameManager.gm.Exp += exp;
+            LevelController.lc.SumEXP(exp);
             GameManager.gm.Credit += gold;
             BState = BossState.Die;
         }

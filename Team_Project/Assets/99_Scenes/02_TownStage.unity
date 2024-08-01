@@ -782,6 +782,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3794413522900237298, guid: c6acf9d249963ec43aa429700016ee14, type: 3}
+      propertyPath: skillAtks.Array.data[1]
+      value: 
+      objectReference: {fileID: 5841856123283688197, guid: b9d0c4e3e37419246b43fad7bc057c16, type: 3}
     - target: {fileID: 5322528925245491201, guid: c6acf9d249963ec43aa429700016ee14, type: 3}
       propertyPath: m_fontSize
       value: 7

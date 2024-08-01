@@ -86,6 +86,7 @@ public class PlayerCombat : DamagedAction
         GameManager.gm.Player = GetComponent<PlayerCombat>();
         bCon = FindObjectOfType<BattleController>().GetComponent<BattleController>();
         ui = GameManager.gm.UI;
+        LevelController.lc.player = this;
         SetPlayerState();
 
         rb = GetComponent<Rigidbody>();

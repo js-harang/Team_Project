@@ -111,6 +111,9 @@ public class UIController : MonoBehaviour
     public void SetLvText()
     {
         lv_Text.text = "Lv." + GameManager.gm.Lv;
+        SetHpSlider(GameManager.gm.MaxHp, GameManager.gm.MaxHp);
+        SetMpSlider(GameManager.gm.MaxMp, GameManager.gm.MaxMp);
+        SetExpSlider(GameManager.gm.Exp, GameManager.gm.MaxExp);
     }
     public void SetCreditText(int credit)
     {
