@@ -14809,9 +14809,7 @@ MonoBehaviour:
   rb: {fileID: 316223621650006371}
   atkPower: 0
   currentHp: 100
-  maxHp: 100
   currentMp: 10000
-  maxMp: 10000
   attack: {fileID: 0}
   previousAttack: {fileID: 0}
   delayComboTime: 1
@@ -14925,6 +14923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a8a913f115d6fa46977d051046dfc84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1332281160540074999}
   buttonIdx: 8
   btnSkillIdx: 0
   skillDirectory: {fileID: 3794413523395162822}
@@ -14944,6 +14943,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a8a913f115d6fa46977d051046dfc84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1332281160540074999}
   buttonIdx: 4
   btnSkillIdx: 0
   skillDirectory: {fileID: 3794413523395162822}
@@ -14963,6 +14963,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a8a913f115d6fa46977d051046dfc84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1332281160540074999}
   buttonIdx: 5
   btnSkillIdx: 0
   skillDirectory: {fileID: 3794413523395162822}
@@ -14982,6 +14983,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a8a913f115d6fa46977d051046dfc84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1332281160540074999}
   buttonIdx: 3
   btnSkillIdx: 0
   skillDirectory: {fileID: 3794413523395162822}
@@ -15001,6 +15003,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a8a913f115d6fa46977d051046dfc84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1332281160540074999}
   buttonIdx: 11
   btnSkillIdx: 0
   skillDirectory: {fileID: 3794413523395162822}
@@ -15020,6 +15023,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a8a913f115d6fa46977d051046dfc84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1332281160540074999}
   buttonIdx: 2
   btnSkillIdx: 0
   skillDirectory: {fileID: 3794413523395162822}
@@ -15039,6 +15043,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a8a913f115d6fa46977d051046dfc84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1332281160540074999}
   buttonIdx: 6
   btnSkillIdx: 0
   skillDirectory: {fileID: 3794413523395162822}
@@ -15058,6 +15063,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a8a913f115d6fa46977d051046dfc84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1332281160540074999}
   buttonIdx: 7
   btnSkillIdx: 0
   skillDirectory: {fileID: 3794413523395162822}
@@ -15077,6 +15083,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a8a913f115d6fa46977d051046dfc84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1332281160540074999}
   buttonIdx: 9
   btnSkillIdx: 0
   skillDirectory: {fileID: 3794413523395162822}
@@ -15096,6 +15103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a8a913f115d6fa46977d051046dfc84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1332281160540074999}
   buttonIdx: 10
   btnSkillIdx: 0
   skillDirectory: {fileID: 3794413523395162822}
@@ -15152,10 +15160,10 @@ RectTransform:
   m_Father: {fileID: 6522464805355330207}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -145}
-  m_SizeDelta: {x: 80, y: 80}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &1436683563331826328
 RectTransform:
@@ -15174,10 +15182,10 @@ RectTransform:
   m_Father: {fileID: 6522464805355330207}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -55}
-  m_SizeDelta: {x: 80, y: 80}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &1448213489563797446
 Transform:
@@ -69103,12 +69111,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a8a913f115d6fa46977d051046dfc84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1332281160540074999}
   buttonIdx: 0
   btnSkillIdx: 0
   skillDirectory: {fileID: 3794413523395162822}
   skillData: {fileID: 6914787020077192284}
   btnSkill: {fileID: 0}
-  skillIcon: {fileID: 0}
+  skillIcon: {fileID: 568321558983260455}
   coolTimeIcon: {fileID: 5295512748930823363}
 --- !u!114 &5926135437752672814
 MonoBehaviour:
@@ -70319,6 +70328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a8a913f115d6fa46977d051046dfc84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1332281160540074999}
   buttonIdx: 1
   btnSkillIdx: 0
   skillDirectory: {fileID: 3794413523395162822}

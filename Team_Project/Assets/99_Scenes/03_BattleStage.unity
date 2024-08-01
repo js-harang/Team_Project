@@ -188,6 +188,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 023fac8557a35594bb6c6067611fa018, type: 3}
+--- !u!114 &6446709 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1332281161109069133, guid: 023fac8557a35594bb6c6067611fa018, type: 3}
+  m_PrefabInstance: {fileID: 6446708}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb68986fcd0e05543b01a83317595063, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &24544086
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -58396,6 +58407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a8a913f115d6fa46977d051046dfc84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 6446709}
   buttonIdx: 1
   btnSkillIdx: 0
   skillDirectory: {fileID: 9040163872394701049}
@@ -58501,6 +58513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a8a913f115d6fa46977d051046dfc84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 6446709}
   buttonIdx: 0
   btnSkillIdx: 0
   skillDirectory: {fileID: 9040163872394701049}
@@ -72482,6 +72495,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a8a913f115d6fa46977d051046dfc84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 6446709}
   buttonIdx: 2
   btnSkillIdx: 0
   skillDirectory: {fileID: 9040163872394701049}
@@ -72501,6 +72515,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a8a913f115d6fa46977d051046dfc84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 6446709}
   buttonIdx: 6
   btnSkillIdx: 0
   skillDirectory: {fileID: 9040163872394701049}
@@ -72520,6 +72535,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a8a913f115d6fa46977d051046dfc84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 6446709}
   buttonIdx: 11
   btnSkillIdx: 0
   skillDirectory: {fileID: 9040163872394701049}
@@ -72539,6 +72555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a8a913f115d6fa46977d051046dfc84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 6446709}
   buttonIdx: 10
   btnSkillIdx: 0
   skillDirectory: {fileID: 9040163872394701049}
@@ -72558,6 +72575,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a8a913f115d6fa46977d051046dfc84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 6446709}
   buttonIdx: 7
   btnSkillIdx: 0
   skillDirectory: {fileID: 9040163872394701049}
@@ -72577,6 +72595,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a8a913f115d6fa46977d051046dfc84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 6446709}
   buttonIdx: 9
   btnSkillIdx: 0
   skillDirectory: {fileID: 9040163872394701049}
@@ -72596,6 +72615,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a8a913f115d6fa46977d051046dfc84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 6446709}
   buttonIdx: 5
   btnSkillIdx: 0
   skillDirectory: {fileID: 9040163872394701049}
@@ -72615,6 +72635,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a8a913f115d6fa46977d051046dfc84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 6446709}
   buttonIdx: 4
   btnSkillIdx: 0
   skillDirectory: {fileID: 9040163872394701049}
@@ -72634,6 +72655,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a8a913f115d6fa46977d051046dfc84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 6446709}
   buttonIdx: 3
   btnSkillIdx: 0
   skillDirectory: {fileID: 9040163872394701049}
@@ -72653,6 +72675,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a8a913f115d6fa46977d051046dfc84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 6446709}
   buttonIdx: 8
   btnSkillIdx: 0
   skillDirectory: {fileID: 9040163872394701049}

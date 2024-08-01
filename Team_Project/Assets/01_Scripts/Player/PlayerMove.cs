@@ -120,7 +120,7 @@ public class PlayerMove : MonoBehaviour
         }
         else
         {
-            pState.UnitState = UnitState.Jump;
+            // pState.UnitState = UnitState.Jump;
             isGround = false;
             anim.SetBool("IsGround", isGround);
         }

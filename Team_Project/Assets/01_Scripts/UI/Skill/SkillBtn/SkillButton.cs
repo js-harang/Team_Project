@@ -7,7 +7,7 @@ using UnityEngine.Networking;
 public class SkillButton : MonoBehaviour
 {
     // 태그로 자동 참조
-    PlayerCombat player;
+    [SerializeField] PlayerCombat player;
     SkillBtnManager chkDup;
 /*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
@@ -49,7 +49,7 @@ public class SkillButton : MonoBehaviour
     #endregion
 /*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
-    private void Start()
+    private void Awake()
     {
         StartSetting();
     }
@@ -187,6 +187,8 @@ public class SkillButton : MonoBehaviour
         if (btnSkillIdx > 0)
         {
             btnSkill = skillDirectory.skillAtks[btnSkillIdx];
+            Debug.Log(skillDirectory.skillAtks[btnSkillIdx]);
+            Debug.Log(SkillIcon);
             SkillIcon.sprite = Skill.sprite;
             SetSkillData();
         }
@@ -209,13 +211,12 @@ public class SkillButton : MonoBehaviour
     void StartSetting()
     {
         skillIcon = GetComponent<Image>();
-        player = GameObject.FindWithTag("Player").GetComponent<PlayerCombat>();
         skillData = GetComponentInChildren<SkillData>();
+
+        chkDup = GetComponentInParent<SkillBtnManager>();
 
         coolTimeIcon.fillAmount = 0;
         coolTime = 0f;
-
-        chkDup = GetComponentInParent<SkillBtnManager>();
     }
     #endregion
 }
