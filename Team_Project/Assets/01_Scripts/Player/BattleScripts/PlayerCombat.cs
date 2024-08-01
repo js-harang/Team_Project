@@ -117,7 +117,7 @@ public class PlayerCombat : DamagedAction
                 currentMp -= attack.useMana;
 
             // mp슬라이더 설정
-            GameManager.gm.UI.SetMpSlider(CurrentMp, GameManager.gm.MaxMp);
+            UIController.ui.SetMpSlider(CurrentMp, GameManager.gm.MaxMp);
             #endregion
 
             anim.Play("Attack", 0, 0);

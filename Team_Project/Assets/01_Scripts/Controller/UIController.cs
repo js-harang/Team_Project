@@ -50,8 +50,6 @@ public class UIController : MonoBehaviour
     {
         pState = FindObjectOfType<PlayerState>().GetComponent<PlayerState>();
 
-        GameManager.gm.UI = this.GetComponent<UIController>();
-
         SetUnitName();
         SetLvText();
         SetHpSlider(GameManager.gm.MaxHp, GameManager.gm.MaxHp);
