@@ -53,11 +53,6 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public int slotNum = -1;
     #endregion
 
-    #region UIController ¼Ó¼º
-    private UIController ui;
-    public UIController UI { get { return ui; } set { ui = value; } }
-    #endregion
-
     #region player info
     private string uid;
     public string Uid

@@ -24,8 +24,6 @@ public class PlayerCombat : DamagedAction
     public float CurrentMp { get { return currentMp; } set { currentMp = value; } }
     #endregion
 
-    UIController ui;
-
     #endregion
 /*-------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
@@ -75,7 +73,6 @@ public class PlayerCombat : DamagedAction
     {
         GameManager.gm.Player = GetComponent<PlayerCombat>();
         bCon = FindObjectOfType<BattleController>().GetComponent<BattleController>();
-        ui = GameManager.gm.UI;
         LevelController.lc.player = this;
 
         atkPower = GameManager.gm.AtkPower;
@@ -120,7 +117,7 @@ public class PlayerCombat : DamagedAction
                 currentMp -= attack.useMana;
 
             // mp슬라이더 설정
-            GameManager.gm.UI.SetMpSlider(CurrentMp, GameManager.gm.MaxMp);
+            UIController.ui.SetMpSlider(CurrentMp, GameManager.gm.MaxMp);
             #endregion
 
             anim.Play("Attack", 0, 0);
@@ -230,7 +227,7 @@ public class PlayerCombat : DamagedAction
 
         bCon.playerHitCount++;
 
-        ui.SetHpSlider(CurrentHp, GameManager.gm.MaxHp);
+        UIController.ui.SetHpSlider(CurrentHp, GameManager.gm.MaxHp);
 
         if (currentHp > 0)
         {
