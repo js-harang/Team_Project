@@ -157,13 +157,25 @@ public class GameManager : MonoBehaviour
     }
 
     private int atkPower;
-    public int AtkPower { get { return atkPower; } set { atkPower = value; } }
+    public int AtkPower
+    {
+        get { return atkPower; }
+        set { atkPower = value; }
+    }
 
     private int maxHp;
-    public int MaxHp { get { return maxHp; } set { maxHp = value; } }
+    public int MaxHp
+    {
+        get { return maxHp; }
+        set { maxHp = value; }
+    }
 
     private int maxMp;
-    public int MaxMp { get { return maxMp; } set { maxMp = value; } }
+    public int MaxMp
+    {
+        get { return maxMp; }
+        set { maxMp = value; }
+    }
 
     public float recoveryRate = 1f;
 
