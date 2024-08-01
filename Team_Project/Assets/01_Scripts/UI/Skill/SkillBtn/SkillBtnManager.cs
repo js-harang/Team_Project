@@ -63,7 +63,7 @@ public class SkillBtnManager : MonoBehaviour
     #region 스킬 불러오기
     void LoadSkillData()
     {
-        skillBtnData = new string[skillSet.Length / 2];
+        skillBtnData = new string[GameManager.gm.Skill.Length / 2];
 
         int idx = 0;
         for (int i = 0; i < GameManager.gm.Skill.Length; i += 2)

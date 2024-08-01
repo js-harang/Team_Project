@@ -10,6 +10,6 @@ public class TestBtn : MonoBehaviour
     }
     public void AddExp(int exp)
     {
-        GameManager.gm.Exp += exp;
+        LevelController.lc.SumEXP(exp);
     }
 }
