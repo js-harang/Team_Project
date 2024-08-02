@@ -22,6 +22,14 @@ public class QuestGiver : MonoBehaviour
         qLoad.questDic.Add(interPP.InteractId, questList);
     }
 
+    private void Update()
+    {
+        if (myQuestCount == questList.Count)
+            return;
+
+        MyQuestCount = questList.Count;
+    }
+
     // 플레이어가 말을 걸었을 때 현재 퀘스트 목표가 자신인지 확인하는 메서드
     public void HereForTalkToMe()
     {
