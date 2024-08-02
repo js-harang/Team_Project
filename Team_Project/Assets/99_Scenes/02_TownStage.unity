@@ -1357,22 +1357,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 298446444, guid: 8775acec7efed374898815f3be4b85c0, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: NPCTypeMenuOn
-      objectReference: {fileID: 0}
-    - target: {fileID: 417314584, guid: 8775acec7efed374898815f3be4b85c0, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: NPCTypeMenuOn
-      objectReference: {fileID: 0}
-    - target: {fileID: 1960957402, guid: 8775acec7efed374898815f3be4b85c0, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: NPCTypeMenuOn
-      objectReference: {fileID: 0}
-    - target: {fileID: 4647744316651363859, guid: 8775acec7efed374898815f3be4b85c0, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4647744317304588226, guid: 8775acec7efed374898815f3be4b85c0, type: 3}
       propertyPath: m_Name
       value: InteractController
@@ -64922,7 +64906,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4128455478038649081
 RectTransform:
   m_ObjectHideFlags: 0
@@ -70130,7 +70114,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: -248}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &6546010730840051087
 GameObject:
@@ -74436,7 +74420,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 1496848807, guid: 1b34495854fe59e469b1e9e7b1cb474e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

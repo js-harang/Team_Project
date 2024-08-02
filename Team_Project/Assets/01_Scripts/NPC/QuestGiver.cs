@@ -10,12 +10,9 @@ public class QuestGiver : MonoBehaviour
     QuestsLoad qLoad;
     public List<QuestData> questList = new List<QuestData>();
 
-    public GameObject questHave;
-    public GameObject questDone;
-
     int myQuestCount;
     public int MyQuestCount
-    { get { return myQuestCount; } set {myQuestCount = value; QuestMarkCheck(); } }
+    { get { return myQuestCount; } set {myQuestCount = value; } }
 
     private void Awake()
     {
@@ -23,52 +20,6 @@ public class QuestGiver : MonoBehaviour
         questCon = FindObjectOfType<QuestController>().GetComponent<QuestController>();
         qLoad = questCon.qLoad;
         qLoad.questDic.Add(interPP.InteractId, questList);
-    }
-
-    private void Update()
-    {
-        if (myQuestCount == questList.Count)
-            return;
-
-        MyQuestCount = questList.Count;
-    }
-
-    // 플레이어가 자신의 퀘스트를 얼마나 수주했는지 확인
-    public void QuestMarkCheck()
-    {
-        StartCoroutine(HowManyHave());
-    }
-
-    IEnumerator HowManyHave()
-    {
-        int count = 0;
-
-        string url = GameManager.gm.path + "search_playerquestid.php";
-        WWWForm form = new WWWForm();
-        form.AddField("cuid", GameManager.gm.UnitUid);
-
-        for (int i = 0; i < questList.Count; i++)
-        {
-            form.AddField("questID", questList[i].questID);
-
-            using (UnityWebRequest www = UnityWebRequest.Post(url, form))
-            {
-                yield return www.SendWebRequest();
-
-                if (www.error == null)
-                {
-                    if (www.downloadHandler.text == "")
-                        continue;
-
-                    count++;
-                }
-            }
-        }
-
-        if (count >= questList.Count)
-            questHave.SetActive(false);
-        else
-            questHave.SetActive(true);
     }
 
     // 플레이어가 말을 걸었을 때 현재 퀘스트 목표가 자신인지 확인하는 메서드
