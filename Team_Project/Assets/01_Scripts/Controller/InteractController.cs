@@ -199,16 +199,10 @@ public class InteractController : MonoBehaviour
     /// <param name="num">NPC와의 대화 단계</param>
     void ReadLineAndStore(int id, InteractStep interactStep)
     {
-        filePath = Application.dataPath + $"\\21_Data\\{id} Dialogue\\{interactStep}.txt";
+        filePath = $"Texts/{id} Dialogue/{interactStep}";
+        TextAsset text = Resources.Load<TextAsset>(filePath);
 
-        // 파일 존재 여부 확인
-        if (!File.Exists(filePath))
-        {
-            Debug.LogError("파일을 찾을 수 없습니다. 파일경로 : " + filePath);
-            return;
-        }
-
-        string[] lines = File.ReadAllLines(filePath);
+        string[] lines = text.text.Split('\n');
 
         for (int i = 0; i < lines.Length; i++)
         {

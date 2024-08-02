@@ -246,7 +246,7 @@ public class BattleController : MonoBehaviour
     {
         int time = (int)totalBattleTime;
         int hitPanelty = playerHitCount * 10;
-        totalPointCount_Txt.text = (time - hitPanelty).ToString();
+        totalPointCount_Txt.text = (time - hitPanelty).ToString() + " 점";
     }
 
     // 버튼 누르면 마을로
