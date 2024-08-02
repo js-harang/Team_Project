@@ -8,9 +8,14 @@ public class CreateSceneController : MonoBehaviour
 {
     [SerializeField] GameObject createPopup;
     bool isCreateActive = false;
+
     [SerializeField] GameObject popup;
     bool isPopupActive = false;
     [SerializeField] TextMeshProUGUI popupTxt;
+
+    [SerializeField] GameObject checkPopup;
+    bool isCheckActive = false;
+    [SerializeField] TextMeshProUGUI checkTxt;
 
     [SerializeField, Space(10)] TMP_InputField unitName;
     [SerializeField] TextMeshProUGUI nameTxt;
@@ -24,8 +29,14 @@ public class CreateSceneController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (!isCreateActive)
-                SceneManager.LoadScene("01_CharacterLobby");
+            if (isCheckActive)
+                CheckBtn();
+            else if (isPopupActive)
+                CreateCancleBtn();
+            else if (isCreateActive)
+                CancleBtn();
+            else
+                BackBtn();
         }
     }
 
@@ -39,19 +50,58 @@ public class CreateSceneController : MonoBehaviour
         Illusts[num].SetActive(true);
     }
 
-
+    public void SelectBtn()
+    {
+        isCreateActive = true;
+        createPopup.SetActive(isCreateActive);
+    }
 
     public void CreateBtn()
     {
-        createPopup.SetActive(true);
-
         if (unitName.text == "")
         {
-            Debug.Log("이름 입력하세요");
+            checkTxt.text = "닉네임을 입력해주세요";
+
+            isCreateActive = false;
+            createPopup.SetActive(isCreateActive);
+            isCheckActive = true;
+            checkPopup.SetActive(isCheckActive);
+
             return;
         }
 
+        popupTxt.text = unitName.text + "(으)로 생성하시겠습니까?";
+        isCreateActive = false;
+        createPopup.SetActive(isCreateActive);
+        isPopupActive = true;
+        popup.SetActive(isPopupActive);
+    }
+
+    public void CancleBtn()
+    {
+        isCreateActive = false;
+        createPopup.SetActive(isCreateActive);
+    }
+
+    public void CheckBtn()
+    {
+        isCheckActive = false;
+        checkPopup.SetActive(isCheckActive);
+        isCreateActive = true;
+        createPopup.SetActive(isCreateActive);
+    }
+
+    public void CreateCheckBtn()
+    {
         StartCoroutine(SaveDataPost());
+    }
+
+    public void CreateCancleBtn()
+    {
+        isPopupActive = false;
+        popup.SetActive(isPopupActive);
+        isCreateActive = true;
+        createPopup.SetActive(isCreateActive);
     }
 
     IEnumerator SaveDataPost()
