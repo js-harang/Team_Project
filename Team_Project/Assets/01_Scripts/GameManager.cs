@@ -129,7 +129,7 @@ public class GameManager : MonoBehaviour
     {
         string url = path + "saveskill.php";
 
-        WWWForm form = new WWWForm();
+        WWWForm form = new();
         form.AddField("cuid", unitUid);
         form.AddField("num", skill);
 

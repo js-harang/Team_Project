@@ -32,6 +32,14 @@ public class LobbyController : MonoBehaviour
 
     string[] datas;
 
+    [SerializeField, Space(10)] GameObject popup;
+    bool isPopupActive = false;
+    [SerializeField] TextMeshProUGUI popupTxt;
+
+    [SerializeField] GameObject checkPopup;
+    bool isCheckActive = false;
+    [SerializeField] TextMeshProUGUI checkTxt;
+
     private void OnEnable()
     {
         StartCoroutine(LoadData());
@@ -55,6 +63,24 @@ public class LobbyController : MonoBehaviour
         }
 
         RoadDatas();
+    }
+
+    private void Start()
+    {
+        GameManager.gm.slotNum = -1;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (isCheckActive)
+                CheckBtn();
+            else if (isPopupActive)
+                DeleteCancleBtn();
+            else
+                BackBtn();
+        }
     }
 
     private void RoadDatas()
@@ -133,5 +159,84 @@ public class LobbyController : MonoBehaviour
             anim = unitSlots.slots[num].transform.GetChild(0).GetComponent<Animator>();
             anim.SetBool("select", true);
         }
+    }
+
+    public void DeleteUnitBtn()
+    {
+        if (GameManager.gm.slotNum == -1)
+        {
+            checkTxt.text = "삭제할 캐릭터를 선택해주세요";
+            isCheckActive = true;
+            checkPopup.SetActive(isCheckActive);
+            return;
+        }
+
+        SlotInfo info = selectSlots.slots[GameManager.gm.slotNum].GetComponent<SlotInfo>();
+
+        Animator anim;
+        anim = unitSlots.slots[GameManager.gm.slotNum].transform.GetChild(0).GetComponent<Animator>();
+        anim.SetBool("select", false);
+
+        popupTxt.text = info.unitName + "을(를) 삭제하시겠습니까?";
+        isPopupActive = true;
+        popup.SetActive(isPopupActive);
+    }
+
+    public void CheckBtn()
+    {
+        isCheckActive = false;
+        checkPopup.SetActive(isCheckActive);
+    }
+
+    public void DeleteCheckBtn()
+    {
+        StartCoroutine(DeleteDataPost());
+    }
+
+    IEnumerator DeleteDataPost()
+    {
+        SlotInfo info = selectSlots.slots[GameManager.gm.slotNum].GetComponent<SlotInfo>();
+        string url = GameManager.gm.path + "delete_character.php";
+        WWWForm form = new();
+        form.AddField("unit_uid", info.unitUid);
+        form.AddField("name", info.unitName);
+
+        using (UnityWebRequest www = UnityWebRequest.Post(url, form))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.error == null)
+            {
+                switch (www.downloadHandler.text)
+                {
+                    case "y":
+                        checkTxt.text = "캐릭터 삭제가 성공되었습니다.";
+
+                        Destroy(unitSlots.slots[GameManager.gm.slotNum].transform.GetChild(0).gameObject);
+                        var obj = selectSlots.slots[GameManager.gm.slotNum].transform;
+                        obj.GetChild(0).gameObject.GetComponent<Image>().sprite = createSprite;
+                        obj.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = "캐릭터 생성";
+                        break;
+                    case "n":
+                        break;
+                    default:
+                        checkTxt.text = "알 수 없는 오류가 발생하였습니다.";
+                        break;
+                }
+
+                isPopupActive = false;
+                popup.SetActive(isPopupActive);
+                isCheckActive = true;
+                checkPopup.SetActive(isCheckActive);
+                GameManager.gm.slotNum = -1;
+            }
+        }
+    }
+
+    public void DeleteCancleBtn()
+    {
+        isPopupActive = false;
+        popup.SetActive(isPopupActive);
+        GameManager.gm.slotNum = -1;
     }
 }

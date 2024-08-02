@@ -108,7 +108,6 @@ public class CreateSceneController : MonoBehaviour
     {
         string url = GameManager.gm.path + "create_character.php";
         WWWForm form = new();
-        Debug.Log(GameManager.gm.Uid);
         form.AddField("uid", GameManager.gm.Uid);
         form.AddField("slot", GameManager.gm.slotNum);
         form.AddField("name", unitName.text);
@@ -127,10 +126,18 @@ public class CreateSceneController : MonoBehaviour
                         SceneManager.LoadScene("01_CharacterLobby");
                         break;
                     case "n":
-                        Debug.Log("중복된 닉네임");
+                        checkTxt.text = "중복된 닉네임입니다.";
+                        isPopupActive = false;
+                        popup.SetActive(isPopupActive);
+                        isCheckActive = true;
+                        checkPopup.SetActive(isCheckActive);
                         break;
                     default:
-                        Debug.Log("알 수 없는 오류가 발생했습니다.");
+                        checkTxt.text = "알 수 없는 오류가 발생하였습니다.";
+                        isPopupActive = false;
+                        popup.SetActive(isPopupActive);
+                        isCheckActive = true;
+                        checkPopup.SetActive(isCheckActive);
                         break;
                 }
             }
