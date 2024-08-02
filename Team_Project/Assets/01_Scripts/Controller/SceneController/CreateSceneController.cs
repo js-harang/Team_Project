@@ -8,6 +8,9 @@ public class CreateSceneController : MonoBehaviour
 {
     [SerializeField] GameObject createPopup;
     bool isCreateActive = false;
+    [SerializeField] GameObject popup;
+    bool isPopupActive = false;
+    [SerializeField] TextMeshProUGUI popupTxt;
 
     [SerializeField, Space(10)] TMP_InputField unitName;
     [SerializeField] TextMeshProUGUI nameTxt;
@@ -36,14 +39,7 @@ public class CreateSceneController : MonoBehaviour
         Illusts[num].SetActive(true);
     }
 
-    public void SelectBtn()
-    {
-        if (unitIndex != 0)
-            return;
 
-        isCreateActive = true;
-        createPopup.SetActive(isCreateActive);
-    }
 
     public void CreateBtn()
     {
@@ -76,11 +72,11 @@ public class CreateSceneController : MonoBehaviour
             {
                 switch (www.downloadHandler.text)
                 {
-                    case "success":
+                    case "y":
                         GameManager.gm.slotNum = -1;
                         SceneManager.LoadScene("01_CharacterLobby");
                         break;
-                    case "name exists":
+                    case "n":
                         Debug.Log("중복된 닉네임");
                         break;
                     default:
@@ -89,12 +85,6 @@ public class CreateSceneController : MonoBehaviour
                 }
             }
         }
-    }
-
-    public void CancelBtn()
-    {
-        isCreateActive = !isCreateActive;
-        createPopup.SetActive(isCreateActive);
     }
 
     public void BackBtn()
