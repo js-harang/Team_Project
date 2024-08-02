@@ -72,16 +72,11 @@ public class ShowQuest : MonoBehaviour
     // 퀘스트의 상세 텍스트를 텍스트 파일에서 읽어옴
     void PrintQuestDetail(int questID)
     {
-        string filePath = Application.dataPath + $"\\21_Data\\Quest Detail\\{questID}.txt";
+        string filePath = $"Texts/Quest Detail/{questID}";
 
-        // 파일 존재 여부 확인
-        if (!File.Exists(filePath))
-        {
-            Debug.LogError("파일을 찾을 수 없습니다. 파일경로 : " + filePath);
-            return;
-        }
+        TextAsset text = Resources.Load<TextAsset>(filePath);
 
-        string[] questDetail = File.ReadAllLines(filePath);
+        string[] questDetail = text.text.Split('\n');
 
         for (int i = 0; i < questDetail.Length; i++)
         {
