@@ -21,9 +21,9 @@ if (search($conn, $name) === false) {
     $result = mysqli_query($conn, $sql);
 
     if ($result)
-        echo "success";
+        echo "y";
 } else
-    echo "name exists";
+    echo "n";
 
 mysqli_close($conn);
 
