@@ -70,6 +70,18 @@ public class CreateSceneController : MonoBehaviour
             return;
         }
 
+        if (unitName.text.Length > 12)
+        {
+            checkTxt.text = "닉네임은 12글자까지 가능합니다.";
+
+            isCreateActive = false;
+            createPopup.SetActive(isCreateActive);
+            isCheckActive = true;
+            checkPopup.SetActive(isCheckActive);
+
+            return;
+        }
+
         popupTxt.text = unitName.text + "(으)로 생성하시겠습니까?";
         isCreateActive = false;
         createPopup.SetActive(isCreateActive);
