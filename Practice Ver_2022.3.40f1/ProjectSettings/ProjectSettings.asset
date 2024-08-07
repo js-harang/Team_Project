@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 26
-  productGUID: 11da7c460d828f0478f1af07b30a78bb
+  productGUID: cb1f0cd7c37a2c24f8b76a8b866bf6ed
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -754,10 +754,10 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: ec61346a-2de0-4029-b10d-a0aab66006d3
+  cloudProjectId: 68d39d65-f4bd-44ac-990a-87597872cdb5
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: Practice Ver_2022.3.40f1
+  projectName: Practice Ver_2022.3.40f1 2024-08-07_15-31-47
   organizationId: fire2346
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
